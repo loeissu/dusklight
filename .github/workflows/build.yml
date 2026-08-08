@@ -23,6 +23,50 @@ env:
   KEYSTORE_ALIAS: "dusklight-zh"
 
 jobs:
+  build-windows:
+    name: Build Windows x86_64
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          submodules: recursive
+
+      - name: Enable Visual Studio environment
+        uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: amd64
+
+      # msvc-dev-cmd sets VCPKG_ROOT, set it back
+      - name: Override VCPKG_ROOT
+        run: echo "VCPKG_ROOT=C:\vcpkg" >> $env:GITHUB_ENV
+
+      - name: Setup sccache
+        uses: mozilla-actions/sccache-action@v0.0.9
+
+      - name: Install dependencies
+        run: |
+          choco install ninja
+          vcpkg install freetype:x64-windows zstd:x64-windows
+
+      - name: Configure CMake
+        run: cmake --preset x-windows-ci-msvc
+
+      - name: Build
+        run: cmake --build --preset x-windows-ci-msvc
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v7
+        with:
+          name: Dusklight-汉化版-win32-x86_64
+          path: |
+            build/install/*.exe
+            build/install/*.dll
+            build/install/res/
+            build/install/mods/
+            build/install/sdk/
+
   build-linux:
     name: Build Linux x86_64 (Steam Deck)
     runs-on: ubuntu-24.04

@@ -556,6 +556,7 @@
         "ci"
       ],
       "cacheVariables": {
+        "BOREALIS_APP_VERSION_OVERRIDE": "1.4.1",
         "CMAKE_MSVC_DEBUG_INFORMATION_FORMAT": "Embedded",
         "CMAKE_TOOLCHAIN_FILE": {
           "type": "FILEPATH",
