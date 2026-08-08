@@ -448,6 +448,7 @@
         "ci"
       ],
       "cacheVariables": {
+        "BOREALIS_APP_VERSION_OVERRIDE": "1.4.1",
         "BOREALIS_ENABLE_SENTRY": {
           "type": "BOOL",
           "value": false
