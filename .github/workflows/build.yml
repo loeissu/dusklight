@@ -1,5 +1,6 @@
 name: Build Android (汉化版)
 
+# 触发编译：修改任意非 md/docs 文件并推送到 main，或在 Actions 页面手动 Run workflow
 on:
   push:
     branches: [main]
