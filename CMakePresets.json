@@ -474,6 +474,7 @@
         "ci"
       ],
       "cacheVariables": {
+        "BOREALIS_APP_VERSION_OVERRIDE": "1.4.1",
         "AURORA_SDL3_PROVIDER": "vendor",
         "CMAKE_LINKER_TYPE": "MOLD"
       }

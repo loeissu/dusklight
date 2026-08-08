@@ -23,6 +23,44 @@ env:
   KEYSTORE_ALIAS: "dusklight-zh"
 
 jobs:
+  build-linux:
+    name: Build Linux x86_64 (Steam Deck)
+    runs-on: ubuntu-24.04
+
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          submodules: recursive
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get -y install ninja-build clang lld mold openssl libcurl4-openssl-dev \
+            zlib1g-dev libglu1-mesa-dev libdbus-1-dev libvulkan-dev libxi-dev libxrandr-dev libasound2-dev \
+            libpulse-dev libudev-dev libpng-dev libncurses5-dev libx11-xcb-dev libfreetype-dev \
+            libxinerama-dev libxcursor-dev python3-markupsafe libgtk-3-dev libssl-dev \
+            libxss-dev libfuse2 libusb-1.0-0-dev libdecor-0-dev libpipewire-0.3-dev libunwind-dev
+
+      - name: Setup sccache
+        uses: mozilla-actions/sccache-action@v0.0.10
+
+      - name: Configure CMake
+        run: cmake --preset x-linux-ci-gcc
+
+      - name: Build
+        run: cmake --build --preset x-linux-ci-gcc
+
+      - name: Generate AppImage
+        run: ci/build-appimage.sh
+
+      - name: Upload AppImage
+        uses: actions/upload-artifact@v7
+        with:
+          name: Dusklight-汉化版-linux-x86_64
+          path: |
+            build/install/Dusklight-*.AppImage
+
   build-android:
     name: Build Android arm64
     runs-on: ubuntu-latest
