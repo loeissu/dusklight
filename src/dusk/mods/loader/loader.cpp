@@ -1111,15 +1111,14 @@ void ModLoader::flush_toasts() {
 
     ui::Toast toast{.type = "warning", .duration = std::chrono::seconds{5}};
     if (names.size() == 1) {
-        toast.title = "Mod failed";
+        toast.title = "模组加载失败";
         toast.content =
-            fmt::format("<div><b>{}</b> failed and was disabled.</div><div>Check Mods for "
-                        "more information.</div>",
+            fmt::format("<div><b>{}</b> 加载失败并已被禁用。</div><div>请到“模组”中查看详细信息。</div>",
                 ui::escape(names.front()));
     } else {
-        toast.title = "Mods failed";
-        toast.content = fmt::format("<div><b>{} mods</b> failed and were disabled.</div><div>Check "
-                                    "Mods for more information.</div>",
+        toast.title = "模组加载失败";
+        toast.content = fmt::format("<div><b>{} 个模组</b>加载失败并已被禁用。</div><div>请到"
+                                    "“模组”中查看详细信息。</div>",
             names.size());
     }
     ui::push_toast(std::move(toast));

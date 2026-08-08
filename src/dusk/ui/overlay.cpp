@@ -119,13 +119,13 @@ Rml::Element* create_controller_warning(Rml::Element* parent) {
 
     auto* heading = append(elem, "heading");
     auto* title = append(heading, "span");
-    title->SetInnerRML("No Device Assigned");
+    title->SetInnerRML("未分配设备");
     auto* icon = append(heading, "icon");
     icon->SetClass("warning", true);
 
     auto* message = append(elem, "message");
     auto* content = append(message, "span");
-    content->SetInnerRML("Configure <b>Port 1</b> in Settings.");
+    content->SetInnerRML("请在设置中配置 <b>端口 1</b>。");
 
     return elem;
 }
@@ -161,9 +161,9 @@ Rml::String back_button_name() {
 }
 
 #if defined(TARGET_ANDROID) || (defined(__APPLE__) && TARGET_OS_IOS && !TARGET_OS_MACCATALYST)
-constexpr auto kMenuNotificationPrefix = "3-finger tap or";
+constexpr auto kMenuNotificationPrefix = "三指轻触或";
 #else
-constexpr auto kMenuNotificationPrefix = "Press <b>F1</b> or";
+constexpr auto kMenuNotificationPrefix = "按 <b>F1</b> 或";
 #endif
 
 Rml::Element* create_menu_notification(Rml::Element* parent) {
@@ -186,7 +186,7 @@ Rml::Element* create_menu_notification(Rml::Element* parent) {
     auto* icon = append(row, "icon");
     icon->SetClass("controller", true);
     append(row, "span")->SetInnerRML("<b>" + escape(padButton) + "</b>");
-    append(row, "span")->SetInnerRML("to open menu");
+    append(row, "span")->SetInnerRML("打开菜单");
 
     return elem;
 }
@@ -295,10 +295,10 @@ void Overlay::update() {
     if (getSettings().game.speedrunMode && getSettings().game.liveSplitEnabled) {
         dusk::speedrun::updateLiveSplit();
         if (dusk::speedrun::consumeConnectedEvent()) {
-            push_toast({.title = "LiveSplit connected", .duration = std::chrono::seconds(3)});
+            push_toast({.title = "LiveSplit 已连接", .duration = std::chrono::seconds(3)});
         }
         if (dusk::speedrun::consumeDisconnectedEvent()) {
-            push_toast({.title = "LiveSplit disconnected", .duration = std::chrono::seconds(3)});
+            push_toast({.title = "LiveSplit 已断开", .duration = std::chrono::seconds(3)});
         }
     }
 #endif

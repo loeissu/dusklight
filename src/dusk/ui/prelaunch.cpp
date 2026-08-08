@@ -45,7 +45,7 @@ const Rml::String kDocumentSource = R"RML(
     <content id="root" open>
         <menu>
             <hero class="intro-item delay-0">
-                <eyebrow><span>Twilit Realm</span> presents</eyebrow>
+                <eyebrow><span>Twilit Realm</span> 出品</eyebrow>
                 <img src="res/logo.png" />
             </hero>
             <div id="menu-list" />
@@ -58,7 +58,7 @@ const Rml::String kDocumentSource = R"RML(
             <span id="disc-version" class="detail" />
         </disc-info>
         <version-info class="intro-item delay-6">
-            <div class="version">Version <span id="version-text"></span></div>
+            <div class="version">版本 <span id="version-text"></span></div>
             <div id="update-status" class="update">
                 <span id="update-message"></span>
                 <button id="update-download">
@@ -73,8 +73,8 @@ const Rml::String kDocumentSource = R"RML(
 )RML";
 
 const std::vector<borealis::file_select::Filter> kDiscFileFilters{
-    {"Game Disc Images", "iso;gcm;ciso;gcz;nfs;rvz;wbfs;wia;tgc"},
-    {"All Files", "*"},
+    {"游戏镜像", "iso;gcm;ciso;gcz;nfs;rvz;wbfs;wia;tgc"},
+    {"全部文件", "*"},
 };
 
 struct DiscVerificationResult {
@@ -283,23 +283,21 @@ void open_update_release() {
 std::string get_error_msg(iso::ValidationError error) {
     switch (error) {
     default:
-        return "The selected disc image could not be validated.";
+        return "无法验证所选游戏镜像。";
     case iso::ValidationError::IOError:
-        return "Unable to read the selected file.";
+        return "无法读取所选文件。";
     case iso::ValidationError::InvalidImage:
-        return "The selected file is not a valid disc image.";
+        return "所选文件不是有效的游戏镜像。";
     case iso::ValidationError::WrongGame:
-        return "The selected game is not supported by Dusklight.";
+        return "所选游戏不受 Dusklight 支持。";
     case iso::ValidationError::WrongVersion:
-        return "Dusklight currently supports GameCube USA and PAL disc images only.";
+        return "Dusklight 目前仅支持 GameCube 美版和 PAL 欧版镜像。";
     case iso::ValidationError::Canceled:
-        return "Disc verification was canceled. Dusklight cannot guarantee the selected disc "
-               "image is compatible.";
+        return "镜像验证已取消，无法保证所选镜像兼容。";
     case iso::ValidationError::HashMismatch:
-        return "The selected disc image did not pass hash verification. It may be corrupt or "
-               "modified.";
+        return "所选镜像未通过哈希校验，可能已损坏或被修改。";
     case iso::ValidationError::Success:
-        return "The selected disc image is valid.";
+        return "所选游戏镜像有效。";
     }
 }
 
@@ -367,7 +365,7 @@ public:
 
         auto* title = append(header, "div");
         title->SetClass("modal-title", true);
-        title->SetInnerRML("Verifying disc image");
+        title->SetInnerRML("正在验证游戏镜像");
 
         auto* icon = append(header, "icon");
         icon->SetClass("verifying", true);
@@ -391,7 +389,7 @@ public:
 
         auto* actions = append(mDialog, "div");
         actions->SetClass("modal-actions", true);
-        mCancelButton = std::make_unique<Button>(actions, "Cancel");
+        mCancelButton = std::make_unique<Button>(actions, "取消");
         mCancelButton->root()->SetClass("modal-btn", true);
         mCancelButton->on_pressed([this] { request_cancel(); });
 
@@ -437,12 +435,12 @@ private:
             return;
         }
 
-        mCancelRequested = true;
-        sDiscVerificationTask->status.cancelRequested.store(true, std::memory_order_relaxed);
-        if (mCancelButton != nullptr) {
-            mCancelButton->set_text("Cancelling...");
-            mCancelButton->set_disabled(true);
-        }
+            mCancelRequested = true;
+            sDiscVerificationTask->status.cancelRequested.store(true, std::memory_order_relaxed);
+            if (mCancelButton != nullptr) {
+                mCancelButton->set_text("正在取消...");
+                mCancelButton->set_disabled(true);
+            }
     }
 
     void refresh() {
@@ -472,7 +470,7 @@ private:
                 mProgress->SetAttribute("value", 0.f);
             }
             if (mDetail != nullptr) {
-                mDetail->SetInnerRML("Opening disc image...");
+                mDetail->SetInnerRML("正在打开游戏镜像...");
             }
             return;
         }
@@ -582,7 +580,7 @@ void try_push_verification_modal(Document& host) {
 
     if (!state.pendingDiscPath.empty()) {
         const Rml::String bodyRml =
-            state.errorString + "<br/><br/>You may proceed at your own risk.";
+            state.errorString + "<br/><br/>继续操作需要自行承担风险。";
         auto acceptHashMismatch = [](Modal& modal) {
             auto& st = prelaunch_state();
             std::string path = std::move(st.pendingDiscPath);
@@ -597,16 +595,16 @@ void try_push_verification_modal(Document& host) {
             modal.pop();
         };
         host.push(std::make_unique<Modal>(Modal::Props{
-            .title = "Disc verification warning",
+            .title = "镜像校验警告",
             .bodyRml = bodyRml,
             .actions =
                 {
                     ModalAction{
-                        .label = "Cancel",
+                        .label = "取消",
                         .onPressed = dismiss,
                     },
                     ModalAction{
-                        .label = "Continue anyway",
+                        .label = "仍然继续",
                         .onPressed = acceptHashMismatch,
                     },
                 },
@@ -618,12 +616,12 @@ void try_push_verification_modal(Document& host) {
     }
 
     host.push(std::make_unique<Modal>(Modal::Props{
-        .title = "Disc verification error",
+        .title = "镜像校验错误",
         .bodyRml = state.errorString,
         .actions =
             {
                 ModalAction{
-                    .label = "OK",
+                    .label = "确定",
                     .onPressed = dismiss,
                 },
             },
@@ -701,8 +699,8 @@ Prelaunch::Prelaunch()
     if (auto* menuList = mDocument->GetElementById("menu-list")) {
         auto& state = prelaunch_state();
         const bool activeDiscLoaded = !state.activeDiscPath.empty();
-        mMenuButtons.push_back(
-            std::make_unique<Button>(menuList, activeDiscLoaded ? "Play" : "Select Disc Image"));
+        mMenuButtons.push_back(std::make_unique<Button>(
+            menuList, activeDiscLoaded ? "开始游戏" : "选择游戏镜像"));
         mMenuButtons.back()->on_pressed([this] {
             if (prelaunch_state().activeDiscPath.empty()) {
                 open_iso_picker();
@@ -729,21 +727,21 @@ Prelaunch::Prelaunch()
         });
         apply_intro_animation(mMenuButtons.back()->root(), "delay-1");
 
-        mMenuButtons.push_back(std::make_unique<Button>(menuList, "Settings"));
+        mMenuButtons.push_back(std::make_unique<Button>(menuList, "设置"));
         mMenuButtons.back()->on_pressed([this] {
             mRestartSuppressed = false;
             push(std::make_unique<SettingsWindow>(true));
         });
         apply_intro_animation(mMenuButtons.back()->root(), "delay-2");
 
-        mMenuButtons.push_back(std::make_unique<Button>(menuList, "Mods"));
+        mMenuButtons.push_back(std::make_unique<Button>(menuList, "模组"));
         mMenuButtons.back()->on_pressed([this] {
             mRestartSuppressed = false;
             push(std::make_unique<ModsWindow>());
         });
         apply_intro_animation(mMenuButtons.back()->root(), "delay-3");
 
-        mMenuButtons.push_back(std::make_unique<Button>(menuList, "Quit"));
+        mMenuButtons.push_back(std::make_unique<Button>(menuList, "退出"));
         mMenuButtons.back()->on_pressed([] { IsRunning = false; });
         apply_intro_animation(mMenuButtons.back()->root(), "delay-4");
     }
@@ -797,27 +795,25 @@ void Prelaunch::show() {
         std::vector<ModalAction> actions;
         if constexpr (dusk::SupportsProcessRestart) {
             actions.push_back(ModalAction{
-                .label = "Restart later",
+                .label = "稍后重启",
                 .onPressed = dismiss,
             });
             actions.push_back(ModalAction{
-                .label = "Restart now",
+                .label = "立即重启",
                 .onPressed = [](Modal&) { dusk::RequestRestart(); },
             });
         } else {
             actions.push_back(ModalAction{
-                .label = "OK",
+                .label = "确定",
                 .onPressed = dismiss,
             });
         }
         push(std::make_unique<Modal>(Modal::Props{
-            .title = "Apply Options",
+            .title = "应用设置",
             .bodyRml =
                 dusk::SupportsProcessRestart ?
-                    "A restart is required to apply selected options.<br/><br/>Restart now to "
-                    "apply them immediately?" :
-                    "A restart is required to apply selected options.<br/><br/>Close and reopen "
-                    "Dusklight to apply them.",
+                    "应用所选设置需要重启游戏。<br/><br/>立即重启以应用这些设置？" :
+                    "应用所选设置需要重启游戏。<br/><br/>请关闭并重新打开 Dusklight 以应用设置。",
             .actions = std::move(actions),
             .onDismiss = dismiss,
         }));
@@ -863,7 +859,7 @@ void Prelaunch::update() {
     }
 
     if (!mMenuButtons.empty()) {
-        mMenuButtons[0]->set_text(activeDiscLoaded ? "Play" : "Select Disc Image");
+        mMenuButtons[0]->set_text(activeDiscLoaded ? "开始游戏" : "选择游戏镜像");
     }
 
     const auto discStatusLabel = mDiscStatus->GetElementById("disc-status-label");
@@ -871,22 +867,22 @@ void Prelaunch::update() {
     if (mDiscStatus != nullptr && discStatusLabel != nullptr) {
         if (!activeDiscLoaded) {
             mDiscStatus->RemoveAttribute("status");
-            discStatusLabel->SetInnerRML("No disc image found.");
+            discStatusLabel->SetInnerRML("未找到游戏镜像。");
         } else if (discRestartPending) {
             mDiscStatus->SetAttribute("status", "pending");
-            discStatusLabel->SetInnerRML("Pending restart.");
+            discStatusLabel->SetInnerRML("等待重启。");
         } else if (state.configuredDiscValidation == iso::ValidationError::Success) {
             mDiscStatus->SetAttribute("status", "good");
-            discStatusLabel->SetInnerRML("Disc ready.");
+            discStatusLabel->SetInnerRML("镜像就绪。");
         } else if (state.configuredDiscValidation == iso::ValidationError::HashMismatch) {
             mDiscStatus->SetAttribute("status", "mismatch");
-            discStatusLabel->SetInnerRML("Disc hash mismatch.");
+            discStatusLabel->SetInnerRML("镜像哈希不匹配。");
         } else if (canLaunchConfiguredDisc) {
             mDiscStatus->SetAttribute("status", "unknown");
-            discStatusLabel->SetInnerRML("Disc not verified.");
+            discStatusLabel->SetInnerRML("镜像未验证。");
         } else {
             mDiscStatus->SetAttribute("status", "bad");
-            discStatusLabel->SetInnerRML("Disc unavailable.");
+            discStatusLabel->SetInnerRML("镜像不可用。");
         }
     }
     if (mDiscDetail != nullptr) {
@@ -896,7 +892,7 @@ void Prelaunch::update() {
 
             switch (state.activeDiscInfo.platform) {
             case iso::Platform::Unknown:
-                innerRML += "Unknown";
+                innerRML += "未知";
                 break;
             case iso::Platform::GameCube:
                 innerRML += "GameCube";
@@ -922,7 +918,7 @@ void Prelaunch::update() {
                 innerRML += "KOR";
                 break;
             default:
-                innerRML += "Unknown";
+                innerRML += "未知";
                 break;
             }
             mDiscDetail->SetInnerRML(innerRML);
@@ -947,7 +943,7 @@ void Prelaunch::update() {
 
         if (sUpdateCheckTask != nullptr) {
             mUpdateStatus->SetAttribute("state", "checking");
-            mUpdateMessage->SetInnerRML("Checking for updates...");
+            mUpdateMessage->SetInnerRML("正在检查更新...");
         } else if (!sUpdateCheckResult.has_value() ||
                    sUpdateCheckResult->status == borealis::update::Status::UpToDate)
         {
@@ -955,14 +951,14 @@ void Prelaunch::update() {
             mUpdateMessage->SetInnerRML("");
         } else if (sUpdateCheckResult->status == borealis::update::Status::UpdateAvailable) {
             mUpdateStatus->SetAttribute("state", "available");
-            mUpdateMessage->SetInnerRML("Update available!");
+            mUpdateMessage->SetInnerRML("发现新版本！");
             if (mUpdateDownloadLabel != nullptr) {
                 mUpdateDownloadLabel->SetInnerRML(escape(
-                    fmt::format("Download {}", update_release_label(sUpdateCheckResult->latest))));
+                    fmt::format("下载 {}", update_release_label(sUpdateCheckResult->latest))));
             }
         } else {
             mUpdateStatus->SetAttribute("state", "failed");
-            mUpdateMessage->SetInnerRML("Failed to check for updates");
+            mUpdateMessage->SetInnerRML("检查更新失败");
         }
     }
 

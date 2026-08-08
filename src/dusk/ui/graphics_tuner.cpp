@@ -271,11 +271,11 @@ GraphicsTuner::GraphicsTuner(GraphicsTunerProps props)
     }
 
     if (auto* footer = mDocument->GetElementById("footer")) {
-        auto& returnButton = add_component<Button>(footer, "\xE2\x86\x90 Return", "footer-button")
+        auto& returnButton = add_component<Button>(footer, "\xE2\x86\x90 返回", "footer-button")
                                  .on_pressed([this] { pop(); });
         returnButton.root()->SetClass("return", true);
         auto& resetButton =
-            add_component<Button>(footer, "Reset to default", "footer-button").on_pressed([this] {
+            add_component<Button>(footer, "恢复默认设置", "footer-button").on_pressed([this] {
                 mDoAud_seStartMenu(kSoundItemChange);
                 reset_default();
             });

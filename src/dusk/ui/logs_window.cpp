@@ -94,11 +94,11 @@ void LogsWindow::build_content(Rml::Element* content) {
 
     auto* title = append(toolbar, "div");
     title->SetClass("log-title", true);
-    title->SetInnerRML("Logs");
+    title->SetInnerRML("日志");
 
     auto* modLabel = append(toolbar, "div");
     modLabel->SetClass("log-title-mod", true);
-    modLabel->SetInnerRML(mModFilter.empty() ? "All mods" : fmt::format("{}", escape(mModFilter)));
+    modLabel->SetInnerRML(mModFilter.empty() ? "全部模组" : fmt::format("{}", escape(mModFilter)));
 
     append(toolbar, "div")->SetClass("log-toolbar-spacer", true);
 
@@ -118,8 +118,8 @@ void LogsWindow::build_content(Rml::Element* content) {
 
     append(toolbar, "div")->SetClass("log-toolbar-spacer", true);
 
-    add_child<Button>(toolbar, "Copy").on_pressed([this] { copy_to_clipboard(); });
-    add_child<Button>(toolbar, "Clear").on_pressed([this] {
+    add_child<Button>(toolbar, "复制").on_pressed([this] { copy_to_clipboard(); });
+    add_child<Button>(toolbar, "清空").on_pressed([this] {
         mods::log::clear();
         rebuild_lines();
     });
@@ -290,7 +290,7 @@ void LogsWindow::copy_to_clipboard() {
             level_logger_name(line.level), modId, line.message);
     }
     Rml::GetSystemInterface()->SetClipboardText(text);
-    push_toast({.content = "Copied to clipboard", .duration = std::chrono::seconds(2)});
+    push_toast({.content = "已复制到剪贴板", .duration = std::chrono::seconds(2)});
 }
 
 }  // namespace dusk::ui

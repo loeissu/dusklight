@@ -28,15 +28,15 @@ bool mod_enabled(const mods::LoadedMod& mod) {
 
 ModStatus mod_status(const mods::LoadedMod& mod) {
     if (mod.loadFailed) {
-        return {"failed", "Failed"};
+        return {"failed", "失败"};
     }
     if (mod.active) {
-        return {"active", "Active"};
+        return {"active", "已启用"};
     }
     if (mod.suspendedByProvider) {
-        return {"suspended", "Suspended"};
+        return {"suspended", "已暂停"};
     }
-    return {"", "Disabled"};
+    return {"", "已禁用"};
 }
 
 // Truncates to at most maxBytes without splitting a UTF-8 sequence.
@@ -104,19 +104,19 @@ public:
         const std::string modId = mod.metadata.id;
         if (mod_enabled(mod)) {
             if (!mod.inPlace) {
-                make_button(actions, "Reload").on_pressed([modId] {
+                make_button(actions, "重新加载").on_pressed([modId] {
                     mods::ModLoader::instance().request_reload(modId);
                 });
             }
-            make_button(actions, "Disable").on_pressed([modId] {
+            make_button(actions, "禁用").on_pressed([modId] {
                 mods::ModLoader::instance().request_disable(modId);
             });
         } else {
-            make_button(actions, "Enable").on_pressed([modId] {
+            make_button(actions, "启用").on_pressed([modId] {
                 mods::ModLoader::instance().request_enable(modId);
             });
         }
-        make_button(actions, "Logs").on_pressed(std::move(onShowLogs));
+        make_button(actions, "日志").on_pressed(std::move(onShowLogs));
 
         listen(Rml::EventId::Keydown, [this](Rml::Event& event) {
             const auto cmd = map_nav_event(event);
@@ -191,7 +191,7 @@ void ModsWindow::build_content(Rml::Element* content) {
     detailPane.root()->SetClass("mod-detail", true);
 
     if (mods::ModLoader::instance().mods().empty()) {
-        listPane.add_text("No mods installed.");
+        listPane.add_text("未安装任何模组。");
         listPane.finalize();
         detailPane.finalize();
         return;

@@ -54,30 +54,30 @@ MenuBar::MenuBar()
                                                       },
                                                   .autoSelect = false,
                                               });
-    mTabBar->add_tab("Settings", [this] { push(std::make_unique<SettingsWindow>()); });
+    mTabBar->add_tab("设置", [this] { push(std::make_unique<SettingsWindow>()); });
 
     if (getSettings().backend.enableAdvancedSettings) {
-        mTabBar->add_tab("Warp", [this] { push(std::make_unique<WarpWindow>()); });
-        mTabBar->add_tab("Editor", [this] { push(std::make_unique<EditorWindow>()); });
+        mTabBar->add_tab("传送", [this] { push(std::make_unique<WarpWindow>()); });
+        mTabBar->add_tab("编辑器", [this] { push(std::make_unique<EditorWindow>()); });
     }
 
-    mTabBar->add_tab("Achievements", [this] { push(std::make_unique<AchievementsWindow>()); });
-    mTabBar->add_tab("Mods", [this] { push(std::make_unique<ModsWindow>()); });
+    mTabBar->add_tab("成就", [this] { push(std::make_unique<AchievementsWindow>()); });
+    mTabBar->add_tab("模组", [this] { push(std::make_unique<ModsWindow>()); });
     for (auto& tab : mods::svc::ui_mod_menu_tabs()) {
         mTabBar->add_tab(tab.label, std::move(tab.onSelected));
     }
 
-    mTabBar->add_tab("Reset", [this] {
+    mTabBar->add_tab("重置", [this] {
         mTabBar->set_active_tab(-1);
         const auto dismiss = [](Modal& modal) { modal.pop(); };
         push(std::make_unique<Modal>(Modal::Props{
-            .title = "Reset Game",
-            .bodyRml = "Unsaved progress will be lost.<br/>"
-                       "<span class=\"tip\">Tip: You can also reset by holding Start+X+B</span>",
+            .title = "重置游戏",
+            .bodyRml = "未保存的进度将丢失。<br/>"
+                       "<span class=\"tip\">提示：也可以按住 Start+X+B 重置</span>",
             .actions =
                 {
                     ModalAction{
-                        .label = "Cancel",
+                        .label = "取消",
                         .onPressed =
                             [this, dismiss](Modal& modal) {
                                 mDoAud_seStartMenu(kSoundWindowClose);
@@ -85,7 +85,7 @@ MenuBar::MenuBar()
                             },
                     },
                     ModalAction{
-                        .label = "Reset",
+                        .label = "重置",
                         .onPressed =
                             [this, dismiss](Modal& modal) {
                                 mDoAud_seStartMenu(kSoundClick);
@@ -103,16 +103,16 @@ MenuBar::MenuBar()
             .icon = "question-mark",
         }));
     });
-    mTabBar->add_tab("Quit", [this] {
+    mTabBar->add_tab("退出", [this] {
         mTabBar->set_active_tab(-1);
         const auto dismiss = [](Modal& modal) { modal.pop(); };
         push(std::make_unique<Modal>(Modal::Props{
-            .title = "Quit Dusklight",
-            .bodyRml = "Unsaved progress will be lost.",
+            .title = "退出 Dusklight",
+            .bodyRml = "未保存的进度将丢失。",
             .actions =
                 {
                     ModalAction{
-                        .label = "Cancel",
+                        .label = "取消",
                         .onPressed =
                             [dismiss](Modal& modal) {
                                 mDoAud_seStartMenu(kSoundWindowClose);
@@ -120,7 +120,7 @@ MenuBar::MenuBar()
                             },
                     },
                     ModalAction{
-                        .label = "Quit",
+                        .label = "退出",
                         .onPressed =
                             [dismiss](Modal& modal) {
                                 mDoAud_seStartMenu(kSoundClick);
@@ -135,7 +135,7 @@ MenuBar::MenuBar()
     });
 
     if (getSettings().game.speedrunMode) {
-        mTabBar->add_tab("Reset Timer", [this] {
+        mTabBar->add_tab("重置计时器", [this] {
             mTabBar->set_active_tab(-1);
             mDoAud_seStartMenu(kSoundClick);
             m_speedrunInfo.reset();

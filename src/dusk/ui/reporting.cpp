@@ -18,7 +18,7 @@ CrashReportWindow::CrashReportWindow() : WindowSmall("modal", "modal-dialog") {
 
     auto* title = append(header, "div");
     title->SetClass("modal-title", true);
-    title->SetInnerRML("Send Crash Reports");
+    title->SetInnerRML("发送崩溃报告");
 
     auto* headIcon = append(header, "icon");
     headIcon->SetClass("question-mark", true);
@@ -26,11 +26,10 @@ CrashReportWindow::CrashReportWindow() : WindowSmall("modal", "modal-dialog") {
     auto* intro = append(mDialog, "div");
     intro->SetClass("modal-body", true);
     intro->SetInnerRML(
-        "Dusklight can automatically send crash reports to the developers. Crash reports contain the "
-        "following:"
+        "Dusklight 可以向开发者自动发送崩溃报告。崩溃报告包含以下内容："
         "<br/>• Operating system version<br/>• CPU architecture<br/>• GPU model & driver version"
         "<br/>• File paths (may include account username)<br/>• Stack trace<br/><br/>"
-        "This can be changed in the Settings menu at any time.");
+        "随时可以在设置菜单中更改此选项。");
 
     auto* grid = append(mDialog, "div");
     grid->SetClass("preset-grid", true);
@@ -42,13 +41,11 @@ CrashReportWindow::CrashReportWindow() : WindowSmall("modal", "modal-dialog") {
     };
 
     static constexpr OptionInfo kOptions[] = {
-        {"Enable",
-            "Send crash reports to Dusklight developers. Reports will include the information described "
-            "above.",
+        {"启用",
+            "向 Dusklight 开发者发送崩溃报告，报告将包含上述信息。",
             [] { borealis::sentry::set_consent(true); }},
-        {"Disable",
-            "Do not send crash reports. This may make it more difficult to resolve issues you "
-            "encounter.",
+        {"禁用",
+            "不发送崩溃报告。这可能会增加解决你遇到的问题的难度。",
             [] { borealis::sentry::set_consent(false); }},
     };
 

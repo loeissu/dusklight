@@ -16,11 +16,11 @@ struct CategoryInfo {
 };
 
 constexpr CategoryInfo kCategories[] = {
-    {AchievementCategory::Challenge,  "Challenge"},
-    {AchievementCategory::Collection, "Collection"},
-    {AchievementCategory::Minigame,   "Minigame"},
-    {AchievementCategory::Misc,       "Misc"},
-    {AchievementCategory::Glitched,   "Glitched"},
+    {AchievementCategory::Challenge,  "挑战"},
+    {AchievementCategory::Collection, "收集"},
+    {AchievementCategory::Minigame,   "小游戏"},
+    {AchievementCategory::Misc,       "杂项"},
+    {AchievementCategory::Glitched,   "故障"},
 };
 
 Rml::String build_achievement_info_rml(const Achievement& a) {
@@ -33,7 +33,7 @@ Rml::String build_achievement_info_rml(const Achievement& a) {
         a.unlocked ? " unlocked" : "",
         a.name,
         a.unlocked ? " unlocked" : " locked",
-        a.unlocked ? "Unlocked" : "Locked",
+        a.unlocked ? "已解锁" : "未解锁",
         a.description
     );
 
@@ -69,7 +69,7 @@ public:
                     resetConfirm();
                 } else {
                     mConfirming = true;
-                    mClearButton->set_text("Clear?");
+                    mClearButton->set_text("清除？");
                 }
                 return true;
             }
@@ -155,9 +155,9 @@ AchievementsWindow::AchievementsWindow() {
                 pane.add_child<AchievementRow>(a);
             }
 
-            pane.add_section("Actions");
+            pane.add_section("操作");
 
-            auto& clearAllBtn = pane.add_button("Clear All Achievements");
+            auto& clearAllBtn = pane.add_button("清除全部成就");
             auto* clearAllPtr = &clearAllBtn;
             auto confirmingAll = std::make_shared<bool>(false);
 
@@ -167,23 +167,23 @@ AchievementsWindow::AchievementsWindow() {
                         mDoAud_seStartMenu(kSoundClick);
                         AchievementSystem::get().clearAll();
                         *confirmingAll = false;
-                        clearAllPtr->set_text("Clear All Achievements");
+                        clearAllPtr->set_text("清除全部成就");
                     } else {
                         *confirmingAll = true;
-                        clearAllPtr->set_text("Are you sure?");
+                        clearAllPtr->set_text("确定吗？");
                     }
                     return true;
                 }
                 if (cmd == NavCommand::Cancel && *confirmingAll) {
                     *confirmingAll = false;
-                    clearAllPtr->set_text("Clear All Achievements");
+                    clearAllPtr->set_text("清除全部成就");
                     return true;
                 }
                 return false;
             });
             clearAllBtn.listen(Rml::EventId::Blur, [clearAllPtr, confirmingAll](Rml::Event&) {
                 *confirmingAll = false;
-                clearAllPtr->set_text("Clear All Achievements");
+                clearAllPtr->set_text("清除全部成就");
             });
 
             pane.finalize();

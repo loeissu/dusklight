@@ -93,6 +93,8 @@ bool initialize() noexcept {
     load_font("AlegreyaSC-Bold.ttf");
     load_font("MaterialSymbolsRounded-Regular.ttf");
     load_font("NotoMono-Regular.ttf");
+    // 中文字体 fallback：界面汉化后，Fira Sans 等字体缺少的汉字由此字体渲染。
+    load_font("NotoSansCJKsc-Regular.otf", true);
 
     register_icon_texture_provider();
     register_mod_texture_provider();
@@ -172,8 +174,8 @@ void handle_event(const SDL_Event& event) noexcept {
         if (SDL_GamepadConnected(gamepad)) {
             if (getSettings().game.enableControllerToasts) {
                 const char* name = SDL_GetGamepadName(gamepad);
-                Rml::String content = fmt::format("<span>{}</span>", name ? name : "[Unknown]");
-                Rml::String title = "Device Connected";
+                Rml::String content = fmt::format("<span>{}</span>", name ? name : "[未知]");
+                Rml::String title = "设备已连接";
                 if (const char* icon =
                         connection_state_icon(SDL_GetGamepadConnectionState(gamepad)))
                 {
@@ -208,8 +210,8 @@ void handle_event(const SDL_Event& event) noexcept {
             const char* name = SDL_GetGamepadNameForID(event.gdevice.which);
             push_toast({
                 .type = "controller",
-                .title = "Device Disconnected",
-                .content = name ? name : "[Unknown]",
+                .title = "设备已断开",
+                .content = name ? name : "[未知]",
                 .duration = std::chrono::seconds(4),
             });
         }
