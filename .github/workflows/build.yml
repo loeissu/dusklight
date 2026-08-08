@@ -103,7 +103,7 @@ jobs:
 
       - name: Verify signature
         shell: bash
-        run: "$ANDROID_HOME/build-tools/36.1.0/apksigner" verify --print-certs Dusklight-CN-signed.apk
+        run: $ANDROID_HOME/build-tools/36.1.0/apksigner verify --print-certs Dusklight-CN-signed.apk
 
       - name: Upload APK
         uses: actions/upload-artifact@v7
