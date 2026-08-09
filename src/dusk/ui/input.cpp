@@ -27,6 +27,7 @@ constexpr Sint16 kGamepadAxisReleaseThreshold = 12000;
 constexpr int kGamepadAxisDirectionCount = SDL_GAMEPAD_AXIS_COUNT * 2;
 constexpr int kMenuTapFingerCount = 3;
 constexpr float kMenuTapMoveThreshold = 12.0f;
+constexpr float kTouchScrollThreshold = 12.0f;
 constexpr double kMenuTapMaxDownSpan = 0.18;
 constexpr double kMenuTapMaxDuration = 0.55;
 
@@ -53,12 +54,24 @@ struct TouchTapState {
     bool failed = false;
 };
 
+struct TouchScrollState {
+    SDL_FingerID fingerId = 0;
+    bool tracking = false;
+    bool scrolling = false;
+    Rml::Vector2f startPosition{};
+    Rml::Vector2f lastPosition{};
+    Rml::Element* container = nullptr;
+    float lastScrollTop = 0.f;
+    float lastScrollLeft = 0.f;
+};
+
 bool sPadInputBlocked = false;
 std::array<GamepadRepeatState, SDL_GAMEPAD_BUTTON_COUNT> sGamepadButtonRepeats;
 std::array<GamepadRepeatState, kGamepadAxisDirectionCount> sGamepadAxisRepeats;
 std::array<u32, PAD_MAX_CONTROLLERS> sPadHoldMasks;
 std::array<bool, PAD_MAX_CONTROLLERS> sMenuChordConsumed;
 TouchTapState sTouchMenuTap;
+TouchScrollState sTouchScroll;
 
 double now_seconds() noexcept {
     return static_cast<double>(SDL_GetTicksNS()) / 1000000000.0;
@@ -454,6 +467,101 @@ bool touch_moved_too_far(
     return delta.SquaredMagnitude() > threshold * threshold;
 }
 
+Rml::Element* scrollable_container_at(const Rml::Context& context, Rml::Vector2f position) noexcept {
+    auto* element = context.GetElementAtPoint(position);
+    if (element == nullptr) {
+        return nullptr;
+    }
+    auto* container = element->GetClosestScrollableContainer();
+    if (container == nullptr) {
+        return nullptr;
+    }
+    // 只有内容确实超出可视区域时才参与触摸滚动，避免干扰触屏按键等固定布局
+    if (container->GetScrollHeight() <= container->GetClientHeight() &&
+        container->GetScrollWidth() <= container->GetClientWidth())
+    {
+        return nullptr;
+    }
+    return container;
+}
+
+void handle_touch_scroll_down(const SDL_TouchFingerEvent& event, Rml::Context& context) noexcept {
+    if (sTouchScroll.tracking || sTouchMenuTap.activeCount > 0) {
+        // 多指手势进行中，放弃滚动跟踪
+        sTouchScroll = {};
+        return;
+    }
+    const auto position = touch_position(event, context);
+    auto* container = scrollable_container_at(context, position);
+    if (container == nullptr) {
+        return;
+    }
+    sTouchScroll = {
+        .fingerId = event.fingerID,
+        .tracking = true,
+        .scrolling = false,
+        .startPosition = position,
+        .lastPosition = position,
+        .container = container,
+        .lastScrollTop = container->GetScrollTop(),
+        .lastScrollLeft = container->GetScrollLeft(),
+    };
+}
+
+void handle_touch_scroll_motion(const SDL_TouchFingerEvent& event, Rml::Context& context) noexcept {
+    if (!sTouchScroll.tracking || event.fingerID != sTouchScroll.fingerId) {
+        return;
+    }
+    const auto position = touch_position(event, context);
+    const Rml::Vector2f delta = position - sTouchScroll.lastPosition;
+
+    if (!sTouchScroll.scrolling) {
+        const float threshold =
+            kTouchScrollThreshold * std::max(context.GetDensityIndependentPixelRatio(), 1.0f);
+        const Rml::Vector2f total = position - sTouchScroll.startPosition;
+        if (total.SquaredMagnitude() < threshold * threshold) {
+            sTouchScroll.lastPosition = position;
+            return;
+        }
+        sTouchScroll.scrolling = true;
+    }
+
+    auto* container = sTouchScroll.container;
+    if (container == nullptr) {
+        sTouchScroll = {};
+        return;
+    }
+
+    const float currentTop = container->GetScrollTop();
+    const float currentLeft = container->GetScrollLeft();
+    const bool nativeScrolled =
+        currentTop != sTouchScroll.lastScrollTop || currentLeft != sTouchScroll.lastScrollLeft;
+
+    if (nativeScrolled) {
+        // RmlUi 自带的触摸滚动已生效，跟随即可，避免双重滚动
+        sTouchScroll.lastScrollTop = currentTop;
+        sTouchScroll.lastScrollLeft = currentLeft;
+    } else {
+        // 系统触摸滚动未生效（部分设备/版本），由我们直接滚动容器
+        const float maxTop =
+            std::max(0.f, container->GetScrollHeight() - container->GetClientHeight());
+        const float maxLeft =
+            std::max(0.f, container->GetScrollWidth() - container->GetClientWidth());
+        container->SetScrollTop(std::clamp(currentTop - delta.y, 0.f, maxTop));
+        container->SetScrollLeft(std::clamp(currentLeft - delta.x, 0.f, maxLeft));
+        sTouchScroll.lastScrollTop = container->GetScrollTop();
+        sTouchScroll.lastScrollLeft = container->GetScrollLeft();
+    }
+
+    sTouchScroll.lastPosition = position;
+}
+
+void handle_touch_scroll_end(const SDL_TouchFingerEvent& event) noexcept {
+    if (sTouchScroll.tracking && event.fingerID == sTouchScroll.fingerId) {
+        sTouchScroll = {};
+    }
+}
+
 void emit_key_press(Rml::Context& context, Rml::Input::KeyIdentifier key) noexcept {
     context.ProcessMouseLeave();
     context.ProcessKeyDown(key, 0);
@@ -695,6 +803,7 @@ void release_input_block() noexcept {
 void reset_input_state() noexcept {
     clear_gamepad_repeats();
     reset_touch_menu_tap();
+    sTouchScroll = {};
 }
 
 void handle_event(const SDL_Event& event) noexcept {
@@ -715,6 +824,20 @@ void handle_event(const SDL_Event& event) noexcept {
     if (event.type == SDL_EVENT_FINGER_DOWN || event.type == SDL_EVENT_FINGER_MOTION ||
         event.type == SDL_EVENT_FINGER_UP || event.type == SDL_EVENT_FINGER_CANCELED)
     {
+        switch (event.type) {
+        case SDL_EVENT_FINGER_DOWN:
+            handle_touch_scroll_down(event.tfinger, *context);
+            break;
+        case SDL_EVENT_FINGER_MOTION:
+            handle_touch_scroll_motion(event.tfinger, *context);
+            break;
+        case SDL_EVENT_FINGER_UP:
+        case SDL_EVENT_FINGER_CANCELED:
+            handle_touch_scroll_end(event.tfinger);
+            break;
+        default:
+            break;
+        }
         if (handle_touch_menu_tap(*context, event)) {
             sync_input_block();
         }

@@ -79,6 +79,7 @@ jobs:
             docs/汉化维护.md \
             android-keystore/release.keystore \
             res/rml/window.rcss \
+            src/dusk/ui/input.cpp \
             platforms/android/app/build.gradle; do
             git checkout "${{ steps.old.outputs.old }}" -- "$f" 2>/dev/null \
               || echo "跳过（旧版中不存在）: $f"
