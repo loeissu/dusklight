@@ -16,6 +16,7 @@ from pathlib import Path
 
 PRESETS = ("x-android-ci", "x-linux-ci", "x-windows-ci")
 KEY = "BOREALIS_APP_VERSION_OVERRIDE"
+ROOT = Path(__file__).resolve().parent.parent
 
 
 def main() -> int:
@@ -23,7 +24,7 @@ def main() -> int:
         print("用法: python tools/set-version.py <版本号，如 1.4.2>")
         return 2
     version = sys.argv[1].lstrip("v")
-    path = Path("CMakePresets.json")
+    path = ROOT / "CMakePresets.json"
     lines = path.read_text(encoding="utf-8").splitlines()
 
     current_preset = None
