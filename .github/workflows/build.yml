@@ -201,3 +201,78 @@ jobs:
         with:
           name: dusklight-zh-release-keystore
           path: release.keystore
+
+  publish-release:
+    name: 发布汉化版 Release
+    needs: [build-windows, build-linux, build-android]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: 读取汉化版版本号
+        id: version
+        run: |
+          VERSION=$(python3 -c "import json; d=json.load(open('CMakePresets.json')); print(next(p['cacheVariables']['BOREALIS_APP_VERSION_OVERRIDE'] for p in d['configurePresets'] if p['name']=='x-android-ci'))")
+          echo "version=${VERSION}" >> "$GITHUB_OUTPUT"
+          echo "tag=v${VERSION}-zh" >> "$GITHUB_OUTPUT"
+
+      - name: 下载 Windows 产物
+        uses: actions/download-artifact@v7
+        with:
+          name: Dusklight-汉化版-win32-x86_64
+          path: dist/windows
+
+      - name: 下载 Linux 产物
+        uses: actions/download-artifact@v7
+        with:
+          name: Dusklight-汉化版-linux-x86_64
+          path: dist/linux
+
+      - name: 下载 Android 产物
+        uses: actions/download-artifact@v7
+        with:
+          name: Dusklight-汉化版-android-arm64
+          path: dist/android
+
+      - name: 整理发布文件
+        run: |
+          set -e
+          mkdir -p release
+          VERSION="${{ steps.version.outputs.version }}"
+          cp dist/android/Dusklight-CN-signed.apk "release/Dusklight-汉化版-android-arm64-v${VERSION}.apk"
+          APPIMAGE=$(ls dist/linux/Dusklight-*.AppImage | head -n1)
+          cp "$APPIMAGE" "release/Dusklight-汉化版-linux-x86_64-v${VERSION}.AppImage"
+          cd dist/windows
+          zip -qr "../../release/Dusklight-汉化版-windows-x86_64-v${VERSION}.zip" .
+          cd ../..
+          ls -lh release
+
+      - name: 创建或更新 Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -e
+          TAG="${{ steps.version.outputs.tag }}"
+          VERSION="${{ steps.version.outputs.version }}"
+          NOTES="Dusklight 汉化版 v${VERSION}（基于上游 v${VERSION}）。
+
+          - Windows x86_64：解压 zip 后运行 dusklight.exe
+          - Linux x86_64：AppImage 需先赋予执行权限（chmod +x）
+          - Android arm64：APK 与旧版汉化版同签名，可直接覆盖安装"
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            echo "更新已有 Release：${TAG}"
+            gh release upload "$TAG" release/* --clobber
+          else
+            echo "创建 Release：${TAG}"
+            gh release create "$TAG" release/* \
+              --title "Dusklight 汉化版 v${VERSION}" \
+              --notes "$NOTES" || {
+                echo "创建失败（标签可能已存在），尝试仅上传资产"
+                gh release upload "$TAG" release/* --clobber
+              }
+          fi
