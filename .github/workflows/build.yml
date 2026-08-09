@@ -34,16 +34,29 @@ jobs:
           submodules: recursive
 
       - name: Enable Visual Studio environment
-        uses: ilammy/msvc-dev-cmd@v1
-        with:
-          arch: amd64
+        shell: powershell
+        run: |
+          $vswhere = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe"
+          $vsPath = & $vswhere -latest -products * -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationPath
+          if (-not $vsPath) {
+            throw "未找到带 C++ 工具链的 Visual Studio"
+          }
+          $utf8NoBom = New-Object System.Text.UTF8Encoding($false)
+          cmd /c "call `"$vsPath\Common7\Tools\VsDevCmd.bat`" -arch=amd64 -host_arch=amd64 >nul && set" | ForEach-Object {
+            if ($_ -match '^([^=]+)=(.*)$') {
+              $name = $matches[1]
+              $value = $matches[2]
+              [System.Environment]::SetEnvironmentVariable($name, $value, 'Process')
+              [System.IO.File]::AppendAllText($env:GITHUB_ENV, "$name=$value`n", $utf8NoBom)
+            }
+          }
 
-      # msvc-dev-cmd sets VCPKG_ROOT, set it back
+      # 确保 vcpkg 根目录固定，避免环境变量被覆盖
       - name: Override VCPKG_ROOT
         run: echo "VCPKG_ROOT=C:\vcpkg" >> $env:GITHUB_ENV
 
       - name: Setup sccache
-        uses: mozilla-actions/sccache-action@v0.0.9
+        uses: mozilla-actions/sccache-action@v0.0.10
 
       - name: Install dependencies
         run: |
