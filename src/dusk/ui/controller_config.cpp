@@ -262,7 +262,7 @@ ControllerConfigWindow::ControllerConfigWindow() {
     }
 
     for (int port = PAD_CHAN0; port < PAD_CHANMAX; ++port) {
-        add_tab(fmt::format("Port {}", port + 1), [this, port](Rml::Element* content) {
+        add_tab(fmt::format("端口 {}", port + 1), [this, port](Rml::Element* content) {
             if (mPendingPort != -1 && mPendingPort != port) {
                 cancel_pending_binding();
             }

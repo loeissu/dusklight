@@ -207,14 +207,14 @@ public:
 
 static void validate_mod_id(std::string_view const str) {
     if (str.empty()) {
-        throw InvalidModDataException("Missing ID value in mod metadata!");
+        throw InvalidModDataException("模组元数据缺少 ID 值！");
     }
 
     bool lastWasPeriod = false;
     for (auto const chr : str) {
         if (chr == '.') {
             if (lastWasPeriod) {
-                throw InvalidModDataException("Cannot have two consecutive periods in mod ID!");
+                throw InvalidModDataException("模组 ID 不能包含连续两个句点！");
             }
             lastWasPeriod = true;
             continue;
@@ -235,8 +235,7 @@ static void validate_mod_id(std::string_view const str) {
             continue;
 
         throw InvalidModDataException(
-            fmt::format("Invalid character '{}' in mod ID. Valid characters are period, "
-                        "underscore, and alphanumerics.",
+            fmt::format("模组 ID 包含无效字符“{}”，只允许句点、下划线和字母数字。",
                 chr));
     }
 }
@@ -290,7 +289,7 @@ static ModMetadata load_metadata(const std::filesystem::path& modPath, ModBundle
         metaVersion = "?"s;
     }
     if (metaAuthor.empty()) {
-        metaAuthor = "unknown"s;
+        metaAuthor = "未知"s;
     }
 
     std::string iconPath = resolve_image_path(bundle, metaId, "icon", metaIcon, "res/icon.png"s);
@@ -342,7 +341,7 @@ static bool parse_meta(NativeMod& native, LoadedMod& mod) {
 
     while (cursor < end) {
         if (end - cursor < 8) {
-            return invalid("trailing bytes");
+            return invalid("存在多余字节");
         }
         uint64_t first = 0;
         std::memcpy(&first, cursor, sizeof(first));
@@ -354,7 +353,7 @@ static bool parse_meta(NativeMod& native, LoadedMod& mod) {
         const auto* rec = reinterpret_cast<const ModMetaRecord*>(cursor);
         const size_t size = rec->size;
         if (size < 8 || size % 8 != 0 || size > static_cast<size_t>(end - cursor)) {
-            return invalid("bad record size");
+            return invalid("记录大小错误");
         }
 
         switch (rec->kind) {
@@ -362,7 +361,7 @@ static bool parse_meta(NativeMod& native, LoadedMod& mod) {
             break;
         case MOD_META_HEADER: {
             if (size < sizeof(ModMetaHeader)) {
-                return invalid("truncated header record");
+                return invalid("头部记录被截断");
             }
             const auto* header = reinterpret_cast<const ModMetaHeader*>(rec);
             ++headerCount;
@@ -371,29 +370,29 @@ static bool parse_meta(NativeMod& native, LoadedMod& mod) {
         }
         case MOD_META_IMPORT: {
             if (size < sizeof(ModMetaImport)) {
-                return invalid("truncated import record");
+                return invalid("导入记录被截断");
             }
             auto* record = reinterpret_cast<ModMetaImport*>(const_cast<uint8_t*>(cursor));
             if (!terminated_within(record->service_id.chars, sizeof(record->service_id.chars))) {
-                return invalid("unterminated import service id");
+                return invalid("导入服务 ID 未正确结束");
             }
             parsed.imports.push_back(record);
             break;
         }
         case MOD_META_EXPORT: {
             if (size < sizeof(ModMetaExport)) {
-                return invalid("truncated export record");
+                return invalid("导出记录被截断");
             }
             auto* record = reinterpret_cast<ModMetaExport*>(const_cast<uint8_t*>(cursor));
             if (!terminated_within(record->service_id.chars, sizeof(record->service_id.chars))) {
-                return invalid("unterminated export service id");
+                return invalid("导出服务 ID 未正确结束");
             }
             parsed.exports.push_back(record);
             break;
         }
         case MOD_META_HOOK_FN: {
             if (size < sizeof(ModMetaHookFn)) {
-                return invalid("truncated hook record");
+                return invalid("钩子记录被截断");
             }
             parsed.hookFns.push_back(
                 reinterpret_cast<ModMetaHookFn*>(const_cast<uint8_t*>(cursor)));
@@ -401,51 +400,51 @@ static bool parse_meta(NativeMod& native, LoadedMod& mod) {
         }
         case MOD_META_HOOK_MEM: {
             if (size <= sizeof(ModMetaHookMem)) {
-                return invalid("truncated hook record");
+                return invalid("钩子记录被截断");
             }
             auto* record = reinterpret_cast<ModMetaHookMem*>(const_cast<uint8_t*>(cursor));
             const char* strings = reinterpret_cast<const char*>(cursor) + sizeof(ModMetaHookMem);
             const size_t capacity = size - sizeof(ModMetaHookMem);
             if (!terminated_within(strings, capacity)) {
-                return invalid("unterminated hook vtable symbol");
+                return invalid("钩子虚表符号未正确结束");
             }
             const size_t vtableLen = std::char_traits<char>::length(strings);
             if (!terminated_within(strings + vtableLen + 1, capacity - vtableLen - 1)) {
-                return invalid("unterminated hook display name");
+                return invalid("钩子显示名称未正确结束");
             }
             parsed.hookMems.push_back(record);
             break;
         }
         case MOD_META_HOOK_MEM_EXT: {
             if (size <= sizeof(ModMetaHookMemExt)) {
-                return invalid("truncated extended hook record");
+                return invalid("扩展钩子记录被截断");
             }
             auto* record = reinterpret_cast<ModMetaHookMemExt*>(const_cast<uint8_t*>(cursor));
             if (record->pmf_size <= MOD_META_HOOK_MEM_CAPACITY ||
                 record->pmf_size > MOD_META_HOOK_MEM_EXT_CAPACITY || record->materialize == nullptr)
             {
-                return invalid("bad extended hook member-pointer size");
+                return invalid("扩展钩子成员指针大小错误");
             }
             const char* strings = reinterpret_cast<const char*>(cursor) + sizeof(ModMetaHookMemExt);
             const size_t capacity = size - sizeof(ModMetaHookMemExt);
             if (!terminated_within(strings, capacity)) {
-                return invalid("unterminated extended hook vtable symbol");
+                return invalid("扩展钩子虚表符号未正确结束");
             }
             const size_t vtableLen = std::char_traits<char>::length(strings);
             if (!terminated_within(strings + vtableLen + 1, capacity - vtableLen - 1)) {
-                return invalid("unterminated extended hook display name");
+                return invalid("扩展钩子显示名称未正确结束");
             }
             parsed.hookMemExts.push_back(record);
             break;
         }
         case MOD_META_HOOK_NAME: {
             if (size <= sizeof(ModMetaHookName)) {
-                return invalid("truncated hook record");
+                return invalid("钩子记录被截断");
             }
             auto* record = reinterpret_cast<ModMetaHookName*>(const_cast<uint8_t*>(cursor));
             const char* name = reinterpret_cast<const char*>(cursor) + sizeof(ModMetaHookName);
             if (!terminated_within(name, size - sizeof(ModMetaHookName))) {
-                return invalid("unterminated hook symbol name");
+                return invalid("钩子符号名未正确结束");
             }
             parsed.hookNames.push_back(record);
             break;
@@ -481,31 +480,31 @@ static std::string lifecycle_error_message(
     if (error.message[0] != '\0') {
         return error.message;
     }
-    return fmt::format("{} failed with result {}", fnName, static_cast<int>(result));
+    return fmt::format("{} 失败，结果为 {}", fnName, static_cast<int>(result));
 }
 
 static std::string native_status_message(const NativeModStatus status) {
     switch (status) {
     case NativeModStatus::BuildDisabled:
-        return "Code mods are disabled on this Dusklight build";
+        return "此 Dusklight 版本已禁用代码模组";
     case NativeModStatus::ModMissingPlatform:
-        return fmt::format("Mod not supported on this platform ({})", k_nativePlatform);
+        return fmt::format("该模组不支持当前平台（{}）", k_nativePlatform);
     case NativeModStatus::ApiVersionMismatch:
         // TODO: differentiate whether mod or Dusklight is out of date
-        return "Mod ABI version mismatch";
+        return "模组 ABI 版本不匹配";
     case NativeModStatus::MissingExport:
-        return "Missing required mod API exports";
+        return "缺少必需的模组 API 导出";
     case NativeModStatus::InvalidMetadata:
-        return "Invalid mod metadata records";
+        return "模组元数据记录无效";
     case NativeModStatus::InvalidBundle:
-        return "Invalid mod bundle layout (old mod?)";
+        return "模组包结构无效（旧版模组？）";
     case NativeModStatus::Unknown:
-        return "Unknown mod load failure";
+        return "模组加载失败（未知原因）";
     case NativeModStatus::None:
     case NativeModStatus::Loaded:
         break;
     }
-    return "native mod failed to load";
+    return "原生模组加载失败";
 }
 
 std::filesystem::path ModLoader::external_native_lib_path(const LoadedMod& mod) const {
@@ -881,9 +880,9 @@ bool ModLoader::activate_mod(LoadedMod& mod) {
             fail_mod(mod, result, lifecycle_error_message("mod_initialize", result, error));
         }
     } catch (const std::exception& e) {
-        fail_mod(mod, MOD_ERROR, fmt::format("Exception in mod_initialize: {}", e.what()));
+        fail_mod(mod, MOD_ERROR, fmt::format("mod_initialize 出现异常：{}", e.what()));
     } catch (...) {
-        fail_mod(mod, MOD_ERROR, "Unknown exception in mod_initialize");
+        fail_mod(mod, MOD_ERROR, "mod_initialize 出现未知异常");
     }
 
     warn_unpublished_deferred_exports(mod);
@@ -1172,13 +1171,13 @@ bool ModLoader::reload_bundle(LoadedMod& mod) {
         newBundle = load_bundle(mod.modPath, fs::is_directory(mod.modPath, ec));
         newMetadata = load_metadata(mod.modPath, *newBundle);
     } catch (const std::exception& e) {
-        fail_mod(mod, MOD_ERROR, fmt::format("Reload failed: {}", e.what()));
+        fail_mod(mod, MOD_ERROR, fmt::format("重新加载失败：{}", e.what()));
         return false;
     }
 
     if (newMetadata.id != mod.metadata.id) {
         fail_mod(mod, MOD_CONFLICT,
-            fmt::format("Mod ID changed on reload ('{}'); restart required", newMetadata.id));
+            fmt::format("重新加载后模组 ID 发生变化（'{}'），需要重启", newMetadata.id));
         return false;
     }
 
@@ -1372,9 +1371,9 @@ void ModLoader::tick() {
                 fail_mod(mod, result, lifecycle_error_message("mod_update", result, error));
             }
         } catch (const std::exception& e) {
-            fail_mod(mod, MOD_ERROR, fmt::format("Exception in mod_update: {}", e.what()));
+            fail_mod(mod, MOD_ERROR, fmt::format("mod_update 出现异常：{}", e.what()));
         } catch (...) {
-            fail_mod(mod, MOD_ERROR, "Unknown exception in mod_update");
+            fail_mod(mod, MOD_ERROR, "mod_update 出现未知异常");
         }
     }
 

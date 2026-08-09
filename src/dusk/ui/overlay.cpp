@@ -460,9 +460,9 @@ void Overlay::update_pipeline_progress() {
 
     if (queuedPipelines != mLastQueuedPipelines) {
         mLastQueuedPipelines = queuedPipelines;
-        const auto noun = queuedPipelines == 1 ? "pipeline" : "pipelines";
+        const auto noun = queuedPipelines == 1 ? "管线" : "管线";
         mPipelineProgressLabel->SetInnerRML(
-            escape(fmt::format("Building {} {}", queuedPipelines, noun)));
+            escape(fmt::format("正在构建 {} {}", queuedPipelines, noun)));
     }
     mPipelineProgressBar->SetAttribute("value", progress);
 

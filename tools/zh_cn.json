@@ -1,0 +1,2815 @@
+{
+  "format": 1,
+  "base": "82e2fd4bea",
+  "files": {
+    "platforms/android/app/src/main/res/values/strings.xml": {
+      "replace": [
+        {
+          "key": "    <string name=\"app_name\">Dusklight</string>\n    <string name=\"documents_provider_root_name\">Dusklight Data</string>\n    <string name=\"documents_provider_summary\">Saves, texture packs, settings, and logs</string>",
+          "value": "    <string name=\"app_name\">黄昏公主 Dusklight</string>\n    <string name=\"documents_provider_root_name\">Dusklight 数据</string>\n    <string name=\"documents_provider_summary\">存档、贴图包、设置和日志</string>"
+        }
+      ],
+      "insert": []
+    },
+    "src/dusk/achievements.cpp": {
+      "replace": [
+        {
+          "key": "                \"Hero of Twilight\",\n                \"Deliver the finishing blow to Ganondorf.\",",
+          "value": "                \"黄昏英雄\",\n                \"给加农多夫最后一击。\","
+        },
+        {
+          "key": "                \"Hero Mode\",\n                \"Defeat Ganondorf with only 3 heart containers.\",",
+          "value": "                \"英雄模式\",\n                \"仅用 3 颗心容器击败加农多夫。\","
+        },
+        {
+          "key": "                \"Completionist\",\n                \"Complete the game after collecting all equipment, heart containers, portals, bugs, poes, and hidden skills.\",",
+          "value": "                \"完美主义者\",\n                \"收集所有装备、心容器、传送点、昆虫、波伊和隐藏技能后通关。\","
+        },
+        {
+          "key": "                \"The Princess of Bugs\",\n                \"Deliver all 24 golden bugs to Agitha.\",",
+          "value": "                \"昆虫公主\",\n                \"将全部 24 只金色昆虫交给阿吉莎。\","
+        },
+        {
+          "key": "                \"Poe Collector\",\n                \"Collect all 60 Poe Souls.\",",
+          "value": "                \"波伊收集者\",\n                \"收集全部 60 个波伊之魂。\","
+        },
+        {
+          "key": "                \"Legendary Catch\",\n                \"Obtain the Hylian Loach in your fishing journal.\",",
+          "value": "                \"传说级收获\",\n                \"在钓鱼记录中钓上海利亚鲮鱼。\","
+        },
+        {
+          "key": "                \"Gone Fishin'\",\n                \"Obtain all 6 species of fish in your fishing journal.\",",
+          "value": "                \"钓鱼去\",\n                \"在钓鱼记录中钓齐全部 6 种鱼。\","
+        },
+        {
+          "key": "                \"A Big Heart\",\n                \"Reach maximum health with all 20 heart containers.\",",
+          "value": "                \"大心脏\",\n                \"集齐 20 颗心容器达到最大生命。\","
+        },
+        {
+          "key": "                \"Glassware Guardian\",\n                \"Obtain all 4 bottles.\",",
+          "value": "                \"瓶罐守护者\",\n                \"获得全部 4 个瓶子。\","
+        },
+        {
+          "key": "                \"Master of Secrets\",\n                \"Learn all 7 Hidden Skills.\",",
+          "value": "                \"秘技大师\",\n                \"学会全部 7 个隐藏技能。\","
+        },
+        {
+          "key": "                \"We Deliver!\",\n                \"Collect all 16 postman letters.\",",
+          "value": "                \"使命必达！\",\n                \"收集全部 16 封邮差信件。\","
+        },
+        {
+          "key": "                \"Conqueror of Ordeals\",\n                \"Clear all 50 floors of the Cave of Ordeals.\",",
+          "value": "                \"试炼征服者\",\n                \"通过试炼之洞全部 50 层。\","
+        },
+        {
+          "key": "                \"Indomitable\",\n                \"Clear all 50 floors of the Cave of Ordeals with only 3 heart containers.\",",
+          "value": "                \"不屈不挠\",\n                \"仅用 3 颗心容器通过试炼之洞全部 50 层。\","
+        },
+        {
+          "key": "                \"Been There Done That\",\n                \"Defeat Ganondorf with a total save file play time under 12 hours.\",",
+          "value": "                \"驾轻就熟\",\n                \"存档总游玩时间不足 12 小时击败加农多夫。\","
+        },
+        {
+          "key": "                \"Swift Blade\",\n                \"Defeat Ganondorf with a total save file play time under 6 hours.\",",
+          "value": "                \"迅捷之刃\",\n                \"存档总游玩时间不足 6 小时击败加农多夫。\","
+        },
+        {
+          "key": "                \"Mortal Edge\",\n                \"Defeat Darkhammer in a single hit.\",",
+          "value": "                \"致命一击\",\n                \"一击击败暗锤。\","
+        },
+        {
+          "key": "                \"Deathless\",\n                \"Defeat Ganondorf with 0 deaths on your save file.\",",
+          "value": "                \"无伤通关\",\n                \"存档零死亡击败加农多夫。\","
+        },
+        {
+          "key": "                \"Untouchable\",\n                \"Kill 25 enemies in a row without taking damage.\",",
+          "value": "                \"无人能及\",\n                \"连续击败 25 个敌人且不受伤害。\","
+        },
+        {
+          "key": "                \"Long Shot\",\n                \"Hit an enemy from over 100 meters away with the bow.\",",
+          "value": "                \"远程狙击\",\n                \"用弓从 100 米外命中敌人。\","
+        },
+        {
+          "key": "                \"Surgical Skewer\",\n                \"Kill 3 enemies with a single rollstab.\",",
+          "value": "                \"精准穿刺\",\n                \"用一次滚刺击杀 3 个敌人。\","
+        },
+        {
+          "key": "                \"Thank You Berry Much\",\n                \"Score 61,454 points in the Plumm minigame.\",",
+          "value": "                \"多谢款待\",\n                \"在普拉姆的小游戏中获得 61,454 分。\","
+        },
+        {
+          "key": "                \"Rollgoal Novice\",\n                \"Complete the first 8 rollgoal stages.\",",
+          "value": "                \"滚球新手\",\n                \"完成前 8 个滚球关卡。\","
+        },
+        {
+          "key": "                \"Lost Your Marbles\",\n                \"Complete all rollgoal stages.\",",
+          "value": "                \"球都丢了\",\n                \"完成全部滚球关卡。\","
+        },
+        {
+          "key": "                \"Ranch Hand\",\n                \"Herd all 20 goats into the pen in under 30 seconds.\",",
+          "value": "                \"牧场帮手\",\n                \"在 30 秒内把 20 只羊赶进围栏。\","
+        },
+        {
+          "key": "                \"Bane of Howard\",\n                \"Herd all 20 goats into the pen in under 20 seconds.\",",
+          "value": "                \"霍华德克星\",\n                \"在 20 秒内把 20 只羊赶进围栏。\","
+        },
+        {
+          "key": "                \"King of the Ranch\",\n                \"Herd all 20 goats into the pen in under 18 seconds.\",",
+          "value": "                \"牧场之王\",\n                \"在 18 秒内把 20 只羊赶进围栏。\","
+        },
+        {
+          "key": "                \"Downhill Dash\",\n                \"Finish the snowboarding minigame in under 70 seconds.\",",
+          "value": "                \"急速下滑\",\n                \"在 70 秒内完成滑雪小游戏。\","
+        },
+        {
+          "key": "                \"River Raider\",\n                \"Achieve a perfect score in the canoe minigame.\",",
+          "value": "                \"河道突袭\",\n                \"在独木舟小游戏中获得满分。\","
+        },
+        {
+          "key": "                \"Rising Star\",\n                \"Complete the STAR Prize 2 minigame in under 40 seconds.\",",
+          "value": "                \"新星\",\n                \"在 40 秒内完成 STAR 二等奖小游戏。\","
+        },
+        {
+          "key": "                \"Shooting Star\",\n                \"Complete the STAR Prize 2 minigame in under 30 seconds.\",",
+          "value": "                \"流星\",\n                \"在 30 秒内完成 STAR 二等奖小游戏。\","
+        },
+        {
+          "key": "                \"Friendly Fire\",\n                \"Get hit by your own cannonball.\",",
+          "value": "                \"友军误伤\",\n                \"被自己的炮弹击中。\","
+        },
+        {
+          "key": "                \"Long Jump Attack\",\n                \"Travel more than 15 meters in a single jump attack before landing.\",",
+          "value": "                \"远跳斩\",\n                \"一次跳斩落地前移动超过 15 米。\","
+        },
+        {
+          "key": "                \"Email Me\",\n                \"Read a letter during the Dark Beast Ganon fight.\",",
+          "value": "                \"给我写信\",\n                \"在暗兽加侬战斗中阅读一封信。\","
+        },
+        {
+          "key": "                \"Heavy Hitter\",\n                \"Wear the Iron Boots during the end credits.\",",
+          "value": "                \"负重前行\",\n                \"在片尾字幕期间穿着铁靴。\","
+        },
+        {
+          "key": "                \"Here Fishy Fishy\",\n                \"Confuse Ganondorf with the fishing rod.\",",
+          "value": "                \"鱼儿上钩\",\n                \"用鱼竿迷惑加农多夫。\","
+        },
+        {
+          "key": "                \"Petty Theft\",\n                \"Steal from Trill.\",",
+          "value": "                \"小偷小摸\",\n                \"从特利尔那里偷东西。\","
+        },
+        {
+          "key": "                \"Cucco Whisperer\",\n                \"Take control of a cucco.\",",
+          "value": "                \"库克鸡之友\",\n                \"控制一只库克鸡。\","
+        },
+        {
+          "key": "                \"Autospin Annihilation\",\n                \"Finish off Ganondorf in the final duel after only 3 attacks.\",",
+          "value": "                \"回旋歼灭\",\n                \"在最终决斗中仅攻击 3 次就击败加农多夫。\","
+        },
+        {
+          "key": "                \"Back in Time\",\n                \"Perform the Back in Time glitch to play on the title screen.\",",
+          "value": "                \"时光倒流\",\n                \"利用时光倒流漏洞在标题画面游玩。\","
+        },
+        {
+          "key": "                \"Early Master Sword\",\n                \"Obtain the Master Sword before completing Midna's Desperate Hour.\",",
+          "value": "                \"提前获得大师之剑\",\n                \"在完成米德娜的绝望时刻之前获得大师之剑。\","
+        },
+        {
+          "key": "                \"Earliest Master Sword\",\n                \"Obtain the Master Sword before meeting Midna.\",",
+          "value": "                \"最早的大师之剑\",\n                \"在遇见米德娜之前获得大师之剑。\","
+        },
+        {
+          "key": "                \"Hero of Time\",\n                \"Defeat Ganondorf with a total save file play time under 4 hours.\",",
+          "value": "                \"时之勇者\",\n                \"存档总游玩时间不足 4 小时击败加农多夫。\","
+        },
+        {
+          "key": "                \"No Fish Suit No Problem\",\n                \"Defeat Morpheel without equipping Zora Armor.\",",
+          "value": "                \"无鱼装也轻松\",\n                \"不穿佐拉铠甲击败魔菲。\","
+        },
+        {
+          "key": "                \"Null Item\",\n                \"Obtain the mysterious black rupee in the item wheel.\",",
+          "value": "                \"空道具\",\n                \"在道具轮盘中获得神秘黑卢比。\","
+        },
+        {
+          "key": "                \"Stallord Skip\",\n                \"Leave Stallord's arena through the exit without defeating Stallord.\",",
+          "value": "                \"史塔拉德跳过\",\n                \"不击败史塔拉德，从其竞技场出口离开。\","
+        },
+        {
+          "key": "                \"White Midna Glitch\",\n                \"Clear the Lakebed Temple before clearing Lanayru's Twilight.\",",
+          "value": "                \"白色米德娜漏洞\",\n                \"在清除拉聂鲁的黄昏之前通关湖底神殿。\","
+        },
+        {
+          "key": "                \"Quick Detour\",\n                \"Rescue the Hidden Village before clearing Goron Mines.\",",
+          "value": "                \"顺路一游\",\n                \"在清除哥隆矿场之前救出隐藏村庄。\","
+        },
+        {
+          "key": "                \"Must Have Been The Wind\",\n                \"Complete the Forest Temple without obtaining the Gale Boomerang.\",",
+          "value": "                \"一定是风\",\n                \"不获得疾风回旋镖通关森之神殿。\","
+        },
+        {
+          "key": "                \"Early City\",\n                \"Obtain the Double Clawshots without obtaining the Dominion Rod.\",",
+          "value": "                \"提前进城\",\n                \"不获得支配之杖的情况下获得双爪钩。\","
+        },
+        {
+          "key": "                \"Gorge Skip\",\n                \"Collect the Kakariko warp portal without warping the gorge bridge.\",",
+          "value": "                \"峡谷跳跃\",\n                \"不召唤峡谷桥的情况下收集卡卡利科传送点。\","
+        },
+        {
+          "key": "                .title = \"Achievement Unlocked!\",",
+          "value": "                .title = \"成就解锁！\","
+        }
+      ],
+      "insert": []
+    },
+    "src/dusk/map_loader_definitions.h": {
+      "replace": [
+        {
+          "key": "    RegionEntry(\"Hyrule Field\", {\n        MapEntry(\"Hyrule Field\", \"F_SP121\",",
+          "value": "    RegionEntry(\"海拉尔平原\", {\n        MapEntry(\"海拉尔平原\", \"F_SP121\","
+        },
+        {
+          "key": "    RegionEntry(\"Ordon\", {\n        MapEntry(\"Ordon Village\", \"F_SP103\", {",
+          "value": "    RegionEntry(\"奥登\", {\n        MapEntry(\"奥登村\", \"F_SP103\", {"
+        },
+        {
+          "key": "        MapEntry(\"Outside Link's House\", \"F_SP103\", {",
+          "value": "        MapEntry(\"林克家门外\", \"F_SP103\", {"
+        },
+        {
+          "key": "        MapEntry(\"Ordon Ranch\", \"F_SP00\", {",
+          "value": "        MapEntry(\"奥登牧场\", \"F_SP00\", {"
+        },
+        {
+          "key": "        MapEntry(\"Ordon Spring\", \"F_SP104\", {",
+          "value": "        MapEntry(\"奥登之泉\", \"F_SP104\", {"
+        },
+        {
+          "key": "        MapEntry(\"Bo's House\", \"R_SP01\", {",
+          "value": "        MapEntry(\"博的家\", \"R_SP01\", {"
+        },
+        {
+          "key": "        MapEntry(\"Sera's Sundries\", \"R_SP01\", {",
+          "value": "        MapEntry(\"塞拉杂货店\", \"R_SP01\", {"
+        },
+        {
+          "key": "        MapEntry(\"Jaggle's House\", \"R_SP01\", {",
+          "value": "        MapEntry(\"贾格尔的家\", \"R_SP01\", {"
+        },
+        {
+          "key": "        MapEntry(\"Link's House\", \"R_SP01\", {",
+          "value": "        MapEntry(\"林克的家\", \"R_SP01\", {"
+        },
+        {
+          "key": "        MapEntry(\"Rusl's House\", \"R_SP01\", {",
+          "value": "        MapEntry(\"拉斯尔的家\", \"R_SP01\", {"
+        },
+        {
+          "key": "    RegionEntry(\"Faron\", {\n        MapEntry(\"South Faron Woods\", \"F_SP108\", {",
+          "value": "    RegionEntry(\"法隆\", {\n        MapEntry(\"法隆森林南部\", \"F_SP108\", {"
+        },
+        {
+          "key": "        MapEntry(\"North Faron Woods\", \"F_SP108\", {",
+          "value": "        MapEntry(\"法隆森林北部\", \"F_SP108\", {"
+        },
+        {
+          "key": "        MapEntry(\"Lost Woods\", \"F_SP117\", {",
+          "value": "        MapEntry(\"迷失森林\", \"F_SP117\", {"
+        },
+        {
+          "key": "        MapEntry(\"Sacred Grove\", \"F_SP117\", {",
+          "value": "        MapEntry(\"圣域\", \"F_SP117\", {"
+        },
+        {
+          "key": "        MapEntry(\"Temple of Time (Past)\", \"F_SP117\", {",
+          "value": "        MapEntry(\"时之神殿（过去）\", \"F_SP117\", {"
+        },
+        {
+          "key": "        MapEntry(\"Faron Woods Cave\", \"D_SB10\", {",
+          "value": "        MapEntry(\"法隆森林洞穴\", \"D_SB10\", {"
+        },
+        {
+          "key": "        MapEntry(\"Coro's House\", \"R_SP108\", {",
+          "value": "        MapEntry(\"科洛的家\", \"R_SP108\", {"
+        },
+        {
+          "key": "    RegionEntry(\"Eldin\", {\n        MapEntry(\"Kakariko Village\", \"F_SP109\", {",
+          "value": "    RegionEntry(\"艾尔丁\", {\n        MapEntry(\"卡卡利科村\", \"F_SP109\", {"
+        },
+        {
+          "key": "        MapEntry(\"Death Mountain Trail\", \"F_SP110\", {",
+          "value": "        MapEntry(\"死亡之山道\", \"F_SP110\", {"
+        },
+        {
+          "key": "        MapEntry(\"Kakariko Graveyard\", \"F_SP111\", {",
+          "value": "        MapEntry(\"卡卡利科墓地\", \"F_SP111\", {"
+        },
+        {
+          "key": "        MapEntry(\"Hidden Village\", \"F_SP128\", {",
+          "value": "        MapEntry(\"隐者之村\", \"F_SP128\", {"
+        },
+        {
+          "key": "        MapEntry(\"Renado's Sanctuary\", \"R_SP109\", {",
+          "value": "        MapEntry(\"雷纳多的神殿\", \"R_SP109\", {"
+        },
+        {
+          "key": "        MapEntry(\"Sanctuary Basement\", \"R_SP209\", {",
+          "value": "        MapEntry(\"神殿地下室\", \"R_SP209\", {"
+        },
+        {
+          "key": "        MapEntry(\"Barnes' Bombs\", \"R_SP109\", {",
+          "value": "        MapEntry(\"巴恩斯炸弹店\", \"R_SP109\", {"
+        },
+        {
+          "key": "        MapEntry(\"Elde Inn\", \"R_SP109\", {",
+          "value": "        MapEntry(\"艾尔德旅馆\", \"R_SP109\", {"
+        },
+        {
+          "key": "        MapEntry(\"Malo Mart\", \"R_SP109\", {",
+          "value": "        MapEntry(\"玛洛商店\", \"R_SP109\", {"
+        },
+        {
+          "key": "        MapEntry(\"Lookout Tower\", \"R_SP109\", {",
+          "value": "        MapEntry(\"瞭望塔\", \"R_SP109\", {"
+        },
+        {
+          "key": "        MapEntry(\"Bomb Warehouse\", \"R_SP109\", {",
+          "value": "        MapEntry(\"炸弹仓库\", \"R_SP109\", {"
+        },
+        {
+          "key": "        MapEntry(\"Abandoned House\", \"R_SP109\", {",
+          "value": "        MapEntry(\"废弃房屋\", \"R_SP109\", {"
+        },
+        {
+          "key": "        MapEntry(\"Goron Elder's Hall\", \"R_SP110\", {",
+          "value": "        MapEntry(\"戈隆长老之家\", \"R_SP110\", {"
+        },
+        {
+          "key": "    RegionEntry(\"Lanayru\", {\n        MapEntry(\"Outside Castle Town - West\", \"F_SP122\", {",
+          "value": "    RegionEntry(\"拉聂耳\", {\n        MapEntry(\"城下町外·西\", \"F_SP122\", {"
+        },
+        {
+          "key": "        MapEntry(\"Outside Castle Town - South\", \"F_SP122\", {",
+          "value": "        MapEntry(\"城下町外·南\", \"F_SP122\", {"
+        },
+        {
+          "key": "        MapEntry(\"Outside Castle Town - East\", \"F_SP122\", {",
+          "value": "        MapEntry(\"城下町外·东\", \"F_SP122\", {"
+        },
+        {
+          "key": "        MapEntry(\"Castle Town\", \"F_SP116\", {",
+          "value": "        MapEntry(\"城下町\", \"F_SP116\", {"
+        },
+        {
+          "key": "        MapEntry(\"Zora's River\", \"F_SP112\", {",
+          "value": "        MapEntry(\"佐拉河\", \"F_SP112\", {"
+        },
+        {
+          "key": "        MapEntry(\"Zora's Domain\", \"F_SP113\", {",
+          "value": "        MapEntry(\"佐拉领地\", \"F_SP113\", {"
+        },
+        {
+          "key": "        MapEntry(\"Lake Hylia\", \"F_SP115\", {",
+          "value": "        MapEntry(\"海利亚湖\", \"F_SP115\", {"
+        },
+        {
+          "key": "        MapEntry(\"Lanayru Spring\", \"F_SP115\", {",
+          "value": "        MapEntry(\"拉聂耳之泉\", \"F_SP115\", {"
+        },
+        {
+          "key": "        MapEntry(\"Upper Zora's River\", \"F_SP126\", {",
+          "value": "        MapEntry(\"佐拉河上游\", \"F_SP126\", {"
+        },
+        {
+          "key": "        MapEntry(\"Fishing Pond\", \"F_SP127\", {",
+          "value": "        MapEntry(\"钓鱼池\", \"F_SP127\", {"
+        },
+        {
+          "key": "        MapEntry(\"Castle Town Sewers\", \"R_SP107\", {",
+          "value": "        MapEntry(\"城下町下水道\", \"R_SP107\", {"
+        },
+        {
+          "key": "        MapEntry(\"Telma's Bar / Secret Passage\", \"R_SP116\", {",
+          "value": "        MapEntry(\"泰尔玛酒吧/密道\", \"R_SP116\", {"
+        },
+        {
+          "key": "        MapEntry(\"Hena's Cabin\", \"R_SP127\", {",
+          "value": "        MapEntry(\"海娜的小屋\", \"R_SP127\", {"
+        },
+        {
+          "key": "        MapEntry(\"Impaz's House\", \"R_SP128\", {",
+          "value": "        MapEntry(\"因帕兹的家\", \"R_SP128\", {"
+        },
+        {
+          "key": "        MapEntry(\"Malo Mart\", \"R_SP160\", {",
+          "value": "        MapEntry(\"玛洛商店\", \"R_SP160\", {"
+        },
+        {
+          "key": "        MapEntry(\"Fanadi's Palace\", \"R_SP160\", {",
+          "value": "        MapEntry(\"法纳迪的宫殿\", \"R_SP160\", {"
+        },
+        {
+          "key": "        MapEntry(\"Medical Clinic\", \"R_SP160\", {",
+          "value": "        MapEntry(\"诊疗所\", \"R_SP160\", {"
+        },
+        {
+          "key": "        MapEntry(\"Agitha's Castle\", \"R_SP160\", {",
+          "value": "        MapEntry(\"阿吉莎的城堡\", \"R_SP160\", {"
+        },
+        {
+          "key": "        MapEntry(\"Goron Shop\", \"R_SP160\", {",
+          "value": "        MapEntry(\"戈隆商店\", \"R_SP160\", {"
+        },
+        {
+          "key": "        MapEntry(\"Jovani's House\", \"R_SP160\", {",
+          "value": "        MapEntry(\"乔瓦尼的家\", \"R_SP160\", {"
+        },
+        {
+          "key": "        MapEntry(\"STAR Tent\", \"R_SP161\", {",
+          "value": "        MapEntry(\"STAR 帐篷\", \"R_SP161\", {"
+        },
+        {
+          "key": "    RegionEntry(\"Gerudo Desert\", {\n        MapEntry(\"Bulblin Camp\", \"F_SP118\", {",
+          "value": "    RegionEntry(\"格鲁德沙漠\", {\n        MapEntry(\"布尔布林营地\", \"F_SP118\", {"
+        },
+        {
+          "key": "        MapEntry(\"Bulblin Camp Beta Room\", \"F_SP118\", {",
+          "value": "        MapEntry(\"布尔布林营地 Beta 房间\", \"F_SP118\", {"
+        },
+        {
+          "key": "        MapEntry(\"Gerudo Desert\", \"F_SP124\", {",
+          "value": "        MapEntry(\"格鲁德沙漠\", \"F_SP124\", {"
+        },
+        {
+          "key": "        MapEntry(\"Mirror Chamber\", \"F_SP125\", {",
+          "value": "        MapEntry(\"镜子之间\", \"F_SP125\", {"
+        },
+        {
+          "key": "    RegionEntry(\"Snowpeak\", {\n        MapEntry(\"Snowpeak Mountain\", \"F_SP114\", {",
+          "value": "    RegionEntry(\"雪峰\", {\n        MapEntry(\"雪峰山\", \"F_SP114\", {"
+        },
+        {
+          "key": "    RegionEntry(\"Forest Temple\", {\n        MapEntry(\"Forest Temple\", \"D_MN05\", {",
+          "value": "    RegionEntry(\"森林神殿\", {\n        MapEntry(\"森林神殿\", \"D_MN05\", {"
+        },
+        {
+          "key": "        MapEntry(\"Diababa Arena\", \"D_MN05A\", {",
+          "value": "        MapEntry(\"迪亚巴巴战斗场\", \"D_MN05A\", {"
+        },
+        {
+          "key": "        MapEntry(\"Ook Arena\", \"D_MN05B\", {",
+          "value": "        MapEntry(\"奥克战斗场\", \"D_MN05B\", {"
+        },
+        {
+          "key": "    RegionEntry(\"Goron Mines\", {\n        MapEntry(\"Goron Mines\", \"D_MN04\", {",
+          "value": "    RegionEntry(\"戈隆矿山\", {\n        MapEntry(\"戈隆矿山\", \"D_MN04\", {"
+        },
+        {
+          "key": "        MapEntry(\"Fyrus Arena\", \"D_MN04A\", {",
+          "value": "        MapEntry(\"法伊拉斯战斗场\", \"D_MN04A\", {"
+        },
+        {
+          "key": "        MapEntry(\"Dangoro Arena\", \"D_MN04B\", {",
+          "value": "        MapEntry(\"丹戈罗战斗场\", \"D_MN04B\", {"
+        },
+        {
+          "key": "    RegionEntry(\"Lakebed Temple\", {\n        MapEntry(\"Lakebed Temple\", \"D_MN01\", {",
+          "value": "    RegionEntry(\"湖底神殿\", {\n        MapEntry(\"湖底神殿\", \"D_MN01\", {"
+        },
+        {
+          "key": "        MapEntry(\"Morpheel Arena\", \"D_MN01A\", {",
+          "value": "        MapEntry(\"莫菲鲁战斗场\", \"D_MN01A\", {"
+        },
+        {
+          "key": "        MapEntry(\"Deku Toad Arena\", \"D_MN01B\", {",
+          "value": "        MapEntry(\"德库蟾蜍战斗场\", \"D_MN01B\", {"
+        },
+        {
+          "key": "    RegionEntry(\"Arbiter's Grounds\", {\n        MapEntry(\"Arbiter's Grounds\", \"D_MN10\", {",
+          "value": "    RegionEntry(\"裁决之地\", {\n        MapEntry(\"裁决之地\", \"D_MN10\", {"
+        },
+        {
+          "key": "        MapEntry(\"Stallord Arena\", \"D_MN10A\", {",
+          "value": "        MapEntry(\"斯塔洛德战斗场\", \"D_MN10A\", {"
+        },
+        {
+          "key": "        MapEntry(\"Death Sword Arena\", \"D_MN10B\", {",
+          "value": "        MapEntry(\"死亡之剑战斗场\", \"D_MN10B\", {"
+        },
+        {
+          "key": "    RegionEntry(\"Snowpeak Ruins\", {\n        MapEntry(\"Snowpeak Ruins\", \"D_MN11\", {",
+          "value": "    RegionEntry(\"雪峰遗迹\", {\n        MapEntry(\"雪峰遗迹\", \"D_MN11\", {"
+        },
+        {
+          "key": "        MapEntry(\"Blizzeta Arena\", \"D_MN11A\", {",
+          "value": "        MapEntry(\"布里扎塔战斗场\", \"D_MN11A\", {"
+        },
+        {
+          "key": "        MapEntry(\"Darkhammer Arena\", \"D_MN11B\", {",
+          "value": "        MapEntry(\"暗黑锤战斗场\", \"D_MN11B\", {"
+        },
+        {
+          "key": "        MapEntry(\"Darkhammer Beta Arena\", \"D_MN11B\", {",
+          "value": "        MapEntry(\"暗黑锤 Beta 战斗场\", \"D_MN11B\", {"
+        },
+        {
+          "key": "    RegionEntry(\"Temple of Time\", {\n        MapEntry(\"Temple of Time\", \"D_MN06\", {",
+          "value": "    RegionEntry(\"时之神殿\", {\n        MapEntry(\"时之神殿\", \"D_MN06\", {"
+        },
+        {
+          "key": "        MapEntry(\"Armogohma Arena\", \"D_MN06A\", {",
+          "value": "        MapEntry(\"阿尔莫戈玛战斗场\", \"D_MN06A\", {"
+        },
+        {
+          "key": "        MapEntry(\"Darknut Arena\", \"D_MN06B\", {",
+          "value": "        MapEntry(\"暗黑骑士战斗场\", \"D_MN06B\", {"
+        },
+        {
+          "key": "    RegionEntry(\"City in the Sky\", {\n        MapEntry(\"City in the Sky\", \"D_MN07\", {",
+          "value": "    RegionEntry(\"天空之城\", {\n        MapEntry(\"天空之城\", \"D_MN07\", {"
+        },
+        {
+          "key": "        MapEntry(\"Argorok Arena\", \"D_MN07A\", {",
+          "value": "        MapEntry(\"阿尔戈洛克战斗场\", \"D_MN07A\", {"
+        },
+        {
+          "key": "        MapEntry(\"Aeralfos Arena\", \"D_MN07B\", {",
+          "value": "        MapEntry(\"埃拉尔弗斯战斗场\", \"D_MN07B\", {"
+        },
+        {
+          "key": "    RegionEntry(\"Palace of Twilight\", {\n        MapEntry(\"Palace of Twilight\", \"D_MN08\", {",
+          "value": "    RegionEntry(\"黄昏宫殿\", {\n        MapEntry(\"黄昏宫殿\", \"D_MN08\", {"
+        },
+        {
+          "key": "        MapEntry(\"Palace of Twilight Throne Room\", \"D_MN08A\", {",
+          "value": "        MapEntry(\"黄昏宫殿王座之间\", \"D_MN08A\", {"
+        },
+        {
+          "key": "        MapEntry(\"Phantom Zant Arena 1\", \"D_MN08B\", {",
+          "value": "        MapEntry(\"幻影赞特战斗场 1\", \"D_MN08B\", {"
+        },
+        {
+          "key": "        MapEntry(\"Phantom Zant Arena 2\", \"D_MN08C\", {",
+          "value": "        MapEntry(\"幻影赞特战斗场 2\", \"D_MN08C\", {"
+        },
+        {
+          "key": "        MapEntry(\"Zant Arenas\", \"D_MN08D\", {",
+          "value": "        MapEntry(\"赞特战斗场\", \"D_MN08D\", {"
+        },
+        {
+          "key": "    RegionEntry(\"Hyrule Castle\", {\n        MapEntry(\"Hyrule Castle\", \"D_MN09\", {",
+          "value": "    RegionEntry(\"海拉尔城堡\", {\n        MapEntry(\"海拉尔城堡\", \"D_MN09\", {"
+        },
+        {
+          "key": "        MapEntry(\"Hyrule Castle Throne Room\", \"D_MN09A\", {",
+          "value": "        MapEntry(\"海拉尔城堡王座之间\", \"D_MN09A\", {"
+        },
+        {
+          "key": "        MapEntry(\"Horseback Ganondorf Arena\", \"D_MN09B\", {",
+          "value": "        MapEntry(\"骑马加农多夫战斗场\", \"D_MN09B\", {"
+        },
+        {
+          "key": "        MapEntry(\"Dark Lord Ganondorf Arena\", \"D_MN09C\", {",
+          "value": "        MapEntry(\"暗黑魔王加农多夫战斗场\", \"D_MN09C\", {"
+        },
+        {
+          "key": "    RegionEntry(\"Mini-Dungeons and Grottos\", {\n        MapEntry(\"Ice Cavern\", \"D_SB00\", {",
+          "value": "    RegionEntry(\"小迷宫与洞穴\", {\n        MapEntry(\"冰之洞窟\", \"D_SB00\", {"
+        },
+        {
+          "key": "        MapEntry(\"Cave Of Ordeals\", \"D_SB01\", {",
+          "value": "        MapEntry(\"试炼之洞窟\", \"D_SB01\", {"
+        },
+        {
+          "key": "        MapEntry(\"Kakariko Gorge Cavern\", \"D_SB02\", {",
+          "value": "        MapEntry(\"卡卡利科峡谷洞穴\", \"D_SB02\", {"
+        },
+        {
+          "key": "        MapEntry(\"Lake Hylia Cavern\", \"D_SB03\", {",
+          "value": "        MapEntry(\"海利亚湖洞穴\", \"D_SB03\", {"
+        },
+        {
+          "key": "        MapEntry(\"Goron Stockcave\", \"D_SB04\", {",
+          "value": "        MapEntry(\"戈隆储物洞穴\", \"D_SB04\", {"
+        },
+        {
+          "key": "        MapEntry(\"Grotto 1\", \"D_SB05\", {",
+          "value": "        MapEntry(\"洞穴 1\", \"D_SB05\", {"
+        },
+        {
+          "key": "        MapEntry(\"Grotto 2\", \"D_SB06\", {",
+          "value": "        MapEntry(\"洞穴 2\", \"D_SB06\", {"
+        },
+        {
+          "key": "        MapEntry(\"Grotto 3\", \"D_SB07\", {",
+          "value": "        MapEntry(\"洞穴 3\", \"D_SB07\", {"
+        },
+        {
+          "key": "        MapEntry(\"Grotto 4\", \"D_SB08\", {",
+          "value": "        MapEntry(\"洞穴 4\", \"D_SB08\", {"
+        },
+        {
+          "key": "        MapEntry(\"Grotto 5\", \"D_SB09\", {",
+          "value": "        MapEntry(\"洞穴 5\", \"D_SB09\", {"
+        },
+        {
+          "key": "    RegionEntry(\"Misc\", {\n        MapEntry(\"Title Screen / King Bulblin 1\", \"F_SP102\", {",
+          "value": "    RegionEntry(\"其他\", {\n        MapEntry(\"标题画面/布尔布林王 1\", \"F_SP102\", {"
+        },
+        {
+          "key": "        MapEntry(\"King Bulblin 2\", \"F_SP123\", {",
+          "value": "        MapEntry(\"布尔布林王 2\", \"F_SP123\", {"
+        },
+        {
+          "key": "        MapEntry(\"Wolf Howling Cutscene Map\", \"F_SP200\", {",
+          "value": "        MapEntry(\"狼嚎过场地图\", \"F_SP200\", {"
+        },
+        {
+          "key": "        MapEntry(\"Cutscene: Light Arrow Area\", \"R_SP300\", {",
+          "value": "        MapEntry(\"过场：光之箭区域\", \"R_SP300\", {"
+        },
+        {
+          "key": "        MapEntry(\"Cutscene: Hyrule Castle Throne Room\", \"R_SP301\", {",
+          "value": "        MapEntry(\"过场：海拉尔城堡王座之间\", \"R_SP301\", {"
+        },
+        {
+          "key": "        MapEntry(\"Title screen movie map\", \"S_MV000\", {",
+          "value": "        MapEntry(\"标题画面影片地图\", \"S_MV000\", {"
+        }
+      ],
+      "insert": []
+    },
+    "src/dusk/mods/loader/loader.cpp": {
+      "replace": [
+        {
+          "key": "        throw InvalidModDataException(\"Missing ID value in mod metadata!\");",
+          "value": "        throw InvalidModDataException(\"模组元数据缺少 ID 值！\");"
+        },
+        {
+          "key": "                throw InvalidModDataException(\"Cannot have two consecutive periods in mod ID!\");",
+          "value": "                throw InvalidModDataException(\"模组 ID 不能包含连续两个句点！\");"
+        },
+        {
+          "key": "            fmt::format(\"Invalid character '{}' in mod ID. Valid characters are period, \"\n                        \"underscore, and alphanumerics.\",",
+          "value": "            fmt::format(\"模组 ID 包含无效字符“{}”，只允许句点、下划线和字母数字。\","
+        },
+        {
+          "key": "        metaAuthor = \"unknown\"s;",
+          "value": "        metaAuthor = \"未知\"s;"
+        },
+        {
+          "key": "            return invalid(\"trailing bytes\");",
+          "value": "            return invalid(\"存在多余字节\");"
+        },
+        {
+          "key": "            return invalid(\"bad record size\");",
+          "value": "            return invalid(\"记录大小错误\");"
+        },
+        {
+          "key": "                return invalid(\"truncated header record\");",
+          "value": "                return invalid(\"头部记录被截断\");"
+        },
+        {
+          "key": "                return invalid(\"truncated import record\");",
+          "value": "                return invalid(\"导入记录被截断\");"
+        },
+        {
+          "key": "                return invalid(\"unterminated import service id\");",
+          "value": "                return invalid(\"导入服务 ID 未正确结束\");"
+        },
+        {
+          "key": "                return invalid(\"truncated export record\");",
+          "value": "                return invalid(\"导出记录被截断\");"
+        },
+        {
+          "key": "                return invalid(\"unterminated export service id\");",
+          "value": "                return invalid(\"导出服务 ID 未正确结束\");"
+        },
+        {
+          "key": "                return invalid(\"truncated hook record\");",
+          "value": "                return invalid(\"钩子记录被截断\");"
+        },
+        {
+          "key": "                return invalid(\"truncated hook record\");",
+          "value": "                return invalid(\"钩子记录被截断\");"
+        },
+        {
+          "key": "                return invalid(\"unterminated hook vtable symbol\");",
+          "value": "                return invalid(\"钩子虚表符号未正确结束\");"
+        },
+        {
+          "key": "                return invalid(\"unterminated hook display name\");",
+          "value": "                return invalid(\"钩子显示名称未正确结束\");"
+        },
+        {
+          "key": "                return invalid(\"truncated extended hook record\");",
+          "value": "                return invalid(\"扩展钩子记录被截断\");"
+        },
+        {
+          "key": "                return invalid(\"bad extended hook member-pointer size\");",
+          "value": "                return invalid(\"扩展钩子成员指针大小错误\");"
+        },
+        {
+          "key": "                return invalid(\"unterminated extended hook vtable symbol\");",
+          "value": "                return invalid(\"扩展钩子虚表符号未正确结束\");"
+        },
+        {
+          "key": "                return invalid(\"unterminated extended hook display name\");",
+          "value": "                return invalid(\"扩展钩子显示名称未正确结束\");"
+        },
+        {
+          "key": "                return invalid(\"truncated hook record\");",
+          "value": "                return invalid(\"钩子记录被截断\");"
+        },
+        {
+          "key": "                return invalid(\"unterminated hook symbol name\");",
+          "value": "                return invalid(\"钩子符号名未正确结束\");"
+        },
+        {
+          "key": "    return fmt::format(\"{} failed with result {}\", fnName, static_cast<int>(result));",
+          "value": "    return fmt::format(\"{} 失败，结果为 {}\", fnName, static_cast<int>(result));"
+        },
+        {
+          "key": "        return \"Code mods are disabled on this Dusklight build\";",
+          "value": "        return \"此 Dusklight 版本已禁用代码模组\";"
+        },
+        {
+          "key": "        return fmt::format(\"Mod not supported on this platform ({})\", k_nativePlatform);",
+          "value": "        return fmt::format(\"该模组不支持当前平台（{}）\", k_nativePlatform);"
+        },
+        {
+          "key": "        return \"Mod ABI version mismatch\";",
+          "value": "        return \"模组 ABI 版本不匹配\";"
+        },
+        {
+          "key": "        return \"Missing required mod API exports\";",
+          "value": "        return \"缺少必需的模组 API 导出\";"
+        },
+        {
+          "key": "        return \"Invalid mod metadata records\";",
+          "value": "        return \"模组元数据记录无效\";"
+        },
+        {
+          "key": "        return \"Invalid mod bundle layout (old mod?)\";",
+          "value": "        return \"模组包结构无效（旧版模组？）\";"
+        },
+        {
+          "key": "        return \"Unknown mod load failure\";",
+          "value": "        return \"模组加载失败（未知原因）\";"
+        },
+        {
+          "key": "    return \"native mod failed to load\";",
+          "value": "    return \"原生模组加载失败\";"
+        },
+        {
+          "key": "        fail_mod(mod, MOD_ERROR, fmt::format(\"Exception in mod_initialize: {}\", e.what()));",
+          "value": "        fail_mod(mod, MOD_ERROR, fmt::format(\"mod_initialize 出现异常：{}\", e.what()));"
+        },
+        {
+          "key": "        fail_mod(mod, MOD_ERROR, \"Unknown exception in mod_initialize\");",
+          "value": "        fail_mod(mod, MOD_ERROR, \"mod_initialize 出现未知异常\");"
+        },
+        {
+          "key": "        toast.title = \"Mod failed\";",
+          "value": "        toast.title = \"模组加载失败\";"
+        },
+        {
+          "key": "            fmt::format(\"<div><b>{}</b> failed and was disabled.</div><div>Check Mods for \"\n                        \"more information.</div>\",",
+          "value": "            fmt::format(\"<div><b>{}</b> 加载失败并已被禁用。</div><div>请到“模组”中查看详细信息。</div>\","
+        },
+        {
+          "key": "        toast.title = \"Mods failed\";\n        toast.content = fmt::format(\"<div><b>{} mods</b> failed and were disabled.</div><div>Check \"\n                                    \"Mods for more information.</div>\",",
+          "value": "        toast.title = \"模组加载失败\";\n        toast.content = fmt::format(\"<div><b>{} 个模组</b>加载失败并已被禁用。</div><div>请到\"\n                                    \"“模组”中查看详细信息。</div>\","
+        },
+        {
+          "key": "        fail_mod(mod, MOD_ERROR, fmt::format(\"Reload failed: {}\", e.what()));",
+          "value": "        fail_mod(mod, MOD_ERROR, fmt::format(\"重新加载失败：{}\", e.what()));"
+        },
+        {
+          "key": "            fmt::format(\"Mod ID changed on reload ('{}'); restart required\", newMetadata.id));",
+          "value": "            fmt::format(\"重新加载后模组 ID 发生变化（'{}'），需要重启\", newMetadata.id));"
+        },
+        {
+          "key": "            fail_mod(mod, MOD_ERROR, fmt::format(\"Exception in mod_update: {}\", e.what()));",
+          "value": "            fail_mod(mod, MOD_ERROR, fmt::format(\"mod_update 出现异常：{}\", e.what()));"
+        },
+        {
+          "key": "            fail_mod(mod, MOD_ERROR, \"Unknown exception in mod_update\");",
+          "value": "            fail_mod(mod, MOD_ERROR, \"mod_update 出现未知异常\");"
+        }
+      ],
+      "insert": []
+    },
+    "src/dusk/ui/achievements.cpp": {
+      "replace": [
+        {
+          "key": "    {AchievementCategory::Challenge,  \"Challenge\"},\n    {AchievementCategory::Collection, \"Collection\"},\n    {AchievementCategory::Minigame,   \"Minigame\"},\n    {AchievementCategory::Misc,       \"Misc\"},\n    {AchievementCategory::Glitched,   \"Glitched\"},",
+          "value": "    {AchievementCategory::Challenge,  \"挑战\"},\n    {AchievementCategory::Collection, \"收集\"},\n    {AchievementCategory::Minigame,   \"小游戏\"},\n    {AchievementCategory::Misc,       \"杂项\"},\n    {AchievementCategory::Glitched,   \"故障\"},"
+        },
+        {
+          "key": "        a.unlocked ? \"Unlocked\" : \"Locked\",",
+          "value": "        a.unlocked ? \"已解锁\" : \"未解锁\","
+        },
+        {
+          "key": "                    mClearButton->set_text(\"Clear?\");",
+          "value": "                    mClearButton->set_text(\"清除？\");"
+        },
+        {
+          "key": "            pane.add_section(\"Actions\");\n\n            auto& clearAllBtn = pane.add_button(\"Clear All Achievements\");",
+          "value": "            pane.add_section(\"操作\");\n\n            auto& clearAllBtn = pane.add_button(\"清除全部成就\");"
+        },
+        {
+          "key": "                        clearAllPtr->set_text(\"Clear All Achievements\");",
+          "value": "                        clearAllPtr->set_text(\"清除全部成就\");"
+        },
+        {
+          "key": "                        clearAllPtr->set_text(\"Are you sure?\");",
+          "value": "                        clearAllPtr->set_text(\"确定吗？\");"
+        },
+        {
+          "key": "                    clearAllPtr->set_text(\"Clear All Achievements\");",
+          "value": "                    clearAllPtr->set_text(\"清除全部成就\");"
+        },
+        {
+          "key": "                clearAllPtr->set_text(\"Clear All Achievements\");",
+          "value": "                clearAllPtr->set_text(\"清除全部成就\");"
+        }
+      ],
+      "insert": []
+    },
+    "src/dusk/ui/bool_button.cpp": {
+      "replace": [
+        {
+          "key": "    return mGetValue() ? \"On\" : \"Off\";",
+          "value": "    return mGetValue() ? \"开\" : \"关\";"
+        }
+      ],
+      "insert": []
+    },
+    "src/dusk/ui/controller_config.cpp": {
+      "replace": [
+        {
+          "key": "    return keyboard_active(port) ? \"Keyboard\" : \"None\";",
+          "value": "    return keyboard_active(port) ? \"键盘\" : \"无\";"
+        },
+        {
+          "key": "        return fmt::format(\"Device {}\", index + 1);",
+          "value": "        return fmt::format(\"设备 {}\", index + 1);"
+        },
+        {
+          "key": "        {SDL_GAMEPAD_TYPE_XBOX360, \"Left Stick\"},\n        {SDL_GAMEPAD_TYPE_XBOXONE, \"Left Stick\"},\n        {SDL_GAMEPAD_TYPE_GAMECUBE, \"Control Stick\"},",
+          "value": "        {SDL_GAMEPAD_TYPE_XBOX360, \"左摇杆\"},\n        {SDL_GAMEPAD_TYPE_XBOXONE, \"左摇杆\"},\n        {SDL_GAMEPAD_TYPE_GAMECUBE, \"控制摇杆\"},"
+        },
+        {
+          "key": "        {SDL_GAMEPAD_TYPE_XBOX360, \"Right Stick\"},\n        {SDL_GAMEPAD_TYPE_XBOXONE, \"Right Stick\"},\n        {SDL_GAMEPAD_TYPE_GAMECUBE, \"C Stick\"},",
+          "value": "        {SDL_GAMEPAD_TYPE_XBOX360, \"右摇杆\"},\n        {SDL_GAMEPAD_TYPE_XBOXONE, \"右摇杆\"},\n        {SDL_GAMEPAD_TYPE_GAMECUBE, \"C 摇杆\"},"
+        },
+        {
+          "key": "    return \"Not Bound\";",
+          "value": "    return \"未绑定\";"
+        },
+        {
+          "key": "        return \"Not Bound\";",
+          "value": "        return \"未绑定\";"
+        },
+        {
+          "key": "        return \"Mouse Left\";",
+          "value": "        return \"鼠标左键\";"
+        },
+        {
+          "key": "        return \"Mouse Middle\";",
+          "value": "        return \"鼠标中键\";"
+        },
+        {
+          "key": "        return \"Mouse Right\";",
+          "value": "        return \"鼠标右键\";"
+        },
+        {
+          "key": "        return \"Unknown\";",
+          "value": "        return \"未知\";"
+        },
+        {
+          "key": "        return \"Unknown\";",
+          "value": "        return \"未知\";"
+        },
+        {
+          "key": "        add_tab(fmt::format(\"Port {}\", port + 1), [this, port](Rml::Element* content) {",
+          "value": "        add_tab(fmt::format(\"端口 {}\", port + 1), [this, port](Rml::Element* content) {"
+        },
+        {
+          "key": "    addPageButton(Page::Controller, \"Device\", [port] { return current_controller_name(port); }, [] { return false; });\n    addPageButton(Page::Buttons, \"Buttons\", [] { return Rml::String(\">\"); }, [] { return false; });\n    addPageButton(Page::Triggers, \"Triggers\", [] { return Rml::String(\">\"); }, [] { return false; });\n    addPageButton(Page::Sticks, \"Sticks\", [] { return Rml::String(\">\"); }, [] { return false; });\n    addPageButton(Page::Rumble, \"Rumble\", [] { return Rml::String(\">\"); }, [port] { return !PADSupportsRumbleIntensity(static_cast<u32>(port)); });\n    addPageButton(Page::Actions, \"Custom Action Bindings\", [] {return Rml::String(\">\"); }, [] { return false; });\n\n    leftPane.add_section(\"Options\");",
+          "value": "    addPageButton(Page::Controller, \"设备\", [port] { return current_controller_name(port); }, [] { return false; });\n    addPageButton(Page::Buttons, \"按键\", [] { return Rml::String(\">\"); }, [] { return false; });\n    addPageButton(Page::Triggers, \"扳机\", [] { return Rml::String(\">\"); }, [] { return false; });\n    addPageButton(Page::Sticks, \"摇杆\", [] { return Rml::String(\">\"); }, [] { return false; });\n    addPageButton(Page::Rumble, \"震动\", [] { return Rml::String(\">\"); }, [port] { return !PADSupportsRumbleIntensity(static_cast<u32>(port)); });\n    addPageButton(Page::Actions, \"自定义动作绑定\", [] {return Rml::String(\">\"); }, [] { return false; });\n\n    leftPane.add_section(\"选项\");"
+        },
+        {
+          "key": "                                  .key = \"Enable LED Status\",",
+          "value": "                                  .key = \"启用 LED 状态灯\","
+        },
+        {
+          "key": "                                          return \"Not Supported\";",
+          "value": "                                          return \"不支持\";"
+        },
+        {
+          "key": "            pane.add_text(\"Sets the controller's lighting color based on the game's state.\");",
+          "value": "            pane.add_text(\"根据游戏状态设置手柄灯光颜色。\");"
+        },
+        {
+          "key": "                                  .key = \"Enable Dead Zones\",",
+          "value": "                                  .key = \"启用死区\","
+        },
+        {
+          "key": "            pane.add_text(\"Apply configured dead zones to the sticks and analog triggers.\");",
+          "value": "            pane.add_text(\"将配置的死区应用到摇杆和模拟扳机。\");"
+        },
+        {
+          "key": "                                  .key = \"Emulate Triggers\",",
+          "value": "                                  .key = \"模拟扳机\","
+        },
+        {
+          "key": "            pane.add_text(\"Treat analog trigger movement as digital L and R button input.\");",
+          "value": "            pane.add_text(\"将模拟扳机行程视为数字 L/R 按键输入。\");"
+        },
+        {
+          "key": "    leftPane.register_control(leftPane.add_button(\"Restore Default Controls\").on_pressed([this, port] {",
+          "value": "    leftPane.register_control(leftPane.add_button(\"恢复默认按键\").on_pressed([this, port] {"
+        },
+        {
+          "key": "                pane.add_text(\"Restores all binding configurations for the currently selected device to their defaults.\");",
+          "value": "                pane.add_text(\"将当前所选设备的所有按键配置恢复为默认值。\");"
+        },
+        {
+          "key": "                    .text = \"None\",",
+          "value": "                    .text = \"无\","
+        },
+        {
+          "key": "                            .text = \"Keyboard\",",
+          "value": "                            .text = \"键盘\","
+        },
+        {
+          "key": "            pane.add_text(\"No Device Detected\");",
+          "value": "            pane.add_text(\"未检测到设备\");"
+        },
+        {
+          "key": "                                        return Rml::String(\"Not Bound\");",
+          "value": "                                        return Rml::String(\"未绑定\");"
+        },
+        {
+          "key": "                                    return Rml::String(\"Not Bound\");",
+          "value": "                                    return Rml::String(\"未绑定\");"
+        },
+        {
+          "key": "            pane.add_section(\"Buttons\");",
+          "value": "            pane.add_section(\"按键\");"
+        },
+        {
+          "key": "            pane.add_section(\"D-Pad\");",
+          "value": "            pane.add_section(\"方向键\");"
+        },
+        {
+          "key": "            pane.add_text(\"No Device Selected\");",
+          "value": "            pane.add_text(\"未选择设备\");"
+        },
+        {
+          "key": "        pane.add_section(\"Buttons\");",
+          "value": "        pane.add_section(\"按键\");"
+        },
+        {
+          "key": "        pane.add_section(\"D-Pad\");",
+          "value": "        pane.add_section(\"方向键\");"
+        },
+        {
+          "key": "                                        return Rml::String(\"Not Bound\");",
+          "value": "                                        return Rml::String(\"未绑定\");"
+        },
+        {
+          "key": "                                    return Rml::String(\"Not Bound\");",
+          "value": "                                    return Rml::String(\"未绑定\");"
+        },
+        {
+          "key": "                                        return Rml::String(\"Not Bound\");",
+          "value": "                                        return Rml::String(\"未绑定\");"
+        },
+        {
+          "key": "                                    return Rml::String(\"Not Bound\");",
+          "value": "                                    return Rml::String(\"未绑定\");"
+        },
+        {
+          "key": "            pane.add_section(\"Analog\");",
+          "value": "            pane.add_section(\"模拟\");"
+        },
+        {
+          "key": "            pane.add_section(\"Digital\");",
+          "value": "            pane.add_section(\"数字\");"
+        },
+        {
+          "key": "            pane.add_text(\"No Device Selected\");",
+          "value": "            pane.add_text(\"未选择设备\");"
+        },
+        {
+          "key": "        pane.add_section(\"Analog\");",
+          "value": "        pane.add_section(\"模拟\");"
+        },
+        {
+          "key": "            pane.add_section(\"Digital\");",
+          "value": "            pane.add_section(\"数字\");"
+        },
+        {
+          "key": "            pane.add_section(\"Emulated Trigger Thresholds\");",
+          "value": "            pane.add_section(\"模拟扳机阈值\");"
+        },
+        {
+          "key": "                .key = \"L Threshold\",",
+          "value": "                .key = \"L 阈值\","
+        },
+        {
+          "key": "                .key = \"R Threshold\",",
+          "value": "                .key = \"R 阈值\","
+        },
+        {
+          "key": "                                        return Rml::String(\"Not Bound\");",
+          "value": "                                        return Rml::String(\"未绑定\");"
+        },
+        {
+          "key": "                                    return Rml::String(\"Not Bound\");",
+          "value": "                                    return Rml::String(\"未绑定\");"
+        },
+        {
+          "key": "            pane.add_section(\"Control Stick\");",
+          "value": "            pane.add_section(\"控制摇杆\");"
+        },
+        {
+          "key": "            pane.add_section(\"C Stick\");",
+          "value": "            pane.add_section(\"C 摇杆\");"
+        },
+        {
+          "key": "            pane.add_text(\"No Device Selected\");",
+          "value": "            pane.add_text(\"未选择设备\");"
+        },
+        {
+          "key": "        pane.add_section(\"Control Stick\");",
+          "value": "        pane.add_section(\"控制摇杆\");"
+        },
+        {
+          "key": "                .key = \"Deadzone\",",
+          "value": "                .key = \"死区\","
+        },
+        {
+          "key": "        pane.add_section(\"C Stick\");",
+          "value": "        pane.add_section(\"C 摇杆\");"
+        },
+        {
+          "key": "                .key = \"Deadzone\",",
+          "value": "                .key = \"死区\","
+        },
+        {
+          "key": "                .key = \"Use Device Haptics\",",
+          "value": "                .key = \"使用设备触感\","
+        },
+        {
+          "key": "            pane.add_text(\"Use native device haptics instead of controller rumble. \"\n                          \"Useful for devices with built-in gamepads.\");",
+          "value": "            pane.add_text(\"使用设备原生触感代替手柄震动，适用于自带手柄的设备。\");"
+        },
+        {
+          "key": "            .key = \"Test Rumble\",",
+          "value": "            .key = \"测试震动\","
+        },
+        {
+          "key": "                    return (mRumbleTestActive && mRumbleTestPort == port) ? Rml::String(\"Stop\")\n                                                                          : Rml::String(\"Start\");",
+          "value": "                    return (mRumbleTestActive && mRumbleTestPort == port) ? Rml::String(\"停止\")\n                                                                          : Rml::String(\"开始\");"
+        },
+        {
+          "key": "            .key = \"Low Rumble Frequency\",",
+          "value": "            .key = \"低频震动\","
+        },
+        {
+          "key": "            .key = \"High Rumble Frequency\",",
+          "value": "            .key = \"高频震动\","
+        },
+        {
+          "key": "        pane.add_text(\"Configure your desired rumble intensities, then run a test to check how they feel.\");",
+          "value": "        pane.add_text(\"配置所需的震动强度，然后运行测试感受效果。\");"
+        },
+        {
+          "key": "            pane.add_section(\"Custom Action Bindings\");\n            pane.add_text(\"A key bound to any action here will REPLACE the default control for\"\n                          \" that action. Only bind buttons here that aren't used anywhere else.\");",
+          "value": "            pane.add_section(\"自定义动作绑定\");\n            pane.add_text(\"绑定到此处任意动作的按键将替换该动作的默认按键。请只绑定未在其他地方使用的按键。\");"
+        },
+        {
+          "key": "            pane.add_text(\"No Device Selected\");",
+          "value": "            pane.add_text(\"未选择设备\");"
+        },
+        {
+          "key": "        pane.add_section(\"Custom Action Bindings\");\n        pane.add_text(\"A button bound to any action here will REPLACE the default control for\"\n                      \" that action. Only bind buttons here that aren't used anywhere else. The glyphs\"\n                      \" shown for in game actions will not change. This is not recommended for \"\n                      \" regular Gamecube controllers.\");",
+          "value": "        pane.add_section(\"自定义动作绑定\");\n        pane.add_text(\"绑定到此处任意动作的按钮将替换该动作的默认按键。请只绑定未在其他地方使用的按钮。\"\n                      \"游戏内动作显示的图标不会改变。不建议在常规 GameCube 手柄上使用。\");"
+        },
+        {
+          "key": "    return mPendingBindingArmed ? \"Press a Key or Button...\" : \"Waiting...\";",
+          "value": "    return mPendingBindingArmed ? \"请按下按键或按钮...\" : \"等待输入...\";"
+        },
+        {
+          "key": "    return mPendingBindingArmed ? \"Move Axis or press a Key or Button...\" : \"Waiting...\";",
+          "value": "    return mPendingBindingArmed ? \"请移动摇杆轴或按下按键/按钮...\" : \"等待输入...\";"
+        },
+        {
+          "key": "    return mPendingBindingArmed ? \"Press a Key or Mouse Button...\" : \"Waiting...\";",
+          "value": "    return mPendingBindingArmed ? \"请按下键盘或鼠标按键...\" : \"等待输入...\";"
+        },
+        {
+          "key": "        return \"Not Bound\";",
+          "value": "        return \"未绑定\";"
+        },
+        {
+          "key": "        return \"D-pad left\";",
+          "value": "        return \"方向键左\";"
+        },
+        {
+          "key": "        return \"D-pad right\";",
+          "value": "        return \"方向键右\";"
+        },
+        {
+          "key": "        return \"D-pad up\";",
+          "value": "        return \"方向键上\";"
+        },
+        {
+          "key": "        return \"D-pad down\";",
+          "value": "        return \"方向键下\";"
+        },
+        {
+          "key": "    return \"Unknown\";",
+          "value": "    return \"未知\";"
+        }
+      ],
+      "insert": []
+    },
+    "src/dusk/ui/editor.cpp": {
+      "replace": [
+        {
+          "key": "    {dItemNo_HEART_e, {\"Heart\"}},\n    {dItemNo_GREEN_RUPEE_e, {\"Green Rupee\"}},\n    {dItemNo_BLUE_RUPEE_e, {\"Blue Rupee\"}},\n    {dItemNo_YELLOW_RUPEE_e, {\"Yellow Rupee\"}},\n    {dItemNo_RED_RUPEE_e, {\"Red Rupee\"}},\n    {dItemNo_PURPLE_RUPEE_e, {\"Purple Rupee\"}},\n    {dItemNo_ORANGE_RUPEE_e, {\"Orange Rupee\"}},\n    {dItemNo_SILVER_RUPEE_e, {\"Silver Rupee\"}},\n    {dItemNo_S_MAGIC_e, {\"Small Magic\"}},\n    {dItemNo_L_MAGIC_e, {\"Large Magic\"}},\n    {dItemNo_BOMB_5_e, {\"Bombs (5)\"}},\n    {dItemNo_BOMB_10_e, {\"Bombs (10)\"}},\n    {dItemNo_BOMB_20_e, {\"Bombs (20)\"}},\n    {dItemNo_BOMB_30_e, {\"Bombs (30)\"}},\n    {dItemNo_ARROW_10_e, {\"Arrows (10)\"}},\n    {dItemNo_ARROW_20_e, {\"Arrows (20)\"}},\n    {dItemNo_ARROW_30_e, {\"Arrows (30)\"}},\n    {dItemNo_ARROW_1_e, {\"Arrows (1)\"}},\n    {dItemNo_PACHINKO_SHOT_e, {\"Pumpkin Seeds\"}},\n    {dItemNo_NOENTRY_19_e, {\"Reserved\"}},\n    {dItemNo_NOENTRY_20_e, {\"Reserved\"}},\n    {dItemNo_NOENTRY_21_e, {\"Reserved\"}},\n    {dItemNo_WATER_BOMB_5_e, {\"Water Bombs (5)\"}},\n    {dItemNo_WATER_BOMB_10_e, {\"Water Bombs (10)\"}},\n    {dItemNo_WATER_BOMB_20_e, {\"Water Bombs (20)\"}},\n    {dItemNo_WATER_BOMB_30_e, {\"Water Bombs (30)\"}},\n    {dItemNo_BOMB_INSECT_5_e, {\"Bomblings (5)\"}},\n    {dItemNo_BOMB_INSECT_10_e, {\"Bomblings (10)\"}},\n    {dItemNo_BOMB_INSECT_20_e, {\"Bomblings (20)\"}},\n    {dItemNo_BOMB_INSECT_30_e, {\"Bomblings (30)\"}},\n    {dItemNo_RECOVERY_FAILY_e, {\"Fairy\"}},\n    {dItemNo_TRIPLE_HEART_e, {\"Triple Hearts\"}},\n    {dItemNo_SMALL_KEY_e, {\"Small Key\"}},\n    {dItemNo_KAKERA_HEART_e, {\"Piece of Heart\"}},\n    {dItemNo_UTAWA_HEART_e, {\"Heart Container\"}},\n    {dItemNo_MAP_e, {\"Dungeon Map\"}},\n    {dItemNo_COMPUS_e, {\"Compass\"}},\n    {dItemNo_DUNGEON_EXIT_e, {\"Ooccoo Sr. (First Time)\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_BOSS_KEY_e, {\"Boss Key\"}},\n    {dItemNo_DUNGEON_BACK_e, {\"Ooccoo Jr.\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_SWORD_e, {\"Ordon Sword\"}},\n    {dItemNo_MASTER_SWORD_e, {\"Master Sword\"}},\n    {dItemNo_WOOD_SHIELD_e, {\"Ordon Shield\"}},\n    {dItemNo_SHIELD_e, {\"Wooden Shield\"}},\n    {dItemNo_HYLIA_SHIELD_e, {\"Hylian Shield\"}},\n    {dItemNo_TKS_LETTER_e, {\"Ooccoo's Note\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_WEAR_CASUAL_e, {\"Ordon Clothes\"}},\n    {dItemNo_WEAR_KOKIRI_e, {\"Hero's Clothes\"}},\n    {dItemNo_ARMOR_e, {\"Magic Armor\"}},\n    {dItemNo_WEAR_ZORA_e, {\"Zora Armor\"}},\n    {dItemNo_MAGIC_LV1_e, {\"Magic Level 1\"}},\n    {dItemNo_DUNGEON_EXIT_2_e, {\"Ooccoo Sr.\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_WALLET_LV1_e, {\"Wallet\"}},\n    {dItemNo_WALLET_LV2_e, {\"Big Wallet\"}},\n    {dItemNo_WALLET_LV3_e, {\"Giant Wallet\"}},\n    {dItemNo_NOENTRY_55_e, {\"Reserved\"}},\n    {dItemNo_NOENTRY_56_e, {\"Reserved\"}},\n    {dItemNo_NOENTRY_57_e, {\"Reserved\"}},\n    {dItemNo_NOENTRY_58_e, {\"Reserved\"}},\n    {dItemNo_NOENTRY_59_e, {\"Reserved\"}},\n    {dItemNo_NOENTRY_60_e, {\"Reserved\"}},\n    {dItemNo_ZORAS_JEWEL_e, {\"Coral Earring\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_HAWK_EYE_e, {\"Hawkeye\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_WOOD_STICK_e, {\"Wooden Sword\"}},\n    {dItemNo_BOOMERANG_e, {\"Gale Boomerang\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_SPINNER_e, {\"Spinner\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_IRONBALL_e, {\"Ball and Chain\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_BOW_e, {\"Hero's Bow\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_HOOKSHOT_e, {\"Clawshot\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_HVY_BOOTS_e, {\"Iron Boots\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_COPY_ROD_e, {\"Dominion Rod\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_W_HOOKSHOT_e, {\"Double Clawshots\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_KANTERA_e, {\"Lantern\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_LIGHT_SWORD_e, {\"Light Sword\"}},\n    {dItemNo_FISHING_ROD_1_e, {\"Fishing Rod\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_PACHINKO_e, {\"Slingshot\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_COPY_ROD_2_e, {\"Dominion Rod (Uncharged)\"}},\n    {dItemNo_NOENTRY_77_e, {\"Reserved\"}},\n    {dItemNo_NOENTRY_78_e, {\"Reserved\"}},\n    {dItemNo_BOMB_BAG_LV2_e, {\"Giant Bomb Bag\"}},\n    {dItemNo_BOMB_BAG_LV1_e, {\"Empty Bomb Bag\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_BOMB_IN_BAG_e, {\"Bomb Bag\"}},\n    {dItemNo_NOENTRY_82_e, {\"Reserved\"}},\n    {dItemNo_LIGHT_ARROW_e, {\"Light Arrow\"}},\n    {dItemNo_ARROW_LV1_e, {\"Quiver\"}},\n    {dItemNo_ARROW_LV2_e, {\"Big Quiver\"}},\n    {dItemNo_ARROW_LV3_e, {\"Giant Quiver\"}},\n    {dItemNo_NOENTRY_87_e, {\"Reserved\"}},\n    {dItemNo_LURE_ROD_e, {\"Fishing Rod (Lure)\"}},\n    {dItemNo_BOMB_ARROW_e, {\"Bomb Arrow\"}},\n    {dItemNo_HAWK_ARROW_e, {\"Hawk Arrow\"}},\n    {dItemNo_BEE_ROD_e, {\"Fishing Rod (Bee Larva)\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_JEWEL_ROD_e, {\"Fishing Rod (Earring)\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_WORM_ROD_e, {\"Fishing Rod (Worm)\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_JEWEL_BEE_ROD_e, {\"Fishing Rod (Earring + Bee Larva)\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_JEWEL_WORM_ROD_e, {\"Fishing Rod (Earring + Worm)\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_EMPTY_BOTTLE_e, {\"Empty Bottle\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_RED_BOTTLE_e, {\"Red Potion\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_GREEN_BOTTLE_e, {\"Green Potion\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_BLUE_BOTTLE_e, {\"Blue Potion\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_MILK_BOTTLE_e, {\"Milk Bottle\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_HALF_MILK_BOTTLE_e, {\"Half Milk Bottle\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_OIL_BOTTLE_e, {\"Lantern Oil\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_WATER_BOTTLE_e, {\"Water Bottle\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_OIL_BOTTLE_2_e, {\"Lantern Oil (Scooped)\"}},\n    {dItemNo_RED_BOTTLE_2_e, {\"Red Potion (Scooped)\"}},\n    {dItemNo_UGLY_SOUP_e, {\"Nasty Soup\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_HOT_SPRING_e, {\"Hotspring Water\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_FAIRY_e, {\"Fairy\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_HOT_SPRING_2_e, {\"Hotspring Water (Shop)\"}},\n    {dItemNo_OIL2_e, {\"Lantern Refill (Scooped)\"}},\n    {dItemNo_OIL_e, {\"Lantern Refill (Shop)\"}},\n    {dItemNo_NORMAL_BOMB_e, {\"Bombs\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_WATER_BOMB_e, {\"Water Bombs\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_POKE_BOMB_e, {\"Bomblings\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_FAIRY_DROP_e, {\"Great Fairy's Tears\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_WORM_e, {\"Worm\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_DROP_BOTTLE_e, {\"Great Fairy Tears (Jovani)\"}},\n    {dItemNo_BEE_CHILD_e, {\"Bee Larva\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_CHUCHU_RARE_e, {\"Rare Chu Jelly\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_CHUCHU_RED_e, {\"Red Chu Jelly\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_CHUCHU_BLUE_e, {\"Blue Chu Jelly\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_CHUCHU_GREEN_e, {\"Green Chu Jelly\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_CHUCHU_YELLOW_e, {\"Yellow Chu Jelly\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_CHUCHU_PURPLE_e, {\"Purple Chu Jelly\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_LV1_SOUP_e, {\"Simple Soup\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_LV2_SOUP_e, {\"Good Soup\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_LV3_SOUP_e, {\"Superb Soup\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_LETTER_e, {\"Renado's Letter\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_BILL_e, {\"Invoice\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_WOOD_STATUE_e, {\"Wooden Statue\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_IRIAS_PENDANT_e, {\"Ilia's Charm\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_HORSE_FLUTE_e, {\"Horse Call\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_NOENTRY_133_e, {\"Reserved\"}},\n    {dItemNo_NOENTRY_134_e, {\"Reserved\"}},\n    {dItemNo_NOENTRY_135_e, {\"Reserved\"}},\n    {dItemNo_NOENTRY_136_e, {\"Reserved\"}},\n    {dItemNo_NOENTRY_137_e, {\"Reserved\"}},\n    {dItemNo_NOENTRY_138_e, {\"Reserved\"}},\n    {dItemNo_NOENTRY_139_e, {\"Reserved\"}},\n    {dItemNo_NOENTRY_140_e, {\"Reserved\"}},\n    {dItemNo_NOENTRY_141_e, {\"Reserved\"}},\n    {dItemNo_NOENTRY_142_e, {\"Reserved\"}},\n    {dItemNo_NOENTRY_143_e, {\"Reserved\"}},\n    {dItemNo_RAFRELS_MEMO_e, {\"Auru's Memo\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_ASHS_SCRIBBLING_e, {\"Ashei's Sketch\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_NOENTRY_146_e, {\"Reserved\"}},\n    {dItemNo_NOENTRY_147_e, {\"Reserved\"}},\n    {dItemNo_NOENTRY_148_e, {\"Reserved\"}},\n    {dItemNo_NOENTRY_149_e, {\"Reserved\"}},\n    {dItemNo_NOENTRY_150_e, {\"Reserved\"}},\n    {dItemNo_NOENTRY_151_e, {\"Reserved\"}},\n    {dItemNo_NOENTRY_152_e, {\"Reserved\"}},\n    {dItemNo_NOENTRY_153_e, {\"Reserved\"}},\n    {dItemNo_NOENTRY_154_e, {\"Reserved\"}},\n    {dItemNo_NOENTRY_155_e, {\"Reserved\"}},\n    {dItemNo_CHUCHU_YELLOW2_e, {\"Lantern Refill (Yellow Chu)\"}},\n    {dItemNo_OIL_BOTTLE3_e, {\"Lantern Oil (Coro)\"}},\n    {dItemNo_SHOP_BEE_CHILD_e, {\"Bee Larve (Shop)\"}},\n    {dItemNo_CHUCHU_BLACK_e, {\"Black Chu Jelly\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_LIGHT_DROP_e, {\"Tear of Light\"}},\n    {dItemNo_DROP_CONTAINER_e, {\"Vessel of Light (Faron)\"}},\n    {dItemNo_DROP_CONTAINER02_e, {\"Vessel of Light (Eldin)\"}},\n    {dItemNo_DROP_CONTAINER03_e, {\"Vessel of Light (Lanayru)\"}},\n    {dItemNo_FILLED_CONTAINER_e, {\"Vessel of Light (Filled)\"}},\n    {dItemNo_MIRROR_PIECE_2_e, {\"Mirror Shard (Snowpeak Ruins)\"}},\n    {dItemNo_MIRROR_PIECE_3_e, {\"Mirror Shard (Temple of Time)\"}},\n    {dItemNo_MIRROR_PIECE_4_e, {\"Mirror Shard (City in the Sky)\"}},\n    {dItemNo_NOENTRY_168_e, {\"Reserved\"}},\n    {dItemNo_NOENTRY_169_e, {\"Reserved\"}},\n    {dItemNo_NOENTRY_170_e, {\"Reserved\"}},\n    {dItemNo_NOENTRY_171_e, {\"Reserved\"}},\n    {dItemNo_NOENTRY_172_e, {\"Reserved\"}},\n    {dItemNo_NOENTRY_173_e, {\"Reserved\"}},\n    {dItemNo_NOENTRY_174_e, {\"Reserved\"}},\n    {dItemNo_NOENTRY_175_e, {\"Reserved\"}},\n    {dItemNo_SMELL_YELIA_POUCH_e, {\"Scent of Ilia\"}},\n    {dItemNo_SMELL_PUMPKIN_e, {\"Pumpkin Scent\"}},\n    {dItemNo_SMELL_POH_e, {\"Poe Scent\"}},\n    {dItemNo_SMELL_FISH_e, {\"Reekfish Scent\"}},\n    {dItemNo_SMELL_CHILDREN_e, {\"Youth's Scent\"}},\n    {dItemNo_SMELL_MEDICINE_e, {\"Medicine Scent\"}},\n    {dItemNo_NOENTRY_182_e, {\"Reserved\"}},\n    {dItemNo_NOENTRY_183_e, {\"Reserved\"}},\n    {dItemNo_NOENTRY_184_e, {\"Reserved\"}},\n    {dItemNo_NOENTRY_185_e, {\"Reserved\"}},\n    {dItemNo_NOENTRY_186_e, {\"Reserved\"}},\n    {dItemNo_NOENTRY_187_e, {\"Reserved\"}},\n    {dItemNo_NOENTRY_188_e, {\"Reserved\"}},\n    {dItemNo_NOENTRY_189_e, {\"Reserved\"}},\n    {dItemNo_NOENTRY_190_e, {\"Reserved\"}},\n    {dItemNo_NOENTRY_191_e, {\"Reserved\"}},\n    {dItemNo_M_BEETLE_e, {\"Beetle (M)\"}},\n    {dItemNo_F_BEETLE_e, {\"Beetle (F)\"}},\n    {dItemNo_M_BUTTERFLY_e, {\"Butterfly (M)\"}},\n    {dItemNo_F_BUTTERFLY_e, {\"Butterfly (F)\"}},\n    {dItemNo_M_STAG_BEETLE_e, {\"Stag Beetle (M)\"}},\n    {dItemNo_F_STAG_BEETLE_e, {\"Stag Beetle (F)\"}},\n    {dItemNo_M_GRASSHOPPER_e, {\"Grasshopper (M)\"}},\n    {dItemNo_F_GRASSHOPPER_e, {\"Grasshopper (F)\"}},\n    {dItemNo_M_NANAFUSHI_e, {\"Phasmid (M)\"}},\n    {dItemNo_F_NANAFUSHI_e, {\"Phasmid (F)\"}},\n    {dItemNo_M_DANGOMUSHI_e, {\"Pill Bug (M)\"}},\n    {dItemNo_F_DANGOMUSHI_e, {\"Pill Bug (F)\"}},\n    {dItemNo_M_MANTIS_e, {\"Mantis (M)\"}},\n    {dItemNo_F_MANTIS_e, {\"Mantis (F)\"}},\n    {dItemNo_M_LADYBUG_e, {\"Ladybug (M)\"}},\n    {dItemNo_F_LADYBUG_e, {\"Ladybug (F)\"}},\n    {dItemNo_M_SNAIL_e, {\"Snail (M)\"}},\n    {dItemNo_F_SNAIL_e, {\"Snail (F)\"}},\n    {dItemNo_M_DRAGONFLY_e, {\"Dragonfly (M)\"}},\n    {dItemNo_F_DRAGONFLY_e, {\"Dragonfly (F)\"}},\n    {dItemNo_M_ANT_e, {\"Ant (M)\"}},\n    {dItemNo_F_ANT_e, {\"Ant (F)\"}},\n    {dItemNo_M_MAYFLY_e, {\"Mayfly (M)\"}},\n    {dItemNo_F_MAYFLY_e, {\"Mayfly (F)\"}},\n    {dItemNo_NOENTRY_216_e, {\"Reserved\"}},\n    {dItemNo_NOENTRY_217_e, {\"Reserved\"}},\n    {dItemNo_NOENTRY_218_e, {\"Reserved\"}},\n    {dItemNo_NOENTRY_219_e, {\"Reserved\"}},\n    {dItemNo_NOENTRY_220_e, {\"Reserved\"}},\n    {dItemNo_NOENTRY_221_e, {\"Reserved\"}},\n    {dItemNo_NOENTRY_222_e, {\"Reserved\"}},\n    {dItemNo_NOENTRY_223_e, {\"Reserved\"}},\n    {dItemNo_POU_SPIRIT_e, {\"Poe Soul\"}},\n    {dItemNo_NOENTRY_225_e, {\"Reserved\"}},\n    {dItemNo_NOENTRY_226_e, {\"Reserved\"}},\n    {dItemNo_NOENTRY_227_e, {\"Reserved\"}},\n    {dItemNo_NOENTRY_228_e, {\"Reserved\"}},\n    {dItemNo_NOENTRY_229_e, {\"Reserved\"}},\n    {dItemNo_NOENTRY_230_e, {\"Reserved\"}},\n    {dItemNo_NOENTRY_231_e, {\"Reserved\"}},\n    {dItemNo_NOENTRY_232_e, {\"Reserved\"}},\n    {dItemNo_ANCIENT_DOCUMENT_e, {\"Ancient Sky Book\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_AIR_LETTER_e, {\"Ancient Sky Book (Partial)\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_ANCIENT_DOCUMENT2_e, {\"Ancient Sky Book (Filled)\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_LV7_DUNGEON_EXIT_e, {\"Ooccoo Sr. (City in the Sky)\"}},\n    {dItemNo_LINKS_SAVINGS_e, {\"Purple Rupee (Link's Savings)\"}},\n    {dItemNo_SMALL_KEY2_e, {\"Small Key (North Faron Gate)\"}},\n    {dItemNo_POU_FIRE1_e, {\"Poe Fire 1\"}},\n    {dItemNo_POU_FIRE2_e, {\"Poe Fire 2\"}},\n    {dItemNo_POU_FIRE3_e, {\"Poe Fire 3\"}},\n    {dItemNo_POU_FIRE4_e, {\"Poe Fire 4\"}},\n    {dItemNo_BOSSRIDER_KEY_e, {\"Hyrule Field Keys\"}},\n    {dItemNo_TOMATO_PUREE_e, {\"Ordon Pumpkin\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_TASTE_e, {\"Ordon Goat Cheese\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_LV5_BOSS_KEY_e, {\"Bedroom Key\"}},\n    {dItemNo_SURFBOARD_e, {\"Surf Leaf\"}},\n    {dItemNo_KANTERA2_e, {\"Lantern (Reclaimed)\"}},\n    {dItemNo_L2_KEY_PIECES1_e, {\"Key Shard (1)\"}},\n    {dItemNo_L2_KEY_PIECES2_e, {\"Key Shard (2)\"}},\n    {dItemNo_L2_KEY_PIECES3_e, {\"Key Shard (3)\"}},\n    {dItemNo_KEY_OF_CARAVAN_e, {\"Bulblin Camp Key\"}},\n    {dItemNo_LV2_BOSS_KEY_e, {\"Goron Mines Boss Key\"}},\n    {dItemNo_KEY_OF_FILONE_e, {\"South Faron Gate Key\"}},\n    {dItemNo_NONE_e, {\"None\"}},",
+          "value": "    {dItemNo_HEART_e, {\"心\"}},\n    {dItemNo_GREEN_RUPEE_e, {\"绿卢比\"}},\n    {dItemNo_BLUE_RUPEE_e, {\"蓝卢比\"}},\n    {dItemNo_YELLOW_RUPEE_e, {\"黄卢比\"}},\n    {dItemNo_RED_RUPEE_e, {\"红卢比\"}},\n    {dItemNo_PURPLE_RUPEE_e, {\"紫卢比\"}},\n    {dItemNo_ORANGE_RUPEE_e, {\"橙卢比\"}},\n    {dItemNo_SILVER_RUPEE_e, {\"银卢比\"}},\n    {dItemNo_S_MAGIC_e, {\"小魔法\"}},\n    {dItemNo_L_MAGIC_e, {\"大魔法\"}},\n    {dItemNo_BOMB_5_e, {\"炸弹（5）\"}},\n    {dItemNo_BOMB_10_e, {\"炸弹（10）\"}},\n    {dItemNo_BOMB_20_e, {\"炸弹（20）\"}},\n    {dItemNo_BOMB_30_e, {\"炸弹（30）\"}},\n    {dItemNo_ARROW_10_e, {\"箭（10）\"}},\n    {dItemNo_ARROW_20_e, {\"箭（20）\"}},\n    {dItemNo_ARROW_30_e, {\"箭（30）\"}},\n    {dItemNo_ARROW_1_e, {\"箭（1）\"}},\n    {dItemNo_PACHINKO_SHOT_e, {\"南瓜种子\"}},\n    {dItemNo_NOENTRY_19_e, {\"保留\"}},\n    {dItemNo_NOENTRY_20_e, {\"保留\"}},\n    {dItemNo_NOENTRY_21_e, {\"保留\"}},\n    {dItemNo_WATER_BOMB_5_e, {\"水炸弹（5）\"}},\n    {dItemNo_WATER_BOMB_10_e, {\"水炸弹（10）\"}},\n    {dItemNo_WATER_BOMB_20_e, {\"水炸弹（20）\"}},\n    {dItemNo_WATER_BOMB_30_e, {\"水炸弹（30）\"}},\n    {dItemNo_BOMB_INSECT_5_e, {\"炸弹虫（5）\"}},\n    {dItemNo_BOMB_INSECT_10_e, {\"炸弹虫（10）\"}},\n    {dItemNo_BOMB_INSECT_20_e, {\"炸弹虫（20）\"}},\n    {dItemNo_BOMB_INSECT_30_e, {\"炸弹虫（30）\"}},\n    {dItemNo_RECOVERY_FAILY_e, {\"妖精\"}},\n    {dItemNo_TRIPLE_HEART_e, {\"三连心\"}},\n    {dItemNo_SMALL_KEY_e, {\"小钥匙\"}},\n    {dItemNo_KAKERA_HEART_e, {\"心之碎片\"}},\n    {dItemNo_UTAWA_HEART_e, {\"心之容器\"}},\n    {dItemNo_MAP_e, {\"迷宫地图\"}},\n    {dItemNo_COMPUS_e, {\"罗盘\"}},\n    {dItemNo_DUNGEON_EXIT_e, {\"乌可爷爷（初次）\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_BOSS_KEY_e, {\"头目钥匙\"}},\n    {dItemNo_DUNGEON_BACK_e, {\"乌可 Jr.\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_SWORD_e, {\"奥登之剑\"}},\n    {dItemNo_MASTER_SWORD_e, {\"大师之剑\"}},\n    {dItemNo_WOOD_SHIELD_e, {\"奥登之盾\"}},\n    {dItemNo_SHIELD_e, {\"木盾\"}},\n    {dItemNo_HYLIA_SHIELD_e, {\"海利亚盾\"}},\n    {dItemNo_TKS_LETTER_e, {\"乌可的信\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_WEAR_CASUAL_e, {\"奥登之服\"}},\n    {dItemNo_WEAR_KOKIRI_e, {\"勇者之服\"}},\n    {dItemNo_ARMOR_e, {\"魔法铠甲\"}},\n    {dItemNo_WEAR_ZORA_e, {\"佐拉之铠\"}},\n    {dItemNo_MAGIC_LV1_e, {\"魔法等级 1\"}},\n    {dItemNo_DUNGEON_EXIT_2_e, {\"乌可爷爷\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_WALLET_LV1_e, {\"钱包\"}},\n    {dItemNo_WALLET_LV2_e, {\"大钱包\"}},\n    {dItemNo_WALLET_LV3_e, {\"巨型钱包\"}},\n    {dItemNo_NOENTRY_55_e, {\"保留\"}},\n    {dItemNo_NOENTRY_56_e, {\"保留\"}},\n    {dItemNo_NOENTRY_57_e, {\"保留\"}},\n    {dItemNo_NOENTRY_58_e, {\"保留\"}},\n    {dItemNo_NOENTRY_59_e, {\"保留\"}},\n    {dItemNo_NOENTRY_60_e, {\"保留\"}},\n    {dItemNo_ZORAS_JEWEL_e, {\"珊瑚耳环\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_HAWK_EYE_e, {\"鹰眼\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_WOOD_STICK_e, {\"木剑\"}},\n    {dItemNo_BOOMERANG_e, {\"疾风回旋镖\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_SPINNER_e, {\"陀螺\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_IRONBALL_e, {\"铁球锁链\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_BOW_e, {\"勇者之弓\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_HOOKSHOT_e, {\"钩爪\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_HVY_BOOTS_e, {\"铁靴\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_COPY_ROD_e, {\"支配之杖\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_W_HOOKSHOT_e, {\"双钩爪\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_KANTERA_e, {\"提灯\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_LIGHT_SWORD_e, {\"光之剑\"}},\n    {dItemNo_FISHING_ROD_1_e, {\"钓竿\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_PACHINKO_e, {\"弹弓\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_COPY_ROD_2_e, {\"支配之杖（未蓄能）\"}},\n    {dItemNo_NOENTRY_77_e, {\"保留\"}},\n    {dItemNo_NOENTRY_78_e, {\"保留\"}},\n    {dItemNo_BOMB_BAG_LV2_e, {\"巨型炸弹袋\"}},\n    {dItemNo_BOMB_BAG_LV1_e, {\"空炸弹袋\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_BOMB_IN_BAG_e, {\"炸弹袋\"}},\n    {dItemNo_NOENTRY_82_e, {\"保留\"}},\n    {dItemNo_LIGHT_ARROW_e, {\"光之箭\"}},\n    {dItemNo_ARROW_LV1_e, {\"箭袋\"}},\n    {dItemNo_ARROW_LV2_e, {\"大箭袋\"}},\n    {dItemNo_ARROW_LV3_e, {\"巨型箭袋\"}},\n    {dItemNo_NOENTRY_87_e, {\"保留\"}},\n    {dItemNo_LURE_ROD_e, {\"钓竿（拟饵）\"}},\n    {dItemNo_BOMB_ARROW_e, {\"炸弹箭\"}},\n    {dItemNo_HAWK_ARROW_e, {\"鹰箭\"}},\n    {dItemNo_BEE_ROD_e, {\"钓竿（蜂幼虫）\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_JEWEL_ROD_e, {\"钓竿（耳环）\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_WORM_ROD_e, {\"钓竿（蠕虫）\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_JEWEL_BEE_ROD_e, {\"钓竿（耳环＋蜂幼虫）\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_JEWEL_WORM_ROD_e, {\"钓竿（耳环＋蠕虫）\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_EMPTY_BOTTLE_e, {\"空瓶\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_RED_BOTTLE_e, {\"红药水\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_GREEN_BOTTLE_e, {\"绿药水\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_BLUE_BOTTLE_e, {\"蓝药水\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_MILK_BOTTLE_e, {\"牛奶瓶\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_HALF_MILK_BOTTLE_e, {\"半瓶牛奶\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_OIL_BOTTLE_e, {\"提灯油\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_WATER_BOTTLE_e, {\"水瓶\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_OIL_BOTTLE_2_e, {\"提灯油（舀取）\"}},\n    {dItemNo_RED_BOTTLE_2_e, {\"红药水（舀取）\"}},\n    {dItemNo_UGLY_SOUP_e, {\"难喝的汤\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_HOT_SPRING_e, {\"温泉水\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_FAIRY_e, {\"妖精\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_HOT_SPRING_2_e, {\"温泉水（商店）\"}},\n    {dItemNo_OIL2_e, {\"提灯油补给（舀取）\"}},\n    {dItemNo_OIL_e, {\"提灯油补给（商店）\"}},\n    {dItemNo_NORMAL_BOMB_e, {\"炸弹\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_WATER_BOMB_e, {\"水炸弹\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_POKE_BOMB_e, {\"炸弹虫\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_FAIRY_DROP_e, {\"大妖精之泪\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_WORM_e, {\"蠕虫\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_DROP_BOTTLE_e, {\"大妖精之泪（乔瓦尼）\"}},\n    {dItemNo_BEE_CHILD_e, {\"蜂幼虫\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_CHUCHU_RARE_e, {\"稀有丘丘胶\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_CHUCHU_RED_e, {\"红丘丘胶\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_CHUCHU_BLUE_e, {\"蓝丘丘胶\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_CHUCHU_GREEN_e, {\"绿丘丘胶\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_CHUCHU_YELLOW_e, {\"黄丘丘胶\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_CHUCHU_PURPLE_e, {\"紫丘丘胶\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_LV1_SOUP_e, {\"清淡的汤\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_LV2_SOUP_e, {\"好喝的汤\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_LV3_SOUP_e, {\"极品汤\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_LETTER_e, {\"雷纳多的信\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_BILL_e, {\"账单\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_WOOD_STATUE_e, {\"木雕像\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_IRIAS_PENDANT_e, {\"伊莉亚的护身符\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_HORSE_FLUTE_e, {\"马哨\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_NOENTRY_133_e, {\"保留\"}},\n    {dItemNo_NOENTRY_134_e, {\"保留\"}},\n    {dItemNo_NOENTRY_135_e, {\"保留\"}},\n    {dItemNo_NOENTRY_136_e, {\"保留\"}},\n    {dItemNo_NOENTRY_137_e, {\"保留\"}},\n    {dItemNo_NOENTRY_138_e, {\"保留\"}},\n    {dItemNo_NOENTRY_139_e, {\"保留\"}},\n    {dItemNo_NOENTRY_140_e, {\"保留\"}},\n    {dItemNo_NOENTRY_141_e, {\"保留\"}},\n    {dItemNo_NOENTRY_142_e, {\"保留\"}},\n    {dItemNo_NOENTRY_143_e, {\"保留\"}},\n    {dItemNo_RAFRELS_MEMO_e, {\"奥鲁的备忘录\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_ASHS_SCRIBBLING_e, {\"艾雪莉的素描\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_NOENTRY_146_e, {\"保留\"}},\n    {dItemNo_NOENTRY_147_e, {\"保留\"}},\n    {dItemNo_NOENTRY_148_e, {\"保留\"}},\n    {dItemNo_NOENTRY_149_e, {\"保留\"}},\n    {dItemNo_NOENTRY_150_e, {\"保留\"}},\n    {dItemNo_NOENTRY_151_e, {\"保留\"}},\n    {dItemNo_NOENTRY_152_e, {\"保留\"}},\n    {dItemNo_NOENTRY_153_e, {\"保留\"}},\n    {dItemNo_NOENTRY_154_e, {\"保留\"}},\n    {dItemNo_NOENTRY_155_e, {\"保留\"}},\n    {dItemNo_CHUCHU_YELLOW2_e, {\"提灯油补给（黄色丘丘）\"}},\n    {dItemNo_OIL_BOTTLE3_e, {\"提灯油（科洛）\"}},\n    {dItemNo_SHOP_BEE_CHILD_e, {\"蜂幼虫（商店）\"}},\n    {dItemNo_CHUCHU_BLACK_e, {\"黑丘丘胶\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_LIGHT_DROP_e, {\"光之泪\"}},\n    {dItemNo_DROP_CONTAINER_e, {\"光之容器（法隆）\"}},\n    {dItemNo_DROP_CONTAINER02_e, {\"光之容器（艾尔丁）\"}},\n    {dItemNo_DROP_CONTAINER03_e, {\"光之容器（拉聂耳）\"}},\n    {dItemNo_FILLED_CONTAINER_e, {\"光之容器（已充满）\"}},\n    {dItemNo_MIRROR_PIECE_2_e, {\"镜子碎片（雪峰遗迹）\"}},\n    {dItemNo_MIRROR_PIECE_3_e, {\"镜子碎片（时之神殿）\"}},\n    {dItemNo_MIRROR_PIECE_4_e, {\"镜子碎片（天空之城）\"}},\n    {dItemNo_NOENTRY_168_e, {\"保留\"}},\n    {dItemNo_NOENTRY_169_e, {\"保留\"}},\n    {dItemNo_NOENTRY_170_e, {\"保留\"}},\n    {dItemNo_NOENTRY_171_e, {\"保留\"}},\n    {dItemNo_NOENTRY_172_e, {\"保留\"}},\n    {dItemNo_NOENTRY_173_e, {\"保留\"}},\n    {dItemNo_NOENTRY_174_e, {\"保留\"}},\n    {dItemNo_NOENTRY_175_e, {\"保留\"}},\n    {dItemNo_SMELL_YELIA_POUCH_e, {\"伊莉亚的香气\"}},\n    {dItemNo_SMELL_PUMPKIN_e, {\"南瓜香气\"}},\n    {dItemNo_SMELL_POH_e, {\"波伊的香气\"}},\n    {dItemNo_SMELL_FISH_e, {\"臭鱼香气\"}},\n    {dItemNo_SMELL_CHILDREN_e, {\"少年的香气\"}},\n    {dItemNo_SMELL_MEDICINE_e, {\"药之香气\"}},\n    {dItemNo_NOENTRY_182_e, {\"保留\"}},\n    {dItemNo_NOENTRY_183_e, {\"保留\"}},\n    {dItemNo_NOENTRY_184_e, {\"保留\"}},\n    {dItemNo_NOENTRY_185_e, {\"保留\"}},\n    {dItemNo_NOENTRY_186_e, {\"保留\"}},\n    {dItemNo_NOENTRY_187_e, {\"保留\"}},\n    {dItemNo_NOENTRY_188_e, {\"保留\"}},\n    {dItemNo_NOENTRY_189_e, {\"保留\"}},\n    {dItemNo_NOENTRY_190_e, {\"保留\"}},\n    {dItemNo_NOENTRY_191_e, {\"保留\"}},\n    {dItemNo_M_BEETLE_e, {\"甲虫（雄）\"}},\n    {dItemNo_F_BEETLE_e, {\"甲虫（雌）\"}},\n    {dItemNo_M_BUTTERFLY_e, {\"蝴蝶（雄）\"}},\n    {dItemNo_F_BUTTERFLY_e, {\"蝴蝶（雌）\"}},\n    {dItemNo_M_STAG_BEETLE_e, {\"锹形虫（雄）\"}},\n    {dItemNo_F_STAG_BEETLE_e, {\"锹形虫（雌）\"}},\n    {dItemNo_M_GRASSHOPPER_e, {\"蚱蜢（雄）\"}},\n    {dItemNo_F_GRASSHOPPER_e, {\"蚱蜢（雌）\"}},\n    {dItemNo_M_NANAFUSHI_e, {\"竹节虫（雄）\"}},\n    {dItemNo_F_NANAFUSHI_e, {\"竹节虫（雌）\"}},\n    {dItemNo_M_DANGOMUSHI_e, {\"鼠妇（雄）\"}},\n    {dItemNo_F_DANGOMUSHI_e, {\"鼠妇（雌）\"}},\n    {dItemNo_M_MANTIS_e, {\"螳螂（雄）\"}},\n    {dItemNo_F_MANTIS_e, {\"螳螂（雌）\"}},\n    {dItemNo_M_LADYBUG_e, {\"瓢虫（雄）\"}},\n    {dItemNo_F_LADYBUG_e, {\"瓢虫（雌）\"}},\n    {dItemNo_M_SNAIL_e, {\"蜗牛（雄）\"}},\n    {dItemNo_F_SNAIL_e, {\"蜗牛（雌）\"}},\n    {dItemNo_M_DRAGONFLY_e, {\"蜻蜓（雄）\"}},\n    {dItemNo_F_DRAGONFLY_e, {\"蜻蜓（雌）\"}},\n    {dItemNo_M_ANT_e, {\"蚂蚁（雄）\"}},\n    {dItemNo_F_ANT_e, {\"蚂蚁（雌）\"}},\n    {dItemNo_M_MAYFLY_e, {\"蜉蝣（雄）\"}},\n    {dItemNo_F_MAYFLY_e, {\"蜉蝣（雌）\"}},\n    {dItemNo_NOENTRY_216_e, {\"保留\"}},\n    {dItemNo_NOENTRY_217_e, {\"保留\"}},\n    {dItemNo_NOENTRY_218_e, {\"保留\"}},\n    {dItemNo_NOENTRY_219_e, {\"保留\"}},\n    {dItemNo_NOENTRY_220_e, {\"保留\"}},\n    {dItemNo_NOENTRY_221_e, {\"保留\"}},\n    {dItemNo_NOENTRY_222_e, {\"保留\"}},\n    {dItemNo_NOENTRY_223_e, {\"保留\"}},\n    {dItemNo_POU_SPIRIT_e, {\"波伊之魂\"}},\n    {dItemNo_NOENTRY_225_e, {\"保留\"}},\n    {dItemNo_NOENTRY_226_e, {\"保留\"}},\n    {dItemNo_NOENTRY_227_e, {\"保留\"}},\n    {dItemNo_NOENTRY_228_e, {\"保留\"}},\n    {dItemNo_NOENTRY_229_e, {\"保留\"}},\n    {dItemNo_NOENTRY_230_e, {\"保留\"}},\n    {dItemNo_NOENTRY_231_e, {\"保留\"}},\n    {dItemNo_NOENTRY_232_e, {\"保留\"}},\n    {dItemNo_ANCIENT_DOCUMENT_e, {\"古代天空之书\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_AIR_LETTER_e, {\"古代天空之书（残缺）\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_ANCIENT_DOCUMENT2_e, {\"古代天空之书（完整）\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_LV7_DUNGEON_EXIT_e, {\"乌可爷爷（天空之城）\"}},\n    {dItemNo_LINKS_SAVINGS_e, {\"紫卢比（林克的积蓄）\"}},\n    {dItemNo_SMALL_KEY2_e, {\"小钥匙（法隆北门）\"}},\n    {dItemNo_POU_FIRE1_e, {\"波伊之火 1\"}},\n    {dItemNo_POU_FIRE2_e, {\"波伊之火 2\"}},\n    {dItemNo_POU_FIRE3_e, {\"波伊之火 3\"}},\n    {dItemNo_POU_FIRE4_e, {\"波伊之火 4\"}},\n    {dItemNo_BOSSRIDER_KEY_e, {\"海拉尔平原钥匙\"}},\n    {dItemNo_TOMATO_PUREE_e, {\"奥登南瓜\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_TASTE_e, {\"奥登山羊奶酪\", ITEMTYPE_EQUIP_e}},\n    {dItemNo_LV5_BOSS_KEY_e, {\"卧室钥匙\"}},\n    {dItemNo_SURFBOARD_e, {\"冲浪叶\"}},\n    {dItemNo_KANTERA2_e, {\"提灯（取回）\"}},\n    {dItemNo_L2_KEY_PIECES1_e, {\"钥匙碎片（1）\"}},\n    {dItemNo_L2_KEY_PIECES2_e, {\"钥匙碎片（2）\"}},\n    {dItemNo_L2_KEY_PIECES3_e, {\"钥匙碎片（3）\"}},\n    {dItemNo_KEY_OF_CARAVAN_e, {\"布尔布林营地钥匙\"}},\n    {dItemNo_LV2_BOSS_KEY_e, {\"戈隆矿山头目钥匙\"}},\n    {dItemNo_KEY_OF_FILONE_e, {\"法隆南门钥匙\"}},\n    {dItemNo_NONE_e, {\"无\"}},"
+        },
+        {
+          "key": "        return fmt::format(\"Item {}\", id);",
+          "value": "        return fmt::format(\"物品 {}\", id);"
+        },
+        {
+          "key": "        return \"None\";",
+          "value": "        return \"无\";"
+        },
+        {
+          "key": "    return fmt::format(\"Slot {0} ({1})\", slot, get_item_name(id));",
+          "value": "    return fmt::format(\"栏位 {0} ({1})\", slot, get_item_name(id));"
+        },
+        {
+          "key": "    NamedIndexEntry{\"Forest Temple\", 0},\n    NamedIndexEntry{\"Goron Mines\", 1},\n    NamedIndexEntry{\"Lakebed Temple\", 2},",
+          "value": "    NamedIndexEntry{\"森林神殿\", 0},\n    NamedIndexEntry{\"戈隆矿山\", 1},\n    NamedIndexEntry{\"湖底神殿\", 2},"
+        },
+        {
+          "key": "    NamedIndexEntry{\"Snowpeak Ruins\", 1},\n    NamedIndexEntry{\"Temple of Time\", 2},\n    NamedIndexEntry{\"City in the Sky\", 3},",
+          "value": "    NamedIndexEntry{\"雪峰遗迹\", 1},\n    NamedIndexEntry{\"时之神殿\", 2},\n    NamedIndexEntry{\"天空之城\", 3},"
+        },
+        {
+          "key": "    BugSpeciesEntry{\"Ant\", dItemNo_M_ANT_e, dItemNo_F_ANT_e, dSv_event_flag_c::F_0421,",
+          "value": "    BugSpeciesEntry{\"蚂蚁\", dItemNo_M_ANT_e, dItemNo_F_ANT_e, dSv_event_flag_c::F_0421,"
+        },
+        {
+          "key": "    BugSpeciesEntry{\"Dayfly\", dItemNo_M_MAYFLY_e, dItemNo_F_MAYFLY_e, dSv_event_flag_c::F_0423,",
+          "value": "    BugSpeciesEntry{\"蜉蝣\", dItemNo_M_MAYFLY_e, dItemNo_F_MAYFLY_e, dSv_event_flag_c::F_0423,"
+        },
+        {
+          "key": "    BugSpeciesEntry{\"Beetle\", dItemNo_M_BEETLE_e, dItemNo_F_BEETLE_e, dSv_event_flag_c::F_0401,",
+          "value": "    BugSpeciesEntry{\"甲虫\", dItemNo_M_BEETLE_e, dItemNo_F_BEETLE_e, dSv_event_flag_c::F_0401,"
+        },
+        {
+          "key": "    BugSpeciesEntry{\"Mantis\", dItemNo_M_MANTIS_e, dItemNo_F_MANTIS_e, dSv_event_flag_c::F_0413,",
+          "value": "    BugSpeciesEntry{\"螳螂\", dItemNo_M_MANTIS_e, dItemNo_F_MANTIS_e, dSv_event_flag_c::F_0413,"
+        },
+        {
+          "key": "    BugSpeciesEntry{\"Stag Beetle\", dItemNo_M_STAG_BEETLE_e, dItemNo_F_STAG_BEETLE_e,",
+          "value": "    BugSpeciesEntry{\"锹形虫\", dItemNo_M_STAG_BEETLE_e, dItemNo_F_STAG_BEETLE_e,"
+        },
+        {
+          "key": "    BugSpeciesEntry{\"Pill Bug\", dItemNo_M_DANGOMUSHI_e, dItemNo_F_DANGOMUSHI_e,",
+          "value": "    BugSpeciesEntry{\"鼠妇\", dItemNo_M_DANGOMUSHI_e, dItemNo_F_DANGOMUSHI_e,"
+        },
+        {
+          "key": "    BugSpeciesEntry{\"Butterfly\", dItemNo_M_BUTTERFLY_e, dItemNo_F_BUTTERFLY_e,",
+          "value": "    BugSpeciesEntry{\"蝴蝶\", dItemNo_M_BUTTERFLY_e, dItemNo_F_BUTTERFLY_e,"
+        },
+        {
+          "key": "    BugSpeciesEntry{\"Ladybug\", dItemNo_M_LADYBUG_e, dItemNo_F_LADYBUG_e, dSv_event_flag_c::F_0415,",
+          "value": "    BugSpeciesEntry{\"瓢虫\", dItemNo_M_LADYBUG_e, dItemNo_F_LADYBUG_e, dSv_event_flag_c::F_0415,"
+        },
+        {
+          "key": "    BugSpeciesEntry{\"Snail\", dItemNo_M_SNAIL_e, dItemNo_F_SNAIL_e, dSv_event_flag_c::F_0417,",
+          "value": "    BugSpeciesEntry{\"蜗牛\", dItemNo_M_SNAIL_e, dItemNo_F_SNAIL_e, dSv_event_flag_c::F_0417,"
+        },
+        {
+          "key": "    BugSpeciesEntry{\"Phasmid\", dItemNo_M_NANAFUSHI_e, dItemNo_F_NANAFUSHI_e,",
+          "value": "    BugSpeciesEntry{\"竹节虫\", dItemNo_M_NANAFUSHI_e, dItemNo_F_NANAFUSHI_e,"
+        },
+        {
+          "key": "    BugSpeciesEntry{\"Grasshopper\", dItemNo_M_GRASSHOPPER_e, dItemNo_F_GRASSHOPPER_e,",
+          "value": "    BugSpeciesEntry{\"蚱蜢\", dItemNo_M_GRASSHOPPER_e, dItemNo_F_GRASSHOPPER_e,"
+        },
+        {
+          "key": "    BugSpeciesEntry{\"Dragonfly\", dItemNo_M_DRAGONFLY_e, dItemNo_F_DRAGONFLY_e,",
+          "value": "    BugSpeciesEntry{\"蜻蜓\", dItemNo_M_DRAGONFLY_e, dItemNo_F_DRAGONFLY_e,"
+        },
+        {
+          "key": "    NamedFlagEntry{\"Ending Blow\", dSv_event_flag_c::F_0339},\n    NamedFlagEntry{\"Shield Attack\", dSv_event_flag_c::F_0338},\n    NamedFlagEntry{\"Back Slice\", dSv_event_flag_c::F_0340},\n    NamedFlagEntry{\"Helm Splitter\", dSv_event_flag_c::F_0341},\n    NamedFlagEntry{\"Mortal Draw\", dSv_event_flag_c::F_0342},\n    NamedFlagEntry{\"Jump Strike\", dSv_event_flag_c::F_0343},\n    NamedFlagEntry{\"Great Spin\", dSv_event_flag_c::F_0344},",
+          "value": "    NamedFlagEntry{\"终结一击\", dSv_event_flag_c::F_0339},\n    NamedFlagEntry{\"盾击\", dSv_event_flag_c::F_0338},\n    NamedFlagEntry{\"背后斩\", dSv_event_flag_c::F_0340},\n    NamedFlagEntry{\"破盔斩\", dSv_event_flag_c::F_0341},\n    NamedFlagEntry{\"居合斩\", dSv_event_flag_c::F_0342},\n    NamedFlagEntry{\"跳跃斩\", dSv_event_flag_c::F_0343},\n    NamedFlagEntry{\"大回旋斩\", dSv_event_flag_c::F_0344},"
+        },
+        {
+          "key": "    \"Renado\",\n    \"Ooccoo 1\",\n    \"Ooccoo 2\",\n    \"The Postman\",\n    \"Kakariko Goods\",\n    \"Barnes 1\",\n    \"Barnes 2\",\n    \"Barnes Bombs\",\n    \"Malo Mart\",\n    \"Telma\",\n    \"Purlo\",\n    \"From Jr.\",\n    \"Princess Agitha\",\n    \"Lanayru Tourism\",\n    \"Shad\",\n    \"Yeta\",",
+          "value": "    \"雷纳多\",\n    \"乌可 1\",\n    \"乌可 2\",\n    \"邮递员\",\n    \"卡卡利科杂货\",\n    \"巴恩斯 1\",\n    \"巴恩斯 2\",\n    \"巴恩斯炸弹\",\n    \"玛洛商店\",\n    \"泰尔玛\",\n    \"普鲁\",\n    \"来自 Jr.\",\n    \"阿吉莎公主\",\n    \"拉聂耳观光\",\n    \"沙德\",\n    \"耶塔\","
+        },
+        {
+          "key": "    FishSpeciesEntry{\"Ordon Catfish\", 3},\n    FishSpeciesEntry{\"Greengill\", 5},\n    FishSpeciesEntry{\"Reekfish\", 4},\n    FishSpeciesEntry{\"Hyrule Bass\", 0},\n    FishSpeciesEntry{\"Hylian Pike\", 2},\n    FishSpeciesEntry{\"Hylian Loach\", 1},",
+          "value": "    FishSpeciesEntry{\"奥登鲶鱼\", 3},\n    FishSpeciesEntry{\"绿鳃鱼\", 5},\n    FishSpeciesEntry{\"臭鱼\", 4},\n    FishSpeciesEntry{\"海拉尔鲈鱼\", 0},\n    FishSpeciesEntry{\"海利亚狗鱼\", 2},\n    FishSpeciesEntry{\"海利亚泥鳅\", 1},"
+        },
+        {
+          "key": "    \"Hold\",\n    \"Switch\",",
+          "value": "    \"按住\",\n    \"切换\","
+        },
+        {
+          "key": "    \"Mono\",\n    \"Stereo\",\n    \"Surround\",",
+          "value": "    \"单声道\",\n    \"立体声\",\n    \"环绕声\","
+        },
+        {
+          "key": "    pane.add_section(\"Actions\");\n    pane.add_button(\"Select All\").on_pressed([entries] {",
+          "value": "    pane.add_section(\"操作\");\n    pane.add_button(\"全选\").on_pressed([entries] {"
+        },
+        {
+          "key": "    pane.add_button(\"Select None\").on_pressed([entries] {",
+          "value": "    pane.add_button(\"全不选\").on_pressed([entries] {"
+        },
+        {
+          "key": "    pane.add_section(\"Items\");",
+          "value": "    pane.add_section(\"物品\");"
+        },
+        {
+          "key": "    return itemId < 254 && item.m_name != \"Reserved\";",
+          "value": "    return itemId < 254 && item.m_name != \"保留\";"
+        },
+        {
+          "key": "    pane.add_section(\"Actions\");\n    pane.add_button(fmt::format(\"Default ({})\", get_item_name(get_slot_default(slot))))",
+          "value": "    pane.add_section(\"操作\");\n    pane.add_button(fmt::format(\"默认（{}）\", get_item_name(get_slot_default(slot))))"
+        },
+        {
+          "key": "    pane.add_section(\"Items\");",
+          "value": "    pane.add_section(\"物品\");"
+        },
+        {
+          "key": "                .text = \"None\",",
+          "value": "                .text = \"无\","
+        },
+        {
+          "key": "    pane.add_section(\"Actions\");\n    pane.add_button(\"Select All\").on_pressed([] {",
+          "value": "    pane.add_section(\"操作\");\n    pane.add_button(\"全选\").on_pressed([] {"
+        },
+        {
+          "key": "    pane.add_button(\"Clear None\").on_pressed([] {",
+          "value": "    pane.add_button(\"全部清除\").on_pressed([] {"
+        },
+        {
+          "key": "    pane.add_section(\"Items\");",
+          "value": "    pane.add_section(\"物品\");"
+        },
+        {
+          "key": "                .text = \"None\",",
+          "value": "                .text = \"无\","
+        },
+        {
+          "key": "    \"Normal\",\n    \"Big\",\n    \"Giant\",",
+          "value": "    \"普通\",\n    \"大\",\n    \"特大\","
+        },
+        {
+          "key": "    \"Human\",\n    \"Wolf\",",
+          "value": "    \"人形\",\n    \"狼形\","
+        },
+        {
+          "key": "                .text = \"Ordon Clothes\",",
+          "value": "                .text = \"奥登之服\","
+        },
+        {
+          "key": "                .text = \"Hero's Clothes\",",
+          "value": "                .text = \"勇者之服\","
+        },
+        {
+          "key": "                .text = \"Zora Armor\",",
+          "value": "                .text = \"佐拉之铠\","
+        },
+        {
+          "key": "                .text = \"Magic Armor\",",
+          "value": "                .text = \"魔法铠甲\","
+        },
+        {
+          "key": "    pane.add_section(\"Actions\");\n    pane.add_button(\"All 60\").on_pressed([] {",
+          "value": "    pane.add_section(\"操作\");\n    pane.add_button(\"全部 60\").on_pressed([] {"
+        },
+        {
+          "key": "    pane.add_button(\"Clear\").on_pressed([] {",
+          "value": "    pane.add_button(\"清除\").on_pressed([] {"
+        },
+        {
+          "key": "    pane.add_section(\"Value\");",
+          "value": "    pane.add_section(\"数值\");"
+        },
+        {
+          "key": "        .key = \"Collected\",",
+          "value": "        .key = \"已收集\","
+        },
+        {
+          "key": "    pane.add_section(\"Actions\");\n    pane.add_button(\"3 Hearts\").on_pressed([] {",
+          "value": "    pane.add_section(\"操作\");\n    pane.add_button(\"3 颗心\").on_pressed([] {"
+        },
+        {
+          "key": "    pane.add_button(\"20 Hearts\").on_pressed([] {",
+          "value": "    pane.add_button(\"20 颗心\").on_pressed([] {"
+        },
+        {
+          "key": "    pane.add_section(\"Value\");",
+          "value": "    pane.add_section(\"数值\");"
+        },
+        {
+          "key": "        .key = \"Max Life\",",
+          "value": "        .key = \"最大生命\","
+        },
+        {
+          "key": "    pane.add_section(\"Owned\");",
+          "value": "    pane.add_section(\"已拥有\");"
+        },
+        {
+          "key": "                  .text = fmt::format(\"Male {}\", bug.name),",
+          "value": "                  .text = fmt::format(\"雄 {}\", bug.name),"
+        },
+        {
+          "key": "                  .text = fmt::format(\"Female {}\", bug.name),",
+          "value": "                  .text = fmt::format(\"雌性 {}\", bug.name),"
+        },
+        {
+          "key": "    pane.add_section(\"Given to Agitha\");",
+          "value": "    pane.add_section(\"已交给阿吉莎\");"
+        },
+        {
+          "key": "                  .text = fmt::format(\"Male {}\", bug.name),",
+          "value": "                  .text = fmt::format(\"雄 {}\", bug.name),"
+        },
+        {
+          "key": "                  .text = fmt::format(\"Female {}\", bug.name),",
+          "value": "                  .text = fmt::format(\"雌性 {}\", bug.name),"
+        },
+        {
+          "key": "        .key = \"Caught\",",
+          "value": "        .key = \"已捕获\","
+        },
+        {
+          "key": "        .key = \"Biggest\",",
+          "value": "        .key = \"最大\","
+        },
+        {
+          "key": "        return fmt::format(\"Unknown ({})\", type);",
+          "value": "        return fmt::format(\"未知（{}）\", type);"
+        },
+        {
+          "key": "        return fmt::format(\"Unknown ({})\", mode);",
+          "value": "        return fmt::format(\"未知 ({})\", mode);"
+        },
+        {
+          "key": "    add_tab(\"Player Status\", [this](Rml::Element* content) {",
+          "value": "    add_tab(\"玩家状态\", [this](Rml::Element* content) {"
+        },
+        {
+          "key": "        leftPane.add_section(\"Player\");",
+          "value": "        leftPane.add_section(\"玩家\");"
+        },
+        {
+          "key": "                                      .key = \"Player Name\",",
+          "value": "                                      .key = \"玩家姓名\","
+        },
+        {
+          "key": "                                      .key = \"Horse Name\",",
+          "value": "                                      .key = \"马匹姓名\","
+        },
+        {
+          "key": "                .key = \"Max Health\",",
+          "value": "                .key = \"最大生命\","
+        },
+        {
+          "key": "                .key = \"Health\",",
+          "value": "                .key = \"生命\","
+        },
+        {
+          "key": "                .key = \"Rupees\",",
+          "value": "                .key = \"卢比\","
+        },
+        {
+          "key": "                .key = \"Max Oil\",",
+          "value": "                .key = \"最大灯油\","
+        },
+        {
+          "key": "                .key = \"Oil\",",
+          "value": "                .key = \"灯油\","
+        },
+        {
+          "key": "        leftPane.add_section(\"Equipment\");",
+          "value": "        leftPane.add_section(\"装备\");"
+        },
+        {
+          "key": "        genSelectItemComboBox(\"Equip X\", get_player_status()->mSelectItem[0]);\n        genSelectItemComboBox(\"Equip Y\", get_player_status()->mSelectItem[1]);\n        genSelectItemComboBox(\"Combo Equip X\", get_player_status()->mMixItem[0]);\n        genSelectItemComboBox(\"Combo Equip Y\", get_player_status()->mMixItem[1]);",
+          "value": "        genSelectItemComboBox(\"装备 X\", get_player_status()->mSelectItem[0]);\n        genSelectItemComboBox(\"装备 Y\", get_player_status()->mSelectItem[1]);\n        genSelectItemComboBox(\"组合装备 X\", get_player_status()->mMixItem[0]);\n        genSelectItemComboBox(\"组合装备 Y\", get_player_status()->mMixItem[1]);"
+        },
+        {
+          "key": "                .key = \"Clothes\",",
+          "value": "                .key = \"服装\","
+        },
+        {
+          "key": "                .key = \"Sword\",",
+          "value": "                .key = \"剑\","
+        },
+        {
+          "key": "                .key = \"Shield\",",
+          "value": "                .key = \"盾\","
+        },
+        {
+          "key": "                .key = \"Scent\",",
+          "value": "                .key = \"气味\","
+        },
+        {
+          "key": "                .key = \"Wallet Size\",",
+          "value": "                .key = \"钱包容量\","
+        },
+        {
+          "key": "                .key = \"Form\",",
+          "value": "                .key = \"形态\","
+        },
+        {
+          "key": "        leftPane.add_section(\"World\");\n        leftPane.register_control(\n            leftPane.add_child<NumberButton>(NumberButton::Props{\n                .key = \"Day\",",
+          "value": "        leftPane.add_section(\"世界\");\n        leftPane.register_control(\n            leftPane.add_child<NumberButton>(NumberButton::Props{\n                .key = \"天\","
+        },
+        {
+          "key": "                .key = \"Hour\",",
+          "value": "                .key = \"小时\","
+        },
+        {
+          "key": "                .key = \"Minute\",",
+          "value": "                .key = \"分钟\","
+        },
+        {
+          "key": "                .key = \"Transform Level\",",
+          "value": "                .key = \"变身等级\","
+        },
+        {
+          "key": "                .key = \"Twilight Clear Level\",",
+          "value": "                .key = \"黄昏清除等级\","
+        },
+        {
+          "key": "    add_tab(\"Location\", [this](Rml::Element* content) {",
+          "value": "    add_tab(\"地点\", [this](Rml::Element* content) {"
+        },
+        {
+          "key": "        leftPane.add_section(\"Save Location\");",
+          "value": "        leftPane.add_section(\"存档地点\");"
+        },
+        {
+          "key": "                                  .key = \"Stage\",",
+          "value": "                                  .key = \"场景\","
+        },
+        {
+          "key": "                .key = \"Room\",",
+          "value": "                .key = \"房间\","
+        },
+        {
+          "key": "                .key = \"Spawn ID\",",
+          "value": "                .key = \"出生点 ID\","
+        },
+        {
+          "key": "        leftPane.add_section(\"Horse Location\");",
+          "value": "        leftPane.add_section(\"马匹位置\");"
+        },
+        {
+          "key": "                                      .key = \"Horse Position\",",
+          "value": "                                      .key = \"马匹坐标\","
+        },
+        {
+          "key": "                .key = \"Horse Angle\",",
+          "value": "                .key = \"马匹角度\","
+        },
+        {
+          "key": "                    .key = \"Horse Stage\",",
+          "value": "                    .key = \"马匹场景\","
+        },
+        {
+          "key": "                .key = \"Horse Room\",",
+          "value": "                .key = \"马匹房间\","
+        },
+        {
+          "key": "                .key = \"Horse Spawn ID\",",
+          "value": "                .key = \"马匹出生点 ID\","
+        },
+        {
+          "key": "    add_tab(\"Inventory\", [this](Rml::Element* content) {",
+          "value": "    add_tab(\"物品栏\", [this](Rml::Element* content) {"
+        },
+        {
+          "key": "        leftPane.add_section(\"Item Wheel\");\n        leftPane.register_control(leftPane.add_button(\"Default All\").on_pressed([&rightPane] {",
+          "value": "        leftPane.add_section(\"道具轮盘\");\n        leftPane.register_control(leftPane.add_button(\"全部默认\").on_pressed([&rightPane] {"
+        },
+        {
+          "key": "        leftPane.register_control(leftPane.add_button(\"Clear All\").on_pressed([&rightPane] {",
+          "value": "        leftPane.register_control(leftPane.add_button(\"全部清除\").on_pressed([&rightPane] {"
+        },
+        {
+          "key": "                    .key = fmt::format(\"Slot {0:02d}\", slot),",
+          "value": "                    .key = fmt::format(\"栏位 {0:02d}\", slot),"
+        },
+        {
+          "key": "        leftPane.add_section(\"Amounts\");\n        leftPane.register_control(\n            leftPane.add_child<NumberButton>(NumberButton::Props{\n                .key = \"Arrows Amount\",",
+          "value": "        leftPane.add_section(\"数量\");\n        leftPane.register_control(\n            leftPane.add_child<NumberButton>(NumberButton::Props{\n                .key = \"箭矢数量\","
+        },
+        {
+          "key": "                .key = \"Slingshot Amount\",",
+          "value": "                .key = \"弹弓数量\","
+        },
+        {
+          "key": "                    .key = fmt::format(\"Bomb Bag {} Amount\", bag + 1),",
+          "value": "                    .key = fmt::format(\"炸弹袋 {} 数量\", bag + 1),"
+        },
+        {
+          "key": "                    .key = fmt::format(\"Bottle {} Amount\", bottle + 1),",
+          "value": "                    .key = fmt::format(\"瓶子 {} 数量\", bottle + 1),"
+        },
+        {
+          "key": "        leftPane.add_section(\"Capacities\");\n        leftPane.register_control(\n            leftPane.add_child<NumberButton>(NumberButton::Props{\n                .key = \"Arrows Max\",",
+          "value": "        leftPane.add_section(\"容量\");\n        leftPane.register_control(\n            leftPane.add_child<NumberButton>(NumberButton::Props{\n                .key = \"箭矢上限\","
+        },
+        {
+          "key": "                .key = \"Normal Bombs Max\",",
+          "value": "                .key = \"普通炸弹上限\","
+        },
+        {
+          "key": "                .key = \"Water Bombs Max\",",
+          "value": "                .key = \"水炸弹上限\","
+        },
+        {
+          "key": "                .key = \"Bomblings Max\",",
+          "value": "                .key = \"炸弹虫上限\","
+        },
+        {
+          "key": "        leftPane.add_section(\"Flags\");",
+          "value": "        leftPane.add_section(\"标记\");"
+        },
+        {
+          "key": "                                      .key = \"Obtained Items\",\n                                      .getValue = [] { return \"Edit\"; },",
+          "value": "                                      .key = \"已获得物品\",\n                                      .getValue = [] { return \"编辑\"; },"
+        },
+        {
+          "key": "    add_tab(\"Collection\", [this](Rml::Element* content) {",
+          "value": "    add_tab(\"收藏\", [this](Rml::Element* content) {"
+        },
+        {
+          "key": "        leftPane.add_section(\"Equipment\");",
+          "value": "        leftPane.add_section(\"装备\");"
+        },
+        {
+          "key": "                .key = \"Swords\",",
+          "value": "                .key = \"剑\","
+        },
+        {
+          "key": "                .key = \"Shields\",",
+          "value": "                .key = \"盾\","
+        },
+        {
+          "key": "                                      .key = \"Clothing\",",
+          "value": "                                      .key = \"服装\","
+        },
+        {
+          "key": "        leftPane.add_section(\"Key Items\");",
+          "value": "        leftPane.add_section(\"关键道具\");"
+        },
+        {
+          "key": "                .key = \"Fused Shadows\",",
+          "value": "                .key = \"融合暗影\","
+        },
+        {
+          "key": "                .key = \"Mirror Shards\",",
+          "value": "                .key = \"镜之碎片\","
+        },
+        {
+          "key": "        leftPane.add_section(\"Health & Souls\");",
+          "value": "        leftPane.add_section(\"生命与灵魂\");"
+        },
+        {
+          "key": "                .key = \"Poe Souls\",",
+          "value": "                .key = \"波伊之魂\","
+        },
+        {
+          "key": "                                      .key = \"Max Life\",",
+          "value": "                                      .key = \"最大生命\","
+        },
+        {
+          "key": "        leftPane.add_section(\"Golden Bugs\");",
+          "value": "        leftPane.add_section(\"黄金虫\");"
+        },
+        {
+          "key": "        leftPane.add_section(\"Skills\");",
+          "value": "        leftPane.add_section(\"技能\");"
+        },
+        {
+          "key": "                .key = \"Hidden Skills\",",
+          "value": "                .key = \"隐藏技能\","
+        },
+        {
+          "key": "        leftPane.add_section(\"Logs\");",
+          "value": "        leftPane.add_section(\"日志\");"
+        },
+        {
+          "key": "                .key = \"Postman Letters\",",
+          "value": "                .key = \"邮差信件\","
+        },
+        {
+          "key": "        leftPane.add_section(\"Fishing Log\");",
+          "value": "        leftPane.add_section(\"钓鱼记录\");"
+        },
+        {
+          "key": "    add_tab(\"Minigame\", [this](Rml::Element* content) {",
+          "value": "    add_tab(\"小游戏\", [this](Rml::Element* content) {"
+        },
+        {
+          "key": "        leftPane.add_section(\"Records\");\n        leftPane.register_control(\n            leftPane.add_child<NumberButton>(NumberButton::Props{\n                .key = \"STAR Game Time (ms)\",",
+          "value": "        leftPane.add_section(\"记录\");\n        leftPane.register_control(\n            leftPane.add_child<NumberButton>(NumberButton::Props{\n                .key = \"STAR 游戏时间（毫秒）\","
+        },
+        {
+          "key": "                .key = \"Snowboard Race Time (ms)\",",
+          "value": "                .key = \"滑雪竞速时间（毫秒）\","
+        },
+        {
+          "key": "                .key = \"Fruit-Pop-Flight Score\",",
+          "value": "                .key = \"弹果飞行得分\","
+        },
+        {
+          "key": "    add_tab(\"Config\", [this](Rml::Element* content) {",
+          "value": "    add_tab(\"配置\", [this](Rml::Element* content) {"
+        },
+        {
+          "key": "        leftPane.add_section(\"Options\");",
+          "value": "        leftPane.add_section(\"选项\");"
+        },
+        {
+          "key": "                .key = \"Enable Vibration\",",
+          "value": "                .key = \"启用震动\","
+        },
+        {
+          "key": "                                      .key = \"Target Type\",",
+          "value": "                                      .key = \"目标类型\","
+        },
+        {
+          "key": "                                      .key = \"Sound\",",
+          "value": "                                      .key = \"声音\","
+        }
+      ],
+      "insert": []
+    },
+    "src/dusk/ui/graphics_tuner.cpp": {
+      "replace": [
+        {
+          "key": "            return fmt::format(\"Auto ({}×{})\", width, height);",
+          "value": "            return fmt::format(\"自动 ({}×{})\", width, height);"
+        },
+        {
+          "key": "            return \"Bilinear\";",
+          "value": "            return \"双线性\";"
+        },
+        {
+          "key": "            return \"Area\";",
+          "value": "            return \"区域\";"
+        },
+        {
+          "key": "            return \"Off\";",
+          "value": "            return \"关闭\";"
+        },
+        {
+          "key": "            return \"Classic\";",
+          "value": "            return \"经典\";"
+        },
+        {
+          "key": "            return \"Off\";",
+          "value": "            return \"关闭\";"
+        },
+        {
+          "key": "            return \"Classic\";",
+          "value": "            return \"经典\";"
+        },
+        {
+          "key": "        return static_cast<bool>(value) ? \"On\" : \"Off\";",
+          "value": "        return static_cast<bool>(value) ? \"开启\" : \"关闭\";"
+        },
+        {
+          "key": "        auto& returnButton = add_component<Button>(footer, \"\\xE2\\x86\\x90 Return\", \"footer-button\")",
+          "value": "        auto& returnButton = add_component<Button>(footer, \"\\xE2\\x86\\x90 返回\", \"footer-button\")"
+        },
+        {
+          "key": "            add_component<Button>(footer, \"Reset to default\", \"footer-button\").on_pressed([this] {",
+          "value": "            add_component<Button>(footer, \"恢复默认设置\", \"footer-button\").on_pressed([this] {"
+        }
+      ],
+      "insert": []
+    },
+    "src/dusk/ui/logs_window.cpp": {
+      "replace": [
+        {
+          "key": "        return \"Trace\";",
+          "value": "        return \"追踪\";"
+        },
+        {
+          "key": "        return \"Debug\";",
+          "value": "        return \"调试\";"
+        },
+        {
+          "key": "        return \"Info\";",
+          "value": "        return \"信息\";"
+        },
+        {
+          "key": "        return \"Warn\";",
+          "value": "        return \"警告\";"
+        },
+        {
+          "key": "        return \"Error\";",
+          "value": "        return \"错误\";"
+        },
+        {
+          "key": "        return \"TRACE\";",
+          "value": "        return \"追踪\";"
+        },
+        {
+          "key": "        return \"DEBUG\";",
+          "value": "        return \"调试\";"
+        },
+        {
+          "key": "        return \"INFO\";",
+          "value": "        return \"信息\";"
+        },
+        {
+          "key": "        return \"WARNING\";",
+          "value": "        return \"警告\";"
+        },
+        {
+          "key": "        return \"ERROR\";",
+          "value": "        return \"错误\";"
+        },
+        {
+          "key": "    title->SetInnerRML(\"Logs\");",
+          "value": "    title->SetInnerRML(\"日志\");"
+        },
+        {
+          "key": "    modLabel->SetInnerRML(mModFilter.empty() ? \"All mods\" : fmt::format(\"{}\", escape(mModFilter)));",
+          "value": "    modLabel->SetInnerRML(mModFilter.empty() ? \"全部模组\" : fmt::format(\"{}\", escape(mModFilter)));"
+        },
+        {
+          "key": "    add_child<Button>(toolbar, \"Copy\").on_pressed([this] { copy_to_clipboard(); });\n    add_child<Button>(toolbar, \"Clear\").on_pressed([this] {",
+          "value": "    add_child<Button>(toolbar, \"复制\").on_pressed([this] { copy_to_clipboard(); });\n    add_child<Button>(toolbar, \"清空\").on_pressed([this] {"
+        },
+        {
+          "key": "    push_toast({.content = \"Copied to clipboard\", .duration = std::chrono::seconds(2)});",
+          "value": "    push_toast({.content = \"已复制到剪贴板\", .duration = std::chrono::seconds(2)});"
+        }
+      ],
+      "insert": []
+    },
+    "src/dusk/ui/menu_bar.cpp": {
+      "replace": [
+        {
+          "key": "    mTabBar->add_tab(\"Settings\", [this] { push(std::make_unique<SettingsWindow>()); });",
+          "value": "    mTabBar->add_tab(\"设置\", [this] { push(std::make_unique<SettingsWindow>()); });"
+        },
+        {
+          "key": "        mTabBar->add_tab(\"Warp\", [this] { push(std::make_unique<WarpWindow>()); });\n        mTabBar->add_tab(\"Editor\", [this] { push(std::make_unique<EditorWindow>()); });\n    }\n\n    mTabBar->add_tab(\"Achievements\", [this] { push(std::make_unique<AchievementsWindow>()); });\n    mTabBar->add_tab(\"Mods\", [this] { push(std::make_unique<ModsWindow>()); });",
+          "value": "        mTabBar->add_tab(\"传送\", [this] { push(std::make_unique<WarpWindow>()); });\n        mTabBar->add_tab(\"编辑器\", [this] { push(std::make_unique<EditorWindow>()); });\n    }\n\n    mTabBar->add_tab(\"成就\", [this] { push(std::make_unique<AchievementsWindow>()); });\n    mTabBar->add_tab(\"模组\", [this] { push(std::make_unique<ModsWindow>()); });"
+        },
+        {
+          "key": "    mTabBar->add_tab(\"Reset\", [this] {",
+          "value": "    mTabBar->add_tab(\"重置\", [this] {"
+        },
+        {
+          "key": "            .title = \"Reset Game\",\n            .bodyRml = \"Unsaved progress will be lost.<br/>\"\n                       \"<span class=\\\"tip\\\">Tip: You can also reset by holding Start+X+B</span>\",",
+          "value": "            .title = \"重置游戏\",\n            .bodyRml = \"未保存的进度将丢失。<br/>\"\n                       \"<span class=\\\"tip\\\">提示：也可以按住 Start+X+B 重置</span>\","
+        },
+        {
+          "key": "                        .label = \"Cancel\",",
+          "value": "                        .label = \"取消\","
+        },
+        {
+          "key": "                        .label = \"Reset\",",
+          "value": "                        .label = \"重置\","
+        },
+        {
+          "key": "    mTabBar->add_tab(\"Quit\", [this] {",
+          "value": "    mTabBar->add_tab(\"退出\", [this] {"
+        },
+        {
+          "key": "            .title = \"Quit Dusklight\",\n            .bodyRml = \"Unsaved progress will be lost.\",",
+          "value": "            .title = \"退出 Dusklight\",\n            .bodyRml = \"未保存的进度将丢失。\","
+        },
+        {
+          "key": "                        .label = \"Cancel\",",
+          "value": "                        .label = \"取消\","
+        },
+        {
+          "key": "                        .label = \"Quit\",",
+          "value": "                        .label = \"退出\","
+        },
+        {
+          "key": "        mTabBar->add_tab(\"Reset Timer\", [this] {",
+          "value": "        mTabBar->add_tab(\"重置计时器\", [this] {"
+        }
+      ],
+      "insert": []
+    },
+    "src/dusk/ui/mods_window.cpp": {
+      "replace": [
+        {
+          "key": "        return {\"failed\", \"Failed\"};",
+          "value": "        return {\"failed\", \"失败\"};"
+        },
+        {
+          "key": "        return {\"active\", \"Active\"};",
+          "value": "        return {\"active\", \"已启用\"};"
+        },
+        {
+          "key": "        return {\"suspended\", \"Suspended\"};\n    }\n    return {\"\", \"Disabled\"};",
+          "value": "        return {\"suspended\", \"已暂停\"};\n    }\n    return {\"\", \"已禁用\"};"
+        },
+        {
+          "key": "                make_button(actions, \"Reload\").on_pressed([modId] {",
+          "value": "                make_button(actions, \"重新加载\").on_pressed([modId] {"
+        },
+        {
+          "key": "            make_button(actions, \"Disable\").on_pressed([modId] {",
+          "value": "            make_button(actions, \"禁用\").on_pressed([modId] {"
+        },
+        {
+          "key": "            make_button(actions, \"Enable\").on_pressed([modId] {",
+          "value": "            make_button(actions, \"启用\").on_pressed([modId] {"
+        },
+        {
+          "key": "        make_button(actions, \"Logs\").on_pressed(std::move(onShowLogs));",
+          "value": "        make_button(actions, \"日志\").on_pressed(std::move(onShowLogs));"
+        },
+        {
+          "key": "        listPane.add_text(\"No mods installed.\");",
+          "value": "        listPane.add_text(\"未安装任何模组。\");"
+        },
+        {
+          "key": "            escape(fmt::format(\"Disabling or reloading also restarts: {}\", activeDependents))));",
+          "value": "            escape(fmt::format(\"禁用或重新加载也会重启：{}\", activeDependents))));"
+        }
+      ],
+      "insert": []
+    },
+    "src/dusk/ui/overlay.cpp": {
+      "replace": [
+        {
+          "key": "    title->SetInnerRML(\"No Device Assigned\");",
+          "value": "    title->SetInnerRML(\"未分配设备\");"
+        },
+        {
+          "key": "    content->SetInnerRML(\"Configure <b>Port 1</b> in Settings.\");",
+          "value": "    content->SetInnerRML(\"请在设置中配置 <b>端口 1</b>。\");"
+        },
+        {
+          "key": "constexpr auto kMenuNotificationPrefix = \"3-finger tap or\";",
+          "value": "constexpr auto kMenuNotificationPrefix = \"三指轻触或\";"
+        },
+        {
+          "key": "constexpr auto kMenuNotificationPrefix = \"Press <b>F1</b> or\";",
+          "value": "constexpr auto kMenuNotificationPrefix = \"按 <b>F1</b> 或\";"
+        },
+        {
+          "key": "    append(row, \"span\")->SetInnerRML(\"to open menu\");",
+          "value": "    append(row, \"span\")->SetInnerRML(\"打开菜单\");"
+        },
+        {
+          "key": "            push_toast({.title = \"LiveSplit connected\", .duration = std::chrono::seconds(3)});",
+          "value": "            push_toast({.title = \"LiveSplit 已连接\", .duration = std::chrono::seconds(3)});"
+        },
+        {
+          "key": "            push_toast({.title = \"LiveSplit disconnected\", .duration = std::chrono::seconds(3)});",
+          "value": "            push_toast({.title = \"LiveSplit 已断开\", .duration = std::chrono::seconds(3)});"
+        },
+        {
+          "key": "        const auto noun = queuedPipelines == 1 ? \"pipeline\" : \"pipelines\";",
+          "value": "        const auto noun = queuedPipelines == 1 ? \"管线\" : \"管线\";"
+        },
+        {
+          "key": "            escape(fmt::format(\"Building {} {}\", queuedPipelines, noun)));",
+          "value": "            escape(fmt::format(\"正在构建 {} {}\", queuedPipelines, noun)));"
+        }
+      ],
+      "insert": []
+    },
+    "src/dusk/ui/prelaunch.cpp": {
+      "replace": [
+        {
+          "key": "                <eyebrow><span>Twilit Realm</span> presents</eyebrow>",
+          "value": "                <eyebrow><span>Twilit Realm</span> 出品</eyebrow>"
+        },
+        {
+          "key": "            <div class=\"version\">Version <span id=\"version-text\"></span></div>",
+          "value": "            <div class=\"version\">版本 <span id=\"version-text\"></span></div>"
+        },
+        {
+          "key": "    {\"Game Disc Images\", \"iso;gcm;ciso;gcz;nfs;rvz;wbfs;wia;tgc\"},\n    {\"All Files\", \"*\"},",
+          "value": "    {\"游戏镜像\", \"iso;gcm;ciso;gcz;nfs;rvz;wbfs;wia;tgc\"},\n    {\"全部文件\", \"*\"},"
+        },
+        {
+          "key": "        return \"The selected disc image could not be validated.\";",
+          "value": "        return \"无法验证所选游戏镜像。\";"
+        },
+        {
+          "key": "        return \"Unable to read the selected file.\";",
+          "value": "        return \"无法读取所选文件。\";"
+        },
+        {
+          "key": "        return \"The selected file is not a valid disc image.\";",
+          "value": "        return \"所选文件不是有效的游戏镜像。\";"
+        },
+        {
+          "key": "        return \"The selected game is not supported by Dusklight.\";",
+          "value": "        return \"所选游戏不受 Dusklight 支持。\";"
+        },
+        {
+          "key": "        return \"Dusklight currently supports GameCube USA and PAL disc images only.\";",
+          "value": "        return \"Dusklight 目前仅支持 GameCube 美版和 PAL 欧版镜像。\";"
+        },
+        {
+          "key": "        return \"Disc verification was canceled. Dusklight cannot guarantee the selected disc \"\n               \"image is compatible.\";",
+          "value": "        return \"镜像验证已取消，无法保证所选镜像兼容。\";"
+        },
+        {
+          "key": "        return \"The selected disc image did not pass hash verification. It may be corrupt or \"\n               \"modified.\";",
+          "value": "        return \"所选镜像未通过哈希校验，可能已损坏或被修改。\";"
+        },
+        {
+          "key": "        return \"The selected disc image is valid.\";",
+          "value": "        return \"所选游戏镜像有效。\";"
+        },
+        {
+          "key": "        title->SetInnerRML(\"Verifying disc image\");",
+          "value": "        title->SetInnerRML(\"正在验证游戏镜像\");"
+        },
+        {
+          "key": "        mCancelButton = std::make_unique<Button>(actions, \"Cancel\");",
+          "value": "        mCancelButton = std::make_unique<Button>(actions, \"取消\");"
+        },
+        {
+          "key": "            mCancelButton->set_text(\"Cancelling...\");",
+          "value": "            mCancelButton->set_text(\"正在取消...\");"
+        },
+        {
+          "key": "                mDetail->SetInnerRML(\"Opening disc image...\");",
+          "value": "                mDetail->SetInnerRML(\"正在打开游戏镜像...\");"
+        },
+        {
+          "key": "            state.errorString + \"<br/><br/>You may proceed at your own risk.\";",
+          "value": "            state.errorString + \"<br/><br/>继续操作需要自行承担风险。\";"
+        },
+        {
+          "key": "            .title = \"Disc verification warning\",",
+          "value": "            .title = \"镜像校验警告\","
+        },
+        {
+          "key": "                        .label = \"Cancel\",",
+          "value": "                        .label = \"取消\","
+        },
+        {
+          "key": "                        .label = \"Continue anyway\",",
+          "value": "                        .label = \"仍然继续\","
+        },
+        {
+          "key": "        .title = \"Disc verification error\",",
+          "value": "        .title = \"镜像校验错误\","
+        },
+        {
+          "key": "                    .label = \"OK\",",
+          "value": "                    .label = \"确定\","
+        },
+        {
+          "key": "        mMenuButtons.push_back(\n            std::make_unique<Button>(menuList, activeDiscLoaded ? \"Play\" : \"Select Disc Image\"));",
+          "value": "        mMenuButtons.push_back(std::make_unique<Button>(\n            menuList, activeDiscLoaded ? \"开始游戏\" : \"选择游戏镜像\"));"
+        },
+        {
+          "key": "        mMenuButtons.push_back(std::make_unique<Button>(menuList, \"Settings\"));",
+          "value": "        mMenuButtons.push_back(std::make_unique<Button>(menuList, \"设置\"));"
+        },
+        {
+          "key": "        mMenuButtons.push_back(std::make_unique<Button>(menuList, \"Mods\"));",
+          "value": "        mMenuButtons.push_back(std::make_unique<Button>(menuList, \"模组\"));"
+        },
+        {
+          "key": "        mMenuButtons.push_back(std::make_unique<Button>(menuList, \"Quit\"));",
+          "value": "        mMenuButtons.push_back(std::make_unique<Button>(menuList, \"退出\"));"
+        },
+        {
+          "key": "                .label = \"Restart later\",",
+          "value": "                .label = \"稍后重启\","
+        },
+        {
+          "key": "                .label = \"Restart now\",",
+          "value": "                .label = \"立即重启\","
+        },
+        {
+          "key": "                .label = \"OK\",",
+          "value": "                .label = \"确定\","
+        },
+        {
+          "key": "            .title = \"Apply Options\",",
+          "value": "            .title = \"应用设置\","
+        },
+        {
+          "key": "                    \"A restart is required to apply selected options.<br/><br/>Restart now to \"\n                    \"apply them immediately?\" :\n                    \"A restart is required to apply selected options.<br/><br/>Close and reopen \"\n                    \"Dusklight to apply them.\",",
+          "value": "                    \"应用所选设置需要重启游戏。<br/><br/>立即重启以应用这些设置？\" :\n                    \"应用所选设置需要重启游戏。<br/><br/>请关闭并重新打开 Dusklight 以应用设置。\","
+        },
+        {
+          "key": "        mMenuButtons[0]->set_text(activeDiscLoaded ? \"Play\" : \"Select Disc Image\");",
+          "value": "        mMenuButtons[0]->set_text(activeDiscLoaded ? \"开始游戏\" : \"选择游戏镜像\");"
+        },
+        {
+          "key": "            discStatusLabel->SetInnerRML(\"No disc image found.\");",
+          "value": "            discStatusLabel->SetInnerRML(\"未找到游戏镜像。\");"
+        },
+        {
+          "key": "            discStatusLabel->SetInnerRML(\"Pending restart.\");",
+          "value": "            discStatusLabel->SetInnerRML(\"等待重启。\");"
+        },
+        {
+          "key": "            discStatusLabel->SetInnerRML(\"Disc ready.\");",
+          "value": "            discStatusLabel->SetInnerRML(\"镜像就绪。\");"
+        },
+        {
+          "key": "            discStatusLabel->SetInnerRML(\"Disc hash mismatch.\");",
+          "value": "            discStatusLabel->SetInnerRML(\"镜像哈希不匹配。\");"
+        },
+        {
+          "key": "            discStatusLabel->SetInnerRML(\"Disc not verified.\");",
+          "value": "            discStatusLabel->SetInnerRML(\"镜像未验证。\");"
+        },
+        {
+          "key": "            discStatusLabel->SetInnerRML(\"Disc unavailable.\");",
+          "value": "            discStatusLabel->SetInnerRML(\"镜像不可用。\");"
+        },
+        {
+          "key": "                innerRML += \"Unknown\";",
+          "value": "                innerRML += \"未知\";"
+        },
+        {
+          "key": "                innerRML += \"Unknown\";",
+          "value": "                innerRML += \"未知\";"
+        },
+        {
+          "key": "            mUpdateMessage->SetInnerRML(\"Checking for updates...\");",
+          "value": "            mUpdateMessage->SetInnerRML(\"正在检查更新...\");"
+        },
+        {
+          "key": "            mUpdateMessage->SetInnerRML(\"Update available!\");",
+          "value": "            mUpdateMessage->SetInnerRML(\"发现新版本！\");"
+        },
+        {
+          "key": "                    fmt::format(\"Download {}\", update_release_label(sUpdateCheckResult->latest))));",
+          "value": "                    fmt::format(\"下载 {}\", update_release_label(sUpdateCheckResult->latest))));"
+        },
+        {
+          "key": "            mUpdateMessage->SetInnerRML(\"Failed to check for updates\");",
+          "value": "            mUpdateMessage->SetInnerRML(\"检查更新失败\");"
+        }
+      ],
+      "insert": []
+    },
+    "src/dusk/ui/preset.cpp": {
+      "replace": [
+        {
+          "key": "    title->SetInnerRML(\"Welcome to Dusklight\");",
+          "value": "    title->SetInnerRML(\"欢迎使用 Dusklight\");"
+        },
+        {
+          "key": "        \"Choose a preset to get started. You can change any setting later from the Settings menu.\");",
+          "value": "        \"选择一个预设开始吧，之后可在设置菜单中随时更改任何设置。\");"
+        },
+        {
+          "key": "        {\"Classic\",\n         \"Enhancements disabled to match the GameCube version. \"\n         \"Good for speedrunning or simple nostalgia!\",",
+          "value": "        {\"经典\",\n         \"禁用增强功能以还原 GameCube 原版，适合速通或怀旧！\","
+        },
+        {
+          "key": "         \"Graphics & quality of life tweaks, including some from the Wii U version. \"\n         \"Our recommended way to play!\",",
+          "value": "         \"画质与体验增强，包含部分来自 Wii U 版的改进。 \"\n         \"我们推荐的游玩方式！\","
+        }
+      ],
+      "insert": []
+    },
+    "src/dusk/ui/reporting.cpp": {
+      "replace": [
+        {
+          "key": "    title->SetInnerRML(\"Send Crash Reports\");",
+          "value": "    title->SetInnerRML(\"发送崩溃报告\");"
+        },
+        {
+          "key": "        \"Dusklight can automatically send crash reports to the developers. Crash reports contain the \"\n        \"following:\"",
+          "value": "        \"Dusklight 可以向开发者自动发送崩溃报告。崩溃报告包含以下内容：\""
+        },
+        {
+          "key": "        \"This can be changed in the Settings menu at any time.\");",
+          "value": "        \"随时可以在设置菜单中更改此选项。\");"
+        },
+        {
+          "key": "        {\"Enable\",\n            \"Send crash reports to Dusklight developers. Reports will include the information described \"\n            \"above.\",",
+          "value": "        {\"启用\",\n            \"向 Dusklight 开发者发送崩溃报告，报告将包含上述信息。\","
+        },
+        {
+          "key": "        {\"Disable\",\n            \"Do not send crash reports. This may make it more difficult to resolve issues you \"\n            \"encounter.\",",
+          "value": "        {\"禁用\",\n            \"不发送崩溃报告。这可能会增加解决你遇到的问题的难度。\","
+        }
+      ],
+      "insert": []
+    },
+    "src/dusk/ui/settings.cpp": {
+      "replace": [
+        {
+          "key": "    \"English\",\n    \"German\",\n    \"French\",\n    \"Spanish\",\n    \"Italian\",",
+          "value": "    \"英语\",\n    \"德语\",\n    \"法语\",\n    \"西班牙语\",\n    \"意大利语\","
+        },
+        {
+          "key": "    \"Card Image\",\n    \"GCI Folder\",",
+          "value": "    \"记忆卡镜像\",\n    \"GCI 文件夹\","
+        },
+        {
+          "key": "    \"Top Left\",\n    \"Top Right\",\n    \"Bottom Left\",\n    \"Bottom Right\",",
+          "value": "    \"左上角\",\n    \"右上角\",\n    \"左下角\",\n    \"右下角\","
+        },
+        {
+          "key": "    \"Off\",\n    \"Capped\",\n    \"Unlimited\",",
+          "value": "    \"关闭\",\n    \"锁定\",\n    \"无限制\","
+        },
+        {
+          "key": "    \"Hybrid\",\n    \"Hold\",\n    \"Switch\",",
+          "value": "    \"混合\",\n    \"按住\",\n    \"切换\","
+        },
+        {
+          "key": "    \"Tap once to lock on when a target is found. Double-tap when none is found to hold L.\",\n    \"L stays held only while your finger is on the button.\",\n    \"Tap L to keep it held. Tap again to release it.\",",
+          "value": "    \"找到目标时轻点一次锁定；未找到目标时双击以按住 L。\",\n    \"手指按住按键期间 L 保持按住。\",\n    \"轻点 L 保持按住，再次轻点松开。\","
+        },
+        {
+          "key": "    \"Sensor\",\n    \"Mouse\",",
+          "value": "    \"传感器\",\n    \"鼠标\","
+        },
+        {
+          "key": "    \"Normal\",\n    \"On Damage\",\n    \"Double Defense\",\n    \"Invincible\",\n    \"Cosmetic\",",
+          "value": "    \"普通\",\n    \"受击消耗\",\n    \"双倍防御\",\n    \"无敌\",\n    \"仅外观\","
+        },
+        {
+          "key": "        return \"Auto\";",
+          "value": "        return \"自动\";"
+        },
+        {
+          "key": "            \"<span class=\\\"data-folder-current\\\">Current data folder:<br/>\" +",
+          "value": "            \"<span class=\\\"data-folder-current\\\">当前数据文件夹：<br/>\" +"
+        },
+        {
+          "key": "        .title = \"Data Folder Not Changed\",",
+          "value": "        .title = \"数据文件夹未更改\","
+        },
+        {
+          "key": "                    .label = \"OK\",",
+          "value": "                    .label = \"确定\","
+        },
+        {
+          "key": "        show_data_folder_error_modal(\"Dusklight could not open the folder picker.\");",
+          "value": "        show_data_folder_error_modal(\"无法打开文件夹选择器。\");"
+        },
+        {
+          "key": "            fmt::format(\"{} could not use the selected folder as its data folder.\", AppName);",
+          "value": "            fmt::format(\"{} 无法使用所选文件夹作为其数据文件夹。\", AppName);"
+        },
+        {
+          "key": "    \"Configure the resolution used for rendering the game. Higher values are more demanding on \"\n    \"your graphics hardware.\";",
+          "value": "    \"配置游戏渲染分辨率。数值越高对显卡要求越高。\";"
+        },
+        {
+          "key": "    \"Configure the shadow-map resolution. Higher values improve shadow quality but increase GPU \"\n    \"and memory usage.\";",
+          "value": "    \"配置阴影贴图分辨率。数值越高阴影质量越好，但会占用更多 GPU 和内存。\";"
+        },
+        {
+          "key": "    \"Configure the sampling method used when scaling the internal resolution for final presentation.\";",
+          "value": "    \"配置内部分辨率缩放至最终画面时使用的采样方式。\";"
+        },
+        {
+          "key": "    \"Configure the post-processing bloom effect. Classic uses the original bloom pass; Dusklight uses \"\n    \"a higher-quality bloom pass.\";",
+          "value": "    \"配置后期处理泛光效果。经典模式使用原版泛光，Dusklight 模式使用更高质量的泛光。\";"
+        },
+        {
+          "key": "    \"Configure bloom intensity. Higher values make bright areas glow more strongly.\";",
+          "value": "    \"配置泛光强度。数值越高，明亮区域的光晕越强。\";"
+        },
+        {
+          "key": "    \"Configure the post-processing depth-of-field effect. Classic uses the original depth-of-field pass;\"\n    \" Dusklight uses a higher-quality depth-of-field pass.\";",
+          "value": "    \"配置后期处理景深效果。经典模式使用原版景深，Dusklight 模式使用更高质量的景深。\";"
+        },
+        {
+          "key": "    \"<br/>Uses inter-frame interpolation to enable higher frame rates.<br/><br/>May introduce minor \"\n    \"visual artifacts or animation glitches.\";",
+          "value": "    \"<br/>通过帧间插值实现更高的帧率。<br/><br/>可能引入轻微画面瑕疵或动画异常。\";"
+        },
+        {
+          "key": "    \"Enable installed texture replacements.\";",
+          "value": "    \"启用已安装的贴图替换。\";"
+        },
+        {
+          "key": "        return \"Unknown\";",
+          "value": "        return \"未知\";"
+        },
+        {
+          "key": "        add_tab(\"Prelaunch\", [this](Rml::Element* content) {",
+          "value": "        add_tab(\"启动\", [this](Rml::Element* content) {"
+        },
+        {
+          "key": "                        .key = \"Disc Image\",",
+          "value": "                        .key = \"游戏镜像\","
+        },
+        {
+          "key": "                                    display = \"(none)\";",
+          "value": "                                    display = \"（无）\";"
+        },
+        {
+          "key": "                    pane.add_rml(\"Set the disc image that Dusklight uses to launch the game.<br/><br/>\"\n                                 \"Changes require a restart.\");",
+          "value": "                    pane.add_rml(\n                        \"设置 Dusklight 启动游戏所用的镜像文件。<br/><br/>更改需要重启。\");"
+        },
+        {
+          "key": "                        .key = \"Data Folder\",",
+          "value": "                        .key = \"数据文件夹\","
+        },
+        {
+          "key": "                        pane.add_text(\"The data folder is where Dusklight stores settings, saves, \"\n                                      \"logs, texture replacements, and other app data.\");",
+          "value": "                        pane.add_text(\"数据文件夹用于存放 Dusklight 的设置、存档、日志、贴图替换等应用数据。\");"
+        },
+        {
+          "key": "                        pane.add_button(\"Open Data Folder\").on_pressed([] {",
+          "value": "                        pane.add_button(\"打开数据文件夹\").on_pressed([] {"
+        },
+        {
+          "key": "                        pane.add_button(\"Change Data Folder\").on_pressed([] {",
+          "value": "                        pane.add_button(\"更改数据文件夹\").on_pressed([] {"
+        },
+        {
+          "key": "                        pane.add_button(\"Portable Mode\").on_pressed([] {",
+          "value": "                        pane.add_button(\"便携模式\").on_pressed([] {"
+        },
+        {
+          "key": "                                    .text = \"Reset to Default\",",
+          "value": "                                    .text = \"恢复默认\","
+        },
+        {
+          "key": "                        pane.add_rml(\"Data will be migrated automatically on restart.\");",
+          "value": "                        pane.add_rml(\"数据将在重启后自动迁移。\");"
+        },
+        {
+          "key": "                    .key = \"Language\",",
+          "value": "                    .key = \"语言\","
+        },
+        {
+          "key": "                    pane.add_rml(\"<br/>Changes require a restart.\");",
+          "value": "                    pane.add_rml(\"<br/>更改需要重启。\");"
+        },
+        {
+          "key": "                    .key = \"Graphics Backend\",",
+          "value": "                    .key = \"图形后端\","
+        },
+        {
+          "key": "                    pane.add_rml(\"<br/>Changes require a restart.\");",
+          "value": "                    pane.add_rml(\"<br/>更改需要重启。\");"
+        },
+        {
+          "key": "                    .key = \"Save File Type\",",
+          "value": "                    .key = \"存档文件类型\","
+        },
+        {
+          "key": "    add_tab(\"Video\", [this](Rml::Element* content) {",
+          "value": "    add_tab(\"视频\", [this](Rml::Element* content) {"
+        },
+        {
+          "key": "        leftPane.add_section(\"Display\");\n\n        leftPane.register_control(leftPane.add_button(\"Toggle Fullscreen\").on_pressed([] {",
+          "value": "        leftPane.add_section(\"显示\");\n\n        leftPane.register_control(leftPane.add_button(\"切换全屏\").on_pressed([] {"
+        },
+        {
+          "key": "        leftPane.register_control(leftPane.add_button(\"Restore Default Window Size\").on_pressed([] {",
+          "value": "        leftPane.register_control(leftPane.add_button(\"恢复默认窗口大小\").on_pressed([] {"
+        },
+        {
+          "key": "                .key = \"Enable VSync\",\n                .helpText = \"Synchronizes the frame rate to your monitor's refresh rate.\",",
+          "value": "                .key = \"启用垂直同步\",\n                .helpText = \"将帧率与显示器刷新率同步。\","
+        },
+        {
+          "key": "                .key = \"Lock 4:3 Aspect Ratio\",\n                .helpText = \"Lock the game's aspect ratio to the original.\",",
+          "value": "                .key = \"锁定 4:3 宽高比\",\n                .helpText = \"将游戏画面锁定为原始宽高比。\","
+        },
+        {
+          "key": "                .key = \"Pause on Focus Lost\",\n                .helpText = \"Pause the game when window focus is lost.\",",
+          "value": "                .key = \"失去焦点时暂停\",\n                .helpText = \"窗口失去焦点时暂停游戏。\","
+        },
+        {
+          "key": "                .key = \"Show FPS Counter\",",
+          "value": "                .key = \"显示 FPS 计数器\","
+        },
+        {
+          "key": "                            return Rml::String{\"Off\"};",
+          "value": "                            return Rml::String{\"关闭\"};"
+        },
+        {
+          "key": "                            .text = \"Off\",",
+          "value": "                            .text = \"关闭\","
+        },
+        {
+          "key": "                    \"<br/>Display the current framerate in a corner of the screen while playing.\");",
+          "value": "                    \"<br/>在游戏过程中于屏幕角落显示当前帧率。\");"
+        },
+        {
+          "key": "                .key = \"Remember Window Size\",\n                .helpText = \"Save and restore the previous session's window size when opening Dusklight.\",",
+          "value": "                .key = \"记住窗口大小\",\n                .helpText = \"打开 Dusklight 时保存并恢复上次会话的窗口大小。\","
+        },
+        {
+          "key": "        leftPane.add_section(\"Resolution\");",
+          "value": "        leftPane.add_section(\"分辨率\");"
+        },
+        {
+          "key": "                .title = \"Internal Resolution\",",
+          "value": "                .title = \"内部分辨率\","
+        },
+        {
+          "key": "                .title = \"Shadow Resolution\",",
+          "value": "                .title = \"阴影分辨率\","
+        },
+        {
+          "key": "                .title = \"Output Resampling\",",
+          "value": "                .title = \"输出重采样\","
+        },
+        {
+          "key": "        leftPane.add_section(\"Post-Processing\");",
+          "value": "        leftPane.add_section(\"后期处理\");"
+        },
+        {
+          "key": "                .title = \"Bloom\",",
+          "value": "                .title = \"泛光\","
+        },
+        {
+          "key": "                .title = \"Bloom Brightness\",",
+          "value": "                .title = \"泛光亮度\","
+        },
+        {
+          "key": "                .title = \"Depth of Field\",",
+          "value": "                .title = \"景深\","
+        },
+        {
+          "key": "        leftPane.add_section(\"Rendering\");",
+          "value": "        leftPane.add_section(\"渲染\");"
+        },
+        {
+          "key": "                .title = \"Enable Texture Replacements\",",
+          "value": "                .title = \"启用贴图替换\","
+        },
+        {
+          "key": "                .key = \"Unlock Framerate\",",
+          "value": "                .key = \"解锁帧率\","
+        },
+        {
+          "key": "            \"Framerate Cap\", \"Limit the framerate to the specified value.\", 30, 540, 1,",
+          "value": "            \"帧率上限\", \"将帧率限制为指定数值。\", 30, 540, 1,"
+        },
+        {
+          "key": "                .key = \"Enable Mini-Map Shadows\",\n                .helpText = \"Render a thick shadow around the mini-map. May impact performance.\"",
+          "value": "                .key = \"启用小地图阴影\",\n                .helpText = \"在小地图周围渲染较厚的阴影，可能影响性能。\""
+        },
+        {
+          "key": "                .key = \"Disable Cutscene Pillarboxing\",\n                .helpText = \"Disable black bars on the left and right sides of the screen \"\n                            \"during some cutscenes, particularly on ultra-wide displays. \"\n                            \"Visuals beyond the original intended framing may appear buggy.\"",
+          "value": "                .key = \"禁用过场黑边\",\n                .helpText = \"禁用部分过场动画（尤其是超宽屏）左右两侧的黑边。超出原始画面范围的内容可能出现显示异常。\""
+        },
+        {
+          "key": "    add_tab(\"Input\", [this](Rml::Element* content) {",
+          "value": "    add_tab(\"输入\", [this](Rml::Element* content) {"
+        },
+        {
+          "key": "        leftPane.add_section(\"Inputs\");\n        leftPane.register_control(leftPane.add_button(\"Configure Inputs\").on_pressed([this] {",
+          "value": "        leftPane.add_section(\"输入设置\");\n        leftPane.register_control(leftPane.add_button(\"配置按键\").on_pressed([this] {"
+        },
+        {
+          "key": "                pane.add_text(\"Open input binding configuration.\");",
+          "value": "                pane.add_text(\"打开按键绑定配置。\");"
+        },
+        {
+          "key": "                .key = \"Allow Background Inputs\",\n                .helpText = \"Allow inputs even when the game window is not focused.\",",
+          "value": "                .key = \"允许后台输入\",\n                .helpText = \"游戏窗口未聚焦时也接受输入。\","
+        },
+        {
+          "key": "        leftPane.add_section(\"Touch\");\n        addOption(\"Touch Controls\", getSettings().game.enableTouchControls,\n            \"Enables controls overlay for touch screens.<br/><br/>Press and drag on the left side \"\n            \"of the screen to move, and on the right side of the screen to control the camera.\");",
+          "value": "        leftPane.add_section(\"触屏\");\n        addOption(\"触屏控制\", getSettings().game.enableTouchControls,\n            \"为触屏设备启用控制界面。<br/><br/>在屏幕左侧按住拖动移动角色，在屏幕右侧控制镜头。\");"
+        },
+        {
+          "key": "            .text = \"Customize Layout\",",
+          "value": "            .text = \"自定义布局\","
+        },
+        {
+          "key": "                pane.add_text(\"Open the touch controls layout editor.\");",
+          "value": "                pane.add_text(\"打开触屏控制布局编辑器。\");"
+        },
+        {
+          "key": "                                      .key = \"Touch Targeting\",",
+          "value": "                                      .key = \"触屏锁定\","
+        },
+        {
+          "key": "                pane.add_rml(fmt::format(\"<br/>Hybrid: {}<br/>Hold: {}<br/>Switch: {}\",",
+          "value": "                pane.add_rml(fmt::format(\"<br/>混合：{}<br/>按住：{}<br/>切换：{}\","
+        },
+        {
+          "key": "            \"Touch Camera X Sensitivity\",\n            \"Adjusts touch camera horizontal sensitivity.<br/><br/>Applies to touch input only.\",",
+          "value": "            \"触屏镜头 X 灵敏度\",\n            \"调节触屏镜头水平灵敏度。<br/><br/>仅对触屏输入生效。\","
+        },
+        {
+          "key": "            \"Touch Camera Y Sensitivity\",\n            \"Adjusts touch camera vertical sensitivity.<br/><br/>Applies to touch input only.\", 25,",
+          "value": "            \"触屏镜头 Y 灵敏度\",\n            \"调节触屏镜头垂直灵敏度。<br/><br/>仅对触屏输入生效。\", 25,"
+        },
+        {
+          "key": "        leftPane.add_section(\"Camera\");\n        addOption(\"Free Camera\", getSettings().game.freeCamera,\n            \"Enables free camera control, letting you control the camera fully with the C-Stick.\");",
+          "value": "        leftPane.add_section(\"镜头\");\n        addOption(\"自由镜头\", getSettings().game.freeCamera,\n            \"启用自由镜头，可通过 C 摇杆完全控制镜头。\");"
+        },
+        {
+          "key": "            \"Free Camera X Sensitivity\",\n            \"Adjusts horizontal free camera sensitivity.<br/><br/>Applies to the control stick only.\",",
+          "value": "            \"自由镜头 X 灵敏度\",\n            \"调节自由镜头水平灵敏度。<br/><br/>仅对控制摇杆生效。\","
+        },
+        {
+          "key": "            \"Free Camera Y Sensitivity\",\n            \"Adjusts vertical free camera sensitivity.<br/><br/>Applies to the control stick only.\",",
+          "value": "            \"自由镜头 Y 灵敏度\",\n            \"调节自由镜头垂直灵敏度。<br/><br/>仅对控制摇杆生效。\","
+        },
+        {
+          "key": "        addOption(\"Invert Camera X Axis\", getSettings().game.invertCameraXAxis,\n            \"Invert horizontal camera movement.<br/><br/>Applies to the control stick only.\");\n        addOption(\"Invert Camera Y Axis\", getSettings().game.invertCameraYAxis,\n            \"Invert vertical camera movement.<br/><br/>Applies to the control stick only.\",",
+          "value": "        addOption(\"反转镜头 X 轴\", getSettings().game.invertCameraXAxis,\n            \"反转镜头水平移动方向。<br/><br/>仅对控制摇杆生效。\");\n        addOption(\"反转镜头 Y 轴\", getSettings().game.invertCameraYAxis,\n            \"反转镜头垂直移动方向。<br/><br/>仅对控制摇杆生效。\","
+        },
+        {
+          "key": "        addOption(\"Invert First Person X Axis\", getSettings().game.invertFirstPersonXAxis,\n            \"Invert horizontal movement while aiming with items or first person camera.<br/><br/>Applies to the control stick only.\");\n        addOption(\"Invert First Person Y Axis\", getSettings().game.invertFirstPersonYAxis,\n            \"Invert vertical movement while aiming with items or first person camera.<br/><br/>Applies to the control stick only.\");\n\n        leftPane.add_section(\"Gyro\");\n        addOption(\"Gyro Aim\", getSettings().game.enableGyroAim,\n            \"Enables gyro controls while in look mode, aiming a hawk, and aiming \"\n            \"supported items.<br/><br/>Supported items include the Slingshot, Gale Boomerang, \"\n            \"Hero's Bow, Clawshot(s), Ball and Chain, and Dominion Rod.\");\n        addOption(\"Gyro Rollgoal\", getSettings().game.enableGyroRollgoal,\n            \"Enables gyro controls for Rollgoal in Hena's Cabin.\");",
+          "value": "        addOption(\"反转第一人称 X 轴\", getSettings().game.invertFirstPersonXAxis,\n            \"使用道具瞄准或第一人称镜头时反转水平移动。<br/><br/>仅对控制摇杆生效。\");\n        addOption(\"反转第一人称 Y 轴\", getSettings().game.invertFirstPersonYAxis,\n            \"使用道具瞄准或第一人称镜头时反转垂直移动。<br/><br/>仅对控制摇杆生效。\");\n\n        leftPane.add_section(\"陀螺仪\");\n        addOption(\"陀螺仪瞄准\", getSettings().game.enableGyroAim,\n            \"在观察模式、瞄准鹰或使用支持的道具瞄准时启用陀螺仪控制。<br/><br/>支持的道具包括弹弓、疾风回旋镖、勇者之弓、爪钩、链球和支配之杖。\");\n        addOption(\"陀螺仪滚球\", getSettings().game.enableGyroRollgoal,\n            \"在希娜的小屋中为滚球小游戏启用陀螺仪控制。\");"
+        },
+        {
+          "key": "            \"Gyro Pitch Sensitivity\", \"Controls vertical gyro aiming sensitivity.\", 25, 400, 5,",
+          "value": "            \"陀螺仪俯仰灵敏度\", \"控制陀螺仪垂直瞄准灵敏度。\", 25, 400, 5,"
+        },
+        {
+          "key": "            \"Gyro Yaw Sensitivity\", \"Controls horizontal gyro aiming sensitivity.\", 25, 400, 5,",
+          "value": "            \"陀螺仪偏航灵敏度\", \"控制陀螺仪水平瞄准灵敏度。\", 25, 400, 5,"
+        },
+        {
+          "key": "            \"Rollgoal Sensitivity\", \"Controls how strongly gyro input tilts the Rollgoal table.\",",
+          "value": "            \"滚球灵敏度\", \"控制陀螺仪输入倾斜滚球台的力度。\","
+        },
+        {
+          "key": "        config_percent_select(leftPane, rightPane, getSettings().game.gyroDeadband, \"Gyro Deadband\",\n            \"Ignores small gyro movement to reduce drift and jitter.\", 0, 50, 1,",
+          "value": "        config_percent_select(leftPane, rightPane, getSettings().game.gyroDeadband, \"陀螺仪死区\",\n            \"忽略微小的陀螺仪移动以减少漂移和抖动。\", 0, 50, 1,"
+        },
+        {
+          "key": "            \"Gyro Smoothing\", \"Higher values smooth gyro input over time.\", 0, 100, 1,",
+          "value": "            \"陀螺仪平滑\", \"数值越高，陀螺仪输入随时间越平滑。\", 0, 100, 1,"
+        },
+        {
+          "key": "        addOption(\"Invert Gyro Pitch\", getSettings().game.gyroInvertPitch,\n            \"Invert vertical gyro aiming.\", [] { return !gyro_enabled(); });\n        addOption(\"Invert Gyro Yaw\", getSettings().game.gyroInvertYaw,\n            \"Invert horizontal gyro aiming.\", [] { return !gyro_enabled(); });\n\n        leftPane.add_section(\"Mouse\");\n        addOption(\"Mouse Aim\", getSettings().game.enableMouseAim,\n            \"Enables mouse input while in look mode, aiming a hawk, and aiming \"\n            \"supported items.<br/><br/>Supported items include the Slingshot, Gale Boomerang, \"\n            \"Hero's Bow, Clawshot(s), Ball and Chain, and Dominion Rod.\");\n        addOption(\"Mouse Camera\", getSettings().game.enableMouseCamera,\n            \"Enables mouse input for controlling the third-person camera.\");",
+          "value": "        addOption(\"反转陀螺仪俯仰\", getSettings().game.gyroInvertPitch,\n            \"反转陀螺仪垂直瞄准方向。\", [] { return !gyro_enabled(); });\n        addOption(\"反转陀螺仪偏航\", getSettings().game.gyroInvertYaw,\n            \"反转陀螺仪水平瞄准方向。\", [] { return !gyro_enabled(); });\n\n        leftPane.add_section(\"鼠标\");\n        addOption(\"鼠标瞄准\", getSettings().game.enableMouseAim,\n            \"在观察模式、瞄准鹰或使用支持的道具瞄准时启用鼠标输入。<br/><br/>支持的道具包括弹弓、疾风回旋镖、勇者之弓、爪钩、链球和支配之杖。\");\n        addOption(\"鼠标镜头\", getSettings().game.enableMouseCamera,\n            \"启用鼠标控制第三人称镜头。\");"
+        },
+        {
+          "key": "            \"Mouse Aim Sensitivity\", \"Controls mouse aim sensitivity.\", 25, 400, 5,",
+          "value": "            \"鼠标瞄准灵敏度\", \"控制鼠标瞄准灵敏度。\", 25, 400, 5,"
+        },
+        {
+          "key": "            \"Mouse Camera Sensitivity\", \"Controls mouse camera sensitivity.\", 25, 400, 5,",
+          "value": "            \"鼠标镜头灵敏度\", \"控制鼠标镜头灵敏度。\", 25, 400, 5,"
+        },
+        {
+          "key": "        addOption(\"Invert Mouse Y\", getSettings().game.invertMouseY,\n            \"Invert vertical mouse control for both aiming and camera.\",",
+          "value": "        addOption(\"反转鼠标 Y 轴\", getSettings().game.invertMouseY,\n            \"反转瞄准和镜头控制的鼠标垂直方向。\","
+        },
+        {
+          "key": "        leftPane.add_section(\"Gameplay\");\n        addOption(\"Mouse/Touch in Menus\", getSettings().game.enableMenuPointer,\n            \"Enables mouse and touch input for supported in-game menus.\");\n        addOption(\"Invert Air/Swim X Axis\", getSettings().game.invertAirSwimX,\n            \"Invert horizontal movement while flying or swimming.\");\n        addOption(\"Invert Air/Swim Y Axis\", getSettings().game.invertAirSwimY,\n            \"Invert vertical movement while flying or swimming.\");\n        addOption(\"Swap Direct Select Input\", getSettings().game.swapDirectSelect,\n            \"Swap the controls for using Direct Select on the item wheel, making Direct Select the default and holding L to scroll the wheel.\");\n\n        leftPane.add_section(\"Tools\");\n        addOption(\"Turbo Key\", getSettings().game.enableTurboKeybind,\n            \"Hold Tab to increase game speed by up to 4x.\",",
+          "value": "        leftPane.add_section(\"玩法\");\n        addOption(\"菜单中的鼠标/触屏\", getSettings().game.enableMenuPointer,\n            \"为支持的游戏内菜单启用鼠标和触屏输入。\");\n        addOption(\"反转飞行/游泳 X 轴\", getSettings().game.invertAirSwimX,\n            \"飞行或游泳时反转水平移动。\");\n        addOption(\"反转飞行/游泳 Y 轴\", getSettings().game.invertAirSwimY,\n            \"飞行或游泳时反转垂直移动。\");\n        addOption(\"交换直接选择输入\", getSettings().game.swapDirectSelect,\n            \"交换道具轮盘上直接选择的控制方式：直接选择成为默认操作，按住 L 滚动轮盘。\");\n\n        leftPane.add_section(\"工具\");\n        addOption(\"加速键\", getSettings().game.enableTurboKeybind,\n            \"按住 Tab 可将游戏速度提升至最多 4 倍。\","
+        },
+        {
+          "key": "        addOption(\"Reset Key (\" + Rml::String{hotkeys::DO_RESET} + \")\",",
+          "value": "        addOption(\"重置键（\" + Rml::String{hotkeys::DO_RESET} + \"）\","
+        },
+        {
+          "key": "            \"Press \" + Rml::String{hotkeys::DO_RESET} + \" to reset the game.\");",
+          "value": "            \"按 \" + Rml::String{hotkeys::DO_RESET} + \" 重置游戏。\");"
+        },
+        {
+          "key": "    add_tab(\"Audio\", [this](Rml::Element* content) {",
+          "value": "    add_tab(\"音频\", [this](Rml::Element* content) {"
+        },
+        {
+          "key": "        leftPane.add_section(\"Volume\");",
+          "value": "        leftPane.add_section(\"音量\");"
+        },
+        {
+          "key": "                .key = \"Master Volume\",",
+          "value": "                .key = \"主音量\","
+        },
+        {
+          "key": "                pane.add_text(\"Adjusts the volume of all sounds in the game.\");\n            });\n\n        leftPane.add_section(\"Effects\");",
+          "value": "                pane.add_text(\"调节游戏中所有声音的音量。\");\n            });\n\n        leftPane.add_section(\"音效\");"
+        },
+        {
+          "key": "                .key = \"Enable Reverb\",\n                .helpText = \"Enables the reverb effect in game audio.\",",
+          "value": "                .key = \"启用混响\",\n                .helpText = \"为游戏音频启用混响效果。\","
+        },
+        {
+          "key": "                .key = \"Enable Spatial Sound\",",
+          "value": "                .key = \"启用空间音效\","
+        },
+        {
+          "key": "                    \"Emulate surround sound via HRTF. Recommended only for use with headphones!\",",
+          "value": "                    \"通过 HRTF 模拟环绕声，仅建议使用耳机时开启！\","
+        },
+        {
+          "key": "                .key = \"Dusklight Menu Sounds\",\n                .helpText = \"Play sound effects when navigating the Dusklight menu.\",\n            });\n\n        leftPane.add_section(\"Tweaks\");",
+          "value": "                .key = \"Dusklight 菜单音效\",\n                .helpText = \"在浏览 Dusklight 菜单时播放音效。\",\n            });\n\n        leftPane.add_section(\"微调\");"
+        },
+        {
+          "key": "                .key = \"No Low HP Sound\",\n                .helpText = \"Disable the beeping sound when having low health.\",",
+          "value": "                .key = \"无低血量提示音\",\n                .helpText = \"血量较低时禁用提示音。\","
+        },
+        {
+          "key": "                .key = \"Non-Stop Midna's Lament\",\n                .helpText = \"Prevents enemy music while Midna's Lament is playing.\",",
+          "value": "                .key = \"米德娜哀歌不间断\",\n                .helpText = \"播放米德娜哀歌时停止战斗音乐。\","
+        },
+        {
+          "key": "    add_tab(\"Gameplay\", [this](Rml::Element* content) {",
+          "value": "    add_tab(\"玩法\", [this](Rml::Element* content) {"
+        },
+        {
+          "key": "        leftPane.add_section(\"General\");\n        addOption(\"Mirror Mode\", getSettings().game.enableMirrorMode,\n            \"Mirrors the world horizontally, matching the Wii version of the game.\");\n        addOption(\"Minimal HUD\", getSettings().game.minimalHUD,\n            \"Disables the elements of the main HUD of the game.<br/>Useful for a more immersive \"\n            \"experience.\");",
+          "value": "        leftPane.add_section(\"常规\");\n        addOption(\"镜像模式\", getSettings().game.enableMirrorMode,\n            \"水平镜像整个世界，与 Wii 版本一致。\");\n        addOption(\"极简 HUD\", getSettings().game.minimalHUD,\n            \"禁用游戏主 HUD 的各个元素。<br/>有助于获得更沉浸的体验。\");"
+        },
+        {
+          "key": "            \"HUD Scale\",\n            \"Scales the size of the gameplay HUD (hearts, buttons, mini-map, etc.). Does not affect dialog boxes or menus.\",",
+          "value": "            \"HUD 缩放\",\n            \"缩放游戏 HUD（心、按键、小地图等）的大小，不影响对话框和菜单。\","
+        },
+        {
+          "key": "        addOption(\"Restore Wii 1.0 Glitches\", getSettings().game.restoreWiiGlitches,\n            \"Restores patched glitches from Wii USA 1.0, the first released version.\");\n        addOption(\"Enable Rotating Link Doll\", getSettings().game.enableLinkDollRotation,\n            \"Enables rotating Link in the collection menu with the C-Stick.\");\n        addOption(\"Hide Owl Statue Markers\", getSettings().game.removeQuestMapMarkers,\n            \"Removes completed Owl Statue markers from the map and Minimap.\");\n\n        leftPane.add_section(\"Difficulty\");",
+          "value": "        addOption(\"还原 Wii 1.0 漏洞\", getSettings().game.restoreWiiGlitches,\n            \"还原首个发售版本 Wii 美版 1.0 中已修复的漏洞。\");\n        addOption(\"启用林克模型旋转\", getSettings().game.enableLinkDollRotation,\n            \"在收藏菜单中可用 C 摇杆旋转林克模型。\");\n        addOption(\"隐藏猫头鹰雕像标记\", getSettings().game.removeQuestMapMarkers,\n            \"从地图和小地图中移除已完成猫头鹰雕像的标记。\");\n\n        leftPane.add_section(\"难度\");"
+        },
+        {
+          "key": "                .key = \"Damage Multiplier\",",
+          "value": "                .key = \"伤害倍率\","
+        },
+        {
+          "key": "                pane.add_text(\"Multiplies incoming damage.\");",
+          "value": "                pane.add_text(\"倍乘受到的伤害。\");"
+        },
+        {
+          "key": "            \"Instant Death\", getSettings().game.instantDeath, \"Any hit will instantly kill you.\");\n        addSpeedrunDisabledOption(\"No Heart Drops\", getSettings().game.noHeartDrops,\n            \"Hearts will never drop from enemies, pots, and various other places.\");\n\n        leftPane.add_section(\"Quality of Life\");\n        addOption(\"Bigger Wallets\", getSettings().game.biggerWallets,\n            \"Wallet sizes are like in the HD version. (500, 1000, 2000)\");\n        addOption(\"Disable Rupee Cutscenes\", getSettings().game.disableRupeeCutscenes,\n            \"Rupees will not play cutscenes after you have collected them the first time.\");\n        addOption(\"Faster Climbing\", getSettings().game.fastClimbing,\n            \"Quicker climbing on ladders and vines like the HD version.\");\n        addOption(\"Faster Tears of Light\", getSettings().game.fastTears,\n            \"Tears of Light dropped by Shadow Insects pop out faster like the HD version.\");\n        addSpeedrunDisabledOption(\"Autosave\", getSettings().game.autoSave,\n            \"Autosaves the game when going to a new area or opening a dungeon door.\");\n        addOption(\"Instant Saves\", getSettings().game.instantSaves,\n            \"Skips the delay when writing to the Memory Card.\");\n        addOption(\"Hold B for Instant Text\", getSettings().game.instantText,\n            \"Makes text scroll immediately by holding B.\");\n        addOption(\"No Climbing Miss Animation\", getSettings().game.noMissClimbing,\n            \"Prevents Link from playing a struggle animation when grabbing ledges or \"\n            \"climbing on vines.\");\n        addOption(\"No Rupee Returns\", getSettings().game.noReturnRupees,\n            \"Always collect Rupees even if your Wallet is too full.\");\n        addOption(\"No Sword Recoil\", getSettings().game.noSwordRecoil,\n            \"Link will not recoil when his sword hits walls.\");\n        addOption(\"No 2nd Fish for Cat\", getSettings().game.no2ndFishForCat,\n            \"Skip needing to catch a second fish for Sera's cat.\");\n        addOption(\"Button Fishing\", getSettings().game.buttonFishing,\n            \"Allow fishing with the Fishing Rod using the button the item is assigned to.\");\n        addOption(\"Show Poe Count on Map\", getSettings().game.enhancedMapMenus,\n            \"Displays collected/total number of Poe Souls for a region on the map.\");\n        addSpeedrunDisabledOption(\"Sun's Song (R+X)\", getSettings().game.sunsSong,\n            \"Allows Wolf Link to howl and change the time of day.\");\n        addOption(\"Quick Transform (R+Y)\", getSettings().game.enableQuickTransform,\n            \"Transform instantly by pressing R and Y simultaneously.\");\n\n        leftPane.add_section(\"Speedrunning\");",
+          "value": "            \"一击必杀\", getSettings().game.instantDeath, \"任何攻击都会立即击杀你。\");\n        addSpeedrunDisabledOption(\"无心心掉落\", getSettings().game.noHeartDrops,\n            \"敌人、罐子等将不再掉落心心。\");\n\n        leftPane.add_section(\"便利功能\");\n        addOption(\"更大的钱包\", getSettings().game.biggerWallets,\n            \"钱包容量与 HD 版一致（500、1000、2000）。\");\n        addOption(\"禁用卢比过场\", getSettings().game.disableRupeeCutscenes,\n            \"首次获得卢比后将不再播放过场动画。\");\n        addOption(\"更快攀爬\", getSettings().game.fastClimbing,\n            \"与 HD 版一样更快地攀爬梯子和藤蔓。\");\n        addOption(\"更快的光之泪\", getSettings().game.fastTears,\n            \"与 HD 版一样，影之虫掉落的光之泪弹出更快。\");\n        addSpeedrunDisabledOption(\"自动存档\", getSettings().game.autoSave,\n            \"进入新区域或打开迷宫门时自动存档。\");\n        addOption(\"即时存档\", getSettings().game.instantSaves,\n            \"跳过写入记忆卡的延迟。\");\n        addOption(\"按住 B 即时显示文字\", getSettings().game.instantText,\n            \"按住 B 使文字立即滚动。\");\n        addOption(\"无攀爬失误动画\", getSettings().game.noMissClimbing,\n            \"林克抓住边缘或攀爬藤蔓时不再播放挣扎动画。\");\n        addOption(\"卢比不回退\", getSettings().game.noReturnRupees,\n            \"即使钱包已满也始终拾取卢比。\");\n        addOption(\"剑无后仰\", getSettings().game.noSwordRecoil,\n            \"林克的剑击中墙壁时不再后仰。\");\n        addOption(\"无需第二条鱼给猫\", getSettings().game.no2ndFishForCat,\n            \"跳过为塞拉的猫捕捉第二条鱼的要求。\");\n        addOption(\"按键钓鱼\", getSettings().game.buttonFishing,\n            \"允许使用鱼竿所绑定的按键进行钓鱼。\");\n        addOption(\"在地图上显示鬼魂数量\", getSettings().game.enhancedMapMenus,\n            \"在地图上显示区域内已收集/总共的波伊之魂数量。\");\n        addSpeedrunDisabledOption(\"太阳之歌（R+X）\", getSettings().game.sunsSong,\n            \"允许狼林克嚎叫并改变时间。\");\n        addOption(\"快速变身（R+Y）\", getSettings().game.enableQuickTransform,\n            \"同时按下 R 和 Y 立即变身。\");\n\n        leftPane.add_section(\"速通\");"
+        },
+        {
+          "key": "                .key = \"Speedrun Mode\",",
+          "value": "                .key = \"速通模式\","
+        },
+        {
+          "key": "                    \"Enables speedrunning options while restricting certain gameplay modifiers.\",",
+          "value": "                    \"启用速通选项，同时限制部分玩法修改项。\","
+        },
+        {
+          "key": "                .key = \"LiveSplit Connection\",\n                .helpText = \"Connect to LiveSplit server on localhost:16834. For this to work you must right click LiveSplit, and turn on Control -> Start TCP Server.\"\n                \" To see IGT in LiveSplit you must change your comparison to Game Time.\",",
+          "value": "                .key = \"LiveSplit 连接\",\n                .helpText = \"连接 localhost:16834 上的 LiveSplit 服务器。需要在 LiveSplit 上右键，开启 Control → Start TCP Server。要在 LiveSplit 中查看 IGT，需将比较方式改为 Game Time。\","
+        },
+        {
+          "key": "                .key = \"Show RTA\",\n                .helpText = \"Display the RTA timer. IGT is always visible.\",",
+          "value": "                .key = \"显示 RTA\",\n                .helpText = \"显示 RTA 计时器，IGT 始终可见。\","
+        },
+        {
+          "key": "    add_tab(\"Cheats\", [this](Rml::Element* content) {",
+          "value": "    add_tab(\"作弊\", [this](Rml::Element* content) {"
+        },
+        {
+          "key": "        leftPane.add_section(\"Resources\");\n        addCheat(\"Infinite Hearts\", getSettings().game.infiniteHearts, \"Keeps your health full.\");\n        addCheat(\n            \"Infinite Arrows\", getSettings().game.infiniteArrows, \"Keeps your arrow count full.\");\n        addCheat(\"Infinite Seeds\", getSettings().game.infiniteSeeds, \"Keeps your slingshot pellets (seeds) full.\");\n        addCheat(\"Infinite Bombs\", getSettings().game.infiniteBombs, \"Keeps all bomb bags full.\");\n        addCheat(\"Infinite Oil\", getSettings().game.infiniteOil, \"Keeps your lantern oil full.\");\n        addCheat(\"Infinite Oxygen\", getSettings().game.infiniteOxygen,\n            \"Keeps your underwater oxygen meter full.\");\n        addCheat(\n            \"Infinite Rupees\", getSettings().game.infiniteRupees, \"Keeps your rupee count full.\");\n        addCheat(\"No Item Timer\", getSettings().game.enableIndefiniteItemDrops,\n            \"Item drops such as rupees and hearts will never disappear after they drop.\");\n\n        leftPane.add_section(\"Abilities\");\n        addCheat(\n            \"Moon Jump (R+A)\", getSettings().game.moonJump, \"Hold R and A to rise into the air.\");\n        addCheat(\"Super Clawshot\", getSettings().game.superClawshot,\n            \"Extends Clawshot behavior beyond the normal game rules.\");\n        addCheat(\"Always Greatspin\", getSettings().game.alwaysGreatspin,\n            \"Allows the Great Spin attack without requiring full health.\");\n        addCheat(\"Fast Iron Boots\", getSettings().game.enableFastIronBoots,\n            \"Speeds up movement while heavy, including wearing the Iron Boots, holding the Ball and Chain, wearing Magic Armor without rupees, etc.\");\n        addCheat(\"Can Transform Anywhere\", getSettings().game.canTransformAnywhere,\n            \"Allows transforming even if NPCs are looking.\");\n        addCheat(\"Fast Roll\", getSettings().game.fastRoll,\n            \"Makes Link's roll animation and movement twice as fast.\");\n        addCheat(\"Fast Spinner\", getSettings().game.fastSpinner,\n            \"Speeds up Spinner movement while holding R.\");",
+          "value": "        leftPane.add_section(\"资源\");\n        addCheat(\"无限心心\", getSettings().game.infiniteHearts, \"始终保持满血。\");\n        addCheat(\"无限箭矢\", getSettings().game.infiniteArrows, \"始终保持箭矢满额。\");\n        addCheat(\"无限种子\", getSettings().game.infiniteSeeds, \"始终保持弹弓弹丸（种子）满额。\");\n        addCheat(\"无限炸弹\", getSettings().game.infiniteBombs, \"始终保持所有炸弹袋满额。\");\n        addCheat(\"无限灯油\", getSettings().game.infiniteOil, \"始终保持提灯灯油满额。\");\n        addCheat(\"无限氧气\", getSettings().game.infiniteOxygen,\n            \"始终保持水下氧气值满额。\");\n        addCheat(\"无限卢比\", getSettings().game.infiniteRupees, \"始终保持卢比满额。\");\n        addCheat(\"物品无消失计时\", getSettings().game.enableIndefiniteItemDrops,\n            \"卢比、心心等掉落物品将不会消失。\");\n\n        leftPane.add_section(\"能力\");\n        addCheat(\"月球跳跃（R+A）\", getSettings().game.moonJump, \"按住 R 和 A 升入空中。\");\n        addCheat(\"超级爪钩\", getSettings().game.superClawshot,\n            \"让爪钩行为超越常规游戏规则。\");\n        addCheat(\"始终可大回旋斩\", getSettings().game.alwaysGreatspin,\n            \"无需满血即可使用大回旋斩。\");\n        addCheat(\"快速铁靴\", getSettings().game.enableFastIronBoots,\n            \"加重状态（穿铁靴、持链球、无卢比穿魔法铠甲等）下移动更快。\");\n        addCheat(\"任意地点变身\", getSettings().game.canTransformAnywhere,\n            \"即使有 NPC 注视也可以变身。\");\n        addCheat(\"快速翻滚\", getSettings().game.fastRoll,\n            \"林克的翻滚动画和移动速度加倍。\");\n        addCheat(\"快速陀螺\", getSettings().game.fastSpinner,\n            \"按住 R 时陀螺移动更快。\");"
+        },
+        {
+          "key": "                .key = \"Magic Armor Behavior\",",
+          "value": "                .key = \"魔法铠甲行为\","
+        },
+        {
+          "key": "                    \"<br/>Control the behavior of the Magic Armor.\");\n            });\n        addCheat(\"Invincible Enemies\", getSettings().game.invincibleEnemies,\n            \"Prevents enemies from taking damage.\");",
+          "value": "                    \"<br/>控制魔法铠甲的行为。\");\n            });\n        addCheat(\"敌人无敌\", getSettings().game.invincibleEnemies,\n            \"敌人不会受到伤害。\");"
+        },
+        {
+          "key": "    add_tab(\"Interface\", [this](Rml::Element* content) {",
+          "value": "    add_tab(\"界面\", [this](Rml::Element* content) {"
+        },
+        {
+          "key": "            leftPane.add_button(\"Open Data Folder\").on_pressed([] {",
+          "value": "            leftPane.add_button(\"打开数据文件夹\").on_pressed([] {"
+        },
+        {
+          "key": "                    \"Open the folder where Dusklight stores settings, saves, logs, texture \"\n                    \"replacements, and other app data.\");",
+          "value": "                    \"打开 Dusklight 存放设置、存档、日志、贴图替换等应用数据的文件夹。\");"
+        },
+        {
+          "key": "                .key = \"Notifications\",",
+          "value": "                .key = \"通知\","
+        },
+        {
+          "key": "                        return Rml::String{\"Off\"};",
+          "value": "                        return Rml::String{\"关闭\"};"
+        },
+        {
+          "key": "                        return Rml::String{\"All\"};",
+          "value": "                        return Rml::String{\"全部\"};"
+        },
+        {
+          "key": "                    return Rml::String{\"Some\"};",
+          "value": "                    return Rml::String{\"部分\"};"
+        },
+        {
+          "key": "                pane.add_button(\"Select All\").on_pressed([] {",
+          "value": "                pane.add_button(\"全选\").on_pressed([] {"
+        },
+        {
+          "key": "                pane.add_button(\"Select None\").on_pressed([] {",
+          "value": "                pane.add_button(\"全不选\").on_pressed([] {"
+        },
+        {
+          "key": "                pane.add_section(\"Types\");",
+          "value": "                pane.add_section(\"类型\");"
+        },
+        {
+          "key": "                        .text = \"Achievements\",",
+          "value": "                        .text = \"成就\","
+        },
+        {
+          "key": "                        .text = \"Missing Device\",",
+          "value": "                        .text = \"设备断开\","
+        },
+        {
+          "key": "                pane.add_rml(\"<br/>Choose which notifications can be displayed.\");",
+          "value": "                pane.add_rml(\"<br/>选择可以显示的通知类型。\");"
+        },
+        {
+          "key": "            .key = \"Crash Reporting\",",
+          "value": "            .key = \"崩溃报告\","
+        },
+        {
+          "key": "            pane.add_rml(\"Dusklight can automatically send crash reports to the developers. Crash \"\n                         \"reports contain the following:<br/>• Operating system version<br/>• CPU \"\n                         \"architecture<br/>• GPU model & driver version<br/>• File paths (may \"\n                         \"include account username)<br/>• Stack trace\");",
+          "value": "            pane.add_rml(\"Dusklight 可以向开发者自动发送崩溃报告。崩溃报告包含以下内容：<br/>• \"\n                         \"操作系统版本<br/>• CPU 架构<br/>• GPU 型号与驱动版本<br/>• 文件路径（可能\"\n                         \"包含账户用户名）<br/>• 堆栈信息\");"
+        },
+        {
+          "key": "                .key = \"Skip Dusklight Main Menu\",\n                .helpText = \"When starting Dusklight, skip the main menu and boot straight into the \"\n                            \"game if a disc image is available.\",",
+          "value": "                .key = \"跳过 Dusklight 主菜单\",\n                .helpText = \"启动 Dusklight 时，如有可用游戏镜像则跳过主菜单直接进入游戏。\","
+        },
+        {
+          "key": "                .key = \"Check for Updates\",\n                .helpText = \"Checks GitHub releases for a new Dusklight version on startup.<br/><br/>\"\n                            \"No personal information is transmitted or collected.\",",
+          "value": "                .key = \"检查更新\",\n                .helpText = \"启动时检查 GitHub 是否有 Dusklight 新版本。<br/><br/>\"\n                            \"不会传输或收集任何个人信息。\","
+        },
+        {
+          "key": "                .key = \"Enable Discord Rich Presence\",\n                .helpText = \"Enable Dusklight to integrate with Discord Rich Presence. This allows Discord to show your status in-game.\",",
+          "value": "                .key = \"启用 Discord 状态展示\",\n                .helpText = \"允许 Dusklight 与 Discord 状态展示集成，让 Discord 显示你的游戏内状态。\","
+        },
+        {
+          "key": "                .key = \"Enable Advanced Settings\",",
+          "value": "                .key = \"启用高级设置\","
+        },
+        {
+          "key": "                .helpText = \"Show advanced settings and debugging tools with \"\n                            \"Shift+F1.<br/><br/><icon class=\\\"warning\\\"/> WARNING: Debugging tools \"\n                            \"can easily break your game. Do not use on a regular save!\",",
+          "value": "                .helpText = \"使用 Shift+F1 显示高级设置和调试工具。<br/><br/><icon class=\\\"warning\\\"/> \"\n                            \"警告：调试工具很容易损坏你的游戏。请勿在常规存档上使用！\","
+        },
+        {
+          "key": "                .key = \"Show Input Viewer\",\n                .helpText = \"Display a controller input overlay while playing.\",",
+          "value": "                .key = \"显示输入查看器\",\n                .helpText = \"游戏过程中显示手柄输入叠加层。\","
+        },
+        {
+          "key": "                .key = \"Show Gyro Input Viewer\",\n                .helpText = \"Show gyro sensor values in the input viewer.\",",
+          "value": "                .key = \"显示陀螺仪输入查看器\",\n                .helpText = \"在输入查看器中显示陀螺仪传感器数值。\","
+        },
+        {
+          "key": "        leftPane.add_section(\"Game\");",
+          "value": "        leftPane.add_section(\"游戏\");"
+        },
+        {
+          "key": "                .key = \"Menu Scaling Mode\",",
+          "value": "                .key = \"菜单缩放模式\","
+        },
+        {
+          "key": "                pane.add_rml(\"<br/>Changes how the Collection and File Select menus scale to your \"\n                             \"aspect ratio.\");",
+          "value": "                pane.add_rml(\"<br/>更改收藏和文件选择菜单随宽高比缩放的方式。\");"
+        },
+        {
+          "key": "                .key = \"Skip TV Settings Screen\",\n                .helpText = \"Skips the TV calibration screen shown when loading a save.\",",
+          "value": "                .key = \"跳过电视设置画面\",\n                .helpText = \"跳过读取存档时显示的电视校准画面。\","
+        },
+        {
+          "key": "            \"Recording Mode\",\n            \"Disables the game HUD and all background music.<br/><br/>Useful for recording footage.\");",
+          "value": "            \"录制模式\",\n            \"禁用游戏 HUD 和所有背景音乐。<br/><br/>方便录制视频。\");"
+        }
+      ],
+      "insert": []
+    },
+    "src/dusk/ui/touch_controls_editor.cpp": {
+      "replace": [
+        {
+          "key": "        <button id=\"editor-save\" class=\"editor-command primary\"><span>Save</span></button>\n        <button id=\"editor-reset\" class=\"editor-command\"><span>Reset</span></button>\n        <button id=\"editor-cancel\" class=\"editor-command\"><span>Cancel</span></button>",
+          "value": "        <button id=\"editor-save\" class=\"editor-command primary\"><span>保存</span></button>\n        <button id=\"editor-reset\" class=\"editor-command\"><span>重置</span></button>\n        <button id=\"editor-cancel\" class=\"editor-command\"><span>取消</span></button>"
+        },
+        {
+          "key": "        .title = \"Reset Touch Layout?\",\n        .bodyRml = \"Reset controls to their default layout. This will not be saved until you press Save.\",",
+          "value": "        .title = \"重置触屏布局？\",\n        .bodyRml = \"将按键恢复为默认布局。点击保存之前不会生效。\","
+        },
+        {
+          "key": "                    .label = \"Reset\",",
+          "value": "                    .label = \"重置\","
+        },
+        {
+          "key": "                    .label = \"Cancel\",",
+          "value": "                    .label = \"取消\","
+        }
+      ],
+      "insert": []
+    },
+    "src/dusk/ui/ui.cpp": {
+      "replace": [
+        {
+          "key": "                Rml::String content = fmt::format(\"<span>{}</span>\", name ? name : \"[Unknown]\");\n                Rml::String title = \"Device Connected\";",
+          "value": "                Rml::String content = fmt::format(\"<span>{}</span>\", name ? name : \"[未知]\");\n                Rml::String title = \"设备已连接\";"
+        },
+        {
+          "key": "                .title = \"Device Disconnected\",\n                .content = name ? name : \"[Unknown]\",",
+          "value": "                .title = \"设备已断开\",\n                .content = name ? name : \"[未知]\","
+        }
+      ],
+      "insert": [
+        {
+          "key": "    load_font(\"NotoMono-Regular.ttf\");",
+          "value": "    // 中文字体 fallback：界面汉化后，Fira Sans 等字体缺少的汉字由此字体渲染。\n    load_font(\"NotoSansCJKsc-Regular.otf\", true);"
+        }
+      ]
+    },
+    "src/dusk/ui/warp.cpp": {
+      "replace": [
+        {
+          "key": "                    .text = \"Show Internal Names\",",
+          "value": "                    .text = \"显示内部名称\","
+        },
+        {
+          "key": "    pane.add_section(\"Maps\");",
+          "value": "    pane.add_section(\"地图\");"
+        },
+        {
+          "key": "    add_tab(\"Warp\", [this](Rml::Element* content) {",
+          "value": "    add_tab(\"传送\", [this](Rml::Element* content) {"
+        },
+        {
+          "key": "        leftPane.add_section(\"Destination\");\n        leftPane.register_control(\n            leftPane.add_select_button({\n                .key = \"Region\",",
+          "value": "        leftPane.add_section(\"目的地\");\n        leftPane.register_control(\n            leftPane.add_select_button({\n                .key = \"区域\","
+        },
+        {
+          "key": "                        return region == nullptr ? Rml::String{\"None\"} :",
+          "value": "                        return region == nullptr ? Rml::String{\"无\"} :"
+        },
+        {
+          "key": "                .key = \"Map\",",
+          "value": "                .key = \"地图\","
+        },
+        {
+          "key": "                        return map == nullptr ? Rml::String{\"None\"} :",
+          "value": "                        return map == nullptr ? Rml::String{\"无\"} :"
+        },
+        {
+          "key": "                .key = \"Room\",",
+          "value": "                .key = \"房间\","
+        },
+        {
+          "key": "                        return room == nullptr ? Rml::String{\"None\"} :",
+          "value": "                        return room == nullptr ? Rml::String{\"无\"} :"
+        },
+        {
+          "key": "                .key = \"Point\",",
+          "value": "                .key = \"坐标点\","
+        },
+        {
+          "key": "                        return point == nullptr ? Rml::String{\"None\"} : fmt::format(\"{}\", *point);",
+          "value": "                        return point == nullptr ? Rml::String{\"无\"} : fmt::format(\"{}\", *point);"
+        },
+        {
+          "key": "                .key = \"Layer\",",
+          "value": "                .key = \"图层\","
+        },
+        {
+          "key": "        leftPane.add_section(\"Action\");",
+          "value": "        leftPane.add_section(\"动作\");"
+        },
+        {
+          "key": "                        .text = \"Warp\",",
+          "value": "                        .text = \"传送\","
+        },
+        {
+          "key": "                pane.add_text(\"Warp to the selected destination.\");",
+          "value": "                pane.add_text(\"传送到所选目的地。\");"
+        }
+      ],
+      "insert": []
+    }
+  }
+}

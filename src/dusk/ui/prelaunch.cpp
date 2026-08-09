@@ -435,12 +435,12 @@ private:
             return;
         }
 
-            mCancelRequested = true;
-            sDiscVerificationTask->status.cancelRequested.store(true, std::memory_order_relaxed);
-            if (mCancelButton != nullptr) {
-                mCancelButton->set_text("正在取消...");
-                mCancelButton->set_disabled(true);
-            }
+        mCancelRequested = true;
+        sDiscVerificationTask->status.cancelRequested.store(true, std::memory_order_relaxed);
+        if (mCancelButton != nullptr) {
+            mCancelButton->set_text("正在取消...");
+            mCancelButton->set_disabled(true);
+        }
     }
 
     void refresh() {

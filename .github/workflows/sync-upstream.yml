@@ -1,0 +1,66 @@
+name: 同步上游并重新生成汉化
+
+# 自动把上游 TwilitRealm/dusklight 的最新代码合并进本仓库，
+# 并用 tools/zh_cn.json 词典重新生成汉化文件，然后推送到 main。
+# 推送会触发 build.yml 自动编译 Windows / Linux / Android 汉化版。
+#
+# 也可以在 Actions 页面手动点击 “Run workflow” 立即同步。
+
+on:
+  workflow_dispatch:
+  schedule:
+    # 每天 UTC 02:00（北京时间 10:00）检查一次上游更新
+    - cron: "0 2 * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-upstream
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: 添加上游并拉取最新代码
+        run: |
+          git remote add upstream https://github.com/TwilitRealm/dusklight.git
+          git fetch upstream main
+
+      - name: 记录当前 main
+        id: old
+        run: echo "old=$(git rev-parse main)" >> "$GITHUB_OUTPUT"
+
+      - name: 重置到上游最新代码
+        run: |
+          git checkout -B main upstream/main
+
+      - name: 恢复本仓库特有文件（汉化 CI / 中文字体 / 词典工具 / 文档）
+        run: |
+          git checkout "${{ steps.old.outputs.old }}" -- \
+            .github/workflows/build.yml \
+            res/NotoSansCJKsc-Regular.otf \
+            tools/apply-zh.py \
+            tools/extract-zh.py \
+            tools/zh_cn.json \
+            docs/汉化维护.md
+
+      - name: 应用汉化词典
+        run: python3 tools/apply-zh.py
+
+      - name: 提交并推送（无变化则跳过）
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "上游没有变化，无需重新生成汉化"
+          else
+            git commit -m "sync: 同步上游 $(git rev-parse --short upstream/main) 并重新生成汉化"
+            git push origin main
+          fi

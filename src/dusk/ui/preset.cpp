@@ -91,7 +91,7 @@ PresetWindow::PresetWindow() : WindowSmall("modal", "modal-dialog") {
          "禁用增强功能以还原 GameCube 原版，适合速通或怀旧！",
          applyPresetClassic},
         {"Dusklight",
-         "Graphics & quality of life tweaks, including some from the Wii U version. "
+         "画质与体验增强，包含部分来自 Wii U 版的改进。 "
          "我们推荐的游玩方式！",
          applyPresetDusk},
     };

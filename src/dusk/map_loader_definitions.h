@@ -64,8 +64,8 @@ struct RegionEntry {
 };
 
 static const auto gameRegions = std::to_array({
-    RegionEntry("Hyrule Field", {
-        MapEntry("Hyrule Field", "F_SP121",
+    RegionEntry("海拉尔平原", {
+        MapEntry("海拉尔平原", "F_SP121",
             {
                 {0, {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 20, 21, 50}},
                 {1, {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 20, 21, 50}},
@@ -84,38 +84,38 @@ static const auto gameRegions = std::to_array({
                 {15, {0, 1, 2, 3, 4, 5, 20, 53, 100, 101}},
             }),
     }),
-    RegionEntry("Ordon", {
-        MapEntry("Ordon Village", "F_SP103", {
+    RegionEntry("奥登", {
+        MapEntry("奥登村", "F_SP103", {
             {0, {0, 1, 2, 4, 5, 6, 7, 9, 11, 13, 14, 15, 20, 21, 22, 23, 24, 25, 26, 27, 30, 99, 100, 101, 102, 103}},
         }),
-        MapEntry("Outside Link's House", "F_SP103", {
+        MapEntry("林克家门外", "F_SP103", {
             {1, {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 20, 21, 23, 24, 25, 26, 27, 30, 99, 100}},
         }, "F_SP103_1"),
-        MapEntry("Ordon Ranch", "F_SP00", {
+        MapEntry("奥登牧场", "F_SP00", {
             {0, {0, 1, 2, 3, 4, 5, 6, 7, 20, 30, 99, 127}},
         }),
-        MapEntry("Ordon Spring", "F_SP104", {
+        MapEntry("奥登之泉", "F_SP104", {
             {1, {0, 1, 2, 3, 4, 5, 6, 10, 20, 21, 22, 23, 24, 25, 26, 30, 99, 100, 111, 200, 254}}
         }),
-        MapEntry("Bo's House", "R_SP01", {
+        MapEntry("博的家", "R_SP01", {
             {0, {0, 1, 2, 3}},
         }),
-        MapEntry("Sera's Sundries", "R_SP01", {
+        MapEntry("塞拉杂货店", "R_SP01", {
             {1, {0}},
         }, "R_SP01_1"),
-        MapEntry("Jaggle's House", "R_SP01", {
+        MapEntry("贾格尔的家", "R_SP01", {
             {2, {0, 1, 2, 3}},
         }, "R_SP01_2"),
-        MapEntry("Link's House", "R_SP01", {
+        MapEntry("林克的家", "R_SP01", {
             {4, {0, 1, 2, 3, 4}},
             {7, {0}},
         }, "R_SP01_4"),
-        MapEntry("Rusl's House", "R_SP01", {
+        MapEntry("拉斯尔的家", "R_SP01", {
             {5, {0, 1, 2}},
         }, "R_SP01_5"),
     }),
-    RegionEntry("Faron", {
-        MapEntry("South Faron Woods", "F_SP108", {
+    RegionEntry("法隆", {
+        MapEntry("法隆森林南部", "F_SP108", {
             {0, {0, 3, 4, 20, 21, 22, 23, 24, 25, 100, 254}},
             {1, {0, 1, 2, 3, 6, 20, 21, 100}},
             {2, {0}},
@@ -126,27 +126,27 @@ static const auto gameRegions = std::to_array({
             {11, {0}},
             {14, {0, 1, 2, 3, 10, 50, 100, 150, 200, 254}},
         }),
-        MapEntry("North Faron Woods", "F_SP108", {
+        MapEntry("法隆森林北部", "F_SP108", {
             {6, {0, 1, 2, 3, 10, 50, 100, 150, 200, 254}},
         }, "F_SP108"),
-        MapEntry("Lost Woods", "F_SP117", {
+        MapEntry("迷失森林", "F_SP117", {
             {3, {0, 1, 2, 3, 4, 5, 6}},
         }),
-        MapEntry("Sacred Grove", "F_SP117", {
+        MapEntry("圣域", "F_SP117", {
             {1, {1, 3, 4, 5, 6, 10, 20, 21, 50, 51, 99, 100, 102, 150, 200, 254}}
         }, "F_SP117_1"),
-        MapEntry("Temple of Time (Past)", "F_SP117", {
+        MapEntry("时之神殿（过去）", "F_SP117", {
             {2, {0, 1, 3, 52, 101, 102}},
         }, "F_SP117_2"),
-        MapEntry("Faron Woods Cave", "D_SB10", {
+        MapEntry("法隆森林洞穴", "D_SB10", {
             {0, {0, 1, 20, 21}},
         }),
-        MapEntry("Coro's House", "R_SP108", {
+        MapEntry("科洛的家", "R_SP108", {
             {0, {0, 1}},
         }),
     }),
-    RegionEntry("Eldin", {
-        MapEntry("Kakariko Village", "F_SP109", {
+    RegionEntry("艾尔丁", {
+        MapEntry("卡卡利科村", "F_SP109", {
             {0, {
                 0,  1,  2,  3,  4,  5,  6,  7,  8,  9,  10, 11, 12, 13, 14, 15,
                 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 30, 31, 32, 33, 34, 35,
@@ -155,149 +155,149 @@ static const auto gameRegions = std::to_array({
                 68, 69, 70, 71, 100, 101,
             }},
         }),
-        MapEntry("Death Mountain Trail", "F_SP110", {
+        MapEntry("死亡之山道", "F_SP110", {
             {0, {0, 1, 2, 100, 200}},
             {1, {0}},
             {2, {0}},
             {3, {0, 1, 2, 3, 4, 5, 6}},
         }),
-        MapEntry("Kakariko Graveyard", "F_SP111", {
+        MapEntry("卡卡利科墓地", "F_SP111", {
             {0, {0, 1, 2, 3, 4, 5, 6, 111}},
         }),
-        MapEntry("Hidden Village", "F_SP128", {
+        MapEntry("隐者之村", "F_SP128", {
             {0, {0, 1, 2, 3, 4, 5, 100}},
         }),
-        MapEntry("Renado's Sanctuary", "R_SP109", {
+        MapEntry("雷纳多的神殿", "R_SP109", {
             {0, {0, 2, 3, 5, 6, 7, 8, 10, 20, 21, 22}},
         }),
-        MapEntry("Sanctuary Basement", "R_SP209", {
+        MapEntry("神殿地下室", "R_SP209", {
             {7, {0, 1, 2}},
         }),
-        MapEntry("Barnes' Bombs", "R_SP109", {
+        MapEntry("巴恩斯炸弹店", "R_SP109", {
             {1, {0, 1, 2, 3}},
         }, "R_SP109_1"),
-        MapEntry("Elde Inn", "R_SP109", {
+        MapEntry("艾尔德旅馆", "R_SP109", {
             {2, {0, 1, 2, 3}},
         }, "R_SP109_2"),
-        MapEntry("Malo Mart", "R_SP109", {
+        MapEntry("玛洛商店", "R_SP109", {
             {3, {0, 1}},
         }, "R_SP109_3"),
-        MapEntry("Lookout Tower", "R_SP109", {
+        MapEntry("瞭望塔", "R_SP109", {
             {4, {0, 1, 2}},
         }, "R_SP109_4"),
-        MapEntry("Bomb Warehouse", "R_SP109", {
+        MapEntry("炸弹仓库", "R_SP109", {
             {5, {0, 1}},
         }, "R_SP109_5"),
-        MapEntry("Abandoned House", "R_SP109", {
+        MapEntry("废弃房屋", "R_SP109", {
             {6, {0, 1, 5}},
         }, "R_SP109_6"),
-        MapEntry("Goron Elder's Hall", "R_SP110", {
+        MapEntry("戈隆长老之家", "R_SP110", {
             {0, {0, 1, 2, 3, 4, 100}},
         }),
     }),
-    RegionEntry("Lanayru", {
-        MapEntry("Outside Castle Town - West", "F_SP122", {
+    RegionEntry("拉聂耳", {
+        MapEntry("城下町外·西", "F_SP122", {
             {8, {0, 1, 2, 3, 4, 5, 6, 7, 76, 100, 101, 111, 200, 254}},
         }),
-        MapEntry("Outside Castle Town - South", "F_SP122", {
+        MapEntry("城下町外·南", "F_SP122", {
             {16, {0, 1, 2, 3, 4, 111}},
         }, "F_SP122_16"),
-        MapEntry("Outside Castle Town - East", "F_SP122", {
+        MapEntry("城下町外·东", "F_SP122", {
             {17, {0, 1, 4}},
         }, "F_SP122_17"),
-        MapEntry("Castle Town", "F_SP116", {
+        MapEntry("城下町", "F_SP116", {
             {0, {0, 3, 4, 5, 6, 11, 12, 13, 14, 15, 16, 20, 50, 99, 100}},
             {1, {0, 1, 30, 40, 50, 100, 111}},
             {2, {0, 1, 2, 3, 4}},
             {3, {0, 1, 2, 3, 4, 5, 7, 8, 9, 10, 12, 13, 30}},
             {4, {0, 2, 3, 4, 5, 6}},
         }),
-        MapEntry("Zora's River", "F_SP112", {
+        MapEntry("佐拉河", "F_SP112", {
             {1, {0, 1, 2, 3, 4, 5, 6, 7, 10, 11, 12, 13, 14, 15, 16, 17}},
         }),
-        MapEntry("Zora's Domain", "F_SP113", {
+        MapEntry("佐拉领地", "F_SP113", {
             {0, {0, 1, 3, 4, 5, 7, 8, 10, 50, 97, 99, 254}},
             {1, {0, 1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 20, 30, 34, 98, 100, 101}},
         }),
-        MapEntry("Lake Hylia", "F_SP115", {
+        MapEntry("海利亚湖", "F_SP115", {
             {0, {
                 0,  1,  2,  3,  4,  5,  6,  7,  8,  9,  10, 11, 12, 13, 14, 15,
                 16, 17, 20, 25, 29, 30, 31, 32, 33, 34, 40, 50, 55, 70, 75, 76,
                 77, 78, 99, 100, 101, 133, 134, 150, 200, 254,
             }},
         }),
-        MapEntry("Lanayru Spring", "F_SP115", {
+        MapEntry("拉聂耳之泉", "F_SP115", {
             {1, {0, 1, 20, 21, 22, 23, 100}},
         }, "F_SP115_1"),
-        MapEntry("Upper Zora's River", "F_SP126", {
+        MapEntry("佐拉河上游", "F_SP126", {
             {0, {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 99, 100, 101, 200}},
         }),
-        MapEntry("Fishing Pond", "F_SP127", {
+        MapEntry("钓鱼池", "F_SP127", {
             {0, {0, 1, 2, 3, 4, 5, 100}},
         }),
-        MapEntry("Castle Town Sewers", "R_SP107", {
+        MapEntry("城下町下水道", "R_SP107", {
             {0, {0, 1, 2, 3, 21, 22, 23, 24, 25}},
             {1, {0, 1, 2, 3, 4, 5, 6, 7}},
             {2, {0, 1, 2, 2, 20}},
             {3, {0, 1, 20, 21, 22, 23, 24}},
         }),
-        MapEntry("Telma's Bar / Secret Passage", "R_SP116", {
+        MapEntry("泰尔玛酒吧/密道", "R_SP116", {
             {5, {0, 1, 2, 3, 4, 5, 6, 20, 30}},
             {6, {10, 11, 12, 20, 21}},
         }),
-        MapEntry("Hena's Cabin", "R_SP127", {
+        MapEntry("海娜的小屋", "R_SP127", {
             {0, {0, 1}},
         }),
-        MapEntry("Impaz's House", "R_SP128", {
+        MapEntry("因帕兹的家", "R_SP128", {
             {0, {0}},
         }),
-        MapEntry("Malo Mart", "R_SP160", {
+        MapEntry("玛洛商店", "R_SP160", {
             {0, {0, 1, 2}},
         }),
-        MapEntry("Fanadi's Palace", "R_SP160", {
+        MapEntry("法纳迪的宫殿", "R_SP160", {
             {1, {0, 1, 2}},
         }, "R_SP160_1"),
-        MapEntry("Medical Clinic", "R_SP160", {
+        MapEntry("诊疗所", "R_SP160", {
             {2, {0, 1, 2}},
         }, "R_SP160_2"),
-        MapEntry("Agitha's Castle", "R_SP160", {
+        MapEntry("阿吉莎的城堡", "R_SP160", {
             {3, {0, 1, 2}},
         }, "R_SP160_3"),
-        MapEntry("Goron Shop", "R_SP160", {
+        MapEntry("戈隆商店", "R_SP160", {
             {4, {0, 1, 2}},
         }, "R_SP160_4"),
-        MapEntry("Jovani's House", "R_SP160", {
+        MapEntry("乔瓦尼的家", "R_SP160", {
             {5, {0, 1, 2, 3, 4}},
         }, "R_SP160_5"),
-        MapEntry("STAR Tent", "R_SP161", {
+        MapEntry("STAR 帐篷", "R_SP161", {
             {7, {0, 1, 2, 3, 4}},
         }),
     }),
-    RegionEntry("Gerudo Desert", {
-        MapEntry("Bulblin Camp", "F_SP118", {
+    RegionEntry("格鲁德沙漠", {
+        MapEntry("布尔布林营地", "F_SP118", {
             {0, {0}}, //TODO: can't load this one far enough to see its valid points
             {1, {0, 1, 2, 6}},
             {3, {0, 2, 3, 4, 5, 7}},
         }),
-        MapEntry("Bulblin Camp Beta Room", "F_SP118", {
+        MapEntry("布尔布林营地 Beta 房间", "F_SP118", {
             {2, {0}},
         }, "F_SP118_2"),
-        MapEntry("Gerudo Desert", "F_SP124", {
+        MapEntry("格鲁德沙漠", "F_SP124", {
             {0, {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 50, 51, 52, 53, 111}},
         }),
-        MapEntry("Mirror Chamber", "F_SP125", {
+        MapEntry("镜子之间", "F_SP125", {
             {4, {0, 1, 2, 3, 4, 5, 6, 7, 8, 51, 52, 54, 55, 56, 57, 58}},
         }),
     }),
-    RegionEntry("Snowpeak", {
-        MapEntry("Snowpeak Mountain", "F_SP114", {
+    RegionEntry("雪峰", {
+        MapEntry("雪峰山", "F_SP114", {
             {0, {0, 1, 2, 4, 5, 6, 7, 10, 13, 14, 15, 100}},
             {1, {1, 2, 3, 5, 6, 9, 10, 11, 12, 13, 20, 21, 22, 100}},
             {2, {8, 12, 13}},
         }),
     }),
-    RegionEntry("Forest Temple", {
-        MapEntry("Forest Temple", "D_MN05", {
+    RegionEntry("森林神殿", {
+        MapEntry("森林神殿", "D_MN05", {
             {0, {0}},
             {1, {0}},
             {2, {0}},
@@ -312,15 +312,15 @@ static const auto gameRegions = std::to_array({
             {19, {0}},
             {22, {0}},
         }),
-        MapEntry("Diababa Arena", "D_MN05A", {
+        MapEntry("迪亚巴巴战斗场", "D_MN05A", {
             {50, {0, 1}},
         }),
-        MapEntry("Ook Arena", "D_MN05B", {
+        MapEntry("奥克战斗场", "D_MN05B", {
             {51, {0, 1, 2}},
         }),
     }),
-    RegionEntry("Goron Mines", {
-        MapEntry("Goron Mines", "D_MN04", {
+    RegionEntry("戈隆矿山", {
+        MapEntry("戈隆矿山", "D_MN04", {
             {1, {0, 1}},
             {3, {0}},
             {4, {0, 1}},
@@ -335,15 +335,15 @@ static const auto gameRegions = std::to_array({
             {16, {0}},
             {17, {0, 1}},
         }),
-        MapEntry("Fyrus Arena", "D_MN04A", {
+        MapEntry("法伊拉斯战斗场", "D_MN04A", {
             {50, {0, 1}},
         }),
-        MapEntry("Dangoro Arena", "D_MN04B", {
+        MapEntry("丹戈罗战斗场", "D_MN04B", {
             {51, {0, 1, 2, 3}},
         }),
     }),
-    RegionEntry("Lakebed Temple", {
-        MapEntry("Lakebed Temple", "D_MN01", {
+    RegionEntry("湖底神殿", {
+        MapEntry("湖底神殿", "D_MN01", {
             {0, {0, 1, 2}},
             {1, {0}},
             {2, {0}},
@@ -358,15 +358,15 @@ static const auto gameRegions = std::to_array({
             {12, {0, 1, 2}},
             {13, {0}},
         }),
-        MapEntry("Morpheel Arena", "D_MN01A", {
+        MapEntry("莫菲鲁战斗场", "D_MN01A", {
             {50, {0, 1, 2, 3}},
         }),
-        MapEntry("Deku Toad Arena", "D_MN01B", {
+        MapEntry("德库蟾蜍战斗场", "D_MN01B", {
             {51, {0, 1, 2, 3}},
         }),
     }),
-    RegionEntry("Arbiter's Grounds", {
-        MapEntry("Arbiter's Grounds", "D_MN10", {
+    RegionEntry("裁决之地", {
+        MapEntry("裁决之地", "D_MN10", {
             {0, {0, 1, 2, 3}},
             {1, {0}},
             {2, {0, 1, 2, 3}},
@@ -385,15 +385,15 @@ static const auto gameRegions = std::to_array({
             {15, {0, 1}},
             {16, {0}},
         }),
-        MapEntry("Stallord Arena", "D_MN10A", {
+        MapEntry("斯塔洛德战斗场", "D_MN10A", {
             {50, {0, 1, 2, 3}},
         }),
-        MapEntry("Death Sword Arena", "D_MN10B", {
+        MapEntry("死亡之剑战斗场", "D_MN10B", {
             {51, {0, 1, 2, 3}},
         }),
     }),
-    RegionEntry("Snowpeak Ruins", {
-        MapEntry("Snowpeak Ruins", "D_MN11", {
+    RegionEntry("雪峰遗迹", {
+        MapEntry("雪峰遗迹", "D_MN11", {
             {0, {0, 1, 2, 3}},
             {1, {0}},
             {2, {0, 1, 2}},
@@ -407,18 +407,18 @@ static const auto gameRegions = std::to_array({
             {11, {0}},
             {13, {0}},
         }),
-        MapEntry("Blizzeta Arena", "D_MN11A", {
+        MapEntry("布里扎塔战斗场", "D_MN11A", {
             {50, {0, 1, 2, 3}},
         }),
-        MapEntry("Darkhammer Arena", "D_MN11B", {
+        MapEntry("暗黑锤战斗场", "D_MN11B", {
             {51, {0, 1, 2, 3}},
         }),
-        MapEntry("Darkhammer Beta Arena", "D_MN11B", {
+        MapEntry("暗黑锤 Beta 战斗场", "D_MN11B", {
             {49, {0, 1, 2}},
         }),
     }),
-    RegionEntry("Temple of Time", {
-        MapEntry("Temple of Time", "D_MN06", {
+    RegionEntry("时之神殿", {
+        MapEntry("时之神殿", "D_MN06", {
             {0, {0, 1}},
             {1, {0}},
             {2, {0, 1, 2}},
@@ -429,15 +429,15 @@ static const auto gameRegions = std::to_array({
             {7, {0, 1, 2}},
             {8, {0, 1, 2}},
         }),
-        MapEntry("Armogohma Arena", "D_MN06A", {
+        MapEntry("阿尔莫戈玛战斗场", "D_MN06A", {
             {50, {0, 1}},
         }),
-        MapEntry("Darknut Arena", "D_MN06B", {
+        MapEntry("暗黑骑士战斗场", "D_MN06B", {
             {51, {0}},
         }),
     }),
-    RegionEntry("City in the Sky", {
-        MapEntry("City in the Sky", "D_MN07", {
+    RegionEntry("天空之城", {
+        MapEntry("天空之城", "D_MN07", {
             {0, {0, 1, 2, 3, 4, 5}},
             {1, {0}},
             {2, {0, 1, 2, 3, 4}},
@@ -455,15 +455,15 @@ static const auto gameRegions = std::to_array({
             {15, {0, 1, 3, 4}},
             {16, {0, 1, 2}},
         }),
-        MapEntry("Argorok Arena", "D_MN07A", {
+        MapEntry("阿尔戈洛克战斗场", "D_MN07A", {
             {50, {0, 1, 2, 3}},
         }),
-        MapEntry("Aeralfos Arena", "D_MN07B", {
+        MapEntry("埃拉尔弗斯战斗场", "D_MN07B", {
             {51, {0, 1, 2}},
         }),
     }),
-    RegionEntry("Palace of Twilight", {
-        MapEntry("Palace of Twilight", "D_MN08", {
+    RegionEntry("黄昏宫殿", {
+        MapEntry("黄昏宫殿", "D_MN08", {
             {0, {0, 1, 2, 3, 4, 10, 20, 21, 22}},
             {1, {0, 1}},
             {2, {0, 1}},
@@ -475,16 +475,16 @@ static const auto gameRegions = std::to_array({
             {10, {0, 1}},
             {11, {0, 1, 20, 21, 22}},
         }),
-        MapEntry("Palace of Twilight Throne Room", "D_MN08A", {
+        MapEntry("黄昏宫殿王座之间", "D_MN08A", {
             {10, {0, 1, 21, 23, 24, 25}},
         }),
-        MapEntry("Phantom Zant Arena 1", "D_MN08B", {
+        MapEntry("幻影赞特战斗场 1", "D_MN08B", {
             {51, {0, 1, 2, 3}},
         }),
-        MapEntry("Phantom Zant Arena 2", "D_MN08C", {
+        MapEntry("幻影赞特战斗场 2", "D_MN08C", {
             {52, {0, 2}},
         }),
-        MapEntry("Zant Arenas", "D_MN08D", {
+        MapEntry("赞特战斗场", "D_MN08D", {
             {50, {0, 20}},
             {53, {0}},
             {54, {0}},
@@ -494,8 +494,8 @@ static const auto gameRegions = std::to_array({
             {60, {0}},
         }),
     }),
-    RegionEntry("Hyrule Castle", {
-        MapEntry("Hyrule Castle", "D_MN09", {
+    RegionEntry("海拉尔城堡", {
+        MapEntry("海拉尔城堡", "D_MN09", {
             {1, {0, 1, 2, 3}},
             {2, {0, 2, 3}},
             {3, {0}},
@@ -510,22 +510,22 @@ static const auto gameRegions = std::to_array({
             {14, {0, 1, 2, 3, 4, 5}},
             {15, {0, 1, 2, 3, 4, 5, 6, 7}},
         }),
-        MapEntry("Hyrule Castle Throne Room", "D_MN09A", {
+        MapEntry("海拉尔城堡王座之间", "D_MN09A", {
             {50, {0, 1, 2, 10, 20, 21, 22, 120, 121, 122}},
             {51, {0, 1, 2, 10, 20, 21, 22, 120, 121, 122}},
         }),
-        MapEntry("Horseback Ganondorf Arena", "D_MN09B", {
+        MapEntry("骑马加农多夫战斗场", "D_MN09B", {
             {0, {0, 1}},
         }),
-        MapEntry("Dark Lord Ganondorf Arena", "D_MN09C", {
+        MapEntry("暗黑魔王加农多夫战斗场", "D_MN09C", {
             {0, {0, 20, 21, 22, 23}},
         }),
     }),
-    RegionEntry("Mini-Dungeons and Grottos", {
-        MapEntry("Ice Cavern", "D_SB00", {
+    RegionEntry("小迷宫与洞穴", {
+        MapEntry("冰之洞窟", "D_SB00", {
             {0, {0}},
         }),
-        MapEntry("Cave Of Ordeals", "D_SB01", {
+        MapEntry("试炼之洞窟", "D_SB01", {
             {0, {0}},
             {1, {0}},
             {2, {0}},
@@ -578,48 +578,48 @@ static const auto gameRegions = std::to_array({
             {49, {0}},
         }
         ),
-        MapEntry("Kakariko Gorge Cavern", "D_SB02", {
+        MapEntry("卡卡利科峡谷洞穴", "D_SB02", {
             {0, {0}},
         }),
-        MapEntry("Lake Hylia Cavern", "D_SB03", {
+        MapEntry("海利亚湖洞穴", "D_SB03", {
             {0, {0, 1}},
         }),
-        MapEntry("Goron Stockcave", "D_SB04", {
+        MapEntry("戈隆储物洞穴", "D_SB04", {
             {10, {0, 1}},
         }),
-        MapEntry("Grotto 1", "D_SB05", {
+        MapEntry("洞穴 1", "D_SB05", {
             {0, {0, 1}},
         }),
-        MapEntry("Grotto 2", "D_SB06", {
+        MapEntry("洞穴 2", "D_SB06", {
             {1, {0, 1}},
         }),
-        MapEntry("Grotto 3", "D_SB07", {
+        MapEntry("洞穴 3", "D_SB07", {
             {2, {0, 1}},
         }),
-        MapEntry("Grotto 4", "D_SB08", {
+        MapEntry("洞穴 4", "D_SB08", {
             {3, {0, 1}},
         }),
-        MapEntry("Grotto 5", "D_SB09", {
+        MapEntry("洞穴 5", "D_SB09", {
             {4, {0, 1}},
         }),
     }),
-    RegionEntry("Misc", {
-        MapEntry("Title Screen / King Bulblin 1", "F_SP102", {
+    RegionEntry("其他", {
+        MapEntry("标题画面/布尔布林王 1", "F_SP102", {
             {0, {0, 1, 2, 3, 4, 5, 20, 53, 100, 101}},
         }),
-        MapEntry("King Bulblin 2", "F_SP123", {
+        MapEntry("布尔布林王 2", "F_SP123", {
             {13, {0}},
         }),
-        MapEntry("Wolf Howling Cutscene Map", "F_SP200", {
+        MapEntry("狼嚎过场地图", "F_SP200", {
             {0, {0, 1, 2, 3, 4, 5, 6, 7}},
         }),
-        MapEntry("Cutscene: Light Arrow Area", "R_SP300", {
+        MapEntry("过场：光之箭区域", "R_SP300", {
             {0, {0, 20, 120}},
         }),
-        MapEntry("Cutscene: Hyrule Castle Throne Room", "R_SP301", {
+        MapEntry("过场：海拉尔城堡王座之间", "R_SP301", {
             {0, {0, 20, 100}},
         }),
-        MapEntry("Title screen movie map", "S_MV000", {
+        MapEntry("标题画面影片地图", "S_MV000", {
             {0, {0, 1}},
         }),
     })

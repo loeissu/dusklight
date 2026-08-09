@@ -14,15 +14,15 @@ namespace {
 const char* level_name(LogLevel level) {
     switch (level) {
     case LOG_LEVEL_TRACE:
-        return "Trace";
+        return "追踪";
     case LOG_LEVEL_DEBUG:
-        return "Debug";
+        return "调试";
     case LOG_LEVEL_INFO:
-        return "Info";
+        return "信息";
     case LOG_LEVEL_WARN:
-        return "Warn";
+        return "警告";
     case LOG_LEVEL_ERROR:
-        return "Error";
+        return "错误";
     }
     return "?";
 }
@@ -30,15 +30,15 @@ const char* level_name(LogLevel level) {
 const char* level_logger_name(LogLevel level) {
     switch (level) {
     case LOG_LEVEL_TRACE:
-        return "TRACE";
+        return "追踪";
     case LOG_LEVEL_DEBUG:
-        return "DEBUG";
+        return "调试";
     case LOG_LEVEL_INFO:
-        return "INFO";
+        return "信息";
     case LOG_LEVEL_WARN:
-        return "WARNING";
+        return "警告";
     case LOG_LEVEL_ERROR:
-        return "ERROR";
+        return "错误";
     }
     return "?";
 }

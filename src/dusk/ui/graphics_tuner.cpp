@@ -201,7 +201,7 @@ Rml::String format_graphics_setting_value(GraphicsOption option, int value) {
         u32 height = 0;
         AuroraGetRenderSize(&width, &height);
         if (value <= 0) {
-            return fmt::format("Auto ({}×{})", width, height);
+            return fmt::format("自动 ({}×{})", width, height);
         } else {
             return fmt::format("{}× ({}×{})", value, width, height);
         }
@@ -211,17 +211,17 @@ Rml::String format_graphics_setting_value(GraphicsOption option, int value) {
     case GraphicsOption::Resampler:
         switch (static_cast<Resampler>(value)) {
         case Resampler::Bilinear:
-            return "Bilinear";
+            return "双线性";
         case Resampler::Area:
-            return "Area";
+            return "区域";
         }
         break;
     case GraphicsOption::BloomMode:
         switch (static_cast<BloomMode>(value)) {
         case BloomMode::Off:
-            return "Off";
+            return "关闭";
         case BloomMode::Classic:
-            return "Classic";
+            return "经典";
         case BloomMode::Dusk:
             return "Dusklight";
         }
@@ -229,9 +229,9 @@ Rml::String format_graphics_setting_value(GraphicsOption option, int value) {
     case GraphicsOption::DepthOfFieldMode:
         switch (static_cast<DepthOfFieldMode>(value)) {
         case DepthOfFieldMode::Off:
-            return "Off";
+            return "关闭";
         case DepthOfFieldMode::Classic:
-            return "Classic";
+            return "经典";
         case DepthOfFieldMode::Dusk:
             return "Dusklight";
         }
@@ -239,7 +239,7 @@ Rml::String format_graphics_setting_value(GraphicsOption option, int value) {
     case GraphicsOption::BloomMultiplier:
         return fmt::format("{}%", value);
     case GraphicsOption::TextureReplacements:
-        return static_cast<bool>(value) ? "On" : "Off";
+        return static_cast<bool>(value) ? "开启" : "关闭";
     }
     return "";
 }

@@ -269,7 +269,7 @@ void ModsWindow::build_detail(Pane& pane, mods::LoadedMod& mod) {
     }
     if (mod.active && !activeDependents.empty()) {
         pane.add_rml(fmt::format(R"(<div class="mod-restart-note">{}</div>)",
-            escape(fmt::format("Disabling or reloading also restarts: {}", activeDependents))));
+            escape(fmt::format("禁用或重新加载也会重启：{}", activeDependents))));
     }
 
     if (!mod.metadata.description.empty()) {

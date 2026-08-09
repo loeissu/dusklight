@@ -154,7 +154,7 @@ bool try_parse_backend(std::string_view backend, AuroraBackend& outBackend) {
 std::string_view backend_name(AuroraBackend backend) {
     switch (backend) {
     default:
-        return "Auto";
+        return "自动";
     case BACKEND_D3D12:
         return "D3D12";
     case BACKEND_D3D11:
