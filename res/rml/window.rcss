@@ -146,10 +146,25 @@ window content pane:not(:last-of-type) {
 
 window content pane > * {
     flex: 0 0 auto;
+    min-width: 0;
+    max-width: 100%;
+}
+
+/* 说明/详情文本按边框宽度自动换行：容器不超过面板宽度，超长内容强制断行 */
+window content pane div {
+    width: 100%;
+    word-break: break-word;
 }
 
 window content pane:last-of-type > div {
     line-height: 1.625;
+}
+
+/* 弹窗内容超出屏幕高度时改为可滚动，避免长说明被裁切 */
+window.small,
+window.modal {
+    max-height: 100%;
+    overflow: hidden auto;
 }
 
 .data-folder-current {
