@@ -33,24 +33,6 @@ jobs:
           fetch-depth: 0
           submodules: recursive
 
-      - name: Enable Visual Studio environment
-        shell: powershell
-        run: |
-          $vswhere = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe"
-          $vsPath = & $vswhere -latest -products * -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationPath
-          if (-not $vsPath) {
-            throw "未找到带 C++ 工具链的 Visual Studio"
-          }
-          $utf8NoBom = New-Object System.Text.UTF8Encoding($false)
-          cmd /c "call `"$vsPath\Common7\Tools\VsDevCmd.bat`" -arch=amd64 -host_arch=amd64 >nul && set" | ForEach-Object {
-            if ($_ -match '^([^=]+)=(.*)$') {
-              $name = $matches[1]
-              $value = $matches[2]
-              [System.Environment]::SetEnvironmentVariable($name, $value, 'Process')
-              [System.IO.File]::AppendAllText($env:GITHUB_ENV, "$name=$value`n", $utf8NoBom)
-            }
-          }
-
       # 确保 vcpkg 根目录固定，避免环境变量被覆盖
       - name: Override VCPKG_ROOT
         run: echo "VCPKG_ROOT=C:\vcpkg" >> $env:GITHUB_ENV
@@ -63,11 +45,17 @@ jobs:
           choco install ninja
           vcpkg install freetype:x64-windows zstd:x64-windows
 
-      - name: Configure CMake
-        run: cmake --preset x-windows-ci-msvc
-
-      - name: Build
-        run: cmake --build --preset x-windows-ci-msvc
+      - name: Configure and build (MSVC)
+        shell: cmd
+        run: |
+          for /f "usebackq delims=" %%i in (`"%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere.exe" -latest -products * -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationPath`) do set "VSPATH=%%i"
+          if not defined VSPATH (
+            echo Visual Studio with C++ workload not found
+            exit /b 1
+          )
+          call "%VSPATH%\Common7\Tools\VsDevCmd.bat" -arch=amd64 -host_arch=amd64
+          cmake --preset x-windows-ci-msvc
+          cmake --build --preset x-windows-ci-msvc
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v7
