@@ -44,6 +44,7 @@ jobs:
         run: |
           git checkout "${{ steps.old.outputs.old }}" -- \
             .github/workflows/build.yml \
+            .github/workflows/sync-upstream.yml \
             res/NotoSansCJKsc-Regular.otf \
             tools/apply-zh.py \
             tools/extract-zh.py \
