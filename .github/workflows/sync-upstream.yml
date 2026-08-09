@@ -1,15 +1,15 @@
-name: 同步上游并重新生成汉化
+name: 同步上游正式版并重新生成汉化
 
-# 自动把上游 TwilitRealm/dusklight 的最新代码合并进本仓库，
-# 并用 tools/zh_cn.json 词典重新生成汉化文件，然后推送到 main。
-# 推送会触发 build.yml 自动编译 Windows / Linux / Android 汉化版。
-#
-# 也可以在 Actions 页面手动点击 “Run workflow” 立即同步。
+# 仅在上游发布新的正式版（GitHub Release，非预发布）后自动同步：
+# 每天检查一次；发现新正式版时，把源码重置到该版本标签，用
+# tools/zh_cn.json 重新生成汉化、自动更新版本号、推送到 main，
+# 并触发 build.yml 编译 Windows / Linux / Android 三个平台的汉化版。
+# 也可在 Actions 页面手动点击 “Run workflow” 立即检查。
 
 on:
   workflow_dispatch:
   schedule:
-    # 每天 UTC 02:00（北京时间 10:00）检查一次上游更新
+    # 每天 UTC 02:00（北京时间 10:00）检查一次上游是否发布新正式版
     - cron: "0 2 * * *"
 
 permissions:
@@ -27,20 +27,45 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: 添加上游并拉取最新代码
+      - name: 查询上游最新正式版
+        id: release
+        run: |
+          TAG=$(curl -sS https://api.github.com/repos/TwilitRealm/dusklight/releases/latest \
+            | python3 -c "import json,sys; print(json.load(sys.stdin)['tag_name'])")
+          echo "tag=${TAG}" >> "$GITHUB_OUTPUT"
+          echo "上游最新正式版：${TAG}"
+
+      - name: 读取上次同步的正式版
+        id: last
+        run: |
+          TAG=""
+          if [ -f tools/zh-last-release.txt ]; then
+            TAG=$(cat tools/zh-last-release.txt)
+          fi
+          echo "tag=${TAG}" >> "$GITHUB_OUTPUT"
+          echo "上次同步的正式版：${TAG}"
+
+      - name: 无新正式版，跳过
+        if: steps.last.outputs.tag == steps.release.outputs.tag
+        run: echo "已是最新正式版 ${{ steps.release.outputs.tag }}，无需重新构建"
+
+      - name: 拉取上游正式版标签
+        if: steps.last.outputs.tag != steps.release.outputs.tag
         run: |
           git remote add upstream https://github.com/TwilitRealm/dusklight.git
-          git fetch upstream main
+          git fetch upstream --tags --force
 
       - name: 记录当前 main
         id: old
+        if: steps.last.outputs.tag != steps.release.outputs.tag
         run: echo "old=$(git rev-parse main)" >> "$GITHUB_OUTPUT"
 
-      - name: 重置到上游最新代码
-        run: |
-          git checkout -B main upstream/main
+      - name: 重置源码到上游正式版
+        if: steps.last.outputs.tag != steps.release.outputs.tag
+        run: git checkout -B main "${{ steps.release.outputs.tag }}"
 
-      - name: 恢复本仓库特有文件（汉化 CI / 中文字体 / 词典工具 / 文档）
+      - name: 恢复汉化相关文件（CI / 字体 / 词典工具 / 文档）
+        if: steps.last.outputs.tag != steps.release.outputs.tag
         run: |
           git checkout "${{ steps.old.outputs.old }}" -- \
             .github/workflows/build.yml \
@@ -48,20 +73,27 @@ jobs:
             res/NotoSansCJKsc-Regular.otf \
             tools/apply-zh.py \
             tools/extract-zh.py \
+            tools/set-version.py \
             tools/zh_cn.json \
+            tools/zh-last-release.txt \
             docs/汉化维护.md
 
       - name: 应用汉化词典
+        if: steps.last.outputs.tag != steps.release.outputs.tag
         run: python3 tools/apply-zh.py
 
-      - name: 提交并推送（无变化则跳过）
+      - name: 更新版本号并记录已同步版本
+        if: steps.last.outputs.tag != steps.release.outputs.tag
+        run: |
+          VERSION="${{ steps.release.outputs.tag }}"
+          python3 tools/set-version.py "${VERSION#v}"
+          echo "${VERSION}" > tools/zh-last-release.txt
+
+      - name: 提交并推送
+        if: steps.last.outputs.tag != steps.release.outputs.tag
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
-          if git diff --cached --quiet; then
-            echo "上游没有变化，无需重新生成汉化"
-          else
-            git commit -m "sync: 同步上游 $(git rev-parse --short upstream/main) 并重新生成汉化"
-            git push origin main
-          fi
+          git commit -m "sync: 同步上游正式版 ${{ steps.release.outputs.tag }} 并重新生成汉化"
+          git push origin main
