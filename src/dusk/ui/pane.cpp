@@ -7,6 +7,68 @@
 namespace dusk::ui {
 namespace {
 
+// 在连续中文/全角字符中每隔 kDetailWrapLimit 个插入 <br/>，
+// 用于详情/说明面板，保证长中文说明能整齐换行、完整显示。
+// 只处理文字内容，跳过 HTML 标签与 &..; 实体。
+constexpr size_t kDetailWrapLimit = 15;
+
+std::string wrap_detail_text(const Rml::String& text) {
+    std::string out;
+    out.reserve(text.size() + (text.size() / kDetailWrapLimit + 1) * 6);
+    bool inTag = false;
+    size_t cjkRun = 0;
+    size_t i = 0;
+    while (i < text.size()) {
+        const char c = text[i];
+        if (c == '<') {
+            inTag = true;
+            cjkRun = 0;
+            out += c;
+            ++i;
+            continue;
+        }
+        if (c == '>') {
+            inTag = false;
+            out += c;
+            ++i;
+            continue;
+        }
+        if (inTag) {
+            out += c;
+            ++i;
+            continue;
+        }
+        if (c == '&') {
+            cjkRun = 0;
+            while (i < text.size() && text[i] != ';' && text[i] != '<') {
+                out += text[i];
+                ++i;
+            }
+            if (i < text.size()) {
+                out += text[i];
+                ++i;
+            }
+            continue;
+        }
+        const unsigned char u = static_cast<unsigned char>(c);
+        if (u >= 0xE0 && u < 0xF0 && i + 2 < text.size()) {
+            // UTF-8 三字节字符（中文与全角标点）
+            ++cjkRun;
+            out.append(text, i, 3);
+            i += 3;
+            if (cjkRun >= kDetailWrapLimit) {
+                out += "<br/>";
+                cjkRun = 0;
+            }
+            continue;
+        }
+        cjkRun = 0;
+        out += c;
+        ++i;
+    }
+    return out;
+}
+
 Rml::Element* createRoot(Rml::Element* parent) {
     auto* doc = parent->GetOwnerDocument();
     auto elem = doc->CreateElement("pane");
@@ -172,13 +234,17 @@ Rml::Element* Pane::add_section(const Rml::String& text) {
 
 Rml::Element* Pane::add_text(const Rml::String& text) {
     auto* elem = append(mRoot, "div");
-    append_text(elem, text);
+    if (mType == Type::Uncontrolled) {
+        elem->SetInnerRML(wrap_detail_text(escape(text)));
+    } else {
+        append_text(elem, text);
+    }
     return elem;
 }
 
 Rml::Element* Pane::add_rml(const Rml::String& rml) {
     auto* elem = append(mRoot, "div");
-    elem->SetInnerRML(rml);
+    elem->SetInnerRML(mType == Type::Uncontrolled ? wrap_detail_text(rml) : rml);
     return elem;
 }
 
