@@ -28,6 +28,23 @@ ext.borealisAndroid = [
 
 apply from: new File(borealisDir, 'platforms/android/gradle/borealis-application.gradle')
 
+// 汉化版：从版本号推导 Android versionCode。
+// 上游在设置 BOREALIS_APP_VERSION_OVERRIDE 时会把 versionCode 固定为 1，
+// 导致新版本无法覆盖安装旧版本；这里按 主版本*10000 + 次版本*100 + 修订号 重新计算。
+def zhVersionProps = new Properties()
+file(ext.borealisAndroid.propertiesFile).withInputStream { zhVersionProps.load(it) }
+def zhVersionName = (zhVersionProps.getProperty('borealis.versionName') ?: '0.0.0').replaceFirst('^v', '')
+def zhVersionParts = zhVersionName.split('\\.')
+def zhVersionCode = 1
+if (zhVersionParts.length >= 3) {
+    zhVersionCode = zhVersionParts[0].toInteger() * 10000 + zhVersionParts[1].toInteger() * 100 + zhVersionParts[2].toInteger()
+}
+android {
+    defaultConfig {
+        versionCode zhVersionCode
+    }
+}
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 }

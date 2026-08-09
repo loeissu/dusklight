@@ -67,7 +67,7 @@ jobs:
       - name: 恢复汉化相关文件（CI / 字体 / 词典工具 / 文档）
         if: steps.last.outputs.tag != steps.release.outputs.tag
         run: |
-          git checkout "${{ steps.old.outputs.old }}" -- \
+          for f in \
             .github/workflows/build.yml \
             .github/workflows/sync-upstream.yml \
             res/NotoSansCJKsc-Regular.otf \
@@ -76,7 +76,12 @@ jobs:
             tools/set-version.py \
             tools/zh_cn.json \
             tools/zh-last-release.txt \
-            docs/汉化维护.md
+            docs/汉化维护.md \
+            android-keystore/release.keystore \
+            platforms/android/app/build.gradle; do
+            git checkout "${{ steps.old.outputs.old }}" -- "$f" 2>/dev/null \
+              || echo "跳过（旧版中不存在）: $f"
+          done
 
       - name: 应用汉化词典
         if: steps.last.outputs.tag != steps.release.outputs.tag

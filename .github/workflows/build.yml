@@ -156,7 +156,10 @@ jobs:
       - name: Prepare keystore
         shell: bash
         run: |
-          if [ -n "${{ secrets.ANDROID_KEYSTORE_B64 }}" ]; then
+          if [ -f android-keystore/release.keystore ]; then
+            cp android-keystore/release.keystore release.keystore
+            echo "Using committed keystore (android-keystore/release.keystore)."
+          elif [ -n "${{ secrets.ANDROID_KEYSTORE_B64 }}" ]; then
             echo "${{ secrets.ANDROID_KEYSTORE_B64 }}" | base64 -d > release.keystore
             echo "Using keystore from GitHub secret."
           else
