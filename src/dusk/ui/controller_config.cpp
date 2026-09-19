@@ -32,13 +32,13 @@ Rml::String current_controller_name(int port) {
     if (name != nullptr) {
         return name;
     }
-    return keyboard_active(port) ? "Keyboard" : "None";
+    return keyboard_active(port) ? "键盘" : "无";
 }
 
 Rml::String controller_index_name(u32 index) {
     const char* name = PADGetNameForControllerIndex(index);
     if (name == nullptr) {
-        return fmt::format("Device {}", index + 1);
+        return fmt::format("设备 {}", index + 1);
     }
     return name;
 }
@@ -67,17 +67,17 @@ const std::vector<ButtonNames> kGamepadButtonNames = {
         {SDL_GAMEPAD_TYPE_PS3, "L3"},
         {SDL_GAMEPAD_TYPE_PS4, "L3"},
         {SDL_GAMEPAD_TYPE_PS5, "L3"},
-        {SDL_GAMEPAD_TYPE_XBOX360, "Left Stick"},
-        {SDL_GAMEPAD_TYPE_XBOXONE, "Left Stick"},
-        {SDL_GAMEPAD_TYPE_GAMECUBE, "Control Stick"},
+        {SDL_GAMEPAD_TYPE_XBOX360, "左摇杆"},
+        {SDL_GAMEPAD_TYPE_XBOXONE, "左摇杆"},
+        {SDL_GAMEPAD_TYPE_GAMECUBE, "控制摇杆"},
     }},
     { SDL_GAMEPAD_BUTTON_RIGHT_STICK, {
         {SDL_GAMEPAD_TYPE_PS3, "R3"},
         {SDL_GAMEPAD_TYPE_PS4, "R3"},
         {SDL_GAMEPAD_TYPE_PS5, "R3"},
-        {SDL_GAMEPAD_TYPE_XBOX360, "Right Stick"},
-        {SDL_GAMEPAD_TYPE_XBOXONE, "Right Stick"},
-        {SDL_GAMEPAD_TYPE_GAMECUBE, "C Stick"},
+        {SDL_GAMEPAD_TYPE_XBOX360, "右摇杆"},
+        {SDL_GAMEPAD_TYPE_XBOXONE, "右摇杆"},
+        {SDL_GAMEPAD_TYPE_GAMECUBE, "C 摇杆"},
     }},
     { SDL_GAMEPAD_BUTTON_LEFT_SHOULDER, {
         {SDL_GAMEPAD_TYPE_PS3, "L1"},
@@ -95,10 +95,10 @@ const std::vector<ButtonNames> kGamepadButtonNames = {
         {SDL_GAMEPAD_TYPE_GAMECUBE, "Z"},
     }},
     { SDL_GAMEPAD_BUTTON_BACK, {
-        {SDL_GAMEPAD_TYPE_PS3, "Select"},
+        {SDL_GAMEPAD_TYPE_PS3, "选择"},
         {SDL_GAMEPAD_TYPE_PS4, "Share"},
         {SDL_GAMEPAD_TYPE_PS5, "Create"},
-        {SDL_GAMEPAD_TYPE_XBOX360, "Back"},
+        {SDL_GAMEPAD_TYPE_XBOX360, "返回"},
         {SDL_GAMEPAD_TYPE_XBOXONE, "View"},
     }},
     { SDL_GAMEPAD_BUTTON_START, {
@@ -125,7 +125,7 @@ Rml::String native_axis_name(const PADAxisMapping& mapping, SDL_Gamepad* gamepad
         return native_button_name(gamepad, static_cast<u32>(mapping.nativeButton));
     }
 
-    return "Not Bound";
+    return "未绑定";
 }
 
 bool is_dpad_button(PADButton button) {
@@ -163,28 +163,28 @@ bool keyboard_escape_pressed() {
 
 Rml::String keyboard_key_name(s32 scancode) {
     if (scancode == PAD_KEY_INVALID) {
-        return "Not Bound";
+        return "未绑定";
     }
     switch (scancode) {
     case PAD_KEY_MOUSE_LEFT:
-        return "Mouse Left";
+        return "鼠标左键";
     case PAD_KEY_MOUSE_MIDDLE:
-        return "Mouse Middle";
+        return "鼠标中键";
     case PAD_KEY_MOUSE_RIGHT:
-        return "Mouse Right";
+        return "鼠标右键";
     case PAD_KEY_MOUSE_X1:
-        return "Mouse X1";
+        return "鼠标 X1";
     case PAD_KEY_MOUSE_X2:
-        return "Mouse X2";
+        return "鼠标 X2";
     default:
         break;
     }
     if (scancode < 0) {
-        return "Unknown";
+        return "未知";
     }
     const char* name = SDL_GetScancodeName(static_cast<SDL_Scancode>(scancode));
     if (name == nullptr || name[0] == '\0') {
-        return "Unknown";
+        return "未知";
     }
     return name;
 }
@@ -262,7 +262,7 @@ ControllerConfigWindow::ControllerConfigWindow() {
     }
 
     for (int port = PAD_CHAN0; port < PAD_CHANMAX; ++port) {
-        add_tab(fmt::format("Port {}", port + 1), [this, port](Rml::Element* content) {
+        add_tab(fmt::format("端口 {}", port + 1), [this, port](Rml::Element* content) {
             if (mPendingPort != -1 && mPendingPort != port) {
                 cancel_pending_binding();
             }
@@ -303,23 +303,23 @@ void ControllerConfigWindow::build_port_tab(Rml::Element* content, int port) {
     };
 
     leftPane.register_control(leftPane.add_select_button({
-                                  .key = "Device",
+                                  .key = "设备",
                                   .getValue = [port] { return current_controller_name(port); },
                               }),
         rightPane, [this, port](Pane& pane) {
             mPage = Page::Controller;
             render_page(pane, port, Page::Controller);
         });
-    addPageButton(Page::Buttons, "Buttons");
-    addPageButton(Page::Triggers, "Triggers");
-    addPageButton(Page::Sticks, "Sticks");
-    addPageButton(Page::Rumble, "Rumble",
+    addPageButton(Page::Buttons, "按键");
+    addPageButton(Page::Triggers, "扳机");
+    addPageButton(Page::Sticks, "摇杆");
+    addPageButton(Page::Rumble, "震动",
         [port] { return !PADSupportsRumbleIntensity(static_cast<u32>(port)); });
-    addPageButton(Page::Actions, "Custom Action Bindings");
+    addPageButton(Page::Actions, "自定义动作绑定");
 
     leftPane.add_section("Options");
     leftPane.register_control(leftPane.add_child<BoolButton>(BoolButton::Props{
-                                  .key = "Enable LED Status",
+                                  .key = "启用 LED 状态灯",
                                   .getValue =
                                       [port] {
                                           return getSettings().game.enableLED[port].getValue();
@@ -333,15 +333,15 @@ void ControllerConfigWindow::build_port_tab(Rml::Element* content, int port) {
                                   },
                                   .valueOverride = [port] {
                                       if (!input::pad_has_led(port))
-                                          return "Not Supported";
+                                          return "不支持";
 
                                       return "";
                                   }}),
         rightPane, [](Pane& pane) {
-            pane.add_text("Sets the controller's lighting color based on the game's state.");
+            pane.add_text("根据游戏状态设置手柄灯光颜色。");
         });
     leftPane.register_control(leftPane.add_child<BoolButton>(BoolButton::Props{
-                                  .key = "Enable Dead Zones",
+                                  .key = "启用死区",
                                   .getValue =
                                       [port] {
                                           PADDeadZones* deadZones = PADGetDeadZones(port);
@@ -357,10 +357,10 @@ void ControllerConfigWindow::build_port_tab(Rml::Element* content, int port) {
                                   .isDisabled = [port] { return PADGetDeadZones(port) == nullptr; },
                               }),
         rightPane, [](Pane& pane) {
-            pane.add_text("Apply configured dead zones to the sticks and analog triggers.");
+            pane.add_text("将配置的死区应用到摇杆和模拟扳机。");
         });
     leftPane.register_control(leftPane.add_child<BoolButton>(BoolButton::Props{
-                                  .key = "Emulate Triggers",
+                                  .key = "模拟扳机",
                                   .getValue =
                                       [port] {
                                           PADDeadZones* deadZones = PADGetDeadZones(port);
@@ -376,15 +376,15 @@ void ControllerConfigWindow::build_port_tab(Rml::Element* content, int port) {
                                   .isDisabled = [port] { return PADGetDeadZones(port) == nullptr; },
                               }),
         rightPane, [](Pane& pane) {
-            pane.add_text("Treat analog trigger movement as digital L and R button input.");
+            pane.add_text("将模拟扳机行程视为数字 L/R 按键输入。");
         });
-    leftPane.register_control(leftPane.add_button("Restore Default Controls").on_pressed([this, port] {
+    leftPane.register_control(leftPane.add_button("恢复默认按键").on_pressed([this, port] {
             mDoAud_seStartMenu(kSoundClick);
             PADRestoreDefaultMapping(port);
         }),
             rightPane, [](Pane& pane) {
                 pane.clear();
-                pane.add_text("Restores all binding configurations for the currently selected device to their defaults.");
+                pane.add_text("将当前所选设备的所有按键配置恢复为默认值。");
         });
     render_page(rightPane, port, mPage);
 }
@@ -396,7 +396,7 @@ void ControllerConfigWindow::render_page(Pane& pane, int port, Page page) {
     case Page::Controller: {
         pane.add_button(
                 {
-                    .text = "None",
+                    .text = "无",
                 .isSelected =
                     [port] { return PADGetIndexForPort(port) < 0 && !keyboard_active(port); },
             })
@@ -411,7 +411,7 @@ void ControllerConfigWindow::render_page(Pane& pane, int port, Page page) {
             });
 
         pane.add_button({
-                            .text = "Keyboard",
+                            .text = "键盘",
                             .isSelected = [port] { return keyboard_active(port); },
                         })
             .on_pressed([this, port] {
@@ -425,7 +425,7 @@ void ControllerConfigWindow::render_page(Pane& pane, int port, Page page) {
 
         const u32 controllerCount = PADCount();
         if (controllerCount == 0) {
-            pane.add_text("No Device Detected");
+            pane.add_text("未检测到设备");
             break;
         }
 
@@ -462,14 +462,14 @@ void ControllerConfigWindow::render_page(Pane& pane, int port, Page page) {
                                     PADKeyButtonBinding* bindings =
                                         PADGetKeyButtonBindings(static_cast<u32>(port), &count);
                                     if (bindings == nullptr) {
-                                        return Rml::String("Not Bound");
+                                        return Rml::String("未绑定");
                                     }
                                     for (u32 i = 0; i < PAD_BUTTON_COUNT; ++i) {
                                         if (bindings[i].padButton == button) {
                                             return keyboard_key_name(bindings[i].scancode);
                                         }
                                     }
-                                    return Rml::String("Not Bound");
+                                    return Rml::String("未绑定");
                                 },
                         })
                     .on_pressed([this, port, button] {
@@ -481,7 +481,7 @@ void ControllerConfigWindow::render_page(Pane& pane, int port, Page page) {
                     });
             };
 
-            pane.add_section("Buttons");
+            pane.add_section("按键");
             addKeyButton(PAD_BUTTON_A);
             addKeyButton(PAD_BUTTON_B);
             addKeyButton(PAD_BUTTON_X);
@@ -489,7 +489,7 @@ void ControllerConfigWindow::render_page(Pane& pane, int port, Page page) {
             addKeyButton(PAD_BUTTON_START);
             addKeyButton(PAD_TRIGGER_Z);
 
-            pane.add_section("D-Pad");
+            pane.add_section("方向键");
             addKeyButton(PAD_BUTTON_UP);
             addKeyButton(PAD_BUTTON_DOWN);
             addKeyButton(PAD_BUTTON_LEFT);
@@ -500,12 +500,12 @@ void ControllerConfigWindow::render_page(Pane& pane, int port, Page page) {
         u32 buttonCount = 0;
         PADButtonMapping* mappings = PADGetButtonMappings(port, &buttonCount);
         if (mappings == nullptr) {
-            pane.add_text("No Device Selected");
+            pane.add_text("未选择设备");
             break;
         }
 
         SDL_Gamepad* gamepad = gamepad_for_port(port);
-        pane.add_section("Buttons");
+        pane.add_section("按键");
         for (u32 i = 0; i < buttonCount; ++i) {
             PADButtonMapping& mapping = mappings[i];
             if (!is_action_button(mapping.padButton)) {
@@ -532,7 +532,7 @@ void ControllerConfigWindow::render_page(Pane& pane, int port, Page page) {
                 });
         }
 
-        pane.add_section("D-Pad");
+        pane.add_section("方向键");
         for (u32 i = 0; i < buttonCount; ++i) {
             PADButtonMapping& mapping = mappings[i];
             if (!is_dpad_button(mapping.padButton)) {
@@ -575,14 +575,14 @@ void ControllerConfigWindow::render_page(Pane& pane, int port, Page page) {
                                     PADKeyButtonBinding* bindings =
                                         PADGetKeyButtonBindings(static_cast<u32>(port), &count);
                                     if (bindings == nullptr) {
-                                        return Rml::String("Not Bound");
+                                        return Rml::String("未绑定");
                                     }
                                     for (u32 i = 0; i < PAD_BUTTON_COUNT; ++i) {
                                         if (bindings[i].padButton == button) {
                                             return keyboard_key_name(bindings[i].scancode);
                                         }
                                     }
-                                    return Rml::String("Not Bound");
+                                    return Rml::String("未绑定");
                                 },
                         })
                     .on_pressed([this, port, button] {
@@ -607,14 +607,14 @@ void ControllerConfigWindow::render_page(Pane& pane, int port, Page page) {
                                     PADKeyAxisBinding* bindings =
                                         PADGetKeyAxisBindings(static_cast<u32>(port), &count);
                                     if (bindings == nullptr) {
-                                        return Rml::String("Not Bound");
+                                        return Rml::String("未绑定");
                                     }
                                     for (u32 i = 0; i < PAD_AXIS_COUNT; ++i) {
                                         if (bindings[i].padAxis == axis) {
                                             return keyboard_key_name(bindings[i].scancode);
                                         }
                                     }
-                                    return Rml::String("Not Bound");
+                                    return Rml::String("未绑定");
                                 },
                         })
                     .on_pressed([this, port, axis] {
@@ -626,11 +626,11 @@ void ControllerConfigWindow::render_page(Pane& pane, int port, Page page) {
                     });
             };
 
-            pane.add_section("Analog");
+            pane.add_section("模拟");
             addKeyAxis(PAD_AXIS_TRIGGER_L);
             addKeyAxis(PAD_AXIS_TRIGGER_R);
 
-            pane.add_section("Digital");
+            pane.add_section("数字");
             addKeyButton(PAD_TRIGGER_L);
             addKeyButton(PAD_TRIGGER_R);
             break;
@@ -641,12 +641,12 @@ void ControllerConfigWindow::render_page(Pane& pane, int port, Page page) {
         u32 buttonCount = 0;
         PADButtonMapping* buttons = PADGetButtonMappings(port, &buttonCount);
         if (axes == nullptr && buttons == nullptr) {
-            pane.add_text("No Device Selected");
+            pane.add_text("未选择设备");
             break;
         }
 
         SDL_Gamepad* gamepad = gamepad_for_port(port);
-        pane.add_section("Analog");
+        pane.add_section("模拟");
         constexpr std::array<PADAxis, 2> kTriggerAxes = {PAD_AXIS_TRIGGER_L, PAD_AXIS_TRIGGER_R};
         if (axes != nullptr) {
             for (PADAxis axis : kTriggerAxes) {
@@ -675,7 +675,7 @@ void ControllerConfigWindow::render_page(Pane& pane, int port, Page page) {
         }
 
         if (getSettings().backend.enableAdvancedSettings) {
-            pane.add_section("Digital");
+            pane.add_section("数字");
             if (buttons != nullptr) {
                 for (u32 i = 0; i < buttonCount; ++i) {
                     PADButtonMapping& mapping = buttons[i];
@@ -705,9 +705,9 @@ void ControllerConfigWindow::render_page(Pane& pane, int port, Page page) {
         }
 
         if (PADDeadZones* deadZones = PADGetDeadZones(port)) {
-            pane.add_section("Emulated Trigger Thresholds");
+            pane.add_section("模拟扳机阈值");
             pane.add_child<NumberButton>(NumberButton::Props{
-                .key = "L Threshold",
+                .key = "L 阈值",
                 .getValue = [deadZones] { return deadzone_raw_to_percent(deadZones->leftTriggerActivationZone); },
                 .setValue =
                     [deadZones](int value) {
@@ -721,7 +721,7 @@ void ControllerConfigWindow::render_page(Pane& pane, int port, Page page) {
                 .suffix = "%",
             });
             pane.add_child<NumberButton>(NumberButton::Props{
-                .key = "R Threshold",
+                .key = "R 阈值",
                 .getValue = [deadZones] { return deadzone_raw_to_percent(deadZones->rightTriggerActivationZone); },
                 .setValue =
                     [deadZones](int value) {
@@ -752,14 +752,14 @@ void ControllerConfigWindow::render_page(Pane& pane, int port, Page page) {
                                     PADKeyAxisBinding* bindings =
                                         PADGetKeyAxisBindings(static_cast<u32>(port), &count);
                                     if (bindings == nullptr) {
-                                        return Rml::String("Not Bound");
+                                        return Rml::String("未绑定");
                                     }
                                     for (u32 i = 0; i < PAD_AXIS_COUNT; ++i) {
                                         if (bindings[i].padAxis == axis) {
                                             return keyboard_key_name(bindings[i].scancode);
                                         }
                                     }
-                                    return Rml::String("Not Bound");
+                                    return Rml::String("未绑定");
                                 },
                         })
                     .on_pressed([this, port, axis] {
@@ -771,13 +771,13 @@ void ControllerConfigWindow::render_page(Pane& pane, int port, Page page) {
                     });
             };
 
-            pane.add_section("Control Stick");
+            pane.add_section("控制摇杆");
             addKeyAxis(PAD_AXIS_LEFT_Y_POS);
             addKeyAxis(PAD_AXIS_LEFT_Y_NEG);
             addKeyAxis(PAD_AXIS_LEFT_X_NEG);
             addKeyAxis(PAD_AXIS_LEFT_X_POS);
 
-            pane.add_section("C Stick");
+            pane.add_section("C 摇杆");
             addKeyAxis(PAD_AXIS_RIGHT_Y_POS);
             addKeyAxis(PAD_AXIS_RIGHT_Y_NEG);
             addKeyAxis(PAD_AXIS_RIGHT_X_NEG);
@@ -788,7 +788,7 @@ void ControllerConfigWindow::render_page(Pane& pane, int port, Page page) {
         u32 axisCount = 0;
         PADAxisMapping* axes = PADGetAxisMappings(port, &axisCount);
         if (axes == nullptr) {
-            pane.add_text("No Device Selected");
+            pane.add_text("未选择设备");
             break;
         }
 
@@ -817,14 +817,14 @@ void ControllerConfigWindow::render_page(Pane& pane, int port, Page page) {
                 });
         };
 
-        pane.add_section("Control Stick");
+        pane.add_section("控制摇杆");
         addAxis(PAD_AXIS_LEFT_Y_POS);
         addAxis(PAD_AXIS_LEFT_Y_NEG);
         addAxis(PAD_AXIS_LEFT_X_NEG);
         addAxis(PAD_AXIS_LEFT_X_POS);
         if (PADDeadZones* deadZones = PADGetDeadZones(port)) {
             pane.add_child<NumberButton>(NumberButton::Props{
-                .key = "Deadzone",
+                .key = "死区",
                 .getValue = [deadZones] { return deadzone_raw_to_percent(deadZones->stickDeadZone); },
                 .setValue =
                     [deadZones](int value) {
@@ -839,14 +839,14 @@ void ControllerConfigWindow::render_page(Pane& pane, int port, Page page) {
             });
         }
 
-        pane.add_section("C Stick");
+        pane.add_section("C 摇杆");
         addAxis(PAD_AXIS_RIGHT_Y_POS);
         addAxis(PAD_AXIS_RIGHT_Y_NEG);
         addAxis(PAD_AXIS_RIGHT_X_NEG);
         addAxis(PAD_AXIS_RIGHT_X_POS);
         if (PADDeadZones* deadZones = PADGetDeadZones(port)) {
             pane.add_child<NumberButton>(NumberButton::Props{
-                .key = "Deadzone",
+                .key = "死区",
                 .getValue = [deadZones] { return deadzone_raw_to_percent(deadZones->substickDeadZone); },
                 .setValue =
                     [deadZones](int value) {
@@ -866,7 +866,7 @@ void ControllerConfigWindow::render_page(Pane& pane, int port, Page page) {
     case Page::Rumble: {
         if (PADCanForceDeviceRumble(static_cast<u32>(port))) {
             pane.add_child<BoolButton>(BoolButton::Props{
-                .key = "Use Device Haptics",
+                .key = "使用设备触感",
                 .getValue = [port] { return PADGetForceDeviceRumble(static_cast<u32>(port)); },
                 .setValue =
                     [port](bool value) {
@@ -875,15 +875,14 @@ void ControllerConfigWindow::render_page(Pane& pane, int port, Page page) {
                     },
                 .isDisabled = [this] { return mRumbleTestActive; },
             });
-            pane.add_text("Use native device haptics instead of controller rumble. "
-                          "Useful for devices with built-in gamepads.");
+            pane.add_text("使用设备原生触感代替手柄震动，适用于自带手柄的设备。");
         }
         auto& rumbleTest = pane.add_select_button({
-            .key = "Test Rumble",
+            .key = "测试震动",
             .getValue =
                 [this, port] {
-                    return (mRumbleTestActive && mRumbleTestPort == port) ? Rml::String("Stop")
-                                                                          : Rml::String("Start");
+                    return (mRumbleTestActive && mRumbleTestPort == port) ? Rml::String("停止")
+                                                                          : Rml::String("开始");
                 },
         });
         rumbleTest.on_pressed([this, port] {
@@ -905,7 +904,7 @@ void ControllerConfigWindow::render_page(Pane& pane, int port, Page page) {
             }
         });
         pane.add_child<NumberButton>(NumberButton::Props{
-            .key = "Low Rumble Frequency",
+            .key = "低频震动",
             .getValue =
                 [port] {
                     u16 low = 0;
@@ -928,7 +927,7 @@ void ControllerConfigWindow::render_page(Pane& pane, int port, Page page) {
             .suffix = "%",
         });
         pane.add_child<NumberButton>(NumberButton::Props{
-            .key = "High Rumble Frequency",
+            .key = "高频震动",
             .getValue =
                 [port] {
                     u16 low = 0;
@@ -950,7 +949,7 @@ void ControllerConfigWindow::render_page(Pane& pane, int port, Page page) {
             .step = 1,
             .suffix = "%",
         });
-        pane.add_text("Configure your desired rumble intensities, then run a test to check how they feel.");
+        pane.add_text("配置所需的震动强度，然后运行测试感受效果。");
         break;
     }
     case Page::Actions: {
@@ -977,9 +976,8 @@ void ControllerConfigWindow::render_page(Pane& pane, int port, Page page) {
                     });
             };
 
-            pane.add_section("Custom Action Bindings");
-            pane.add_text("A key bound to any action here will REPLACE the default control for"
-                          " that action. Only bind buttons here that aren't used anywhere else.");
+            pane.add_section("自定义动作绑定");
+            pane.add_text("绑定到此处任意动作的按键将替换该动作的默认按键。请只绑定未在其他地方使用的按键。");
             for (auto& [configVars, actionName] : getActionBinds() | std::views::values) {
                 addActionBinding(&configVars->at(port), actionName);
             }
@@ -989,16 +987,14 @@ void ControllerConfigWindow::render_page(Pane& pane, int port, Page page) {
         u32 buttonCount = 0;
         PADButtonMapping* mappings = PADGetButtonMappings(port, &buttonCount);
         if (mappings == nullptr) {
-            pane.add_text("No Device Selected");
+            pane.add_text("未选择设备");
             break;
         }
 
         SDL_Gamepad* gamepad = gamepad_for_port(port);
-        pane.add_section("Custom Action Bindings");
-        pane.add_text("A button bound to any action here will REPLACE the default control for"
-                      " that action. Only bind buttons here that aren't used anywhere else. The glyphs"
-                      " shown for in game actions will not change. This is not recommended for "
-                      " regular Gamecube controllers.");
+        pane.add_section("自定义动作绑定");
+        pane.add_text("绑定到此处任意动作的按钮将替换该动作的默认按键。请只绑定未在其他地方使用的按钮。"
+                      "游戏内动作显示的图标不会改变。不建议在常规 GameCube 手柄上使用。");
         auto addActionBinding = [&](auto actionBind, const std::string& key) {
             pane.add_select_button({
                            .key = key,
@@ -1189,11 +1185,11 @@ bool ControllerConfigWindow::pending_input_neutral() const {
 }
 
 Rml::String ControllerConfigWindow::pending_button_label() const {
-    return mPendingBindingArmed ? "Press a Key or Button..." : "Waiting...";
+    return mPendingBindingArmed ? "请按下按键或按钮..." : "等待输入...";
 }
 
 Rml::String ControllerConfigWindow::pending_axis_label() const {
-    return mPendingBindingArmed ? "Move Axis or press a Key or Button..." : "Waiting...";
+    return mPendingBindingArmed ? "请移动摇杆轴或按下按键/按钮..." : "等待输入...";
 }
 
 void ControllerConfigWindow::cancel_pending_binding() {
@@ -1222,7 +1218,7 @@ void ControllerConfigWindow::finish_pending_key_binding() {
 }
 
 Rml::String ControllerConfigWindow::pending_key_label() const {
-    return mPendingBindingArmed ? "Press a Key or Mouse Button..." : "Waiting...";
+    return mPendingBindingArmed ? "请按下键盘或鼠标按键..." : "等待输入...";
 }
 
 void ControllerConfigWindow::stop_rumble_test() {
@@ -1238,7 +1234,7 @@ void ControllerConfigWindow::stop_rumble_test() {
 
 Rml::String native_button_name(SDL_Gamepad* gamepad, u32 buttonUntyped) {
     if (buttonUntyped == PAD_NATIVE_BUTTON_INVALID) {
-        return "Not Bound";
+        return "未绑定";
     }
 
     auto button = static_cast<SDL_GamepadButton>(buttonUntyped);
@@ -1253,13 +1249,13 @@ Rml::String native_button_name(SDL_Gamepad* gamepad, u32 buttonUntyped) {
         case SDL_GAMEPAD_BUTTON_LABEL_Y:
             return "Y";
         case SDL_GAMEPAD_BUTTON_LABEL_CROSS:
-            return "Cross";
+            return "叉";
         case SDL_GAMEPAD_BUTTON_LABEL_CIRCLE:
-            return "Circle";
+            return "圆";
         case SDL_GAMEPAD_BUTTON_LABEL_TRIANGLE:
-            return "Triangle";
+            return "三角";
         case SDL_GAMEPAD_BUTTON_LABEL_SQUARE:
-            return "Square";
+            return "方块";
         default:
             break;
         }
@@ -1281,13 +1277,13 @@ Rml::String native_button_name(SDL_Gamepad* gamepad, u32 buttonUntyped) {
 
     switch (button) {
     case SDL_GAMEPAD_BUTTON_DPAD_LEFT:
-        return "D-pad left";
+        return "方向键左";
     case SDL_GAMEPAD_BUTTON_DPAD_RIGHT:
-        return "D-pad right";
+        return "方向键右";
     case SDL_GAMEPAD_BUTTON_DPAD_UP:
-        return "D-pad up";
+        return "方向键上";
     case SDL_GAMEPAD_BUTTON_DPAD_DOWN:
-        return "D-pad down";
+        return "方向键下";
     default:
         break;
     }
@@ -1295,7 +1291,7 @@ Rml::String native_button_name(SDL_Gamepad* gamepad, u32 buttonUntyped) {
     if (const char* name = PADGetNativeButtonName(buttonUntyped)) {
         return name;
     }
-    return "Unknown";
+    return "未知";
 }
 
 }  // namespace dusk::ui

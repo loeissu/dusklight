@@ -124,7 +124,7 @@ Rml::Element* create_controller_warning(Rml::Element* parent) {
     elem->SetClass("controller-warning", true);
 
     auto* heading = append(elem, "heading");
-    append_text(append(heading, "toast-title"), "No Device Assigned");
+    append_text(append(heading, "toast-title"), "未分配设备");
     auto* icon = append(heading, "icon");
     icon->SetClass("warning", true);
 
@@ -149,13 +149,13 @@ Rml::String back_button_name() {
     if (auto* gamepad = gamepad_for_port(PAD_CHAN0)) {
         switch (SDL_GetGamepadType(gamepad)) {
         case SDL_GAMEPAD_TYPE_PS3:
-            return "Select";
+            return "选择";
         case SDL_GAMEPAD_TYPE_PS4:
             return "Share";
         case SDL_GAMEPAD_TYPE_PS5:
             return "Create";
         case SDL_GAMEPAD_TYPE_XBOX360:
-            return "Back";
+            return "返回";
         case SDL_GAMEPAD_TYPE_XBOXONE:
             return "View";
         case SDL_GAMEPAD_TYPE_GAMECUBE:
@@ -164,7 +164,7 @@ Rml::String back_button_name() {
             break;
         }
     }
-    return "Back";
+    return "返回";
 }
 
 Rml::Element* create_menu_notification(Rml::Element* parent) {
@@ -185,7 +185,7 @@ Rml::Element* create_menu_notification(Rml::Element* parent) {
     auto* row = append(message, "row");
     auto* prefix = append(row, "notification-prefix");
 #if defined(TARGET_ANDROID) || (defined(__APPLE__) && TARGET_OS_IOS && !TARGET_OS_MACCATALYST)
-    append_text(prefix, "3-finger tap or");
+    append_text(prefix, "三指轻点或");
 #else
     append_text(prefix, "Press ");
     append_text(append(prefix, "b"), "F1");
@@ -194,7 +194,7 @@ Rml::Element* create_menu_notification(Rml::Element* parent) {
     auto* icon = append(row, "icon");
     icon->SetClass("controller", true);
     append_text(append(append(row, "notification-button"), "b"), padButton);
-    append_text(append(row, "notification-action"), "to open menu");
+    append_text(append(row, "notification-action"), "打开菜单");
 
     return elem;
 }
@@ -313,10 +313,10 @@ void Overlay::update() {
     if (dusk::speedrun::isActive() && getSettings().game.liveSplitEnabled) {
         dusk::speedrun::updateLiveSplit();
         if (dusk::speedrun::consumeConnectedEvent()) {
-            push_toast({.title = "LiveSplit connected", .duration = std::chrono::seconds(3)});
+            push_toast({.title = "LiveSplit 已连接", .duration = std::chrono::seconds(3)});
         }
         if (dusk::speedrun::consumeDisconnectedEvent()) {
-            push_toast({.title = "LiveSplit disconnected", .duration = std::chrono::seconds(3)});
+            push_toast({.title = "LiveSplit 已断开", .duration = std::chrono::seconds(3)});
         }
     }
 #endif
@@ -481,7 +481,7 @@ void Overlay::update_pipeline_progress() {
 
     if (queuedPipelines != mLastQueuedPipelines) {
         mLastQueuedPipelines = queuedPipelines;
-        const auto noun = queuedPipelines == 1 ? "pipeline" : "pipelines";
+        const auto noun = queuedPipelines == 1 ? "管线" : "管线";
         set_text_content(
             mPipelineProgressLabel, fmt::format("Building {} {}", queuedPipelines, noun));
     }

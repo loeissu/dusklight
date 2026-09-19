@@ -424,6 +424,7 @@
         "ci"
       ],
       "cacheVariables": {
+        "BOREALIS_APP_VERSION_OVERRIDE": "2.0.0",
         "BOREALIS_ENABLE_SENTRY": {
           "type": "BOOL",
           "value": false
@@ -449,6 +450,7 @@
         "ci"
       ],
       "cacheVariables": {
+        "BOREALIS_APP_VERSION_OVERRIDE": "2.0.0",
         "AURORA_SDL3_PROVIDER": "vendor",
         "CMAKE_LINKER_TYPE": "MOLD"
       }
@@ -530,6 +532,7 @@
         "ci"
       ],
       "cacheVariables": {
+        "BOREALIS_APP_VERSION_OVERRIDE": "2.0.0",
         "CMAKE_MSVC_DEBUG_INFORMATION_FORMAT": "Embedded",
         "CMAKE_TOOLCHAIN_FILE": {
           "type": "FILEPATH",

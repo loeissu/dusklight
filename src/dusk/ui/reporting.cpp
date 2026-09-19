@@ -14,22 +14,22 @@ CrashReportWindow::CrashReportWindow() : WindowSmall("modal") {
     auto* header = append(mDialog, "modal-header");
 
     auto* title = append(header, "modal-title");
-    append_text(title, "Send Crash Reports");
+    append_text(title, "发送崩溃报告");
 
     auto* headIcon = append(header, "icon");
     headIcon->SetClass("question-mark", true);
 
     auto* intro = append(mDialog, "modal-body");
     append_text(intro,
-        "Dusklight can automatically send crash reports to the developers. Crash reports contain "
-        "the following:");
+        "Dusklight 可自动向开发者发送崩溃报告。 Crash reports contain "
+        "以下内容：");
     for (const char* item :
         {
-            "• Operating system version",
-            "• CPU architecture",
-            "• GPU model & driver version",
-            "• File paths (may include account username)",
-            "• Stack trace",
+            "• 操作系统版本",
+            "• CPU 架构",
+            "• GPU 型号与驱动版本",
+            "• 文件路径（可能含账户用户名）",
+            "• 调用栈",
         })
     {
         append(intro, "br");
@@ -37,7 +37,7 @@ CrashReportWindow::CrashReportWindow() : WindowSmall("modal") {
     }
     append(intro, "br");
     append(intro, "br");
-    append_text(intro, "This can be changed in the Settings menu at any time.");
+    append_text(intro, "可随时在设置菜单中修改此选项。");
 
     auto* grid = append(mDialog, "preset-grid");
 
@@ -48,13 +48,12 @@ CrashReportWindow::CrashReportWindow() : WindowSmall("modal") {
     };
 
     static constexpr OptionInfo kOptions[] = {
-        {"Enable",
-            "Send crash reports to Dusklight developers. Reports will include the information "
-            "described above.",
+        {"启用",
+            "向 Dusklight 开发者发送崩溃报告。报告将包含"
+            "上述信息。",
             [] { borealis::sentry::set_consent(true); }},
-        {"Disable",
-            "Do not send crash reports. This may make it more difficult to resolve issues you "
-            "encounter.",
+        {"禁用",
+            "不发送崩溃报告。这可能会增加解决你遇到的问题的难度。",
             [] { borealis::sentry::set_consent(false); }},
     };
 

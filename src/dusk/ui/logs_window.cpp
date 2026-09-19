@@ -14,15 +14,15 @@ namespace {
 const char* level_name(LogLevel level) {
     switch (level) {
     case LOG_LEVEL_TRACE:
-        return "Trace";
+        return "追踪";
     case LOG_LEVEL_DEBUG:
-        return "Debug";
+        return "调试";
     case LOG_LEVEL_INFO:
-        return "Info";
+        return "信息";
     case LOG_LEVEL_WARN:
-        return "Warn";
+        return "警告";
     case LOG_LEVEL_ERROR:
-        return "Error";
+        return "错误";
     }
     return "?";
 }
@@ -30,15 +30,15 @@ const char* level_name(LogLevel level) {
 const char* level_logger_name(LogLevel level) {
     switch (level) {
     case LOG_LEVEL_TRACE:
-        return "TRACE";
+        return "追踪";
     case LOG_LEVEL_DEBUG:
-        return "DEBUG";
+        return "调试";
     case LOG_LEVEL_INFO:
-        return "INFO";
+        return "信息";
     case LOG_LEVEL_WARN:
-        return "WARNING";
+        return "警告";
     case LOG_LEVEL_ERROR:
-        return "ERROR";
+        return "错误";
     }
     return "?";
 }
@@ -91,10 +91,10 @@ void LogsWindow::build_content(Rml::Element* content) {
     auto* toolbar = append(content, "log-toolbar");
 
     auto* title = append(toolbar, "log-title");
-    append_text(title, "Logs");
+    append_text(title, "日志");
 
     auto* modLabel = append(toolbar, "log-title-mod");
-    append_text(modLabel, mModFilter.empty() ? "All mods" : mModFilter);
+    append_text(modLabel, mModFilter.empty() ? "全部模组" : mModFilter);
 
     append(toolbar, "log-toolbar-spacer");
 
@@ -114,8 +114,8 @@ void LogsWindow::build_content(Rml::Element* content) {
 
     append(toolbar, "log-toolbar-spacer");
 
-    add_child<Button>(toolbar, "Copy").on_pressed([this] { copy_to_clipboard(); });
-    add_child<Button>(toolbar, "Clear").on_pressed([this] {
+    add_child<Button>(toolbar, "复制").on_pressed([this] { copy_to_clipboard(); });
+    add_child<Button>(toolbar, "清空").on_pressed([this] {
         mods::log::clear();
         rebuild_lines();
     });
@@ -289,7 +289,7 @@ void LogsWindow::copy_to_clipboard() {
             level_logger_name(line.level), modId, line.message);
     }
     Rml::GetSystemInterface()->SetClipboardText(text);
-    push_toast({.content = "Copied to clipboard", .duration = std::chrono::seconds(2)});
+    push_toast({.content = "已复制到剪贴板", .duration = std::chrono::seconds(2)});
 }
 
 }  // namespace dusk::ui

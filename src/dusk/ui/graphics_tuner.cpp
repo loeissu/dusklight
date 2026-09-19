@@ -44,7 +44,7 @@ Rml::String format_internal_resolution(int value) {
     u32 height = 0;
     AuroraGetRenderSize(&width, &height);
     if (value <= 0) {
-        return fmt::format("Auto ({}×{})", width, height);
+        return fmt::format("自动（{}×{}）", width, height);
     }
     return fmt::format("{}× ({}×{})", value, width, height);
 }
@@ -52,9 +52,9 @@ Rml::String format_internal_resolution(int value) {
 Rml::String format_resampler(int value) {
     switch (static_cast<Resampler>(value)) {
     case Resampler::Bilinear:
-        return "Bilinear";
+        return "双线性";
     case Resampler::Area:
-        return "Area";
+        return "区域";
     default:
         return "";
     }
@@ -63,9 +63,9 @@ Rml::String format_resampler(int value) {
 Rml::String format_post_process_mode(int value) {
     switch (static_cast<BloomMode>(value)) {
     case BloomMode::Off:
-        return "Off";
+        return "关";
     case BloomMode::Classic:
-        return "Classic";
+        return "经典";
     case BloomMode::Dusk:
         return "Dusklight";
     default:
@@ -77,7 +77,7 @@ Rml::String format_times(int value) { return fmt::format("{}×", value); }
 
 Rml::String format_percent(int value) { return fmt::format("{}%", value); }
 
-Rml::String format_bool(int value) { return value ? "On" : "Off"; }
+Rml::String format_bool(int value) { return value ? "开" : "关"; }
 
 template <typename T>
 int read_cvar(const ConfigVar<T>& var) {
@@ -261,11 +261,11 @@ GraphicsTuner::GraphicsTuner(GraphicsTunerProps props)
     }
 
     if (auto* footer = mDocument->GetElementById("footer")) {
-        auto& returnButton = add_component<Button>(footer, "\xE2\x86\x90 Return", "footer-button")
+        auto& returnButton = add_component<Button>(footer, "\xE2\x86\x90 返回", "footer-button")
                                  .on_pressed([this] { pop(); });
         returnButton.root()->SetClass("return", true);
         auto& resetButton =
-            add_component<Button>(footer, "Reset to default", "footer-button").on_pressed([this] {
+            add_component<Button>(footer, "恢复默认设置", "footer-button").on_pressed([this] {
                 mDoAud_seStartMenu(kSoundItemChange);
                 reset_default();
             });
