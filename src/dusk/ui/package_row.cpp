@@ -43,25 +43,25 @@ std::string state_label(const mods::queue::Item& item) {
     using enum mods::queue::State;
     switch (item.state) {
     case Queued:
-        return "Queued";
+        return "排队中";
     case Downloading:
-        return "Downloading";
+        return "下载中";
     case Paused:
-        return "Paused";
+        return "已暂停";
     case Retrying:
         return fmt::format("Retrying in {}s", item.retrySeconds);
     case Verifying:
-        return "Verifying";
+        return "校验中";
     case Handoff:
-        return "Installing";
+        return "安装中";
     case Installed:
-        return "Installed";
+        return "已安装";
     case InstallFailed:
-        return "Failed";
+        return "失败";
     case Failed:
-        return "Failed";
+        return "失败";
     case Canceled:
-        return "Canceled";
+        return "已取消";
     }
     return {};
 }

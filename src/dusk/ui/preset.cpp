@@ -63,14 +63,14 @@ PresetWindow::PresetWindow() : WindowSmall("modal") {
     auto* header = append(mDialog, "modal-header");
 
     auto* title = append(header, "modal-title");
-    append_text(title, "Welcome to Dusklight");
+    append_text(title, "欢迎使用 Dusklight");
 
     auto* headIcon = append(header, "icon");
     headIcon->SetClass("celebration", true);
 
     auto* intro = append(mDialog, "modal-body");
     append_text(intro,
-        "Choose a preset to get started. You can change any setting later from the Settings menu.");
+        "选择一个预设开始吧，之后可在设置菜单中随时更改任何设置。");
 
     auto* grid = append(mDialog, "preset-grid");
 
@@ -82,15 +82,15 @@ PresetWindow::PresetWindow() : WindowSmall("modal") {
 
     static constexpr PresetInfo kPresets[] = {
         {
-            "Classic",
-            "Enhancements disabled to match the GameCube version. "
-            "Good for speedrunning or simple nostalgia!",
+            "经典",
+            "已关闭增强以贴近 GameCube 原版。"
+            "适合速通或怀旧游玩！",
             applyPresetClassic,
         },
         {
             "Dusklight",
-            "Graphics & quality of life tweaks, including some from the Wii U version. "
-            "Our recommended way to play!",
+            "图形与便利性调整，包含部分来自 Wii U 版本的改进。 "
+            "我们推荐的游玩方式！",
             applyPresetDusk,
         },
     };

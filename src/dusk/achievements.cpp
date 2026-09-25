@@ -58,8 +58,8 @@ std::vector<AchievementSystem::Entry> AchievementSystem::makeEntries() {
         {
             {
                 "hero_of_twilight",
-                "Hero of Twilight",
-                "Deliver the finishing blow to Ganondorf.",
+                "黄昏英雄",
+                "给加农多夫最后一击。",
                 AchievementCategory::Challenge,
                 false, 0, 0, false
             },
@@ -74,8 +74,8 @@ std::vector<AchievementSystem::Entry> AchievementSystem::makeEntries() {
         {
             {
                 "three_heart_clear",
-                "Hero Mode",
-                "Defeat Ganondorf with only 3 heart containers.",
+                "英雄模式",
+                "仅用 3 颗心容器击败加农多夫。",
                 AchievementCategory::Challenge,
                 false, 0, 0, false
             },
@@ -93,8 +93,8 @@ std::vector<AchievementSystem::Entry> AchievementSystem::makeEntries() {
         {
             {
                 "completionist",
-                "Completionist",
-                "Complete the game after collecting all equipment, heart containers, portals, bugs, poes, and hidden skills.",
+                "完美主义者",
+                "收集所有装备、心容器、传送点、昆虫、波伊和隐藏技能后通关。",
                 AchievementCategory::Challenge,
                 false, 0, 0, false
             },
@@ -156,16 +156,16 @@ std::vector<AchievementSystem::Entry> AchievementSystem::makeEntries() {
                 }
                 static const struct { int stage; int sw; } warpPortals[] = {
                     { dStage_SaveTbl_ORDON,     52 },  // Ordon Spring
-                    { dStage_SaveTbl_FARON,     71 },  // South Faron Woods
-                    { dStage_SaveTbl_FARON,      2 },  // North Faron Woods
-                    { dStage_SaveTbl_GROVE,    100 },  // Sacred Grove
+                    { dStage_SaveTbl_FARON,     71 },  // South 费罗尼森林
+                    { dStage_SaveTbl_FARON,      2 },  // North 费罗尼森林
+                    { dStage_SaveTbl_GROVE,    100 },  // 圣地森林
                     { dStage_SaveTbl_FIELD,     21 },  // Gorge
-                    { dStage_SaveTbl_ELDIN,     31 },  // Kakariko Village
-                    { dStage_SaveTbl_ELDIN,     21 },  // Death Mountain
+                    { dStage_SaveTbl_ELDIN,     31 },  // 卡卡利科村
+                    { dStage_SaveTbl_ELDIN,     21 },  // 死亡山
                     { dStage_SaveTbl_FIELD,     99 },  // Bridge of Eldin
-                    { dStage_SaveTbl_FIELD,      3 },  // Castle Town
-                    { dStage_SaveTbl_LANAYRU,   10 },  // Lake Hylia
-                    { dStage_SaveTbl_LANAYRU,   2 },  // Zora's Domain
+                    { dStage_SaveTbl_FIELD,      3 },  // 城堡镇
+                    { dStage_SaveTbl_LANAYRU,   10 },  // 海利亚湖
+                    { dStage_SaveTbl_LANAYRU,   2 },  // 卓拉领地
                     { dStage_SaveTbl_LANAYRU,  21 },  // Upper Zora's River
                     { dStage_SaveTbl_SNOWPEAK, 21 },  // Snowpeak
                     { dStage_SaveTbl_DESERT,   21 },  // Gerudo Mesa
@@ -263,8 +263,8 @@ std::vector<AchievementSystem::Entry> AchievementSystem::makeEntries() {
         {
             {
                 "princess_of_bugs",
-                "The Princess of Bugs",
-                "Deliver all 24 golden bugs to Agitha.",
+                "昆虫公主",
+                "将全部 24 只金色昆虫交给阿吉莎。",
                 AchievementCategory::Collection,
                 true, 24, 0, false
             },
@@ -276,8 +276,8 @@ std::vector<AchievementSystem::Entry> AchievementSystem::makeEntries() {
         {
             {
                 "all_poes",
-                "Poe Collector",
-                "Collect all 60 Poe Souls.",
+                "波伊收集者",
+                "收集全部 60 个波伊之魂。",
                 AchievementCategory::Collection,
                 true, 60, 0, false
             },
@@ -289,8 +289,8 @@ std::vector<AchievementSystem::Entry> AchievementSystem::makeEntries() {
         {
             {
                 "hylian_loach",
-                "Legendary Catch",
-                "Obtain the Hylian Loach in your fishing journal.",
+                "传说级收获",
+                "在钓鱼记录中钓上海利亚鲮鱼。",
                 AchievementCategory::Collection,
                 false, 0, 0, false
             },
@@ -304,8 +304,8 @@ std::vector<AchievementSystem::Entry> AchievementSystem::makeEntries() {
         {
             {
                 "all_fish",
-                "Gone Fishin'",
-                "Obtain all 6 species of fish in your fishing journal.",
+                "钓鱼去",
+                "在钓鱼记录中钓齐全部 6 种鱼。",
                 AchievementCategory::Collection,
                 true, 6, 0, false
             },
@@ -323,8 +323,8 @@ std::vector<AchievementSystem::Entry> AchievementSystem::makeEntries() {
         {
             {
                 "a_big_heart",
-                "A Big Heart",
-                "Reach maximum health with all 20 heart containers.",
+                "大心脏",
+                "集齐 20 颗心容器达到最大生命。",
                 AchievementCategory::Collection,
                 true, 20, 0, false
             },
@@ -336,8 +336,8 @@ std::vector<AchievementSystem::Entry> AchievementSystem::makeEntries() {
         {
             {
                 "all_bottles",
-                "Glassware Guardian",
-                "Obtain all 4 bottles.",
+                "瓶罐守护者",
+                "获得全部 4 个瓶子。",
                 AchievementCategory::Collection,
                 true, 4, 0, false
             },
@@ -358,8 +358,8 @@ std::vector<AchievementSystem::Entry> AchievementSystem::makeEntries() {
         {
             {
                 "all_hidden_skills",
-                "Master of Secrets",
-                "Learn all 7 Hidden Skills.",
+                "秘技大师",
+                "学会全部 7 个隐藏技能。",
                 AchievementCategory::Collection,
                 true, 7, 0, false
             },
@@ -383,8 +383,8 @@ std::vector<AchievementSystem::Entry> AchievementSystem::makeEntries() {
         {
             {
                 "all_letters",
-                "We Deliver!",
-                "Collect all 16 postman letters.",
+                "使命必达！",
+                "收集全部 16 封邮差信件。",
                 AchievementCategory::Collection,
                 true, 16, 0, false
             },
@@ -396,8 +396,8 @@ std::vector<AchievementSystem::Entry> AchievementSystem::makeEntries() {
         {
             {
                 "cave_of_ordeals",
-                "Conqueror of Ordeals",
-                "Clear all 50 floors of the Cave of Ordeals.",
+                "试炼征服者",
+                "通过试炼之洞全部 50 层。",
                 AchievementCategory::Challenge,
                 false, 0, 0, false
             },
@@ -411,8 +411,8 @@ std::vector<AchievementSystem::Entry> AchievementSystem::makeEntries() {
         {
             {
                 "cave_of_ordeals_heartless",
-                "Indomitable",
-                "Clear all 50 floors of the Cave of Ordeals with only 3 heart containers.",
+                "不屈不挠",
+                "仅用 3 颗心容器通过试炼之洞全部 50 层。",
                 AchievementCategory::Challenge,
                 false, 0, 0, false
             },
@@ -426,8 +426,8 @@ std::vector<AchievementSystem::Entry> AchievementSystem::makeEntries() {
         {
             {
                 "speedrun_12h",
-                "Been There Done That",
-                "Defeat Ganondorf with a total save file play time under 12 hours.",
+                "驾轻就熟",
+                "存档总游玩时间不足 12 小时击败加农多夫。",
                 AchievementCategory::Challenge,
                 false, 0, 0, false
             },
@@ -446,8 +446,8 @@ std::vector<AchievementSystem::Entry> AchievementSystem::makeEntries() {
         {
             {
                 "speedrun_8h",
-                "Swift Blade",
-                "Defeat Ganondorf with a total save file play time under 6 hours.",
+                "迅捷之刃",
+                "存档总游玩时间不足 6 小时击败加农多夫。",
                 AchievementCategory::Challenge,
                 false, 0, 0, false
             },
@@ -466,8 +466,8 @@ std::vector<AchievementSystem::Entry> AchievementSystem::makeEntries() {
         {
             {
                 "dark_hammer_one_hit",
-                "Mortal Edge",
-                "Defeat Darkhammer in a single hit.",
+                "致命一击",
+                "一击击败暗锤。",
                 AchievementCategory::Misc,
                 false, 0, 0, false
             },
@@ -481,8 +481,8 @@ std::vector<AchievementSystem::Entry> AchievementSystem::makeEntries() {
         {
             {
                 "no_deaths_clear",
-                "Deathless",
-                "Defeat Ganondorf with 0 deaths on your save file.",
+                "无伤通关",
+                "存档零死亡击败加农多夫。",
                 AchievementCategory::Challenge,
                 false, 0, 0, false
             },
@@ -500,8 +500,8 @@ std::vector<AchievementSystem::Entry> AchievementSystem::makeEntries() {
         {
             {
                 "untouchable",
-                "Untouchable",
-                "Kill 25 enemies in a row without taking damage.",
+                "无人能及",
+                "连续击败 25 个敌人且不受伤害。",
                 AchievementCategory::Challenge,
                 true, 25, 0, false
             },
@@ -519,8 +519,8 @@ std::vector<AchievementSystem::Entry> AchievementSystem::makeEntries() {
         {
             {
                 "bow_100m_hit",
-                "Long Shot",
-                "Hit an enemy from over 100 meters away with the bow.",
+                "远程狙击",
+                "用弓从 100 米外命中敌人。",
                 AchievementCategory::Misc,
                 false, 0, 0, false
             },
@@ -534,8 +534,8 @@ std::vector<AchievementSystem::Entry> AchievementSystem::makeEntries() {
         {
             {
                 "rollstab_triple",
-                "Surgical Skewer",
-                "Kill 3 enemies with a single rollstab.",
+                "精准穿刺",
+                "用一次滚刺击杀 3 个敌人。",
                 AchievementCategory::Misc,
                 false, 0, 0, false
             },
@@ -558,8 +558,8 @@ std::vector<AchievementSystem::Entry> AchievementSystem::makeEntries() {
         {
             {
                 "plumm_max",
-                "Thank You Berry Much",
-                "Score 61,454 points in the Plumm minigame.",
+                "多谢款待",
+                "在普拉姆的小游戏中获得 61,454 分。",
                 AchievementCategory::Minigame,
                 false, 0, 0, false
             },
@@ -573,8 +573,8 @@ std::vector<AchievementSystem::Entry> AchievementSystem::makeEntries() {
         {
             {
                 "rollgoal_8",
-                "Rollgoal Novice",
-                "Complete the first 8 rollgoal stages.",
+                "滚球新手",
+                "完成前 8 个滚球关卡。",
                 AchievementCategory::Minigame,
                 true, 8, 0, false
             },
@@ -586,8 +586,8 @@ std::vector<AchievementSystem::Entry> AchievementSystem::makeEntries() {
         {
             {
                 "rollgoal_all",
-                "Lost Your Marbles",
-                "Complete all rollgoal stages.",
+                "球都丢了",
+                "完成全部滚球关卡。",
                 AchievementCategory::Minigame,
                 true, 64, 0, false
             },
@@ -603,8 +603,8 @@ std::vector<AchievementSystem::Entry> AchievementSystem::makeEntries() {
         {
             {
                 "goat_30s",
-                "Ranch Hand",
-                "Herd all 20 goats into the pen in under 30 seconds.",
+                "牧场帮手",
+                "在 30 秒内把 20 只羊赶进围栏。",
                 AchievementCategory::Minigame,
                 false, 0, 0, false
             },
@@ -616,8 +616,8 @@ std::vector<AchievementSystem::Entry> AchievementSystem::makeEntries() {
         {
             {
                 "goat_20s",
-                "Bane of Howard",
-                "Herd all 20 goats into the pen in under 20 seconds.",
+                "霍华德克星",
+                "在 20 秒内把 20 只羊赶进围栏。",
                 AchievementCategory::Minigame,
                 false, 0, 0, false
             },
@@ -629,8 +629,8 @@ std::vector<AchievementSystem::Entry> AchievementSystem::makeEntries() {
         {
             {
                 "goat_18s",
-                "King of the Ranch",
-                "Herd all 20 goats into the pen in under 18 seconds.",
+                "牧场之王",
+                "在 18 秒内把 20 只羊赶进围栏。",
                 AchievementCategory::Minigame,
                 false, 0, 0, false
             },
@@ -642,8 +642,8 @@ std::vector<AchievementSystem::Entry> AchievementSystem::makeEntries() {
         {
             {
                 "snowboard_70s",
-                "Downhill Dash",
-                "Finish the snowboarding minigame in under 70 seconds.",
+                "急速下滑",
+                "在 70 秒内完成滑雪小游戏。",
                 AchievementCategory::Minigame,
                 false, 0, 0, false
             },
@@ -662,8 +662,8 @@ std::vector<AchievementSystem::Entry> AchievementSystem::makeEntries() {
         {
             {
                 "canoe_perfect",
-                "River Raider",
-                "Achieve a perfect score in the canoe minigame.",
+                "河道突袭",
+                "在独木舟小游戏中获得满分。",
                 AchievementCategory::Minigame,
                 false, 0, 0, false
             },
@@ -685,8 +685,8 @@ std::vector<AchievementSystem::Entry> AchievementSystem::makeEntries() {
         {
             {
                 "star_2_under_40s",
-                "Rising Star",
-                "Complete the STAR Prize 2 minigame in under 40 seconds.",
+                "新星",
+                "在 40 秒内完成 STAR 二等奖小游戏。",
                 AchievementCategory::Minigame,
                 false, 0, 0, false
             },
@@ -700,8 +700,8 @@ std::vector<AchievementSystem::Entry> AchievementSystem::makeEntries() {
         {
             {
                 "star_2_under_30s",
-                "Shooting Star",
-                "Complete the STAR Prize 2 minigame in under 30 seconds.",
+                "流星",
+                "在 30 秒内完成 STAR 二等奖小游戏。",
                 AchievementCategory::Minigame,
                 false, 0, 0, false
             },
@@ -716,8 +716,8 @@ std::vector<AchievementSystem::Entry> AchievementSystem::makeEntries() {
         {
             {
                 "friendly_fire",
-                "Friendly Fire",
-                "Get hit by your own cannonball.",
+                "友军误伤",
+                "被自己的炮弹击中。",
                 AchievementCategory::Misc,
                 false, 0, 0, false
             },
@@ -731,8 +731,8 @@ std::vector<AchievementSystem::Entry> AchievementSystem::makeEntries() {
         {
             {
                 "long_jump_attack",
-                "Long Jump Attack",
-                "Travel more than 15 meters in a single jump attack before landing.",
+                "远跳斩",
+                "一次跳斩落地前移动超过 15 米。",
                 AchievementCategory::Misc,
                 false, 0, 0, false
             },
@@ -774,8 +774,8 @@ std::vector<AchievementSystem::Entry> AchievementSystem::makeEntries() {
         {
             {
                 "email_me",
-                "Email Me",
-                "Read a letter during the Dark Beast Ganon fight.",
+                "给我写信",
+                "在暗兽加侬战斗中阅读一封信。",
                 AchievementCategory::Misc,
                 false, 0, 0, false
             },
@@ -790,8 +790,8 @@ std::vector<AchievementSystem::Entry> AchievementSystem::makeEntries() {
         {
             {
                 "heavy_hitter",
-                "Heavy Hitter",
-                "Wear the Iron Boots during the end credits.",
+                "负重前行",
+                "在片尾字幕期间穿着铁靴。",
                 AchievementCategory::Misc,
                 false, 0, 0, false
             },
@@ -809,8 +809,8 @@ std::vector<AchievementSystem::Entry> AchievementSystem::makeEntries() {
         {
             {
                 "fishing_rod_ganondorf",
-                "Here Fishy Fishy",
-                "Confuse Ganondorf with the fishing rod.",
+                "鱼儿上钩",
+                "用鱼竿迷惑加农多夫。",
                 AchievementCategory::Misc,
                 false, 0, 0, false
             },
@@ -824,8 +824,8 @@ std::vector<AchievementSystem::Entry> AchievementSystem::makeEntries() {
         {
             {
                 "steal_from_trill",
-                "Petty Theft",
-                "Steal from Trill.",
+                "小偷小摸",
+                "从特利尔那里偷东西。",
                 AchievementCategory::Misc,
                 false, 0, 0, false
             },
@@ -839,8 +839,8 @@ std::vector<AchievementSystem::Entry> AchievementSystem::makeEntries() {
         {
             {
                 "cucco_control",
-                "Cucco Whisperer",
-                "Take control of a cucco.",
+                "库克鸡之友",
+                "控制一只库克鸡。",
                 AchievementCategory::Misc,
                 false, 0, 0, false
             },
@@ -854,8 +854,8 @@ std::vector<AchievementSystem::Entry> AchievementSystem::makeEntries() {
         {
             {
                 "ganondorf_3hit",
-                "Autospin Annihilation",
-                "Finish off Ganondorf in the final duel after only 3 attacks.",
+                "回旋歼灭",
+                "在最终决斗中仅攻击 3 次就击败加农多夫。",
                 AchievementCategory::Misc,
                 false, 0, 0, false
             },
@@ -915,8 +915,8 @@ std::vector<AchievementSystem::Entry> AchievementSystem::makeEntries() {
         {
             {
                 "back_in_time",
-                "Back in Time",
-                "Perform the Back in Time glitch to play on the title screen.",
+                "时光倒流",
+                "利用时光倒流漏洞在标题画面游玩。",
                 AchievementCategory::Glitched,
                 false, 0, 0, false
             },
@@ -935,8 +935,8 @@ std::vector<AchievementSystem::Entry> AchievementSystem::makeEntries() {
         {
             {
                 "early_master_sword",
-                "Early Master Sword",
-                "Obtain the Master Sword before completing Midna's Desperate Hour.",
+                "提前获得大师之剑",
+                "在完成米德娜的绝望时刻之前获得大师之剑。",
                 AchievementCategory::Glitched,
                 false, 0, 0, false
             },
@@ -950,8 +950,8 @@ std::vector<AchievementSystem::Entry> AchievementSystem::makeEntries() {
         {
             {
                 "earliest_master_sword",
-                "Earliest Master Sword",
-                "Obtain the Master Sword before meeting Midna.",
+                "最早的大师之剑",
+                "在遇见米德娜之前获得大师之剑。",
                 AchievementCategory::Glitched,
                 false, 0, 0, false
             },
@@ -965,8 +965,8 @@ std::vector<AchievementSystem::Entry> AchievementSystem::makeEntries() {
         {
             {
                 "speedrun_4h",
-                "Hero of Time",
-                "Defeat Ganondorf with a total save file play time under 4 hours.",
+                "时之勇者",
+                "存档总游玩时间不足 4 小时击败加农多夫。",
                 AchievementCategory::Glitched,
                 false, 0, 0, false
             },
@@ -985,8 +985,8 @@ std::vector<AchievementSystem::Entry> AchievementSystem::makeEntries() {
         {
             {
                 "no_fish_suit",
-                "No Fish Suit No Problem",
-                "Defeat Morpheel without equipping Zora Armor.",
+                "无鱼装也轻松",
+                "不穿佐拉铠甲击败魔菲。",
                 AchievementCategory::Glitched,
                 false, 0, 0, false
             },
@@ -1021,8 +1021,8 @@ std::vector<AchievementSystem::Entry> AchievementSystem::makeEntries() {
         {
             {
                 "null_item",
-                "Null Item",
-                "Obtain the mysterious black rupee in the item wheel.",
+                "空道具",
+                "在道具轮盘中获得神秘黑卢比。",
                 AchievementCategory::Glitched,
                 false, 0, 0, false
             },
@@ -1042,8 +1042,8 @@ std::vector<AchievementSystem::Entry> AchievementSystem::makeEntries() {
         {
             {
                 "stallord_skip",
-                "Stallord Skip",
-                "Leave Stallord's arena through the exit without defeating Stallord.",
+                "史塔拉德跳过",
+                "不击败史塔拉德，从其竞技场出口离开。",
                 AchievementCategory::Glitched,
                 false, 0, 0, false
             },
@@ -1071,8 +1071,8 @@ std::vector<AchievementSystem::Entry> AchievementSystem::makeEntries() {
         {
             {
                 "lakebed_before_lanayru",
-                "White Midna Glitch",
-                "Clear the Lakebed Temple before clearing Lanayru's Twilight.",
+                "白色米德娜漏洞",
+                "在清除拉聂鲁的黄昏之前通关湖底神殿。",
                 AchievementCategory::Glitched,
                 false, 0, 0, false
             },
@@ -1087,8 +1087,8 @@ std::vector<AchievementSystem::Entry> AchievementSystem::makeEntries() {
         {
             {
                 "early_hidden_village",
-                "Quick Detour",
-                "Rescue the Hidden Village before clearing Goron Mines.",
+                "顺路一游",
+                "在清除哥隆矿场之前救出隐藏村庄。",
                 AchievementCategory::Glitched,
                 false, 0, 0, false
             },
@@ -1103,8 +1103,8 @@ std::vector<AchievementSystem::Entry> AchievementSystem::makeEntries() {
         {
             {
                 "forest_temple_no_boomerang",
-                "Must Have Been The Wind",
-                "Complete the Forest Temple without obtaining the Gale Boomerang.",
+                "一定是风",
+                "不获得疾风回旋镖通关森之神殿。",
                 AchievementCategory::Glitched,
                 false, 0, 0, false
             },
@@ -1127,8 +1127,8 @@ std::vector<AchievementSystem::Entry> AchievementSystem::makeEntries() {
         {
             {
                 "early_city",
-                "Early City",
-                "Obtain the Double Clawshots without obtaining the Dominion Rod.",
+                "提前进城",
+                "不获得支配之杖的情况下获得双爪钩。",
                 AchievementCategory::Glitched,
                 false, 0, 0, false
             },
@@ -1156,8 +1156,8 @@ std::vector<AchievementSystem::Entry> AchievementSystem::makeEntries() {
         {
             {
                 "early_kakariko",
-                "Gorge Skip",
-                "Collect the Kakariko warp portal without warping the gorge bridge.",
+                "峡谷跳跃",
+                "不召唤峡谷桥的情况下收集卡卡利科传送点。",
                 AchievementCategory::Glitched,
                 false, 0, 0, false
             },
@@ -1291,7 +1291,7 @@ void AchievementSystem::processEntry(Entry& e) {
         if (getSettings().game.enableAchievementToasts) {
             ui::push_toast({
                 .type = "achievement",
-                .title = "Achievement Unlocked!",
+                .title = "成就解锁！",
                 .content = e.achievement.name,
                 .duration = std::chrono::seconds(5),
             });

@@ -225,115 +225,115 @@ struct itemInfo {
 };
 
 std::map<int, itemInfo> itemMap = {
-    {dItemNo_HEART_e, {"Heart"}},
-    {dItemNo_GREEN_RUPEE_e, {"Green Rupee"}},
-    {dItemNo_BLUE_RUPEE_e, {"Blue Rupee"}},
-    {dItemNo_YELLOW_RUPEE_e, {"Yellow Rupee"}},
-    {dItemNo_RED_RUPEE_e, {"Red Rupee"}},
-    {dItemNo_PURPLE_RUPEE_e, {"Purple Rupee"}},
-    {dItemNo_ORANGE_RUPEE_e, {"Orange Rupee"}},
-    {dItemNo_SILVER_RUPEE_e, {"Silver Rupee"}},
-    {dItemNo_S_MAGIC_e, {"Small Magic"}},
-    {dItemNo_L_MAGIC_e, {"Large Magic"}},
-    {dItemNo_BOMB_5_e, {"Bombs (5)"}},
-    {dItemNo_BOMB_10_e, {"Bombs (10)"}},
-    {dItemNo_BOMB_20_e, {"Bombs (20)"}},
-    {dItemNo_BOMB_30_e, {"Bombs (30)"}},
-    {dItemNo_ARROW_10_e, {"Arrows (10)"}},
-    {dItemNo_ARROW_20_e, {"Arrows (20)"}},
-    {dItemNo_ARROW_30_e, {"Arrows (30)"}},
-    {dItemNo_ARROW_1_e, {"Arrows (1)"}},
-    {dItemNo_PACHINKO_SHOT_e, {"Pumpkin Seeds"}},
-    {dItemNo_NOENTRY_19_e, {"Reserved"}},
-    {dItemNo_NOENTRY_20_e, {"Reserved"}},
-    {dItemNo_NOENTRY_21_e, {"Reserved"}},
-    {dItemNo_WATER_BOMB_5_e, {"Water Bombs (5)"}},
-    {dItemNo_WATER_BOMB_10_e, {"Water Bombs (10)"}},
-    {dItemNo_WATER_BOMB_20_e, {"Water Bombs (20)"}},
-    {dItemNo_WATER_BOMB_30_e, {"Water Bombs (30)"}},
-    {dItemNo_BOMB_INSECT_5_e, {"Bomblings (5)"}},
-    {dItemNo_BOMB_INSECT_10_e, {"Bomblings (10)"}},
-    {dItemNo_BOMB_INSECT_20_e, {"Bomblings (20)"}},
-    {dItemNo_BOMB_INSECT_30_e, {"Bomblings (30)"}},
-    {dItemNo_RECOVERY_FAILY_e, {"Fairy"}},
-    {dItemNo_TRIPLE_HEART_e, {"Triple Hearts"}},
-    {dItemNo_SMALL_KEY_e, {"Small Key"}},
-    {dItemNo_KAKERA_HEART_e, {"Piece of Heart"}},
-    {dItemNo_UTAWA_HEART_e, {"Heart Container"}},
-    {dItemNo_MAP_e, {"Dungeon Map"}},
-    {dItemNo_COMPUS_e, {"Compass"}},
-    {dItemNo_DUNGEON_EXIT_e, {"Ooccoo Sr. (First Time)", ITEMTYPE_EQUIP_e}},
-    {dItemNo_BOSS_KEY_e, {"Boss Key"}},
-    {dItemNo_DUNGEON_BACK_e, {"Ooccoo Jr.", ITEMTYPE_EQUIP_e}},
-    {dItemNo_SWORD_e, {"Ordon Sword"}},
-    {dItemNo_MASTER_SWORD_e, {"Master Sword"}},
-    {dItemNo_WOOD_SHIELD_e, {"Ordon Shield"}},
-    {dItemNo_SHIELD_e, {"Wooden Shield"}},
-    {dItemNo_HYLIA_SHIELD_e, {"Hylian Shield"}},
-    {dItemNo_TKS_LETTER_e, {"Ooccoo's Note", ITEMTYPE_EQUIP_e}},
-    {dItemNo_WEAR_CASUAL_e, {"Ordon Clothes"}},
-    {dItemNo_WEAR_KOKIRI_e, {"Hero's Clothes"}},
-    {dItemNo_ARMOR_e, {"Magic Armor"}},
-    {dItemNo_WEAR_ZORA_e, {"Zora Armor"}},
-    {dItemNo_SHADOW_CRYSTAL_e, {"Shadow Crystal"}},
-    {dItemNo_DUNGEON_EXIT_2_e, {"Ooccoo Sr.", ITEMTYPE_EQUIP_e}},
-    {dItemNo_WALLET_LV1_e, {"Wallet"}},
-    {dItemNo_WALLET_LV2_e, {"Big Wallet"}},
-    {dItemNo_WALLET_LV3_e, {"Giant Wallet"}},
-    {dItemNo_NOENTRY_55_e, {"Reserved"}},
-    {dItemNo_NOENTRY_56_e, {"Reserved"}},
-    {dItemNo_NOENTRY_57_e, {"Reserved"}},
-    {dItemNo_NOENTRY_58_e, {"Reserved"}},
-    {dItemNo_NOENTRY_59_e, {"Reserved"}},
-    {dItemNo_NOENTRY_60_e, {"Reserved"}},
-    {dItemNo_ZORAS_JEWEL_e, {"Coral Earring", ITEMTYPE_EQUIP_e}},
-    {dItemNo_HAWK_EYE_e, {"Hawkeye", ITEMTYPE_EQUIP_e}},
-    {dItemNo_WOOD_STICK_e, {"Wooden Sword"}},
-    {dItemNo_BOOMERANG_e, {"Gale Boomerang", ITEMTYPE_EQUIP_e}},
-    {dItemNo_SPINNER_e, {"Spinner", ITEMTYPE_EQUIP_e}},
-    {dItemNo_IRONBALL_e, {"Ball and Chain", ITEMTYPE_EQUIP_e}},
-    {dItemNo_BOW_e, {"Hero's Bow", ITEMTYPE_EQUIP_e}},
-    {dItemNo_HOOKSHOT_e, {"Clawshot", ITEMTYPE_EQUIP_e}},
-    {dItemNo_HVY_BOOTS_e, {"Iron Boots", ITEMTYPE_EQUIP_e}},
-    {dItemNo_COPY_ROD_e, {"Dominion Rod", ITEMTYPE_EQUIP_e}},
-    {dItemNo_W_HOOKSHOT_e, {"Double Clawshots", ITEMTYPE_EQUIP_e}},
-    {dItemNo_KANTERA_e, {"Lantern", ITEMTYPE_EQUIP_e}},
-    {dItemNo_LIGHT_SWORD_e, {"Light Sword"}},
-    {dItemNo_FISHING_ROD_1_e, {"Fishing Rod", ITEMTYPE_EQUIP_e}},
-    {dItemNo_PACHINKO_e, {"Slingshot", ITEMTYPE_EQUIP_e}},
-    {dItemNo_COPY_ROD_2_e, {"Dominion Rod (Uncharged)"}},
-    {dItemNo_NOENTRY_77_e, {"Reserved"}},
-    {dItemNo_NOENTRY_78_e, {"Reserved"}},
-    {dItemNo_BOMB_BAG_LV2_e, {"Giant Bomb Bag"}},
-    {dItemNo_BOMB_BAG_LV1_e, {"Empty Bomb Bag", ITEMTYPE_EQUIP_e}},
-    {dItemNo_BOMB_IN_BAG_e, {"Bomb Bag"}},
-    {dItemNo_NOENTRY_82_e, {"Reserved"}},
-    {dItemNo_LIGHT_ARROW_e, {"Light Arrow"}},
-    {dItemNo_ARROW_LV1_e, {"Quiver"}},
-    {dItemNo_ARROW_LV2_e, {"Big Quiver"}},
-    {dItemNo_ARROW_LV3_e, {"Giant Quiver"}},
-    {dItemNo_NOENTRY_87_e, {"Reserved"}},
-    {dItemNo_LURE_ROD_e, {"Fishing Rod (Lure)"}},
-    {dItemNo_BOMB_ARROW_e, {"Bomb Arrow"}},
-    {dItemNo_HAWK_ARROW_e, {"Hawk Arrow"}},
-    {dItemNo_BEE_ROD_e, {"Fishing Rod (Bee Larva)", ITEMTYPE_EQUIP_e}},
-    {dItemNo_JEWEL_ROD_e, {"Fishing Rod (Earring)", ITEMTYPE_EQUIP_e}},
-    {dItemNo_WORM_ROD_e, {"Fishing Rod (Worm)", ITEMTYPE_EQUIP_e}},
-    {dItemNo_JEWEL_BEE_ROD_e, {"Fishing Rod (Earring + Bee Larva)", ITEMTYPE_EQUIP_e}},
-    {dItemNo_JEWEL_WORM_ROD_e, {"Fishing Rod (Earring + Worm)", ITEMTYPE_EQUIP_e}},
-    {dItemNo_EMPTY_BOTTLE_e, {"Empty Bottle", ITEMTYPE_EQUIP_e}},
-    {dItemNo_RED_BOTTLE_e, {"Red Potion", ITEMTYPE_EQUIP_e}},
-    {dItemNo_GREEN_BOTTLE_e, {"Green Potion", ITEMTYPE_EQUIP_e}},
-    {dItemNo_BLUE_BOTTLE_e, {"Blue Potion", ITEMTYPE_EQUIP_e}},
-    {dItemNo_MILK_BOTTLE_e, {"Milk Bottle", ITEMTYPE_EQUIP_e}},
-    {dItemNo_HALF_MILK_BOTTLE_e, {"Half Milk Bottle", ITEMTYPE_EQUIP_e}},
-    {dItemNo_OIL_BOTTLE_e, {"Lantern Oil", ITEMTYPE_EQUIP_e}},
-    {dItemNo_WATER_BOTTLE_e, {"Water Bottle", ITEMTYPE_EQUIP_e}},
-    {dItemNo_OIL_BOTTLE_2_e, {"Lantern Oil (Scooped)"}},
-    {dItemNo_RED_BOTTLE_2_e, {"Red Potion (Scooped)"}},
-    {dItemNo_UGLY_SOUP_e, {"Nasty Soup", ITEMTYPE_EQUIP_e}},
+    {dItemNo_HEART_e, {"心"}},
+    {dItemNo_GREEN_RUPEE_e, {"绿卢比"}},
+    {dItemNo_BLUE_RUPEE_e, {"蓝卢比"}},
+    {dItemNo_YELLOW_RUPEE_e, {"黄卢比"}},
+    {dItemNo_RED_RUPEE_e, {"红卢比"}},
+    {dItemNo_PURPLE_RUPEE_e, {"紫卢比"}},
+    {dItemNo_ORANGE_RUPEE_e, {"橙卢比"}},
+    {dItemNo_SILVER_RUPEE_e, {"银卢比"}},
+    {dItemNo_S_MAGIC_e, {"小魔法"}},
+    {dItemNo_L_MAGIC_e, {"大魔法"}},
+    {dItemNo_BOMB_5_e, {"炸弹（5）"}},
+    {dItemNo_BOMB_10_e, {"炸弹（10）"}},
+    {dItemNo_BOMB_20_e, {"炸弹（20）"}},
+    {dItemNo_BOMB_30_e, {"炸弹（30）"}},
+    {dItemNo_ARROW_10_e, {"箭（10）"}},
+    {dItemNo_ARROW_20_e, {"箭（20）"}},
+    {dItemNo_ARROW_30_e, {"箭（30）"}},
+    {dItemNo_ARROW_1_e, {"箭（1）"}},
+    {dItemNo_PACHINKO_SHOT_e, {"南瓜种子"}},
+    {dItemNo_NOENTRY_19_e, {"保留"}},
+    {dItemNo_NOENTRY_20_e, {"保留"}},
+    {dItemNo_NOENTRY_21_e, {"保留"}},
+    {dItemNo_WATER_BOMB_5_e, {"水炸弹（5）"}},
+    {dItemNo_WATER_BOMB_10_e, {"水炸弹（10）"}},
+    {dItemNo_WATER_BOMB_20_e, {"水炸弹（20）"}},
+    {dItemNo_WATER_BOMB_30_e, {"水炸弹（30）"}},
+    {dItemNo_BOMB_INSECT_5_e, {"虫炸弹（5）"}},
+    {dItemNo_BOMB_INSECT_10_e, {"虫炸弹（10）"}},
+    {dItemNo_BOMB_INSECT_20_e, {"虫炸弹（20）"}},
+    {dItemNo_BOMB_INSECT_30_e, {"虫炸弹（30）"}},
+    {dItemNo_RECOVERY_FAILY_e, {"妖精"}},
+    {dItemNo_TRIPLE_HEART_e, {"三倍心心"}},
+    {dItemNo_SMALL_KEY_e, {"小钥匙"}},
+    {dItemNo_KAKERA_HEART_e, {"心之碎片"}},
+    {dItemNo_UTAWA_HEART_e, {"心之容器"}},
+    {dItemNo_MAP_e, {"地牢地图"}},
+    {dItemNo_COMPUS_e, {"罗盘"}},
+    {dItemNo_DUNGEON_EXIT_e, {"欧可先生 (First Time)", ITEMTYPE_EQUIP_e}},
+    {dItemNo_BOSS_KEY_e, {"首领钥匙"}},
+    {dItemNo_DUNGEON_BACK_e, {"欧可小子", ITEMTYPE_EQUIP_e}},
+    {dItemNo_SWORD_e, {"奥尔登剑"}},
+    {dItemNo_MASTER_SWORD_e, {"大师之剑"}},
+    {dItemNo_WOOD_SHIELD_e, {"奥尔登盾"}},
+    {dItemNo_SHIELD_e, {"木盾"}},
+    {dItemNo_HYLIA_SHIELD_e, {"海利亚盾"}},
+    {dItemNo_TKS_LETTER_e, {"欧可的便条", ITEMTYPE_EQUIP_e}},
+    {dItemNo_WEAR_CASUAL_e, {"奥尔登服装"}},
+    {dItemNo_WEAR_KOKIRI_e, {"勇者服装"}},
+    {dItemNo_ARMOR_e, {"魔法铠甲"}},
+    {dItemNo_WEAR_ZORA_e, {"卓拉铠甲"}},
+    {dItemNo_SHADOW_CRYSTAL_e, {"暗影水晶"}},
+    {dItemNo_DUNGEON_EXIT_2_e, {"欧可先生", ITEMTYPE_EQUIP_e}},
+    {dItemNo_WALLET_LV1_e, {"钱包"}},
+    {dItemNo_WALLET_LV2_e, {"大钱包"}},
+    {dItemNo_WALLET_LV3_e, {"巨型钱包"}},
+    {dItemNo_NOENTRY_55_e, {"保留"}},
+    {dItemNo_NOENTRY_56_e, {"保留"}},
+    {dItemNo_NOENTRY_57_e, {"保留"}},
+    {dItemNo_NOENTRY_58_e, {"保留"}},
+    {dItemNo_NOENTRY_59_e, {"保留"}},
+    {dItemNo_NOENTRY_60_e, {"保留"}},
+    {dItemNo_ZORAS_JEWEL_e, {"珊瑚耳环", ITEMTYPE_EQUIP_e}},
+    {dItemNo_HAWK_EYE_e, {"鹰眼", ITEMTYPE_EQUIP_e}},
+    {dItemNo_WOOD_STICK_e, {"木剑"}},
+    {dItemNo_BOOMERANG_e, {"疾风回旋镖", ITEMTYPE_EQUIP_e}},
+    {dItemNo_SPINNER_e, {"回旋陀螺", ITEMTYPE_EQUIP_e}},
+    {dItemNo_IRONBALL_e, {"链球", ITEMTYPE_EQUIP_e}},
+    {dItemNo_BOW_e, {"勇者之弓", ITEMTYPE_EQUIP_e}},
+    {dItemNo_HOOKSHOT_e, {"爪钩", ITEMTYPE_EQUIP_e}},
+    {dItemNo_HVY_BOOTS_e, {"铁靴", ITEMTYPE_EQUIP_e}},
+    {dItemNo_COPY_ROD_e, {"支配之杖", ITEMTYPE_EQUIP_e}},
+    {dItemNo_W_HOOKSHOT_e, {"双重爪钩", ITEMTYPE_EQUIP_e}},
+    {dItemNo_KANTERA_e, {"灯笼", ITEMTYPE_EQUIP_e}},
+    {dItemNo_LIGHT_SWORD_e, {"光之剑"}},
+    {dItemNo_FISHING_ROD_1_e, {"钓竿", ITEMTYPE_EQUIP_e}},
+    {dItemNo_PACHINKO_e, {"弹弓", ITEMTYPE_EQUIP_e}},
+    {dItemNo_COPY_ROD_2_e, {"支配之杖（未充能）"}},
+    {dItemNo_NOENTRY_77_e, {"保留"}},
+    {dItemNo_NOENTRY_78_e, {"保留"}},
+    {dItemNo_BOMB_BAG_LV2_e, {"巨型炸弹袋"}},
+    {dItemNo_BOMB_BAG_LV1_e, {"空炸弹袋", ITEMTYPE_EQUIP_e}},
+    {dItemNo_BOMB_IN_BAG_e, {"炸弹袋"}},
+    {dItemNo_NOENTRY_82_e, {"保留"}},
+    {dItemNo_LIGHT_ARROW_e, {"光之箭"}},
+    {dItemNo_ARROW_LV1_e, {"箭袋"}},
+    {dItemNo_ARROW_LV2_e, {"大箭袋"}},
+    {dItemNo_ARROW_LV3_e, {"巨型箭袋"}},
+    {dItemNo_NOENTRY_87_e, {"保留"}},
+    {dItemNo_LURE_ROD_e, {"钓竿（拟饵）"}},
+    {dItemNo_BOMB_ARROW_e, {"炸弹箭"}},
+    {dItemNo_HAWK_ARROW_e, {"鹰眼箭"}},
+    {dItemNo_BEE_ROD_e, {"钓竿（蜂幼虫）", ITEMTYPE_EQUIP_e}},
+    {dItemNo_JEWEL_ROD_e, {"钓竿（耳环）", ITEMTYPE_EQUIP_e}},
+    {dItemNo_WORM_ROD_e, {"钓竿（虫饵）", ITEMTYPE_EQUIP_e}},
+    {dItemNo_JEWEL_BEE_ROD_e, {"钓竿（耳环+蜂幼虫）", ITEMTYPE_EQUIP_e}},
+    {dItemNo_JEWEL_WORM_ROD_e, {"钓竿（耳环+虫饵）", ITEMTYPE_EQUIP_e}},
+    {dItemNo_EMPTY_BOTTLE_e, {"空瓶", ITEMTYPE_EQUIP_e}},
+    {dItemNo_RED_BOTTLE_e, {"红药水", ITEMTYPE_EQUIP_e}},
+    {dItemNo_GREEN_BOTTLE_e, {"绿药水", ITEMTYPE_EQUIP_e}},
+    {dItemNo_BLUE_BOTTLE_e, {"蓝药水", ITEMTYPE_EQUIP_e}},
+    {dItemNo_MILK_BOTTLE_e, {"牛奶瓶", ITEMTYPE_EQUIP_e}},
+    {dItemNo_HALF_MILK_BOTTLE_e, {"半瓶牛奶", ITEMTYPE_EQUIP_e}},
+    {dItemNo_OIL_BOTTLE_e, {"灯油", ITEMTYPE_EQUIP_e}},
+    {dItemNo_WATER_BOTTLE_e, {"水瓶", ITEMTYPE_EQUIP_e}},
+    {dItemNo_OIL_BOTTLE_2_e, {"灯油（舀取）"}},
+    {dItemNo_RED_BOTTLE_2_e, {"红药水（舀取）"}},
+    {dItemNo_UGLY_SOUP_e, {"难喝的汤", ITEMTYPE_EQUIP_e}},
     {dItemNo_HOT_SPRING_e, {"Hotspring Water", ITEMTYPE_EQUIP_e}},
-    {dItemNo_FAIRY_e, {"Fairy", ITEMTYPE_EQUIP_e}},
+    {dItemNo_FAIRY_e, {"妖精", ITEMTYPE_EQUIP_e}},
     {dItemNo_HOT_SPRING_2_e, {"Hotspring Water (Shop)"}},
     {dItemNo_OIL2_e, {"Lantern Refill (Scooped)"}},
     {dItemNo_OIL_e, {"Lantern Refill (Shop)"}},
@@ -358,31 +358,31 @@ std::map<int, itemInfo> itemMap = {
     {dItemNo_WOOD_STATUE_e, {"Wooden Statue", ITEMTYPE_EQUIP_e}},
     {dItemNo_IRIAS_PENDANT_e, {"Ilia's Charm", ITEMTYPE_EQUIP_e}},
     {dItemNo_HORSE_FLUTE_e, {"Horse Call", ITEMTYPE_EQUIP_e}},
-    {dItemNo_NOENTRY_133_e, {"Reserved"}},
-    {dItemNo_NOENTRY_134_e, {"Reserved"}},
-    {dItemNo_NOENTRY_135_e, {"Reserved"}},
-    {dItemNo_NOENTRY_136_e, {"Reserved"}},
-    {dItemNo_NOENTRY_137_e, {"Reserved"}},
-    {dItemNo_NOENTRY_138_e, {"Reserved"}},
-    {dItemNo_NOENTRY_139_e, {"Reserved"}},
-    {dItemNo_NOENTRY_140_e, {"Reserved"}},
-    {dItemNo_NOENTRY_141_e, {"Reserved"}},
-    {dItemNo_NOENTRY_142_e, {"Reserved"}},
-    {dItemNo_NOENTRY_143_e, {"Reserved"}},
+    {dItemNo_NOENTRY_133_e, {"保留"}},
+    {dItemNo_NOENTRY_134_e, {"保留"}},
+    {dItemNo_NOENTRY_135_e, {"保留"}},
+    {dItemNo_NOENTRY_136_e, {"保留"}},
+    {dItemNo_NOENTRY_137_e, {"保留"}},
+    {dItemNo_NOENTRY_138_e, {"保留"}},
+    {dItemNo_NOENTRY_139_e, {"保留"}},
+    {dItemNo_NOENTRY_140_e, {"保留"}},
+    {dItemNo_NOENTRY_141_e, {"保留"}},
+    {dItemNo_NOENTRY_142_e, {"保留"}},
+    {dItemNo_NOENTRY_143_e, {"保留"}},
     {dItemNo_RAFRELS_MEMO_e, {"Auru's Memo", ITEMTYPE_EQUIP_e}},
     {dItemNo_ASHS_SCRIBBLING_e, {"Ashei's Sketch", ITEMTYPE_EQUIP_e}},
-    {dItemNo_NOENTRY_146_e, {"Reserved"}},
-    {dItemNo_NOENTRY_147_e, {"Reserved"}},
-    {dItemNo_NOENTRY_148_e, {"Reserved"}},
-    {dItemNo_NOENTRY_149_e, {"Reserved"}},
-    {dItemNo_NOENTRY_150_e, {"Reserved"}},
-    {dItemNo_NOENTRY_151_e, {"Reserved"}},
-    {dItemNo_NOENTRY_152_e, {"Reserved"}},
-    {dItemNo_NOENTRY_153_e, {"Reserved"}},
-    {dItemNo_NOENTRY_154_e, {"Reserved"}},
-    {dItemNo_NOENTRY_155_e, {"Reserved"}},
+    {dItemNo_NOENTRY_146_e, {"保留"}},
+    {dItemNo_NOENTRY_147_e, {"保留"}},
+    {dItemNo_NOENTRY_148_e, {"保留"}},
+    {dItemNo_NOENTRY_149_e, {"保留"}},
+    {dItemNo_NOENTRY_150_e, {"保留"}},
+    {dItemNo_NOENTRY_151_e, {"保留"}},
+    {dItemNo_NOENTRY_152_e, {"保留"}},
+    {dItemNo_NOENTRY_153_e, {"保留"}},
+    {dItemNo_NOENTRY_154_e, {"保留"}},
+    {dItemNo_NOENTRY_155_e, {"保留"}},
     {dItemNo_CHUCHU_YELLOW2_e, {"Lantern Refill (Yellow Chu)"}},
-    {dItemNo_OIL_BOTTLE3_e, {"Lantern Oil (Coro)"}},
+    {dItemNo_OIL_BOTTLE3_e, {"灯油 (Coro)"}},
     {dItemNo_SHOP_BEE_CHILD_e, {"Bee Larve (Shop)"}},
     {dItemNo_CHUCHU_BLACK_e, {"Black Chu Jelly", ITEMTYPE_EQUIP_e}},
     {dItemNo_LIGHT_DROP_e, {"Tear of Light"}},
@@ -393,30 +393,30 @@ std::map<int, itemInfo> itemMap = {
     {dItemNo_MIRROR_PIECE_2_e, {"Mirror Shard (Snowpeak Ruins)"}},
     {dItemNo_MIRROR_PIECE_3_e, {"Mirror Shard (Temple of Time)"}},
     {dItemNo_MIRROR_PIECE_4_e, {"Mirror Shard (City in the Sky)"}},
-    {dItemNo_NOENTRY_168_e, {"Reserved"}},
-    {dItemNo_NOENTRY_169_e, {"Reserved"}},
-    {dItemNo_NOENTRY_170_e, {"Reserved"}},
-    {dItemNo_NOENTRY_171_e, {"Reserved"}},
-    {dItemNo_NOENTRY_172_e, {"Reserved"}},
-    {dItemNo_NOENTRY_173_e, {"Reserved"}},
-    {dItemNo_NOENTRY_174_e, {"Reserved"}},
-    {dItemNo_NOENTRY_175_e, {"Reserved"}},
+    {dItemNo_NOENTRY_168_e, {"保留"}},
+    {dItemNo_NOENTRY_169_e, {"保留"}},
+    {dItemNo_NOENTRY_170_e, {"保留"}},
+    {dItemNo_NOENTRY_171_e, {"保留"}},
+    {dItemNo_NOENTRY_172_e, {"保留"}},
+    {dItemNo_NOENTRY_173_e, {"保留"}},
+    {dItemNo_NOENTRY_174_e, {"保留"}},
+    {dItemNo_NOENTRY_175_e, {"保留"}},
     {dItemNo_SMELL_YELIA_POUCH_e, {"Scent of Ilia"}},
     {dItemNo_SMELL_PUMPKIN_e, {"Pumpkin Scent"}},
     {dItemNo_SMELL_POH_e, {"Poe Scent"}},
     {dItemNo_SMELL_FISH_e, {"Reekfish Scent"}},
     {dItemNo_SMELL_CHILDREN_e, {"Youth's Scent"}},
     {dItemNo_SMELL_MEDICINE_e, {"Medicine Scent"}},
-    {dItemNo_NOENTRY_182_e, {"Reserved"}},
-    {dItemNo_NOENTRY_183_e, {"Reserved"}},
-    {dItemNo_NOENTRY_184_e, {"Reserved"}},
-    {dItemNo_NOENTRY_185_e, {"Reserved"}},
-    {dItemNo_NOENTRY_186_e, {"Reserved"}},
-    {dItemNo_NOENTRY_187_e, {"Reserved"}},
-    {dItemNo_NOENTRY_188_e, {"Reserved"}},
-    {dItemNo_NOENTRY_189_e, {"Reserved"}},
-    {dItemNo_NOENTRY_190_e, {"Reserved"}},
-    {dItemNo_NOENTRY_191_e, {"Reserved"}},
+    {dItemNo_NOENTRY_182_e, {"保留"}},
+    {dItemNo_NOENTRY_183_e, {"保留"}},
+    {dItemNo_NOENTRY_184_e, {"保留"}},
+    {dItemNo_NOENTRY_185_e, {"保留"}},
+    {dItemNo_NOENTRY_186_e, {"保留"}},
+    {dItemNo_NOENTRY_187_e, {"保留"}},
+    {dItemNo_NOENTRY_188_e, {"保留"}},
+    {dItemNo_NOENTRY_189_e, {"保留"}},
+    {dItemNo_NOENTRY_190_e, {"保留"}},
+    {dItemNo_NOENTRY_191_e, {"保留"}},
     {dItemNo_M_BEETLE_e, {"Beetle (M)"}},
     {dItemNo_F_BEETLE_e, {"Beetle (F)"}},
     {dItemNo_M_BUTTERFLY_e, {"Butterfly (M)"}},
@@ -441,34 +441,34 @@ std::map<int, itemInfo> itemMap = {
     {dItemNo_F_ANT_e, {"Ant (F)"}},
     {dItemNo_M_MAYFLY_e, {"Mayfly (M)"}},
     {dItemNo_F_MAYFLY_e, {"Mayfly (F)"}},
-    {dItemNo_NOENTRY_216_e, {"Reserved"}},
-    {dItemNo_NOENTRY_217_e, {"Reserved"}},
-    {dItemNo_NOENTRY_218_e, {"Reserved"}},
-    {dItemNo_NOENTRY_219_e, {"Reserved"}},
-    {dItemNo_NOENTRY_220_e, {"Reserved"}},
-    {dItemNo_NOENTRY_221_e, {"Reserved"}},
-    {dItemNo_NOENTRY_222_e, {"Reserved"}},
-    {dItemNo_NOENTRY_223_e, {"Reserved"}},
+    {dItemNo_NOENTRY_216_e, {"保留"}},
+    {dItemNo_NOENTRY_217_e, {"保留"}},
+    {dItemNo_NOENTRY_218_e, {"保留"}},
+    {dItemNo_NOENTRY_219_e, {"保留"}},
+    {dItemNo_NOENTRY_220_e, {"保留"}},
+    {dItemNo_NOENTRY_221_e, {"保留"}},
+    {dItemNo_NOENTRY_222_e, {"保留"}},
+    {dItemNo_NOENTRY_223_e, {"保留"}},
     {dItemNo_POU_SPIRIT_e, {"Poe Soul"}},
-    {dItemNo_NOENTRY_225_e, {"Reserved"}},
-    {dItemNo_NOENTRY_226_e, {"Reserved"}},
-    {dItemNo_NOENTRY_227_e, {"Reserved"}},
-    {dItemNo_NOENTRY_228_e, {"Reserved"}},
-    {dItemNo_NOENTRY_229_e, {"Reserved"}},
-    {dItemNo_NOENTRY_230_e, {"Reserved"}},
-    {dItemNo_NOENTRY_231_e, {"Reserved"}},
-    {dItemNo_NOENTRY_232_e, {"Reserved"}},
+    {dItemNo_NOENTRY_225_e, {"保留"}},
+    {dItemNo_NOENTRY_226_e, {"保留"}},
+    {dItemNo_NOENTRY_227_e, {"保留"}},
+    {dItemNo_NOENTRY_228_e, {"保留"}},
+    {dItemNo_NOENTRY_229_e, {"保留"}},
+    {dItemNo_NOENTRY_230_e, {"保留"}},
+    {dItemNo_NOENTRY_231_e, {"保留"}},
+    {dItemNo_NOENTRY_232_e, {"保留"}},
     {dItemNo_ANCIENT_DOCUMENT_e, {"Ancient Sky Book", ITEMTYPE_EQUIP_e}},
     {dItemNo_AIR_LETTER_e, {"Ancient Sky Book (Partial)", ITEMTYPE_EQUIP_e}},
     {dItemNo_ANCIENT_DOCUMENT2_e, {"Ancient Sky Book (Filled)", ITEMTYPE_EQUIP_e}},
-    {dItemNo_LV7_DUNGEON_EXIT_e, {"Ooccoo Sr. (City in the Sky)"}},
-    {dItemNo_LINKS_SAVINGS_e, {"Purple Rupee (Link's Savings)"}},
-    {dItemNo_SMALL_KEY2_e, {"Small Key (North Faron Gate)"}},
+    {dItemNo_LV7_DUNGEON_EXIT_e, {"欧可先生 (City in the Sky)"}},
+    {dItemNo_LINKS_SAVINGS_e, {"紫卢比 (Link's Savings)"}},
+    {dItemNo_SMALL_KEY2_e, {"小钥匙 (North Faron Gate)"}},
     {dItemNo_POU_FIRE1_e, {"Poe Fire 1"}},
     {dItemNo_POU_FIRE2_e, {"Poe Fire 2"}},
     {dItemNo_POU_FIRE3_e, {"Poe Fire 3"}},
     {dItemNo_POU_FIRE4_e, {"Poe Fire 4"}},
-    {dItemNo_BOSSRIDER_KEY_e, {"Hyrule Field Keys"}},
+    {dItemNo_BOSSRIDER_KEY_e, {"海拉鲁平原 Keys"}},
     {dItemNo_TOMATO_PUREE_e, {"Ordon Pumpkin", ITEMTYPE_EQUIP_e}},
     {dItemNo_TASTE_e, {"Ordon Goat Cheese", ITEMTYPE_EQUIP_e}},
     {dItemNo_LV5_BOSS_KEY_e, {"Bedroom Key"}},
@@ -478,25 +478,25 @@ std::map<int, itemInfo> itemMap = {
     {dItemNo_L2_KEY_PIECES2_e, {"Key Shard (2)"}},
     {dItemNo_L2_KEY_PIECES3_e, {"Key Shard (3)"}},
     {dItemNo_KEY_OF_CARAVAN_e, {"Bulblin Camp Key"}},
-    {dItemNo_LV2_BOSS_KEY_e, {"Goron Mines Boss Key"}},
+    {dItemNo_LV2_BOSS_KEY_e, {"Goron Mines 首领钥匙"}},
     {dItemNo_KEY_OF_FILONE_e, {"South Faron Gate Key"}},
-    {dItemNo_NONE_e, {"None"}},
+    {dItemNo_NONE_e, {"无"}},
 };
 
 Rml::String get_item_name(u8 id) {
     const auto it = itemMap.find(id);
     if (it == itemMap.end()) {
-        return fmt::format("Item {}", id);
+        return fmt::format("物品 {}", id);
     }
     return it->second.m_name;
 }
 
 Rml::String item_label_for_slot(u8 slot) {
     if (slot == 0xFF) {
-        return "None";
+        return "无";
     }
     const auto id = dComIfGs_getSaveData()->getPlayer().getItem().mItems[slot];
-    return fmt::format("Slot {0} ({1})", slot, get_item_name(id));
+    return fmt::format("栏位 {0} ({1})", slot, get_item_name(id));
 }
 
 struct NamedIndexEntry {
@@ -544,91 +544,91 @@ constexpr std::array<u8, 5> smellEntries = {
 };
 
 constexpr std::array fusedShadowEntries = {
-    NamedIndexEntry{"Forest Temple", 0},
-    NamedIndexEntry{"Goron Mines", 1},
-    NamedIndexEntry{"Lakebed Temple", 2},
+    NamedIndexEntry{"森林神殿", 0},
+    NamedIndexEntry{"戈隆矿山", 1},
+    NamedIndexEntry{"湖底神殿", 2},
 };
 
 constexpr std::array mirrorShardEntries = {
-    NamedIndexEntry{"Snowpeak Ruins", 1},
-    NamedIndexEntry{"Temple of Time", 2},
-    NamedIndexEntry{"City in the Sky", 3},
+    NamedIndexEntry{"雪峰遗迹", 1},
+    NamedIndexEntry{"时之神殿", 2},
+    NamedIndexEntry{"天空之城", 3},
 };
 
 constexpr std::array bugSpeciesEntries = {
-    BugSpeciesEntry{"Ant", dItemNo_M_ANT_e, dItemNo_F_ANT_e, dSv_event_flag_c::F_0421,
+    BugSpeciesEntry{"蚂蚁", dItemNo_M_ANT_e, dItemNo_F_ANT_e, dSv_event_flag_c::F_0421,
         dSv_event_flag_c::F_0422},
-    BugSpeciesEntry{"Dayfly", dItemNo_M_MAYFLY_e, dItemNo_F_MAYFLY_e, dSv_event_flag_c::F_0423,
+    BugSpeciesEntry{"蜉蝣", dItemNo_M_MAYFLY_e, dItemNo_F_MAYFLY_e, dSv_event_flag_c::F_0423,
         dSv_event_flag_c::F_0424},
-    BugSpeciesEntry{"Beetle", dItemNo_M_BEETLE_e, dItemNo_F_BEETLE_e, dSv_event_flag_c::F_0401,
+    BugSpeciesEntry{"甲虫", dItemNo_M_BEETLE_e, dItemNo_F_BEETLE_e, dSv_event_flag_c::F_0401,
         dSv_event_flag_c::F_0402},
-    BugSpeciesEntry{"Mantis", dItemNo_M_MANTIS_e, dItemNo_F_MANTIS_e, dSv_event_flag_c::F_0413,
+    BugSpeciesEntry{"螳螂", dItemNo_M_MANTIS_e, dItemNo_F_MANTIS_e, dSv_event_flag_c::F_0413,
         dSv_event_flag_c::F_0414},
-    BugSpeciesEntry{"Stag Beetle", dItemNo_M_STAG_BEETLE_e, dItemNo_F_STAG_BEETLE_e,
+    BugSpeciesEntry{"锹形虫", dItemNo_M_STAG_BEETLE_e, dItemNo_F_STAG_BEETLE_e,
         dSv_event_flag_c::F_0405, dSv_event_flag_c::F_0406},
-    BugSpeciesEntry{"Pill Bug", dItemNo_M_DANGOMUSHI_e, dItemNo_F_DANGOMUSHI_e,
+    BugSpeciesEntry{"鼠妇", dItemNo_M_DANGOMUSHI_e, dItemNo_F_DANGOMUSHI_e,
         dSv_event_flag_c::F_0411, dSv_event_flag_c::F_0412},
-    BugSpeciesEntry{"Butterfly", dItemNo_M_BUTTERFLY_e, dItemNo_F_BUTTERFLY_e,
+    BugSpeciesEntry{"蝴蝶", dItemNo_M_BUTTERFLY_e, dItemNo_F_BUTTERFLY_e,
         dSv_event_flag_c::F_0403, dSv_event_flag_c::F_0404},
-    BugSpeciesEntry{"Ladybug", dItemNo_M_LADYBUG_e, dItemNo_F_LADYBUG_e, dSv_event_flag_c::F_0415,
+    BugSpeciesEntry{"瓢虫", dItemNo_M_LADYBUG_e, dItemNo_F_LADYBUG_e, dSv_event_flag_c::F_0415,
         dSv_event_flag_c::F_0416},
-    BugSpeciesEntry{"Snail", dItemNo_M_SNAIL_e, dItemNo_F_SNAIL_e, dSv_event_flag_c::F_0417,
+    BugSpeciesEntry{"蜗牛", dItemNo_M_SNAIL_e, dItemNo_F_SNAIL_e, dSv_event_flag_c::F_0417,
         dSv_event_flag_c::F_0418},
-    BugSpeciesEntry{"Phasmid", dItemNo_M_NANAFUSHI_e, dItemNo_F_NANAFUSHI_e,
+    BugSpeciesEntry{"竹节虫", dItemNo_M_NANAFUSHI_e, dItemNo_F_NANAFUSHI_e,
         dSv_event_flag_c::F_0409, dSv_event_flag_c::F_0410},
-    BugSpeciesEntry{"Grasshopper", dItemNo_M_GRASSHOPPER_e, dItemNo_F_GRASSHOPPER_e,
+    BugSpeciesEntry{"蚱蜢", dItemNo_M_GRASSHOPPER_e, dItemNo_F_GRASSHOPPER_e,
         dSv_event_flag_c::F_0407, dSv_event_flag_c::F_0408},
-    BugSpeciesEntry{"Dragonfly", dItemNo_M_DRAGONFLY_e, dItemNo_F_DRAGONFLY_e,
+    BugSpeciesEntry{"蜻蜓", dItemNo_M_DRAGONFLY_e, dItemNo_F_DRAGONFLY_e,
         dSv_event_flag_c::F_0419, dSv_event_flag_c::F_0420},
 };
 
 constexpr std::array<NamedFlagEntry, 7> hiddenSkillEntries = {
-    NamedFlagEntry{"Ending Blow", dSv_event_flag_c::F_0339},
-    NamedFlagEntry{"Shield Attack", dSv_event_flag_c::F_0338},
-    NamedFlagEntry{"Back Slice", dSv_event_flag_c::F_0340},
-    NamedFlagEntry{"Helm Splitter", dSv_event_flag_c::F_0341},
-    NamedFlagEntry{"Mortal Draw", dSv_event_flag_c::F_0342},
-    NamedFlagEntry{"Jump Strike", dSv_event_flag_c::F_0343},
-    NamedFlagEntry{"Great Spin", dSv_event_flag_c::F_0344},
+    NamedFlagEntry{"终结一击", dSv_event_flag_c::F_0339},
+    NamedFlagEntry{"盾击", dSv_event_flag_c::F_0338},
+    NamedFlagEntry{"背后斩", dSv_event_flag_c::F_0340},
+    NamedFlagEntry{"破盔斩", dSv_event_flag_c::F_0341},
+    NamedFlagEntry{"居合斩", dSv_event_flag_c::F_0342},
+    NamedFlagEntry{"跳跃斩", dSv_event_flag_c::F_0343},
+    NamedFlagEntry{"大回旋斩", dSv_event_flag_c::F_0344},
 };
 
 constexpr std::array<const char*, 16> letterSenders = {
-    "Renado",
-    "Ooccoo 1",
-    "Ooccoo 2",
-    "The Postman",
-    "Kakariko Goods",
-    "Barnes 1",
-    "Barnes 2",
-    "Barnes Bombs",
-    "Malo Mart",
-    "Telma",
-    "Purlo",
-    "From Jr.",
-    "Princess Agitha",
-    "Lanayru Tourism",
-    "Shad",
-    "Yeta",
+    "雷纳多",
+    "乌可 1",
+    "乌可 2",
+    "邮递员",
+    "卡卡利科杂货",
+    "巴恩斯 1",
+    "巴恩斯 2",
+    "巴恩斯炸弹",
+    "玛洛商店",
+    "泰尔玛",
+    "普鲁",
+    "来自 Jr.",
+    "阿吉莎公主",
+    "拉聂耳观光",
+    "沙德",
+    "耶塔",
 };
 
 constexpr std::array<FishSpeciesEntry, 6> fishSpeciesEntries = {
-    FishSpeciesEntry{"Ordon Catfish", 3},
-    FishSpeciesEntry{"Greengill", 5},
-    FishSpeciesEntry{"Reekfish", 4},
-    FishSpeciesEntry{"Hyrule Bass", 0},
-    FishSpeciesEntry{"Hylian Pike", 2},
-    FishSpeciesEntry{"Hylian Loach", 1},
+    FishSpeciesEntry{"奥登鲶鱼", 3},
+    FishSpeciesEntry{"绿鳃鱼", 5},
+    FishSpeciesEntry{"臭鱼", 4},
+    FishSpeciesEntry{"海拉尔鲈鱼", 0},
+    FishSpeciesEntry{"海利亚狗鱼", 2},
+    FishSpeciesEntry{"海利亚泥鳅", 1},
 };
 
 constexpr std::array<const char*, 2> targetTypeNames = {
-    "Hold",
-    "Switch",
+    "按住",
+    "切换",
 };
 
 constexpr std::array<const char*, 3> soundModeNames = {
-    "Mono",
-    "Stereo",
-    "Surround",
+    "单声道",
+    "立体声",
+    "环绕声",
 };
 
 struct DefaultInventoryEntry {
@@ -741,21 +741,21 @@ struct ToggleEntry {
 
 void populate_toggle_group(Pane& pane, const std::vector<ToggleEntry>& entries) {
     pane.clear();
-    pane.add_section("Actions");
-    pane.add_button("Select All").on_pressed([entries] {
+    pane.add_section("操作");
+    pane.add_button("全选").on_pressed([entries] {
         mDoAud_seStartMenu(kSoundItemChange);
         for (const auto& entry : entries) {
             entry.setSelected(true);
         }
     });
-    pane.add_button("Select None").on_pressed([entries] {
+    pane.add_button("全不选").on_pressed([entries] {
         mDoAud_seStartMenu(kSoundItemChange);
         for (const auto& entry : entries) {
             entry.setSelected(false);
         }
     });
 
-    pane.add_section("Items");
+    pane.add_section("物品");
     for (const auto& entry : entries) {
         pane.add_button({
                             .text = entry.text,
@@ -867,7 +867,7 @@ Rml::String fish_species_label(const FishSpeciesEntry& fish) {
 }
 
 bool can_edit_item_first_bit(int itemId, const itemInfo& item) {
-    return itemId < 254 && item.m_name != "Reserved";
+    return itemId < 254 && item.m_name != "保留";
 }
 
 void set_all_item_first_bits(bool owned) {
@@ -881,17 +881,17 @@ void set_all_item_first_bits(bool owned) {
 
 void populate_item_slot_picker(Pane& pane, int slot) {
     pane.clear();
-    pane.add_section("Actions");
-    pane.add_button(fmt::format("Default ({})", get_item_name(get_slot_default(slot))))
+    pane.add_section("操作");
+    pane.add_button(fmt::format("默认（{}）", get_item_name(get_slot_default(slot))))
         .on_pressed([slot] {
             mDoAud_seStartMenu(kSoundItemChange);
             dComIfGs_setItem(slot, get_slot_default(slot));
         });
 
-    pane.add_section("Items");
+    pane.add_section("物品");
     pane.add_button(
             {
-                .text = "None",
+                .text = "无",
                 .isSelected = [slot] { return get_player_item()->mItems[slot] == dItemNo_NONE_e; },
             })
         .on_pressed([slot] {
@@ -916,17 +916,17 @@ void populate_item_slot_picker(Pane& pane, int slot) {
 
 void populate_item_flag_picker(Pane& pane) {
     pane.clear();
-    pane.add_section("Actions");
-    pane.add_button("Select All").on_pressed([] {
+    pane.add_section("操作");
+    pane.add_button("全选").on_pressed([] {
         mDoAud_seStartMenu(kSoundItemChange);
         set_all_item_first_bits(true);
     });
-    pane.add_button("Clear None").on_pressed([] {
+    pane.add_button("全部清除").on_pressed([] {
         mDoAud_seStartMenu(kSoundItemChange);
         set_all_item_first_bits(false);
     });
 
-    pane.add_section("Items");
+    pane.add_section("物品");
     for (const auto& [itemId, item] : itemMap) {
         if (!can_edit_item_first_bit(itemId, item)) {
             continue;
@@ -947,7 +947,7 @@ void populate_select_item_picker(Pane& pane, u8& selectItemData) {
     pane.clear();
     pane.add_button(
             {
-                .text = "None",
+                .text = "无",
                 .isSelected = [&selectItemData] { return selectItemData == dItemNo_NONE_e; },
             })
         .on_pressed([&selectItemData] {
@@ -1006,9 +1006,9 @@ void populate_select_equip_picker(Pane& pane, u8& equip, const std::array<u8, Si
 }
 
 static const std::array<Rml::String, 3> walletSizeNames = {
-    "Normal",
-    "Big",
-    "Giant",
+    "普通",
+    "大",
+    "特大",
 };
 
 void populate_wallet_picker(Pane& pane) {
@@ -1026,8 +1026,8 @@ void populate_wallet_picker(Pane& pane) {
 }
 
 static const std::array<Rml::String, 2> formNames = {
-    "Human",
-    "Wolf",
+    "人形",
+    "狼形",
 };
 
 void populate_form_picker(Pane& pane) {
@@ -1134,13 +1134,13 @@ void populate_collect_clothes_picker(Pane& pane) {
     populate_toggle_group(pane,
         {
             ToggleEntry{
-                .text = "Ordon Clothes",
+                .text = "奥登之服",
                 .isSelected = [] { return dComIfGs_isItemFirstBit(dItemNo_WEAR_CASUAL_e); },
                 .setSelected =
                     [](bool selected) { set_item_first_bit(dItemNo_WEAR_CASUAL_e, selected); },
             },
             ToggleEntry{
-                .text = "Hero's Clothes",
+                .text = "勇者之服",
                 .isSelected = [] { return dComIfGs_isCollectClothes(KOKIRI_CLOTHES_FLAG); },
                 .setSelected =
                     [](bool selected) {
@@ -1152,13 +1152,13 @@ void populate_collect_clothes_picker(Pane& pane) {
                     },
             },
             ToggleEntry{
-                .text = "Zora Armor",
+                .text = "佐拉之铠",
                 .isSelected = [] { return dComIfGs_isItemFirstBit(dItemNo_WEAR_ZORA_e); },
                 .setSelected =
                     [](bool selected) { set_item_first_bit(dItemNo_WEAR_ZORA_e, selected); },
             },
             ToggleEntry{
-                .text = "Magic Armor",
+                .text = "魔法铠甲",
                 .isSelected = [] { return dComIfGs_isItemFirstBit(dItemNo_ARMOR_e); },
                 .setSelected = [](bool selected) { set_item_first_bit(dItemNo_ARMOR_e, selected); },
             },
@@ -1167,19 +1167,19 @@ void populate_collect_clothes_picker(Pane& pane) {
 
 void populate_poe_souls_picker(Pane& pane) {
     pane.clear();
-    pane.add_section("Actions");
-    pane.add_button("All 60").on_pressed([] {
+    pane.add_section("操作");
+    pane.add_button("全部 60").on_pressed([] {
         mDoAud_seStartMenu(kSoundItemChange);
         dComIfGs_setPohSpiritNum(60);
     });
-    pane.add_button("Clear").on_pressed([] {
+    pane.add_button("清除").on_pressed([] {
         mDoAud_seStartMenu(kSoundItemChange);
         dComIfGs_setPohSpiritNum(0);
     });
 
-    pane.add_section("Value");
+    pane.add_section("数值");
     pane.add_child<NumberButton>(NumberButton::Props{
-        .key = "Collected",
+        .key = "已收集",
         .getValue = [] { return dComIfGs_getPohSpiritNum(); },
         .setValue =
             [](int value) { dComIfGs_setPohSpiritNum(static_cast<u8>(std::clamp(value, 0, 60))); },
@@ -1189,21 +1189,21 @@ void populate_poe_souls_picker(Pane& pane) {
 
 void populate_max_life_picker(Pane& pane) {
     pane.clear();
-    pane.add_section("Actions");
-    pane.add_button("3 Hearts").on_pressed([] {
+    pane.add_section("操作");
+    pane.add_button("3 颗心").on_pressed([] {
         mDoAud_seStartMenu(kSoundItemChange);
         dComIfGs_setMaxLife(15);
         dComIfGs_setLife(12);
     });
-    pane.add_button("20 Hearts").on_pressed([] {
+    pane.add_button("20 颗心").on_pressed([] {
         mDoAud_seStartMenu(kSoundItemChange);
         dComIfGs_setMaxLife(100);
         dComIfGs_setLife(80);
     });
 
-    pane.add_section("Value");
+    pane.add_section("数值");
     pane.add_child<NumberButton>(NumberButton::Props{
-        .key = "Max Life",
+        .key = "最大生命",
         .getValue = [] { return dComIfGs_getMaxLife(); },
         .setValue = [](int value) { set_max_life(value); },
         .min = 15,
@@ -1213,33 +1213,33 @@ void populate_max_life_picker(Pane& pane) {
 
 void populate_bug_species_picker(Pane& pane, const BugSpeciesEntry& bug) {
     pane.clear();
-    pane.add_section("Owned");
+    pane.add_section("已拥有");
     add_toggle_button(
         pane, {
-                  .text = fmt::format("Male {}", bug.name),
+                  .text = fmt::format("雄 {}", bug.name),
                   .isSelected = [item = bug.maleItem] { return dComIfGs_isItemFirstBit(item); },
                   .setSelected = [item = bug.maleItem](
                                      bool selected) { set_item_first_bit(item, selected); },
               });
     add_toggle_button(
         pane, {
-                  .text = fmt::format("Female {}", bug.name),
+                  .text = fmt::format("雌性 {}", bug.name),
                   .isSelected = [item = bug.femaleItem] { return dComIfGs_isItemFirstBit(item); },
                   .setSelected = [item = bug.femaleItem](
                                      bool selected) { set_item_first_bit(item, selected); },
               });
 
-    pane.add_section("Given to Agitha");
+    pane.add_section("已交给阿吉莎");
     add_toggle_button(
         pane, {
-                  .text = fmt::format("Male {}", bug.name),
+                  .text = fmt::format("雄 {}", bug.name),
                   .isSelected = [flag = bug.maleTurnInFlag] { return dComIfGs_isEventBit(flag); },
                   .setSelected = [flag = bug.maleTurnInFlag](
                                      bool selected) { set_event_bit(flag, selected); },
               });
     add_toggle_button(
         pane, {
-                  .text = fmt::format("Female {}", bug.name),
+                  .text = fmt::format("雌性 {}", bug.name),
                   .isSelected = [flag = bug.femaleTurnInFlag] { return dComIfGs_isEventBit(flag); },
                   .setSelected = [flag = bug.femaleTurnInFlag](
                                      bool selected) { set_event_bit(flag, selected); },
@@ -1263,7 +1263,7 @@ void populate_fish_species_picker(Pane& pane, const FishSpeciesEntry& fish) {
     pane.clear();
     pane.add_section(fish.name);
     pane.add_child<NumberButton>(NumberButton::Props{
-        .key = "Caught",
+        .key = "已捕获",
         .getValue = [index = fish.index] { return dComIfGs_getFishNum(index); },
         .setValue =
             [index = fish.index](int value) {
@@ -1273,7 +1273,7 @@ void populate_fish_species_picker(Pane& pane, const FishSpeciesEntry& fish) {
         .max = 999,
     });
     pane.add_child<NumberButton>(NumberButton::Props{
-        .key = "Biggest",
+        .key = "最大",
         .getValue = [index = fish.index] { return dComIfGs_getFishSize(index); },
         .setValue =
             [index = fish.index](int value) {
@@ -1286,7 +1286,7 @@ void populate_fish_species_picker(Pane& pane, const FishSpeciesEntry& fish) {
 Rml::String target_type_label() {
     const auto type = get_player_config()->getAttentionType();
     if (type >= targetTypeNames.size()) {
-        return fmt::format("Unknown ({})", type);
+        return fmt::format("未知（{}）", type);
     }
     return targetTypeNames[type];
 }
@@ -1294,7 +1294,7 @@ Rml::String target_type_label() {
 Rml::String sound_mode_label() {
     const auto mode = get_player_config()->getSound();
     if (mode >= soundModeNames.size()) {
-        return fmt::format("Unknown ({})", mode);
+        return fmt::format("未知 ({})", mode);
     }
     return soundModeNames[mode];
 }
@@ -1346,20 +1346,20 @@ void set_clock_time(int hour, int minute) {
 }  // namespace
 
 EditorWindow::EditorWindow() {
-    add_tab("Player Status", [this](Rml::Element* content) {
+    add_tab("玩家状态", [this](Rml::Element* content) {
         auto& leftPane = add_child<Pane>(content, Pane::Type::Controlled);
         auto& rightPane = add_child<Pane>(content, Pane::Type::Uncontrolled);
 
-        leftPane.add_section("Player");
+        leftPane.add_section("玩家");
         leftPane.register_control(leftPane.add_child<StringButton>(StringButton::Props{
-                                      .key = "Player Name",
+                                      .key = "玩家姓名",
                                       .getValue = get_player_name,
                                       .setValue = set_player_name,
                                       .maxLength = 16,
                                   }),
             rightPane, {});
         leftPane.register_control(leftPane.add_child<StringButton>(StringButton::Props{
-                                      .key = "Horse Name",
+                                      .key = "马匹姓名",
                                       .getValue = get_horse_name,
                                       .setValue = set_horse_name,
                                       .maxLength = 16,
@@ -1367,7 +1367,7 @@ EditorWindow::EditorWindow() {
             rightPane, {});
         leftPane.register_control(
             leftPane.add_child<NumberButton>(NumberButton::Props{
-                .key = "Max Health",
+                .key = "最大生命",
                 .getValue = [] { return get_player_status()->getMaxLife(); },
                 .setValue = [](int value) { return get_player_status()->setMaxLife(value); },
                 .max = UINT16_MAX,  // TODO: actual max
@@ -1375,7 +1375,7 @@ EditorWindow::EditorWindow() {
             rightPane, {});
         leftPane.register_control(
             leftPane.add_child<NumberButton>(NumberButton::Props{
-                .key = "Health",
+                .key = "生命",
                 .getValue = [] { return get_player_status()->getLife(); },
                 .setValue = [](int value) { return get_player_status()->setLife(value); },
                 .max = UINT16_MAX,  // TODO: actual max
@@ -1383,7 +1383,7 @@ EditorWindow::EditorWindow() {
             rightPane, {});
         leftPane.register_control(
             leftPane.add_child<NumberButton>(NumberButton::Props{
-                .key = "Rupees",
+                .key = "卢比",
                 .getValue = [] { return get_player_status()->getRupee(); },
                 .setValue = [](int value) { return get_player_status()->setRupee(value); },
                 .max = get_player_status()->getRupeeMax(),
@@ -1391,7 +1391,7 @@ EditorWindow::EditorWindow() {
             rightPane, {});
         leftPane.register_control(
             leftPane.add_child<NumberButton>(NumberButton::Props{
-                .key = "Max Oil",
+                .key = "最大灯油",
                 .getValue = [] { return get_player_status()->getMaxOil(); },
                 .setValue = [](int value) { return get_player_status()->setMaxOil(value); },
                 .max = UINT16_MAX,  // TODO: actual max
@@ -1399,14 +1399,14 @@ EditorWindow::EditorWindow() {
             rightPane, {});
         leftPane.register_control(
             leftPane.add_child<NumberButton>(NumberButton::Props{
-                .key = "Oil",
+                .key = "灯油",
                 .getValue = [] { return get_player_status()->getOil(); },
                 .setValue = [](int value) { return get_player_status()->setOil(value); },
                 .max = UINT16_MAX,  // TODO: actual max
             }),
             rightPane, {});
 
-        leftPane.add_section("Equipment");
+        leftPane.add_section("装备");
         const auto genSelectItemComboBox = [&leftPane, &rightPane](
                                                const Rml::String& label, u8& selectItemData) {
             leftPane.register_control(
@@ -1418,20 +1418,20 @@ EditorWindow::EditorWindow() {
                     populate_select_item_picker(pane, selectItemData);
                 });
         };
-        genSelectItemComboBox("Equip X", get_player_status()->mSelectItem[0]);
-        genSelectItemComboBox("Equip Y", get_player_status()->mSelectItem[1]);
-        genSelectItemComboBox("Combo Equip X", get_player_status()->mMixItem[0]);
-        genSelectItemComboBox("Combo Equip Y", get_player_status()->mMixItem[1]);
+        genSelectItemComboBox("装备 X", get_player_status()->mSelectItem[0]);
+        genSelectItemComboBox("装备 Y", get_player_status()->mSelectItem[1]);
+        genSelectItemComboBox("组合装备 X", get_player_status()->mMixItem[0]);
+        genSelectItemComboBox("组合装备 Y", get_player_status()->mMixItem[1]);
 
         leftPane.register_control(
             leftPane.add_select_button({
-                .key = "Clothes",
+                .key = "服装",
                 .getValue = [] { return get_item_name(get_player_status()->mSelectEquip[0]); },
             }),
             rightPane, [](Pane& pane) { populate_select_clothes_picker(pane); });
         leftPane.register_control(
             leftPane.add_select_button({
-                .key = "Sword",
+                .key = "剑",
                 .getValue = [] { return get_item_name(get_player_status()->mSelectEquip[1]); },
             }),
             rightPane, [](Pane& pane) {
@@ -1440,7 +1440,7 @@ EditorWindow::EditorWindow() {
             });
         leftPane.register_control(
             leftPane.add_select_button({
-                .key = "Shield",
+                .key = "盾",
                 .getValue = [] { return get_item_name(get_player_status()->mSelectEquip[2]); },
             }),
             rightPane, [](Pane& pane) {
@@ -1449,7 +1449,7 @@ EditorWindow::EditorWindow() {
             });
         leftPane.register_control(
             leftPane.add_select_button({
-                .key = "Scent",
+                .key = "气味",
                 .getValue = [] { return get_item_name(get_player_status()->mSelectEquip[3]); },
             }),
             rightPane, [](Pane& pane) {
@@ -1458,21 +1458,21 @@ EditorWindow::EditorWindow() {
             });
         leftPane.register_control(
             leftPane.add_select_button({
-                .key = "Wallet Size",
+                .key = "钱包容量",
                 .getValue = [] { return walletSizeNames[get_player_status()->getWalletSize()]; },
             }),
             rightPane, [](Pane& pane) { populate_wallet_picker(pane); });
         leftPane.register_control(
             leftPane.add_select_button({
-                .key = "Form",
+                .key = "形态",
                 .getValue = [] { return formNames[get_player_status()->getTransformStatus()]; },
             }),
             rightPane, [](Pane& pane) { populate_form_picker(pane); });
 
-        leftPane.add_section("World");
+        leftPane.add_section("世界");
         leftPane.register_control(
             leftPane.add_child<NumberButton>(NumberButton::Props{
-                .key = "Day",
+                .key = "天",
                 .getValue = [] { return get_player_status_b()->getDate(); },
                 .setValue =
                     [](int value) { get_player_status_b()->setDate(static_cast<u16>(value)); },
@@ -1481,7 +1481,7 @@ EditorWindow::EditorWindow() {
             rightPane, {});
         leftPane.register_control(
             leftPane.add_child<NumberButton>(NumberButton::Props{
-                .key = "Hour",
+                .key = "小时",
                 .getValue = [] { return dKy_getdaytime_hour(); },
                 .setValue = [](int value) { set_clock_time(value, dKy_getdaytime_minute()); },
                 .max = 23,
@@ -1489,7 +1489,7 @@ EditorWindow::EditorWindow() {
             rightPane, {});
         leftPane.register_control(
             leftPane.add_child<NumberButton>(NumberButton::Props{
-                .key = "Minute",
+                .key = "分钟",
                 .getValue = [] { return dKy_getdaytime_minute(); },
                 .setValue = [](int value) { set_clock_time(dKy_getdaytime_hour(), value); },
                 .max = 59,
@@ -1497,7 +1497,7 @@ EditorWindow::EditorWindow() {
             rightPane, {});
         leftPane.register_control(
             leftPane.add_child<NumberButton>(NumberButton::Props{
-                .key = "Transform Level",
+                .key = "变身等级",
                 .getValue =
                     [] {
                         return std::popcount(static_cast<unsigned>(
@@ -1513,7 +1513,7 @@ EditorWindow::EditorWindow() {
             rightPane, {});
         leftPane.register_control(
             leftPane.add_child<NumberButton>(NumberButton::Props{
-                .key = "Twilight Clear Level",
+                .key = "黄昏清除等级",
                 .getValue =
                     [] {
                         return std::popcount(static_cast<unsigned>(
@@ -1529,14 +1529,14 @@ EditorWindow::EditorWindow() {
             rightPane, {});
     });
 
-    add_tab("Location", [this](Rml::Element* content) {
+    add_tab("地点", [this](Rml::Element* content) {
         auto& leftPane = add_child<Pane>(content, Pane::Type::Controlled);
         auto& rightPane = add_child<Pane>(content, Pane::Type::Uncontrolled);
 
-        leftPane.add_section("Save Location");
+        leftPane.add_section("存档地点");
         leftPane
             .register_control(leftPane.add_select_button({
-                                  .key = "Stage",
+                                  .key = "场景",
                                   .getValue =
                                       [] {
                                           return stage_label_for_file(
@@ -1555,7 +1555,7 @@ EditorWindow::EditorWindow() {
             .set_disabled(true);
         leftPane.register_control(
             leftPane.add_child<NumberButton>(NumberButton::Props{
-                .key = "Room",
+                .key = "房间",
                 .getValue = [] { return get_player_return_place()->mRoomNo; },
                 .setValue =
                     [](int value) { get_player_return_place()->mRoomNo = static_cast<s8>(value); },
@@ -1565,7 +1565,7 @@ EditorWindow::EditorWindow() {
             rightPane, {});
         leftPane.register_control(
             leftPane.add_child<NumberButton>(NumberButton::Props{
-                .key = "Spawn ID",
+                .key = "出生点 ID",
                 .getValue = [] { return get_player_return_place()->mPlayerStatus; },
                 .setValue =
                     [](int value) {
@@ -1575,9 +1575,9 @@ EditorWindow::EditorWindow() {
             }),
             rightPane, {});
 
-        leftPane.add_section("Horse Location");
+        leftPane.add_section("马匹位置");
         leftPane.register_control(leftPane.add_child<StringButton>(StringButton::Props{
-                                      .key = "Horse Position",
+                                      .key = "马匹坐标",
                                       .getValue =
                                           [] {
                                               const auto* horsePlace = get_horse_place();
@@ -1602,7 +1602,7 @@ EditorWindow::EditorWindow() {
             rightPane, {});
         leftPane.register_control(
             leftPane.add_child<NumberButton>(NumberButton::Props{
-                .key = "Horse Angle",
+                .key = "马匹角度",
                 .getValue = [] { return get_horse_place()->mAngleY; },
                 .setValue = [](int value) { get_horse_place()->mAngleY = static_cast<s16>(value); },
                 .min = std::numeric_limits<s16>::min(),
@@ -1612,7 +1612,7 @@ EditorWindow::EditorWindow() {
         leftPane
             .register_control(
                 leftPane.add_select_button({
-                    .key = "Horse Stage",
+                    .key = "马匹场景",
                     .getValue =
                         [] { return stage_label_for_file(fixed_string(get_horse_place()->mName)); },
                 }),
@@ -1627,7 +1627,7 @@ EditorWindow::EditorWindow() {
             .set_disabled(true);
         leftPane.register_control(
             leftPane.add_child<NumberButton>(NumberButton::Props{
-                .key = "Horse Room",
+                .key = "马匹房间",
                 .getValue = [] { return get_horse_place()->mRoomNo; },
                 .setValue = [](int value) { get_horse_place()->mRoomNo = static_cast<s8>(value); },
                 .min = std::numeric_limits<s8>::min(),
@@ -1636,7 +1636,7 @@ EditorWindow::EditorWindow() {
             rightPane, {});
         leftPane.register_control(
             leftPane.add_child<NumberButton>(NumberButton::Props{
-                .key = "Horse Spawn ID",
+                .key = "马匹出生点 ID",
                 .getValue = [] { return get_horse_place()->mSpawnId; },
                 .setValue = [](int value) { get_horse_place()->mSpawnId = static_cast<u8>(value); },
                 .max = std::numeric_limits<u8>::max(),
@@ -1644,12 +1644,12 @@ EditorWindow::EditorWindow() {
             rightPane, {});
     });
 
-    add_tab("Inventory", [this](Rml::Element* content) {
+    add_tab("物品栏", [this](Rml::Element* content) {
         auto& leftPane = add_child<Pane>(content, Pane::Type::Controlled);
         auto& rightPane = add_child<Pane>(content, Pane::Type::Uncontrolled);
 
-        leftPane.add_section("Item Wheel");
-        leftPane.register_control(leftPane.add_button("Default All").on_pressed([&rightPane] {
+        leftPane.add_section("道具轮盘");
+        leftPane.register_control(leftPane.add_button("全部默认").on_pressed([&rightPane] {
             mDoAud_seStartMenu(kSoundItemChange);
             for (int slot = 0; slot < 24; ++slot) {
                 dComIfGs_setItem(slot, get_slot_default(slot));
@@ -1657,7 +1657,7 @@ EditorWindow::EditorWindow() {
             rightPane.clear();
         }),
             rightPane, {});
-        leftPane.register_control(leftPane.add_button("Clear All").on_pressed([&rightPane] {
+        leftPane.register_control(leftPane.add_button("全部清除").on_pressed([&rightPane] {
             mDoAud_seStartMenu(kSoundItemChange);
             for (int slot = 0; slot < 24; ++slot) {
                 dComIfGs_setItem(slot, dItemNo_NONE_e);
@@ -1668,16 +1668,16 @@ EditorWindow::EditorWindow() {
         for (int slot = 0; slot < 24; ++slot) {
             leftPane.register_control(
                 leftPane.add_select_button({
-                    .key = fmt::format("Slot {0:02d}", slot),
+                    .key = fmt::format("栏位 {0:02d}", slot),
                     .getValue = [slot] { return get_item_name(get_player_item()->mItems[slot]); },
                 }),
                 rightPane, [slot](Pane& pane) { populate_item_slot_picker(pane, slot); });
         }
 
-        leftPane.add_section("Amounts");
+        leftPane.add_section("数量");
         leftPane.register_control(
             leftPane.add_child<NumberButton>(NumberButton::Props{
-                .key = "Arrows Amount",
+                .key = "箭矢数量",
                 .getValue = [] { return get_player_item_record()->mArrowNum; },
                 .setValue =
                     [](int value) { get_player_item_record()->mArrowNum = static_cast<u8>(value); },
@@ -1686,7 +1686,7 @@ EditorWindow::EditorWindow() {
             rightPane, {});
         leftPane.register_control(
             leftPane.add_child<NumberButton>(NumberButton::Props{
-                .key = "Slingshot Amount",
+                .key = "弹弓数量",
                 .getValue = [] { return get_player_item_record()->mPachinkoNum; },
                 .setValue =
                     [](int value) {
@@ -1698,7 +1698,7 @@ EditorWindow::EditorWindow() {
         for (int bag = 0; bag < 3; ++bag) {
             leftPane.register_control(
                 leftPane.add_child<NumberButton>(NumberButton::Props{
-                    .key = fmt::format("Bomb Bag {} Amount", bag + 1),
+                    .key = fmt::format("炸弹袋 {} 数量", bag + 1),
                     .getValue = [bag] { return get_player_item_record()->mBombNum[bag]; },
                     .setValue =
                         [bag](int value) {
@@ -1711,7 +1711,7 @@ EditorWindow::EditorWindow() {
         for (int bottle = 0; bottle < 4; ++bottle) {
             leftPane.register_control(
                 leftPane.add_child<NumberButton>(NumberButton::Props{
-                    .key = fmt::format("Bottle {} Amount", bottle + 1),
+                    .key = fmt::format("瓶子 {} 数量", bottle + 1),
                     .getValue = [bottle] { return get_player_item_record()->mBottleNum[bottle]; },
                     .setValue =
                         [bottle](int value) {
@@ -1722,10 +1722,10 @@ EditorWindow::EditorWindow() {
                 rightPane, {});
         }
 
-        leftPane.add_section("Capacities");
+        leftPane.add_section("容量");
         leftPane.register_control(
             leftPane.add_child<NumberButton>(NumberButton::Props{
-                .key = "Arrows Max",
+                .key = "箭矢上限",
                 .getValue = [] { return get_player_item_max()->mItemMax[0]; },
                 .setValue =
                     [](int value) { get_player_item_max()->mItemMax[0] = static_cast<u8>(value); },
@@ -1734,7 +1734,7 @@ EditorWindow::EditorWindow() {
             rightPane, {});
         leftPane.register_control(
             leftPane.add_child<NumberButton>(NumberButton::Props{
-                .key = "Normal Bombs Max",
+                .key = "普通炸弹上限",
                 .getValue = [] { return get_player_item_max()->mItemMax[1]; },
                 .setValue =
                     [](int value) { get_player_item_max()->mItemMax[1] = static_cast<u8>(value); },
@@ -1743,7 +1743,7 @@ EditorWindow::EditorWindow() {
             rightPane, {});
         leftPane.register_control(
             leftPane.add_child<NumberButton>(NumberButton::Props{
-                .key = "Water Bombs Max",
+                .key = "水炸弹上限",
                 .getValue = [] { return get_player_item_max()->mItemMax[2]; },
                 .setValue =
                     [](int value) { get_player_item_max()->mItemMax[2] = static_cast<u8>(value); },
@@ -1752,7 +1752,7 @@ EditorWindow::EditorWindow() {
             rightPane, {});
         leftPane.register_control(
             leftPane.add_child<NumberButton>(NumberButton::Props{
-                .key = "Bomblings Max",
+                .key = "炸弹虫上限",
                 .getValue = [] { return get_player_item_max()->mItemMax[3]; },
                 .setValue =
                     [](int value) { get_player_item_max()->mItemMax[3] = static_cast<u8>(value); },
@@ -1760,21 +1760,21 @@ EditorWindow::EditorWindow() {
             }),
             rightPane, {});
 
-        leftPane.add_section("Flags");
+        leftPane.add_section("标记");
         leftPane.register_control(leftPane.add_select_button({
-                                      .key = "Obtained Items",
-                                      .getValue = [] { return "Edit"; },
+                                      .key = "已获得物品",
+                                      .getValue = [] { return "编辑"; },
                                   }),
             rightPane, [](Pane& pane) { populate_item_flag_picker(pane); });
     });
-    add_tab("Collection", [this](Rml::Element* content) {
+    add_tab("收藏", [this](Rml::Element* content) {
         auto& leftPane = add_child<Pane>(content, Pane::Type::Controlled);
         auto& rightPane = add_child<Pane>(content, Pane::Type::Uncontrolled);
 
-        leftPane.add_section("Equipment");
+        leftPane.add_section("装备");
         leftPane.register_control(
             leftPane.add_select_button({
-                .key = "Swords",
+                .key = "剑",
                 .getValue =
                     [] {
                         return count_label(
@@ -1785,7 +1785,7 @@ EditorWindow::EditorWindow() {
             [](Pane& pane) { populate_toggle_group(pane, item_toggle_entries(swordEntries)); });
         leftPane.register_control(
             leftPane.add_select_button({
-                .key = "Shields",
+                .key = "盾",
                 .getValue =
                     [] {
                         return count_label(
@@ -1795,15 +1795,15 @@ EditorWindow::EditorWindow() {
             rightPane,
             [](Pane& pane) { populate_toggle_group(pane, item_toggle_entries(shieldEntries)); });
         leftPane.register_control(leftPane.add_select_button({
-                                      .key = "Clothing",
+                                      .key = "服装",
                                       .getValue = [] { return count_label(count_clothing(), 4); },
                                   }),
             rightPane, [](Pane& pane) { populate_collect_clothes_picker(pane); });
 
-        leftPane.add_section("Key Items");
+        leftPane.add_section("关键道具");
         leftPane.register_control(
             leftPane.add_select_button({
-                .key = "Fused Shadows",
+                .key = "融合暗影",
                 .getValue =
                     [] {
                         return count_label(
@@ -1815,7 +1815,7 @@ EditorWindow::EditorWindow() {
             });
         leftPane.register_control(
             leftPane.add_select_button({
-                .key = "Mirror Shards",
+                .key = "镜之碎片",
                 .getValue =
                     [] {
                         return count_label(
@@ -1826,20 +1826,20 @@ EditorWindow::EditorWindow() {
                 populate_toggle_group(pane, collect_mirror_toggle_entries(mirrorShardEntries));
             });
 
-        leftPane.add_section("Health & Souls");
+        leftPane.add_section("生命与灵魂");
         leftPane.register_control(
             leftPane.add_select_button({
-                .key = "Poe Souls",
+                .key = "波伊之魂",
                 .getValue = [] { return fmt::format("{} / 60", dComIfGs_getPohSpiritNum()); },
             }),
             rightPane, [](Pane& pane) { populate_poe_souls_picker(pane); });
         leftPane.register_control(leftPane.add_select_button({
-                                      .key = "Max Life",
+                                      .key = "最大生命",
                                       .getValue = [] { return max_life_label(); },
                                   }),
             rightPane, [](Pane& pane) { populate_max_life_picker(pane); });
 
-        leftPane.add_section("Golden Bugs");
+        leftPane.add_section("黄金虫");
         for (const auto& bug : bugSpeciesEntries) {
             leftPane.register_control(leftPane.add_select_button({
                                           .key = bug.name,
@@ -1848,10 +1848,10 @@ EditorWindow::EditorWindow() {
                 rightPane, [bug](Pane& pane) { populate_bug_species_picker(pane, bug); });
         }
 
-        leftPane.add_section("Skills");
+        leftPane.add_section("技能");
         leftPane.register_control(
             leftPane.add_select_button({
-                .key = "Hidden Skills",
+                .key = "隐藏技能",
                 .getValue =
                     [] {
                         return count_label(
@@ -1862,15 +1862,15 @@ EditorWindow::EditorWindow() {
                 populate_toggle_group(pane, event_toggle_entries(hiddenSkillEntries));
             });
 
-        leftPane.add_section("Logs");
+        leftPane.add_section("日志");
         leftPane.register_control(
             leftPane.add_select_button({
-                .key = "Postman Letters",
+                .key = "邮差信件",
                 .getValue = [] { return count_label(count_letters(), letterSenders.size()); },
             }),
             rightPane, [](Pane& pane) { populate_letters_picker(pane); });
 
-        leftPane.add_section("Fishing Log");
+        leftPane.add_section("钓鱼记录");
         for (const auto& fish : fishSpeciesEntries) {
             leftPane.register_control(leftPane.add_select_button({
                                           .key = fish.name,
@@ -1884,14 +1884,14 @@ EditorWindow::EditorWindow() {
     //    // TODO
     //});
 
-    add_tab("Minigame", [this](Rml::Element* content) {
+    add_tab("小游戏", [this](Rml::Element* content) {
         auto& leftPane = add_child<Pane>(content, Pane::Type::Controlled);
         auto& rightPane = add_child<Pane>(content, Pane::Type::Uncontrolled);
 
-        leftPane.add_section("Records");
+        leftPane.add_section("记录");
         leftPane.register_control(
             leftPane.add_child<NumberButton>(NumberButton::Props{
-                .key = "STAR Game Time (ms)",
+                .key = "STAR 游戏时间（毫秒）",
                 .getValue =
                     [] {
                         return static_cast<int>(std::min<u32>(
@@ -1906,7 +1906,7 @@ EditorWindow::EditorWindow() {
             rightPane, {});
         leftPane.register_control(
             leftPane.add_child<NumberButton>(NumberButton::Props{
-                .key = "Snowboard Race Time (ms)",
+                .key = "滑雪竞速时间（毫秒）",
                 .getValue =
                     [] {
                         return static_cast<int>(std::min<u32>(
@@ -1921,7 +1921,7 @@ EditorWindow::EditorWindow() {
             rightPane, {});
         leftPane.register_control(
             leftPane.add_child<NumberButton>(NumberButton::Props{
-                .key = "Fruit-Pop-Flight Score",
+                .key = "弹果飞行得分",
                 .getValue =
                     [] {
                         return static_cast<int>(std::min<u32>(
@@ -1936,25 +1936,25 @@ EditorWindow::EditorWindow() {
             rightPane, {});
     });
 
-    add_tab("Config", [this](Rml::Element* content) {
+    add_tab("配置", [this](Rml::Element* content) {
         auto& leftPane = add_child<Pane>(content, Pane::Type::Controlled);
         auto& rightPane = add_child<Pane>(content, Pane::Type::Uncontrolled);
 
-        leftPane.add_section("Options");
+        leftPane.add_section("选项");
         leftPane.register_control(
             leftPane.add_child<BoolButton>(BoolButton::Props{
-                .key = "Enable Vibration",
+                .key = "启用震动",
                 .getValue = [] { return get_player_config()->getVibration() != 0; },
                 .setValue = [](bool value) { get_player_config()->setVibration(value); },
             }),
             rightPane, {});
         leftPane.register_control(leftPane.add_select_button({
-                                      .key = "Target Type",
+                                      .key = "目标类型",
                                       .getValue = [] { return target_type_label(); },
                                   }),
             rightPane, [](Pane& pane) { populate_target_type_picker(pane); });
         leftPane.register_control(leftPane.add_select_button({
-                                      .key = "Sound",
+                                      .key = "声音",
                                       .getValue = [] { return sound_mode_label(); },
                                   }),
             rightPane, [](Pane& pane) { populate_sound_mode_picker(pane); });

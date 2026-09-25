@@ -26,33 +26,33 @@ std::vector<DropPackage> prepare_packages(std::vector<DropPackage> packages) {
         if (!package.error.empty()) {
             package.status = package.error;
         } else if (std::ranges::find(batchIds, package.metadata.id) != batchIds.end()) {
-            package.status = "Duplicate package in this drop";
+            package.status = "本次拖放中存在重复模组包";
         } else if (!borealis::update::parse_version(package.metadata.version)) {
-            package.status = "Invalid package version";
+            package.status = "无效的模组包版本";
         } else if (package.hasNative && !mods::EnableCodeMods) {
-            package.status = "Native mods cannot be installed on this platform";
+            package.status = "本平台无法安装原生模组";
         } else if (const auto queued = mods::queue::find_by_mod_id(package.metadata.id);
             queued && !mods::queue::is_terminal(queued->state))
         {
-            package.status = "Already in the install queue";
+            package.status = "已在安装队列中";
         } else if (const auto* installed =
                        mods::ModLoader::instance().find_mod(package.metadata.id))
         {
             if (!mods::ModLoader::instance().can_update(*installed)) {
-                package.status = "A development directory cannot be replaced";
+                package.status = "开发目录不能被替换";
             } else if (mods::compare_package_versions(
                            package.metadata.version, installed->metadata.version) < 0) {
-                package.status = "A newer version is already installed";
+                package.status = "已安装更新版本";
             } else if (mods::compare_package_versions(
                            package.metadata.version, installed->metadata.version) == 0) {
-                package.status = fmt::format("Reinstall {}", package.metadata.version);
+                package.status = fmt::format("重新安装 {}", package.metadata.version);
                 package.valid = true;
             } else {
-                package.status = fmt::format("Update from {}", installed->metadata.version);
+                package.status = fmt::format("从 {} 更新", installed->metadata.version);
                 package.valid = true;
             }
         } else {
-            package.status = "New";
+            package.status = "新";
             package.valid = true;
         }
         batchIds.push_back(package.metadata.id);
@@ -74,11 +74,11 @@ std::vector<DropPackage> inspect_drop_packages(
         std::error_code error;
         package.size = std::filesystem::file_size(path, error);
         if (error) {
-            package.error = fmt::format("Could not read package: {}", error.message());
+            package.error = fmt::format("无法读取模组包：{}", error.message());
         } else if (!mods::inspect_mod_bundle(
                        path, package.metadata, package.error, &package.hasNative))
         {
-            package.error = fmt::format("Invalid package: {}", package.error);
+            package.error = fmt::format("无效模组包：{}", package.error);
         }
         packages.push_back(std::move(package));
         context.report_progress(packages.size(), paths.size());
@@ -91,17 +91,17 @@ DropInstallModal::DropInstallModal(std::vector<DropPackage> packages)
 
 DropInstallModal::DropInstallModal(std::vector<DropPackage> packages, PreparedTag)
     : Modal{Props{
-          .title = "Install mods?",
-          .bodyText = "Only install mods from trusted authors.",
+          .title = "安装模组？",
+          .bodyText = "仅安装来自可信作者的模组。",
           .actions =
               {
                   ModalAction{
-                      .label = "Cancel",
+                      .label = "取消",
                       .onPressed = [](Modal& modal) { modal.pop(); },
                       .isDisabled = {},
                   },
                   ModalAction{
-                      .label = fmt::format("Install {}", valid_count(packages)),
+                      .label = fmt::format("安装 {}", valid_count(packages)),
                       .onPressed = [this](Modal&) { install(); },
                       .isDisabled = [this] { return valid_count(mPackages) == 0; },
                   },

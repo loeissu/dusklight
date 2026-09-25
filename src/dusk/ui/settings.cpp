@@ -53,52 +53,52 @@ namespace dusk::ui {
 namespace {
 
 constexpr std::array kCardFileTypes = {
-    "Card Image",
-    "GCI Folder",
+    "记忆卡镜像",
+    "GCI 文件夹",
 };
 
 constexpr std::array kFpsOverlayCornerNames = {
-    "Top Left",
-    "Top Right",
-    "Bottom Left",
-    "Bottom Right",
+    "左上角",
+    "右上角",
+    "左下角",
+    "右下角",
 };
 
 constexpr std::array kInterpolationModes = {
-    "Off",
-    "Capped",
-    "Unlimited",
+    "关闭",
+    "锁定",
+    "无限制",
 };
 
 constexpr std::array kAudioOutputModeNames = {
-    "Stereo (Speakers)",
-    "Stereo (Headphones)",
-    "5.1 Surround",
-    "7.1 Surround",
+    "立体声（扬声器）",
+    "立体声（耳机）",
+    "5.1 环绕声",
+    "7.1 环绕声",
 };
 
 constexpr std::array kLetterboxModes = {
-    "Off",
-    "On",
-    "Only During Gameplay",
-    "Only During Cutscenes",
+    "关",
+    "开",
+    "仅在游玩时",
+    "仅在过场时",
 };
 
 constexpr std::array kTouchTargetingLabels = {
-    "Hybrid",
-    "Hold",
-    "Switch",
+    "混合",
+    "按住",
+    "切换",
 };
 
 constexpr std::array kTouchTargetingDescriptions = {
-    "Tap once to lock on when a target is found. Double-tap when none is found to hold L.",
-    "L stays held only while your finger is on the button.",
-    "Tap L to keep it held. Tap again to release it.",
+    "找到目标时轻点一次锁定；未找到目标时双击以按住 L。",
+    "手指按住按键期间 L 保持按住。",
+    "轻点 L 保持按住，再次轻点松开。",
 };
 
 constexpr std::array kGyroInputModeLabels = {
-    "Sensor",
-    "Mouse",
+    "传感器",
+    "鼠标",
 };
 
 constexpr std::array kMenuScalingModeLabels = {
@@ -108,17 +108,17 @@ constexpr std::array kMenuScalingModeLabels = {
 };
 
 constexpr std::array kAlwaysGreatspinModes = {
-    "Off",
-    "After Learning Skill",
-    "Always",
+    "关",
+    "学会技能后",
+    "始终",
 };
 
 constexpr std::array kMagicArmorModes = {
-    "Normal",
-    "On Damage",
-    "Double Defense",
-    "Invincible",
-    "Cosmetic",
+    "普通",
+    "受击消耗",
+    "双倍防御",
+    "无敌",
+    "仅外观",
 };
 
 bool try_parse_backend(std::string_view backend, AuroraBackend& outBackend) {
@@ -165,7 +165,7 @@ bool try_parse_backend(std::string_view backend, AuroraBackend& outBackend) {
 std::string_view backend_name(AuroraBackend backend) {
     switch (backend) {
     default:
-        return "Auto";
+        return "自动";
     case BACKEND_D3D12:
         return "D3D12";
     case BACKEND_D3D11:
@@ -260,7 +260,7 @@ class DataFolderPathText : public Component {
 public:
     explicit DataFolderPathText(Rml::Element* parent)
         : Component(append(parent, "data-folder-path")) {
-        append_text_element(mRoot, "small", "Current data folder:");
+        append_text_element(mRoot, "small", "当前数据文件夹：");
         mPath = append(mRoot, "file-path");
     }
 
@@ -284,12 +284,12 @@ void show_data_folder_error_modal(std::string_view message) {
         modal.pop();
     };
     push_document(std::make_unique<Modal>(Modal::Props{
-        .title = "Data Folder Not Changed",
+        .title = "数据文件夹未更改",
         .bodyText = Rml::String{message},
         .actions =
             {
                 ModalAction{
-                    .label = "OK",
+                    .label = "确定",
                     .onPressed = dismiss,
                 },
             },
@@ -306,7 +306,7 @@ void data_folder_dialog_callback(borealis::file_select::Result result) {
         return;
     }
     if (result.status != borealis::file_select::Status::Selected || result.locations.empty()) {
-        show_data_folder_error_modal("Dusklight could not open the folder picker.");
+        show_data_folder_error_modal("无法打开文件夹选择器。");
         return;
     }
 
@@ -318,32 +318,27 @@ void data_folder_dialog_callback(borealis::file_select::Result result) {
 
     if (dataPathError.empty()) {
         dataPathError =
-            fmt::format("{} could not use the selected folder as its data folder.", AppName);
+            fmt::format("{} 无法使用所选文件夹作为其数据文件夹。", AppName);
     }
     show_data_folder_error_modal(dataPathError);
 }
 
 const Rml::String kInternalResolutionHelpText =
-    "Configure the resolution used for rendering the game. Higher values are more demanding on "
-    "your graphics hardware.";
+    "配置游戏渲染分辨率。数值越高对显卡要求越高。";
 const Rml::String kShadowResolutionHelpText =
-    "Configure the shadow-map resolution. Higher values improve shadow quality but increase GPU "
-    "and memory usage.";
+    "配置阴影贴图分辨率。数值越高阴影质量越好，但会占用更多 GPU 和内存。";
 const Rml::String kResamplerHelpText =
-    "Configure the sampling method used when scaling the internal resolution for final presentation.";
+    "配置内部分辨率缩放至最终画面时使用的采样方式。";
 const Rml::String kBloomHelpText =
-    "Configure the post-processing bloom effect. Classic uses the original bloom pass; Dusklight uses "
-    "a higher-quality bloom pass.";
+    "配置后期处理泛光效果。经典模式使用原版泛光，Dusklight 模式使用更高质量的泛光。";
 const Rml::String kBloomBrightnessHelpText =
-    "Configure bloom intensity. Higher values make bright areas glow more strongly.";
+    "配置泛光强度。数值越高，明亮区域的光晕越强。";
 const Rml::String kDepthOfFieldHelpText =
-    "Configure the post-processing depth-of-field effect. Classic uses the original depth-of-field pass;"
-    " Dusklight uses a higher-quality depth-of-field pass.";
+    "配置后期处理景深效果。经典模式使用原版景深，Dusklight 模式使用更高质量的景深。";
 const Rml::String kUnlockFramerateHelpText =
-    "<br/>Uses inter-frame interpolation to enable higher frame rates.<br/><br/>May introduce minor "
-    "visual artifacts or animation glitches.";
+    "<br/>通过帧间插值实现更高的帧率。<br/><br/>可能引入轻微画面瑕疵或动画异常。";
 const Rml::String kTextureReplacementHelpText =
-    "Enable installed texture replacements.";
+    "启用已安装的贴图替换。";
 
 int float_setting_percent(ConfigVar<float>& var) {
     return static_cast<int>(var.getValue() * 100.0f + 0.5f);
@@ -356,7 +351,7 @@ bool gyro_enabled() {
 Rml::String touch_targeting_label(TouchTargeting targeting) {
     const auto index = static_cast<size_t>(targeting);
     if (index >= kTouchTargetingLabels.size()) {
-        return "Unknown";
+        return "未知";
     }
     return kTouchTargetingLabels[index];
 }
@@ -490,20 +485,20 @@ void graphics_tuner_control(Window& window, Pane& leftPane, Pane& rightPane,
 
 SettingsWindow::SettingsWindow(bool prelaunch) : mPrelaunch(prelaunch) {
     if (prelaunch) {
-        add_tab("Prelaunch", [this](Rml::Element* content) {
+        add_tab("启动", [this](Rml::Element* content) {
             auto& leftPane = add_child<Pane>(content, Pane::Type::Controlled);
             auto& rightPane = add_child<Pane>(content, Pane::Type::Uncontrolled);
 
             leftPane.register_control(
                 leftPane
                     .add_select_button({
-                        .key = "Disc Image",
+                        .key = "游戏镜像",
                         .getValue =
                             [] {
                                 const auto& path = prelaunch_state().configuredDiscPath;
                                 std::string display;
                                 if (path.empty()) {
-                                    display = "(none)";
+                                    display = "（无）";
                                 } else {
                                     display = borealis::io::display_name(path);
                                     if (display.empty()) {
@@ -521,30 +516,29 @@ SettingsWindow::SettingsWindow(bool prelaunch) : mPrelaunch(prelaunch) {
                     })
                     .on_pressed([] { open_iso_picker(); }),
                 rightPane, [](Pane& pane) {
-                    pane.add_rml("Set the disc image that Dusklight uses to launch the game.<br/><br/>"
-                                 "Changes require a restart.");
+                    pane.add_rml(
+                        "设置 Dusklight 启动游戏所用的镜像文件。<br/><br/>更改需要重启。");
                 });
             if (data::manager().capabilities().canChangeLocation &&
                 borealis::file_select::capabilities().canOpenFolder)
             {
                 leftPane.register_control(
                     leftPane.add_select_button({
-                        .key = "Data Folder",
+                        .key = "数据文件夹",
                         .getValue = [] { return configured_data_path_display_name(); },
                         .isModified = [] { return data::is_data_path_restart_pending(); },
                     }),
                     rightPane, [](Pane& pane) {
-                        pane.add_text("The data folder is where Dusklight stores settings, saves, "
-                                      "logs, texture replacements, and other app data.");
+                        pane.add_text("数据文件夹用于存放 Dusklight 的设置、存档、日志、贴图替换等应用数据。");
                         pane.add_child<DataFolderPathText>();
 #if DUSK_CAN_OPEN_DATA_FOLDER
-                        pane.add_button("Open Data Folder").on_pressed([] {
+                        pane.add_button("打开数据文件夹").on_pressed([] {
                             if (data::open_data_path()) {
                                 mDoAud_seStartMenu(kSoundClick);
                             }
                         });
 #endif
-                        pane.add_button("Change Data Folder").on_pressed([] {
+                        pane.add_button("更改数据文件夹").on_pressed([] {
                             const auto defaultLocation =
                                 borealis::io::fs_path_to_string(data::configured_data_path());
                             borealis::file_select::open_folder(
@@ -556,7 +550,7 @@ SettingsWindow::SettingsWindow(bool prelaunch) : mPrelaunch(prelaunch) {
                                 &data_folder_dialog_callback);
                         });
 #if defined(_WIN32)
-                        pane.add_button("Portable Mode").on_pressed([] {
+                        pane.add_button("便携模式").on_pressed([] {
                             if (data::set_portable_data_path()) {
                                 mDoAud_seStartMenu(kSoundItemChange);
                             }
@@ -564,7 +558,7 @@ SettingsWindow::SettingsWindow(bool prelaunch) : mPrelaunch(prelaunch) {
 #endif
                         pane.add_button(
                                 {
-                                    .text = "Reset to Default",
+                                    .text = "恢复默认",
                                     .isDisabled = [] { return data::is_default_data_path(); },
                                 })
                             .on_pressed([] {
@@ -572,12 +566,12 @@ SettingsWindow::SettingsWindow(bool prelaunch) : mPrelaunch(prelaunch) {
                                     mDoAud_seStartMenu(kSoundItemChange);
                                 }
                             });
-                        pane.add_rml("Data will be migrated automatically on restart.");
+                        pane.add_rml("数据将在重启后自动迁移。");
                     });
             }
             leftPane.register_control(
                 leftPane.add_select_button({
-                    .key = "Language",
+                    .key = "语言",
                     .getValue =
                         [] {
                             return language::language_name(getSettings().game.language.getValue());
@@ -616,11 +610,11 @@ SettingsWindow::SettingsWindow(bool prelaunch) : mPrelaunch(prelaunch) {
                                 config::save();
                             });
                     }
-                    pane.add_rml("<br/>Changes require a restart.");
+                    pane.add_rml("<br/>更改需要重启。");
                 });
             leftPane.register_control(
                 leftPane.add_select_button({
-                    .key = "Graphics Backend",
+                    .key = "图形后端",
                     .getValue = [] { return graphics_backend_display_name(); },
                     .isModified = [] { return is_graphics_backend_restart_pending(); },
                 }),
@@ -639,11 +633,11 @@ SettingsWindow::SettingsWindow(bool prelaunch) : mPrelaunch(prelaunch) {
                                 config::save();
                             });
                     }
-                    pane.add_rml("<br/>Changes require a restart.");
+                    pane.add_rml("<br/>更改需要重启。");
                 });
             leftPane.register_control(
                 leftPane.add_select_button({
-                    .key = "Save File Type",
+                    .key = "存档文件类型",
                     .getValue =
                         [] {
                             return kCardFileTypes[getSettings().backend.cardFileType.getValue()];
@@ -675,20 +669,20 @@ SettingsWindow::SettingsWindow(bool prelaunch) : mPrelaunch(prelaunch) {
         });
     }
 
-    add_tab("Video", [this](Rml::Element* content) {
+    add_tab("视频", [this](Rml::Element* content) {
         auto& leftPane = add_child<Pane>(content, Pane::Type::Controlled);
         auto& rightPane = add_child<Pane>(content, Pane::Type::Uncontrolled);
 
-        leftPane.add_section("Display");
+        leftPane.add_section("显示");
 
-        leftPane.register_control(leftPane.add_button("Toggle Fullscreen").on_pressed([] {
+        leftPane.register_control(leftPane.add_button("切换全屏").on_pressed([] {
             mDoAud_seStartMenu(kSoundItemChange);
             getSettings().video.enableFullscreen.setValue(!getSettings().video.enableFullscreen);
             VISetWindowFullscreen(getSettings().video.enableFullscreen);
             config::save();
         }),
             rightPane, [](Pane& pane) { pane.clear(); });
-        leftPane.register_control(leftPane.add_button("Restore Default Window Size").on_pressed([] {
+        leftPane.register_control(leftPane.add_button("恢复默认窗口大小").on_pressed([] {
             mDoAud_seStartMenu(kSoundItemChange);
             getSettings().video.enableFullscreen.setValue(false);
             VISetWindowFullscreen(false);
@@ -698,14 +692,14 @@ SettingsWindow::SettingsWindow(bool prelaunch) : mPrelaunch(prelaunch) {
             rightPane, [](Pane& pane) { pane.clear(); });
         config_bool_select(leftPane, rightPane, getSettings().video.enableVsync,
             {
-                .key = "Enable VSync",
-                .helpText = "Synchronizes the frame rate to your monitor's refresh rate.",
+                .key = "启用垂直同步",
+                .helpText = "将帧率与显示器刷新率同步。",
                 .onChange = [](bool value) { aurora_enable_vsync(value); },
             });
         config_bool_select(leftPane, rightPane, getSettings().video.lockAspectRatio,
             {
-                .key = "Lock 4:3 Aspect Ratio",
-                .helpText = "Lock the game's aspect ratio to the original.",
+                .key = "锁定 4:3 宽高比",
+                .helpText = "将游戏画面锁定为原始宽高比。",
                 .onChange =
                     [](bool value) {
                         AuroraSetViewportPolicy(
@@ -714,17 +708,17 @@ SettingsWindow::SettingsWindow(bool prelaunch) : mPrelaunch(prelaunch) {
             });
         config_bool_select(leftPane, rightPane, getSettings().game.pauseOnFocusLost,
             {
-                .key = "Pause on Focus Lost",
-                .helpText = "Pause the game when window focus is lost.",
+                .key = "失去焦点时暂停",
+                .helpText = "窗口失去焦点时暂停游戏。",
                 .isDisabled = [] { return IsMobile || speedrun::isActive(); },
             });
         leftPane.register_control(
             leftPane.add_select_button({
-                .key = "Show FPS Counter",
+                .key = "显示 FPS 计数器",
                 .getValue =
                     [] {
                         if (!getSettings().video.enableFpsOverlay.getValue()) {
-                            return Rml::String{"Off"};
+                            return Rml::String{"关闭"};
                         }
                         const int idx = getSettings().video.fpsOverlayCorner.getValue();
                         return Rml::String{kFpsOverlayCornerNames[idx]};
@@ -740,7 +734,7 @@ SettingsWindow::SettingsWindow(bool prelaunch) : mPrelaunch(prelaunch) {
             rightPane, [](Pane& pane) {
                 pane.add_button(
                         {
-                            .text = "Off",
+                            .text = "关闭",
                             .isSelected =
                                 [] { return !getSettings().video.enableFpsOverlay.getValue(); },
                         })
@@ -767,12 +761,12 @@ SettingsWindow::SettingsWindow(bool prelaunch) : mPrelaunch(prelaunch) {
                         });
                 }
                 pane.add_rml(
-                    "<br/>Display the current framerate in a corner of the screen while playing.");
+                    "<br/>在游戏过程中于屏幕角落显示当前帧率。");
             });
         config_bool_select(leftPane, rightPane, getSettings().video.rememberWindowSize,
             {
-                .key = "Remember Window Size",
-                .helpText = "Save and restore the previous session's window size when opening Dusklight.",
+                .key = "记住窗口大小",
+                .helpText = "打开 Dusklight 时保存并恢复上次会话的窗口大小。",
                 .onChange =
                     [](bool value) {
                         if (value && !getSettings().video.enableFullscreen) {
@@ -786,60 +780,60 @@ SettingsWindow::SettingsWindow(bool prelaunch) : mPrelaunch(prelaunch) {
             });
 
         config_int_select(leftPane, rightPane, getSettings().video.uiScale,
-            "UI Scale", 
-            "Scales the Dusklight interface relative to the display's DPI scale. Has no effect on the game's UI and HUD.",
+            "界面缩放", 
+            "按显示 DPI 缩放 Dusklight 界面。不影响游戏内 UI 与 HUD。",
             50, 200, 25, {}, {}, "%");
 
-        leftPane.add_section("Resolution");
+        leftPane.add_section("分辨率");
         graphics_tuner_control(*this, leftPane, rightPane,
             GraphicsTunerProps{
                 .option = GraphicsOption::InternalResolution,
-                .title = "Internal Resolution",
+                .title = "内部分辨率",
                 .helpText = kInternalResolutionHelpText,
             });
         graphics_tuner_control(*this, leftPane, rightPane,
             GraphicsTunerProps{
                 .option = GraphicsOption::ShadowResolution,
-                .title = "Shadow Resolution",
+                .title = "阴影分辨率",
                 .helpText = kShadowResolutionHelpText,
             });
         graphics_tuner_control(*this, leftPane, rightPane,
             GraphicsTunerProps{
                 .option = GraphicsOption::Resampler,
-                .title = "Output Resampling",
+                .title = "输出重采样",
                 .helpText = kResamplerHelpText,
             });
 
-        leftPane.add_section("Post-Processing");
+        leftPane.add_section("后期处理");
         graphics_tuner_control(*this, leftPane, rightPane,
             GraphicsTunerProps{
                 .option = GraphicsOption::BloomMode,
-                .title = "Bloom",
+                .title = "泛光",
                 .helpText = kBloomHelpText,
             });
         graphics_tuner_control(*this, leftPane, rightPane,
             GraphicsTunerProps{
                 .option = GraphicsOption::BloomMultiplier,
-                .title = "Bloom Brightness",
+                .title = "泛光亮度",
                 .helpText = kBloomBrightnessHelpText,
             });
         graphics_tuner_control(*this, leftPane, rightPane,
             GraphicsTunerProps{
                 .option = GraphicsOption::DepthOfFieldMode,
-                .title = "Depth of Field",
+                .title = "景深",
                 .helpText = kDepthOfFieldHelpText,
             });
 
-        leftPane.add_section("Rendering");
+        leftPane.add_section("渲染");
         graphics_tuner_control(*this, leftPane, rightPane,
             GraphicsTunerProps{
                 .option = GraphicsOption::TextureReplacements,
-                .title = "Enable Texture Replacements",
+                .title = "启用贴图替换",
                 .helpText = kTextureReplacementHelpText,
             });
         leftPane.register_control(
             leftPane.add_select_button({
-                .key = "Unlock Framerate",
+                .key = "解锁帧率",
                 .getValue =
                     [] {
                         return kInterpolationModes[static_cast<u8>(
@@ -870,24 +864,22 @@ SettingsWindow::SettingsWindow(bool prelaunch) : mPrelaunch(prelaunch) {
                 pane.add_rml(kUnlockFramerateHelpText);
             });
         config_int_select(leftPane, rightPane, getSettings().video.maxFrameRate,
-            "Framerate Cap", "Limit the framerate to the specified value.", 30, 540, 1,
+            "帧率上限", "将帧率限制为指定数值。", 30, 540, 1,
             [] { return getSettings().game.enableFrameInterpolation.getValue() != FrameInterpMode::Capped; },
             [](int) { presentation::update_frame_rate_preference(); });
         config_bool_select(leftPane, rightPane, getSettings().game.enableMapBackground,
             {
-                .key = "Enable Mini-Map Shadows",
-                .helpText = "Render a thick shadow around the mini-map. May impact performance."
+                .key = "启用小地图阴影",
+                .helpText = "在小地图周围渲染较厚的阴影，可能影响性能。"
             });
         config_bool_select(leftPane, rightPane, getSettings().game.disableCutscenePillarboxing,
             {
-                .key = "Disable Cutscene Pillarboxing",
-                .helpText = "Disable black bars on the left and right sides of the screen "
-                            "during some cutscenes, particularly on ultra-wide displays. "
-                            "Visuals beyond the original intended framing may appear buggy.",
+                .key = "禁用过场黑边",
+                .helpText = "禁用部分过场动画（尤其是超宽屏）左右两侧的黑边。超出原始画面范围的内容可能出现显示异常。",
             });
         leftPane.register_control(
             leftPane.add_select_button({
-                .key = "Disable Letterboxing",
+                .key = "禁用信箱黑边",
                 .getValue =
                     [] {
                         return kLetterboxModes[static_cast<u8>(getSettings().game.disableLetterboxing.getValue())];
@@ -914,12 +906,12 @@ SettingsWindow::SettingsWindow(bool prelaunch) : mPrelaunch(prelaunch) {
                         });
                 }
                 pane.add_rml(
-                    "<br/>Disable the top and bottom black bars during L-targeting, aiming, "
-                    "cutscenes, dialogue, etc.");
+                    "<br/>在 L 锁定、瞄准、"
+                    "过场、对话等时禁用上下黑边。");
             });
     });
 
-    add_tab("Input", [this](Rml::Element* content) {
+    add_tab("输入", [this](Rml::Element* content) {
         auto& leftPane = add_child<Pane>(content, Pane::Type::Controlled);
         auto& rightPane = add_child<Pane>(content, Pane::Type::Uncontrolled);
 
@@ -933,40 +925,39 @@ SettingsWindow::SettingsWindow(bool prelaunch) : mPrelaunch(prelaunch) {
                 });
         };
 
-        leftPane.add_section("Inputs");
+        leftPane.add_section("输入");
         leftPane.register_control(
-            leftPane.add_group_button({.text = "Configure Inputs"}).on_pressed([this] {
+            leftPane.add_group_button({.text = "配置输入"}).on_pressed([this] {
                 push(std::make_unique<ControllerConfigWindow>());
             }),
             rightPane, [](Pane& pane) {
                 pane.clear();
-                pane.add_text("Open input binding configuration.");
+                pane.add_text("打开按键绑定配置。");
             });
         config_bool_select(leftPane, rightPane, getSettings().game.allowBackgroundInput,
             {
-                .key = "Allow Background Inputs",
-                .helpText = "Allow inputs even when the game window is not focused.",
+                .key = "允许后台输入",
+                .helpText = "游戏窗口未聚焦时也接受输入。",
                 .onChange = [](bool value) { aurora_set_background_input(value); },
             });
 
 #if TOUCH_CONTROLS_AVAILABLE
-        leftPane.add_section("Touch");
-        addOption("Touch Controls", getSettings().game.enableTouchControls,
-            "Enables controls overlay for touch screens.<br/><br/>Press and drag on the left side "
-            "of the screen to move, and on the right side of the screen to control the camera.");
+        leftPane.add_section("触屏");
+        addOption("触屏控制", getSettings().game.enableTouchControls,
+            "为触屏设备启用控制界面。<br/><br/>在屏幕左侧按住拖动移动角色，在屏幕右侧控制镜头。");
         auto& customizeTouchLayout = leftPane.add_group_button(GroupButton::Props{
-            .text = "Customize Layout",
+            .text = "自定义布局",
             .isDisabled = [] { return !getSettings().game.enableTouchControls; },
         });
         leftPane.register_control(customizeTouchLayout.on_pressed(
                                       [this] { push(std::make_unique<TouchControlsEditor>()); }),
             rightPane, [](Pane& pane) {
                 pane.clear();
-                pane.add_text("Open the touch controls layout editor.");
+                pane.add_text("打开触屏控制布局编辑器。");
             });
         leftPane.register_control(
             leftPane.add_select_button({
-                .key = "Touch Targeting",
+                .key = "触屏锁定",
                 .getValue =
                     [] {
                         return touch_targeting_label(getSettings().game.touchTargeting.getValue());
@@ -996,113 +987,109 @@ SettingsWindow::SettingsWindow(bool prelaunch) : mPrelaunch(prelaunch) {
                             config::save();
                         });
                 }
-                pane.add_rml(fmt::format("<br/>Hybrid: {}<br/>Hold: {}<br/>Switch: {}",
+                pane.add_rml(fmt::format("<br/>混合：{}<br/>按住：{}<br/>切换：{}",
                     kTouchTargetingDescriptions[0], kTouchTargetingDescriptions[1],
                     kTouchTargetingDescriptions[2]));
             });
         config_percent_select(leftPane, rightPane, getSettings().game.touchCameraXSensitivity,
-            "Touch Camera X Sensitivity",
-            "Adjusts touch camera horizontal sensitivity.<br/><br/>Applies to touch input only.",
+            "触屏镜头 X 灵敏度",
+            "调节触屏镜头水平灵敏度。<br/><br/>仅对触屏输入生效。",
             25, 400, 5, [] { return !getSettings().game.enableTouchControls; });
         config_percent_select(leftPane, rightPane, getSettings().game.touchCameraYSensitivity,
-            "Touch Camera Y Sensitivity",
-            "Adjusts touch camera vertical sensitivity.<br/><br/>Applies to touch input only.", 25,
+            "触屏镜头 Y 灵敏度",
+            "调节触屏镜头垂直灵敏度。<br/><br/>仅对触屏输入生效。", 25,
             400, 5, [] { return !getSettings().game.enableTouchControls; });
 #endif
 
-        leftPane.add_section("Camera");
-        addOption("Free Camera", getSettings().game.freeCamera,
-            "Enables free camera control, letting you control the camera fully with the C-Stick.");
+        leftPane.add_section("镜头");
+        addOption("自由镜头", getSettings().game.freeCamera,
+            "启用自由镜头，可通过 C 摇杆完全控制镜头。");
         config_percent_select(leftPane, rightPane, getSettings().game.freeCameraXSensitivity,
-            "Free Camera X Sensitivity",
-            "Adjusts horizontal free camera sensitivity.<br/><br/>Applies to the control stick only.",
+            "自由镜头 X 灵敏度",
+            "调节自由镜头水平灵敏度。<br/><br/>仅对控制摇杆生效。",
             50, 200, 5, [] { return !getSettings().game.freeCamera; });
         config_percent_select(leftPane, rightPane, getSettings().game.freeCameraYSensitivity,
-            "Free Camera Y Sensitivity",
-            "Adjusts vertical free camera sensitivity.<br/><br/>Applies to the control stick only.",
+            "自由镜头 Y 灵敏度",
+            "调节自由镜头垂直灵敏度。<br/><br/>仅对控制摇杆生效。",
             50, 200, 5, [] { return !getSettings().game.freeCamera; });
-        addOption("Invert Camera X Axis", getSettings().game.invertCameraXAxis,
-            "Invert horizontal camera movement.<br/><br/>Applies to the control stick only.");
-        addOption("Invert Camera Y Axis", getSettings().game.invertCameraYAxis,
-            "Invert vertical camera movement.<br/><br/>Applies to the control stick only.",
+        addOption("反转镜头 X 轴", getSettings().game.invertCameraXAxis,
+            "反转镜头水平移动方向。<br/><br/>仅对控制摇杆生效。");
+        addOption("反转镜头 Y 轴", getSettings().game.invertCameraYAxis,
+            "反转镜头垂直移动方向。<br/><br/>仅对控制摇杆生效。",
             [] { return !getSettings().game.freeCamera; });
-        addOption("Invert First Person X Axis", getSettings().game.invertFirstPersonXAxis,
-            "Invert horizontal movement while aiming with items or first person camera.<br/><br/>Applies to the control stick only.");
-        addOption("Invert First Person Y Axis", getSettings().game.invertFirstPersonYAxis,
-            "Invert vertical movement while aiming with items or first person camera.<br/><br/>Applies to the control stick only.");
+        addOption("反转第一人称 X 轴", getSettings().game.invertFirstPersonXAxis,
+            "使用道具瞄准或第一人称镜头时反转水平移动。<br/><br/>仅对控制摇杆生效。");
+        addOption("反转第一人称 Y 轴", getSettings().game.invertFirstPersonYAxis,
+            "使用道具瞄准或第一人称镜头时反转垂直移动。<br/><br/>仅对控制摇杆生效。");
 
-        leftPane.add_section("Gyro");
-        addOption("Gyro Aim", getSettings().game.enableGyroAim,
-            "Enables gyro controls while in look mode, aiming a hawk, and aiming "
-            "supported items.<br/><br/>Supported items include the Slingshot, Gale Boomerang, "
-            "Hero's Bow, Clawshot(s), Ball and Chain, and Dominion Rod.");
-        addOption("Gyro Rollgoal", getSettings().game.enableGyroRollgoal,
-            "Enables gyro controls for Rollgoal in Hena's Cabin.");
+        leftPane.add_section("陀螺仪");
+        addOption("陀螺仪瞄准", getSettings().game.enableGyroAim,
+            "在观察模式、瞄准鹰或使用支持的道具瞄准时启用陀螺仪控制。<br/><br/>支持的道具包括弹弓、疾风回旋镖、勇者之弓、爪钩、链球和支配之杖。");
+        addOption("陀螺仪滚球", getSettings().game.enableGyroRollgoal,
+            "在希娜的小屋中为滚球小游戏启用陀螺仪控制。");
         config_percent_select(leftPane, rightPane, getSettings().game.gyroSensitivityY,
-            "Gyro Pitch Sensitivity", "Controls vertical gyro aiming sensitivity.", 25, 400, 5,
+            "陀螺仪俯仰灵敏度", "控制陀螺仪垂直瞄准灵敏度。", 25, 400, 5,
             [] { return !gyro_enabled(); });
         config_percent_select(leftPane, rightPane, getSettings().game.gyroSensitivityX,
-            "Gyro Yaw Sensitivity", "Controls horizontal gyro aiming sensitivity.", 25, 400, 5,
+            "陀螺仪偏航灵敏度", "控制陀螺仪水平瞄准灵敏度。", 25, 400, 5,
             [] { return !gyro_enabled(); });
         config_percent_select(leftPane, rightPane, getSettings().game.gyroSensitivityRollgoal,
-            "Rollgoal Sensitivity", "Controls how strongly gyro input tilts the Rollgoal table.",
+            "滚球灵敏度", "控制陀螺仪输入倾斜滚球台的力度。",
             25, 400, 5,
             [] { return !getSettings().game.enableGyroRollgoal; });
-        config_percent_select(leftPane, rightPane, getSettings().game.gyroDeadband, "Gyro Deadband",
-            "Ignores small gyro movement to reduce drift and jitter.", 0, 50, 1,
+        config_percent_select(leftPane, rightPane, getSettings().game.gyroDeadband, "陀螺仪死区",
+            "忽略微小的陀螺仪移动以减少漂移和抖动。", 0, 50, 1,
             [] { return !gyro_enabled(); });
         config_percent_select(leftPane, rightPane, getSettings().game.gyroSmoothing,
-            "Gyro Smoothing", "Higher values smooth gyro input over time.", 0, 100, 1,
+            "陀螺仪平滑", "数值越高，陀螺仪输入随时间越平滑。", 0, 100, 1,
             [] { return !gyro_enabled(); });
-        addOption("Invert Gyro Pitch", getSettings().game.gyroInvertPitch,
-            "Invert vertical gyro aiming.", [] { return !gyro_enabled(); });
-        addOption("Invert Gyro Yaw", getSettings().game.gyroInvertYaw,
-            "Invert horizontal gyro aiming.", [] { return !gyro_enabled(); });
+        addOption("反转陀螺仪俯仰", getSettings().game.gyroInvertPitch,
+            "反转陀螺仪垂直瞄准方向。", [] { return !gyro_enabled(); });
+        addOption("反转陀螺仪偏航", getSettings().game.gyroInvertYaw,
+            "反转陀螺仪水平瞄准方向。", [] { return !gyro_enabled(); });
 
-        leftPane.add_section("Mouse");
-        addOption("Mouse Aim", getSettings().game.enableMouseAim,
-            "Enables mouse input while in look mode, aiming a hawk, and aiming "
-            "supported items.<br/><br/>Supported items include the Slingshot, Gale Boomerang, "
-            "Hero's Bow, Clawshot(s), Ball and Chain, and Dominion Rod.");
-        addOption("Mouse Camera", getSettings().game.enableMouseCamera,
-            "Enables mouse input for controlling the third-person camera.");
+        leftPane.add_section("鼠标");
+        addOption("鼠标瞄准", getSettings().game.enableMouseAim,
+            "在观察模式、瞄准鹰或使用支持的道具瞄准时启用鼠标输入。<br/><br/>支持的道具包括弹弓、疾风回旋镖、勇者之弓、爪钩、链球和支配之杖。");
+        addOption("鼠标镜头", getSettings().game.enableMouseCamera,
+            "启用鼠标控制第三人称镜头。");
         config_percent_select(leftPane, rightPane, getSettings().game.mouseAimSensitivity,
-            "Mouse Aim Sensitivity", "Controls mouse aim sensitivity.", 25, 400, 5,
+            "鼠标瞄准灵敏度", "控制鼠标瞄准灵敏度。", 25, 400, 5,
             [] { return !getSettings().game.enableMouseAim; });
         config_percent_select(leftPane, rightPane, getSettings().game.mouseCameraSensitivity,
-            "Mouse Camera Sensitivity", "Controls mouse camera sensitivity.", 25, 400, 5,
+            "鼠标镜头灵敏度", "控制鼠标镜头灵敏度。", 25, 400, 5,
             [] { return !getSettings().game.enableMouseCamera; });
-        addOption("Invert Mouse Y", getSettings().game.invertMouseY,
-            "Invert vertical mouse control for both aiming and camera.",
+        addOption("反转鼠标 Y 轴", getSettings().game.invertMouseY,
+            "反转瞄准和镜头控制的鼠标垂直方向。",
             [] { return !getSettings().game.enableMouseAim || !getSettings().game.enableMouseCamera; });
 
-        leftPane.add_section("Gameplay");
-        addOption("Mouse/Touch in Menus", getSettings().game.enableMenuPointer,
-            "Enables mouse and touch input for supported in-game menus.");
-        addOption("Invert Air/Swim X Axis", getSettings().game.invertAirSwimX,
-            "Invert horizontal movement while flying or swimming.");
-        addOption("Invert Air/Swim Y Axis", getSettings().game.invertAirSwimY,
-            "Invert vertical movement while flying or swimming.");
-        addOption("Swap Direct Select Input", getSettings().game.swapDirectSelect,
-            "Swap the controls for using Direct Select on the item wheel, making Direct Select the default and holding L to scroll the wheel.");
+        leftPane.add_section("玩法");
+        addOption("菜单中的鼠标/触屏", getSettings().game.enableMenuPointer,
+            "为支持的游戏内菜单启用鼠标和触屏输入。");
+        addOption("反转飞行/游泳 X 轴", getSettings().game.invertAirSwimX,
+            "飞行或游泳时反转水平移动。");
+        addOption("反转飞行/游泳 Y 轴", getSettings().game.invertAirSwimY,
+            "飞行或游泳时反转垂直移动。");
+        addOption("交换直接选择输入", getSettings().game.swapDirectSelect,
+            "交换道具轮盘上直接选择的控制方式：直接选择成为默认操作，按住 L 滚动轮盘。");
 
-        leftPane.add_section("Tools");
-        addOption("Turbo Key", getSettings().game.enableTurboKeybind,
-            "Hold Tab to increase game speed by up to 4x.",
+        leftPane.add_section("工具");
+        addOption("加速键", getSettings().game.enableTurboKeybind,
+            "按住 Tab 可将游戏速度提升至最多 4 倍。",
             [] { return speedrun::isActive(); });
-        addOption("Reset Key (" + Rml::String{hotkeys::DO_RESET} + ")",
+        addOption("重置键（" + Rml::String{hotkeys::DO_RESET} + "）",
             getSettings().game.enableResetKeybind,
-            "Press " + Rml::String{hotkeys::DO_RESET} + " to reset the game.");
+            "按 " + Rml::String{hotkeys::DO_RESET} + " 重置游戏。");
     });
 
-    add_tab("Audio", [this](Rml::Element* content) {
+    add_tab("音频", [this](Rml::Element* content) {
         auto& leftPane = add_child<Pane>(content, Pane::Type::Controlled);
         auto& rightPane = add_child<Pane>(content, Pane::Type::Uncontrolled);
 
-        leftPane.add_section("Output");
+        leftPane.add_section("输出");
         leftPane.register_control(
             leftPane.add_select_button({
-                .key = "Output Mode",
+                .key = "输出模式",
                 .getValue = [] {
                     const auto idx = static_cast<int>(getSettings().audio.outputMode.getValue());
                     return Rml::String{kAudioOutputModeNames[idx]};
@@ -1129,10 +1116,10 @@ SettingsWindow::SettingsWindow(bool prelaunch) : mPrelaunch(prelaunch) {
             });
 
         // TODO: Individual sliders for Sub Music, Sound Effects, and Fanfare.
-        leftPane.add_section("Volume");
+        leftPane.add_section("音量");
         leftPane.register_control(
             leftPane.add_child<NumberButton>(NumberButton::Props{
-                .key = "Master Volume",
+                .key = "主音量",
                 .getValue = [] { return getSettings().audio.masterVolume.getValue(); },
                 .setValue =
                     [](int value) {
@@ -1150,11 +1137,11 @@ SettingsWindow::SettingsWindow(bool prelaunch) : mPrelaunch(prelaunch) {
             }),
             rightPane, [](Pane& pane) {
                 pane.clear();
-                pane.add_text("Adjusts the volume of all sounds in the game.");
+                pane.add_text("调整游戏中所有声音的音量。");
             });
         leftPane.register_control(
             leftPane.add_child<NumberButton>(NumberButton::Props{
-                .key = "Main Music Volume",
+                .key = "主音乐音量",
                 .getValue = [] { return getSettings().audio.mainMusicVolume.getValue(); },
                 .setValue =
                     [](int value) {
@@ -1171,36 +1158,36 @@ SettingsWindow::SettingsWindow(bool prelaunch) : mPrelaunch(prelaunch) {
             }),
             rightPane, [](Pane& pane) {
                 pane.clear();
-                pane.add_text("Adjusts the volume of all music in the game.");
+                pane.add_text("调整游戏中所有音乐的音量。");
             });
 
-        leftPane.add_section("Effects");
+        leftPane.add_section("音效");
         config_bool_select(leftPane, rightPane, getSettings().audio.enableReverb,
             {
-                .key = "Enable Reverb",
-                .helpText = "Enables the reverb effect in game audio.",
+                .key = "启用混响",
+                .helpText = "为游戏音频启用混响效果。",
                 .onChange = [](bool value) { audio::SetEnableReverb(value); },
             });
         config_bool_select(leftPane, rightPane, getSettings().audio.menuSounds,
             {
-                .key = "Dusklight Menu Sounds",
-                .helpText = "Play sound effects when navigating the Dusklight menu.",
+                .key = "Dusklight 菜单音效",
+                .helpText = "在浏览 Dusklight 菜单时播放音效。",
             });
 
-        leftPane.add_section("Tweaks");
+        leftPane.add_section("微调");
         config_bool_select(leftPane, rightPane, getSettings().game.noLowHpSound,
             {
-                .key = "No Low HP Sound",
-                .helpText = "Disable the beeping sound when having low health.",
+                .key = "无低血量提示音",
+                .helpText = "血量较低时禁用提示音。",
             });
         config_bool_select(leftPane, rightPane, getSettings().game.midnasLamentNonStop,
             {
-                .key = "Non-Stop Midna's Lament",
-                .helpText = "Prevents enemy music while Midna's Lament is playing.",
+                .key = "米德娜哀歌不间断",
+                .helpText = "播放米德娜哀歌时停止战斗音乐。",
             });
     });
 
-    add_tab("Gameplay", [this](Rml::Element* content) {
+    add_tab("玩法", [this](Rml::Element* content) {
         auto& leftPane = add_child<Pane>(content, Pane::Type::Controlled);
         auto& rightPane = add_child<Pane>(content, Pane::Type::Uncontrolled);
 
@@ -1217,28 +1204,27 @@ SettingsWindow::SettingsWindow(bool prelaunch) : mPrelaunch(prelaunch) {
             add_speedrun_disabled_option(leftPane, rightPane, value, key, helpText);
         };
 
-        leftPane.add_section("General");
-        addOption("Mirror Mode", getSettings().game.enableMirrorMode,
-            "Mirrors the world horizontally, matching the Wii version of the game.");
-        addOption("Minimal HUD", getSettings().game.minimalHUD,
-            "Disables the elements of the main HUD of the game.<br/>Useful for a more immersive "
-            "experience.");
+        leftPane.add_section("常规");
+        addOption("镜像模式", getSettings().game.enableMirrorMode,
+            "水平镜像整个世界，与 Wii 版本一致。");
+        addOption("极简 HUD", getSettings().game.minimalHUD,
+            "禁用游戏主 HUD 的各个元素。<br/>有助于获得更沉浸的体验。");
         config_percent_select(leftPane, rightPane, getSettings().game.hudScale,
-            "HUD Scale",
-            "Scales the size of the gameplay HUD (hearts, buttons, mini-map, etc.). Does not affect dialog boxes or menus.",
+            "HUD 缩放",
+            "缩放游戏 HUD（心、按键、小地图等）的大小，不影响对话框和菜单。",
             50, 200, 5,
             [] { return getSettings().game.minimalHUD.getValue(); });
-        addOption("Restore Wii 1.0 Glitches", getSettings().game.restoreWiiGlitches,
-            "Restores patched glitches from Wii USA 1.0, the first released version.");
-        addOption("Enable Rotating Link Doll", getSettings().game.enableLinkDollRotation,
-            "Enables rotating Link in the collection menu with the C-Stick.");
-        addOption("Hide Owl Statue Markers", getSettings().game.removeQuestMapMarkers,
-            "Removes completed Owl Statue markers from the map and Minimap.");
+        addOption("还原 Wii 1.0 漏洞", getSettings().game.restoreWiiGlitches,
+            "还原首个发售版本 Wii 美版 1.0 中已修复的漏洞。");
+        addOption("启用林克模型旋转", getSettings().game.enableLinkDollRotation,
+            "在收藏菜单中可用 C 摇杆旋转林克模型。");
+        addOption("隐藏猫头鹰雕像标记", getSettings().game.removeQuestMapMarkers,
+            "从地图和小地图中移除已完成猫头鹰雕像的标记。");
 
-        leftPane.add_section("Difficulty");
+        leftPane.add_section("难度");
         leftPane.register_control(
             leftPane.add_child<NumberButton>(NumberButton::Props{
-                .key = "Damage Multiplier",
+                .key = "伤害倍率",
                 .getValue = [] { return getSettings().game.damageMultiplier.getValue(); },
                 .setValue =
                     [](int value) {
@@ -1257,58 +1243,58 @@ SettingsWindow::SettingsWindow(bool prelaunch) : mPrelaunch(prelaunch) {
             }),
             rightPane, [](Pane& pane) {
                 pane.clear();
-                pane.add_text("Multiplies incoming damage.");
+                pane.add_text("倍乘受到的伤害。");
             });
         addSpeedrunDisabledOption(
-            "Instant Death", getSettings().game.instantDeath, "Any hit will instantly kill you.");
-        addSpeedrunDisabledOption("No Heart Drops", getSettings().game.noHeartDrops,
-            "Hearts will never drop from enemies, pots, and various other places.");
+            "即死模式", getSettings().game.instantDeath, "受到任意攻击都会立刻死亡。");
+        addSpeedrunDisabledOption("不掉心", getSettings().game.noHeartDrops,
+            "敌人、罐子等处不再掉落心。");
 
-        leftPane.add_section("Quality of Life");
-        addOption("Bigger Wallets", getSettings().game.biggerWallets,
-            "Wallet sizes are like in the HD version. (500, 1000, 2000)");
-        addOption("Disable Rupee Cutscenes", getSettings().game.disableRupeeCutscenes,
-            "Rupees will not play cutscenes after you have collected them the first time.");
-        addSpeedrunDisabledOption("Faster Scene Transitions", getSettings().game.fastTransitions,
-            "Reduces how long the transitions take when changing maps.");
-        addOption("Faster Climbing", getSettings().game.fastClimbing,
-            "Quicker climbing on ladders and vines like the HD version.");
-        addOption("Faster Tears of Light", getSettings().game.fastTears,
-            "Tears of Light dropped by Shadow Insects pop out faster like the HD version.");
-        addSpeedrunDisabledOption("Autosave", getSettings().game.autoSave,
-            "Autosaves the game when going to a new area or opening a dungeon door.");
-        addOption("Instant Saves", getSettings().game.instantSaves,
-            "Skips the delay when writing to the Memory Card.");
-        addOption("Hold B for Instant Text", getSettings().game.instantText,
-            "Makes text scroll immediately by holding B.");
-        addSpeedrunDisabledOption("Hold Button to Mash", getSettings().game.holdToMash,
-            "Hold the indicated button to mash automatically.");
-        addOption("No Climbing Miss Animation", getSettings().game.noMissClimbing,
-            "Prevents Link from playing a struggle animation when grabbing ledges or "
-            "climbing on vines.");
-        addOption("No Rupee Returns", getSettings().game.noReturnRupees,
-            "Always collect Rupees even if your Wallet is too full.");
-        addOption("No Sword Recoil", getSettings().game.noSwordRecoil,
-            "Link will not recoil when his sword hits walls.");
-        addOption("No 2nd Fish for Cat", getSettings().game.no2ndFishForCat,
-            "Skip needing to catch a second fish for Sera's cat.");
-        addOption("Button Fishing", getSettings().game.buttonFishing,
-            "Allow fishing with the Fishing Rod using the button the item is assigned to.");
-        addOption("Show Poe Count on Map", getSettings().game.enhancedMapMenus,
-            "Displays collected/total number of Poe Souls for a region on the map.");
-        addSpeedrunDisabledOption("Sun's Song (R+X)", getSettings().game.sunsSong,
-            "Allows Wolf Link to howl and change the time of day.");
-        addOption("Quick Transform (R+Y)", getSettings().game.enableQuickTransform,
-            "Transform instantly by pressing R and Y simultaneously.");
-        addOption("Aiming Reticle", getSettings().game.aimingReticle,
-            "Shows the aiming reticle for bow and slingshot.");
+        leftPane.add_section("便利性");
+        addOption("更大钱包", getSettings().game.biggerWallets,
+            "钱包容量与 HD 版一致（500、1000、2000）。");
+        addOption("禁用卢比过场", getSettings().game.disableRupeeCutscenes,
+            "首次收集过卢比后，再次获得不再播放过场。");
+        addSpeedrunDisabledOption("更快场景切换", getSettings().game.fastTransitions,
+            "缩短切换地图时的过渡时间。");
+        addOption("更快攀爬", getSettings().game.fastClimbing,
+            "梯子与藤蔓攀爬速度接近 HD 版。");
+        addOption("更快光之泪", getSettings().game.fastTears,
+            "暗影昆虫掉落的光之泪弹出更快，接近 HD 版。");
+        addSpeedrunDisabledOption("自动存档", getSettings().game.autoSave,
+            "进入新区域或打开地牢门时自动存档。");
+        addOption("即时存档", getSettings().game.instantSaves,
+            "跳过写入记忆卡时的延迟。");
+        addOption("按住 B 立即显示文本", getSettings().game.instantText,
+            "按住 B 可让文本立即滚动显示。");
+        addSpeedrunDisabledOption("按住按键自动连打", getSettings().game.holdToMash,
+            "按住提示按键可自动连打。");
+        addOption("取消攀爬失误动画", getSettings().game.noMissClimbing,
+            "林克抓取边缘或"
+            "攀爬藤蔓时不再播放挣扎动画。");
+        addOption("卢比不退还", getSettings().game.noReturnRupees,
+            "即使钱包已满也会收集卢比。");
+        addOption("无剑反震", getSettings().game.noSwordRecoil,
+            "剑击中墙壁时林克不再后仰。");
+        addOption("猫咪无需第二条鱼", getSettings().game.no2ndFishForCat,
+            "跳过为塞拉的猫再钓一条鱼的要求。");
+        addOption("按键钓鱼", getSettings().game.buttonFishing,
+            "Allow fishing with the 钓竿 using the button the item is assigned to.");
+        addOption("在地图显示波伊数量", getSettings().game.enhancedMapMenus,
+            "Displays collected/total number of 波伊之魂 for a region on the map.");
+        addSpeedrunDisabledOption("太阳之歌（R+X）", getSettings().game.sunsSong,
+            "让狼林克嚎叫并改变昼夜。");
+        addOption("快速变身（R+Y）", getSettings().game.enableQuickTransform,
+            "同时按 R 与 Y 立即变身。");
+        addOption("瞄准准星", getSettings().game.aimingReticle,
+            "显示弓与弹弓的瞄准准星。");
 
-        leftPane.add_section("Speedrunning");
+        leftPane.add_section("速通");
         config_bool_select(leftPane, rightPane, getSettings().game.speedrunMode,
             {
-                .key = "Speedrun Mode",
+                .key = "速通模式",
                 .helpText =
-                    "Enables Speedrun game mode option in the Dusklight launch menu.",
+                    "在 Dusklight 启动菜单中启用速通游戏模式选项。",
                 .onChange =
                     [this](bool enabled) {
                         if (enabled) {
@@ -1324,9 +1310,8 @@ SettingsWindow::SettingsWindow(bool prelaunch) : mPrelaunch(prelaunch) {
             });
         config_bool_select(leftPane, rightPane, getSettings().game.liveSplitEnabled,
             {
-                .key = "LiveSplit Connection",
-                .helpText = "Connect to LiveSplit server on localhost:16834. For this to work you must right click LiveSplit, and turn on Control -> Start TCP Server."
-                " To see IGT in LiveSplit you must change your comparison to Game Time.",
+                .key = "LiveSplit 连接",
+                .helpText = "连接 localhost:16834 上的 LiveSplit 服务器。需要在 LiveSplit 上右键，开启 Control → Start TCP Server。要在 LiveSplit 中查看 IGT，需将比较方式改为 Game Time。",
                 .onChange =
                     [](bool enabled) {
                         if (enabled) {
@@ -1339,13 +1324,13 @@ SettingsWindow::SettingsWindow(bool prelaunch) : mPrelaunch(prelaunch) {
             });
         config_bool_select(leftPane, rightPane, getSettings().game.showSpeedrunRTATimer,
             {
-                .key = "Show RTA",
-                .helpText = "Display the RTA timer. IGT is always visible.",
+                .key = "显示 RTA",
+                .helpText = "显示 RTA 计时器，IGT 始终可见。",
                 .isDisabled = [] { return !speedrun::isActive(); },
             });
     });
 
-    add_tab("Cheats", [this](Rml::Element* content) {
+    add_tab("作弊", [this](Rml::Element* content) {
         auto& leftPane = add_child<Pane>(content, Pane::Type::Controlled);
         auto& rightPane = add_child<Pane>(content, Pane::Type::Uncontrolled);
 
@@ -1354,14 +1339,14 @@ SettingsWindow::SettingsWindow(bool prelaunch) : mPrelaunch(prelaunch) {
             add_speedrun_disabled_option(leftPane, rightPane, value, key, helpText);
         };
 
-        leftPane.add_section("Resources");
-        addCheat("Infinite Hearts", getSettings().game.infiniteHearts, "Keeps your health full.");
+        leftPane.add_section("资源");
+        addCheat("无限心心", getSettings().game.infiniteHearts, "保持生命值全满。");
         addCheat(
-            "Infinite Arrows", getSettings().game.infiniteArrows, "Keeps your arrow count full.");
-        addCheat("Infinite Seeds", getSettings().game.infiniteSeeds, "Keeps your slingshot pellets (seeds) full.");
-        addCheat("Infinite Bombs", getSettings().game.infiniteBombs, "Keeps all bomb bags full.");
-        addCheat("Infinite Oil", getSettings().game.infiniteOil, "Keeps your lantern oil full.");
-        addCheat("Infinite Oxygen", getSettings().game.infiniteOxygen,
+            "无限箭矢", getSettings().game.infiniteArrows, "保持箭矢数量全满。");
+        addCheat("无限种子", getSettings().game.infiniteSeeds, "保持弹弓弹丸（种子）全满。");
+        addCheat("无限炸弹", getSettings().game.infiniteBombs, "保持所有炸弹袋全满。");
+        addCheat("无限灯油", getSettings().game.infiniteOil, "保持灯油全满。");
+        addCheat("无限氧气", getSettings().game.infiniteOxygen,
             "Keeps your underwater oxygen meter full.");
         addCheat(
             "Infinite Rupees", getSettings().game.infiniteRupees, "Keeps your rupee count full.");
@@ -1411,8 +1396,8 @@ SettingsWindow::SettingsWindow(bool prelaunch) : mPrelaunch(prelaunch) {
                 }
                 pane.add_rml("<br/>Allows the Great Spin attack without requiring full health.");
             });
-        addCheat("Fast Iron Boots", getSettings().game.enableFastIronBoots,
-            "Speeds up movement while heavy, including wearing the Iron Boots, holding the Ball and Chain, wearing Magic Armor without rupees, etc.");
+        addCheat("Fast 铁靴", getSettings().game.enableFastIronBoots,
+            "Speeds up movement while heavy, including wearing the 铁靴, holding the 链球, wearing Magic Armor without rupees, etc.");
         addCheat("Can Transform Anywhere", getSettings().game.canTransformAnywhere,
             "Allows transforming even if NPCs are looking.");
         addCheat("Fast Roll", getSettings().game.fastRoll,
@@ -1421,7 +1406,7 @@ SettingsWindow::SettingsWindow(bool prelaunch) : mPrelaunch(prelaunch) {
             "Speeds up Spinner movement while holding R.");
         leftPane.register_control(
             leftPane.add_select_button({
-                .key = "Magic Armor Behavior",
+                .key = "魔法铠甲行为",
                 .getValue =
                     [] {
                         return kMagicArmorModes[static_cast<u8>(
@@ -1450,27 +1435,26 @@ SettingsWindow::SettingsWindow(bool prelaunch) : mPrelaunch(prelaunch) {
                         });
                 }
                 pane.add_rml(
-                    "<br/>Control the behavior of the Magic Armor.");
+                    "<br/>控制魔法铠甲的行为。");
             });
-        addCheat("Invincible Enemies", getSettings().game.invincibleEnemies,
-            "Prevents enemies from taking damage.");
+        addCheat("敌人无敌", getSettings().game.invincibleEnemies,
+            "敌人不会受到伤害。");
     });
 
-    add_tab("Interface", [this](Rml::Element* content) {
+    add_tab("界面", [this](Rml::Element* content) {
         auto& leftPane = add_child<Pane>(content, Pane::Type::Controlled);
         auto& rightPane = add_child<Pane>(content, Pane::Type::Uncontrolled);
 
         leftPane.add_section("Dusklight");
 #if DUSK_CAN_OPEN_DATA_FOLDER
         leftPane.register_control(
-            leftPane.add_button("Open Data Folder").on_pressed([] {
+            leftPane.add_button("打开数据文件夹").on_pressed([] {
                 mDoAud_seStartMenu(kSoundClick);
                 data::open_data_path();
             }),
             rightPane, [](Pane& pane) {
                 pane.add_text(
-                    "Open the folder where Dusklight stores settings, saves, logs, texture "
-                    "replacements, and other app data.");
+                    "打开 Dusklight 存放设置、存档、日志、贴图替换等应用数据的文件夹。");
             });
 #endif
         leftPane.register_control(leftPane.add_button("Restart to Main Menu").on_pressed([this] {
@@ -1485,17 +1469,17 @@ SettingsWindow::SettingsWindow(bool prelaunch) : mPrelaunch(prelaunch) {
             });
         leftPane.register_control(
             leftPane.add_select_button({
-                .key = "Notifications",
+                .key = "通知",
                 .getValue = [] {
                     const bool ach = getSettings().game.enableAchievementToasts.getValue();
                     const bool ctl = getSettings().game.enableControllerToasts.getValue();
                     if (!ach && !ctl) {
-                        return Rml::String{"Off"};
+                        return Rml::String{"关闭"};
                     }
                     if (ach && ctl) {
-                        return Rml::String{"All"};
+                        return Rml::String{"全部"};
                     }
-                    return Rml::String{"Some"};
+                    return Rml::String{"部分"};
                 },
                 .isModified = [] {
                     const auto& ach = getSettings().game.enableAchievementToasts;
@@ -1505,23 +1489,23 @@ SettingsWindow::SettingsWindow(bool prelaunch) : mPrelaunch(prelaunch) {
             }),
             rightPane, [](Pane& pane) {
                 pane.clear();
-                pane.add_button("Select All").on_pressed([] {
+                pane.add_button("全选").on_pressed([] {
                     mDoAud_seStartMenu(kSoundItemChange);
                     getSettings().game.enableAchievementToasts.setValue(true);
                     getSettings().game.enableControllerToasts.setValue(true);
                     config::save();
                 });
-                pane.add_button("Select None").on_pressed([] {
+                pane.add_button("全不选").on_pressed([] {
                     mDoAud_seStartMenu(kSoundItemChange);
                     getSettings().game.enableAchievementToasts.setValue(false);
                     getSettings().game.enableControllerToasts.setValue(false);
                     config::save();
                 });
 
-                pane.add_section("Types");
+                pane.add_section("类型");
                 pane.add_button(
                     {
-                        .text = "Achievements",
+                        .text = "成就",
                         .isSelected =
                         [] {
                             return getSettings().game.enableAchievementToasts.getValue();
@@ -1535,7 +1519,7 @@ SettingsWindow::SettingsWindow(bool prelaunch) : mPrelaunch(prelaunch) {
                     });
                 pane.add_button(
                     {
-                        .text = "Missing Device",
+                        .text = "设备断开",
                         .isSelected =
                             [] { return getSettings().game.enableControllerToasts.getValue(); },
                     })
@@ -1545,11 +1529,11 @@ SettingsWindow::SettingsWindow(bool prelaunch) : mPrelaunch(prelaunch) {
                         v.setValue(!v.getValue());
                         config::save();
                     });
-                pane.add_rml("<br/>Choose which notifications can be displayed.");
+                pane.add_rml("<br/>选择可以显示的通知类型。");
             });
 #if BOREALIS_HAS_SENTRY
         auto& crashReporting = leftPane.add_child<BoolButton>(BoolButton::Props{
-            .key = "Crash Reporting",
+            .key = "崩溃报告",
             .getValue =
                 [] { return borealis::sentry::get_consent() == borealis::sentry::Consent::Given; },
             .setValue = [](bool enabled) { borealis::sentry::set_consent(enabled); },
@@ -1562,15 +1546,14 @@ SettingsWindow::SettingsWindow(bool prelaunch) : mPrelaunch(prelaunch) {
         });
         leftPane.register_control(crashReporting, rightPane, [](Pane& pane) {
             pane.clear();
-            pane.add_rml("Dusklight can automatically send crash reports to the developers. Crash "
-                         "reports contain the following:<br/>• Operating system version<br/>• CPU "
-                         "architecture<br/>• GPU model & driver version<br/>• File paths (may "
-                         "include account username)<br/>• Stack trace");
+            pane.add_rml("Dusklight 可以向开发者自动发送崩溃报告。崩溃报告包含以下内容：<br/>• "
+                         "操作系统版本<br/>• CPU 架构<br/>• GPU 型号与驱动版本<br/>• 文件路径（可能"
+                         "包含账户用户名）<br/>• 堆栈信息");
         });
 #endif
         config_bool_select(leftPane, rightPane, getSettings().backend.skipPreLaunchUI,
             {
-                .key = "Skip Dusklight Main Menu",
+                .key = "跳过 Dusklight 主菜单",
                 .helpText =
                     "When starting Dusklight, skip the main menu and boot straight into the "
                     "game if a disc image is available.<br/><br/>Note: If any mods register game "
@@ -1590,8 +1573,8 @@ SettingsWindow::SettingsWindow(bool prelaunch) : mPrelaunch(prelaunch) {
 #if BOREALIS_HAS_DISCORD
         config_bool_select(leftPane, rightPane, getSettings().game.enableDiscordPresence,
             {
-                .key = "Enable Discord Rich Presence",
-                .helpText = "Enable Dusklight to integrate with Discord Rich Presence. This allows Discord to show your status in-game.",
+                .key = "启用 Discord 状态展示",
+                .helpText = "允许 Dusklight 与 Discord 状态展示集成，让 Discord 显示你的游戏内状态。",
                 .onChange = [](bool enabled) {
                     if (enabled) {
                         discord::initialize();
@@ -1603,29 +1586,28 @@ SettingsWindow::SettingsWindow(bool prelaunch) : mPrelaunch(prelaunch) {
 #endif
         config_bool_select(leftPane, rightPane, getSettings().backend.enableAdvancedSettings,
             {
-                .key = "Enable Advanced Settings",
+                .key = "启用高级设置",
                 .icon = "warning",
-                .helpText = "Show advanced settings and debugging tools with "
-                            "Shift+F1.<br/><br/><icon class=\"warning\"/> WARNING: Debugging tools "
-                            "can easily break your game. Do not use on a regular save!",
+                .helpText = "使用 Shift+F1 显示高级设置和调试工具。<br/><br/><icon class=\"warning\"/> "
+                            "警告：调试工具很容易损坏你的游戏。请勿在常规存档上使用！",
                 .onChange = [](bool) { MenuBar::refresh_tabs(); },
                 .isDisabled = [] { return speedrun::isActive(); },
             });
         config_bool_select(leftPane, rightPane, getSettings().game.showInputViewer,
             {
-                .key = "Show Input Viewer",
-                .helpText = "Display a controller input overlay while playing.",
+                .key = "显示输入查看器",
+                .helpText = "游戏过程中显示手柄输入叠加层。",
             });
         config_bool_select(leftPane, rightPane, getSettings().game.showInputViewerGyro,
             {
-                .key = "Show Gyro Input Viewer",
-                .helpText = "Show gyro sensor values in the input viewer.",
+                .key = "显示陀螺仪输入查看器",
+                .helpText = "在输入查看器中显示陀螺仪传感器数值。",
                 .isDisabled = [] { return !getSettings().game.showInputViewer; },
             });
-        leftPane.add_section("Game");
+        leftPane.add_section("游戏");
         leftPane.register_control(
             leftPane.add_select_button({
-                .key = "Menu Scaling Mode",
+                .key = "菜单缩放模式",
                 .getValue =
                     [] {
                         return kMenuScalingModeLabels[static_cast<u8>(
@@ -1655,24 +1637,23 @@ SettingsWindow::SettingsWindow(bool prelaunch) : mPrelaunch(prelaunch) {
                             config::save();
                         });
                 }
-                pane.add_rml("<br/>Changes how the Collection and File Select menus scale to your "
-                             "aspect ratio.");
+                pane.add_rml("<br/>更改收藏和文件选择菜单随宽高比缩放的方式。");
             });
         config_bool_select(leftPane, rightPane, getSettings().game.hideTvSettingsScreen,
             {
-                .key = "Skip TV Settings Screen",
-                .helpText = "Skips the TV calibration screen shown when loading a save.",
+                .key = "跳过电视设置画面",
+                .helpText = "跳过读取存档时显示的电视校准画面。",
             });
         add_speedrun_disabled_option(leftPane, rightPane, getSettings().game.recordingMode,
-            "Recording Mode",
-            "Disables the game HUD and all background music.<br/><br/>Useful for recording footage.");
+            "录制模式",
+            "禁用游戏 HUD 和所有背景音乐。<br/><br/>方便录制视频。");
     });
 
     add_tab("Tools", [this](Rml::Element* content) {
         auto& leftPane = add_child<Pane>(content, Pane::Type::Controlled);
         auto& rightPane = add_child<Pane>(content, Pane::Type::Uncontrolled);
 
-        leftPane.add_section("Link");
+        leftPane.add_section("林克");
         add_speedrun_disabled_option(leftPane, rightPane, getSettings().game.enableMoveLinkCombo,
             "Move Link (L+R+Y)",
             "Enables the L+R+Y button combo to toggle freely repositioning Link.");
