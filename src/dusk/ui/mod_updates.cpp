@@ -22,7 +22,7 @@ public:
     explicit UpdateHeader(Rml::Element* parent)
         : NavGroup{append(parent, "updates-header"), {.layout = Layout::Horizontal}} {
         auto* heading = append(mRoot, "updates-heading");
-        append_text(append(heading, "h2"), "Updates");
+        append_text(append(heading, "h2"), "更新");
         mStatus = append(mRoot, "p");
         auto* actions = append(mRoot, "updates-actions");
         auto& all = add_existing_item<Button>(actions, "Update all");
@@ -39,7 +39,7 @@ public:
         });
         mAll = &all;
         auto& check = add_existing_item<IconButton>(
-            heading, IconButton::Props{.icon = "refresh", .label = "Check for updates"});
+            heading, IconButton::Props{.icon = "refresh", .label = "检查更新"});
         check.root()->SetAttribute("focus-key", "updates-check");
         check.on_pressed([] { mods::updates::request_check(); });
         mCheck = &check;
@@ -82,7 +82,7 @@ public:
         mRow = &row;
         auto* actions = row.actions_root();
         auto& action = add_existing_item<IconButton>(
-            actions, IconButton::Props{.icon = "file_download", .label = "Update"});
+            actions, IconButton::Props{.icon = "file_download", .label = "更新"});
         action.root()->SetClass("compact", true);
         action.root()->SetAttribute("focus-key", "mod-action-" + mId);
         action.on_pressed([this] { enqueue_mod_update(mId); });
@@ -143,7 +143,7 @@ public:
         mRow->set_icon(local->metadata.iconPath.empty() ?
                            "" :
                            mod_image_source(*local, local->metadata.iconPath));
-        mAction->set_label(entry->actionable ? "Update" : "Unavailable");
+        mAction->set_label(entry->actionable ? "更新" : "不可用");
         mAction->set_disabled(!entry->actionable);
         Component::update();
     }

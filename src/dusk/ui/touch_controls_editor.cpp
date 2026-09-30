@@ -63,9 +63,9 @@ Rml::String touch_controls_editor_document_source() {
         <resize-handle id="editor-handle-bottom-right" class="corner bottom right" />
     </selection-frame>
     <editor-toolbar id="editor-toolbar">
-        <button id="editor-save" class="editor-command primary"><span>Save</span></button>
-        <button id="editor-reset" class="editor-command"><span>Reset</span></button>
-        <button id="editor-cancel" class="editor-command"><span>Cancel</span></button>
+        <button id="editor-save" class="editor-command primary"><span>保存</span></button>
+        <button id="editor-reset" class="editor-command"><span>重置</span></button>
+        <button id="editor-cancel" class="editor-command"><span>取消</span></button>
     </editor-toolbar>
 </body>
 </rml>
@@ -594,13 +594,13 @@ void TouchControlsEditor::save_layout() {
 void TouchControlsEditor::request_reset() {
     auto dismiss = [](Modal& modal) { modal.pop(); };
     push(std::make_unique<Modal>(Modal::Props{
-        .title = "Reset Touch Layout?",
+        .title = "重置触屏布局？",
         .bodyText =
-            "Reset controls to their default layout. This will not be saved until you press Save.",
+            "将控制布局恢复默认。在点击“保存”前不会写入。",
         .actions =
             {
                 ModalAction{
-                    .label = "Reset",
+                    .label = "重置",
                     .onPressed =
                         [this, dismiss](Modal& modal) {
                             reset_working_layout();
@@ -609,7 +609,7 @@ void TouchControlsEditor::request_reset() {
                         },
                 },
                 ModalAction{
-                    .label = "Cancel",
+                    .label = "取消",
                     .onPressed = dismiss,
                 },
             },

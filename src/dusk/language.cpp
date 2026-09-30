@@ -41,19 +41,19 @@ std::span<const GameLanguage> available_languages(const iso::DiscInfo& info) noe
 const char* language_name(GameLanguage language) noexcept {
     switch (language) {
     case GameLanguage::English:
-        return "English";
+        return "英语";
     case GameLanguage::German:
-        return "German";
+        return "德语";
     case GameLanguage::French:
-        return "French";
+        return "法语";
     case GameLanguage::Spanish:
-        return "Spanish";
+        return "西班牙语";
     case GameLanguage::Italian:
-        return "Italian";
+        return "意大利语";
     case GameLanguage::Japanese:
-        return "Japanese";
+        return "日语";
     }
-    return "English";
+    return "英语";
 }
 
 const char* msg_folder() noexcept {

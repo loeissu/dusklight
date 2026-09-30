@@ -81,7 +81,7 @@ static std::string lifecycle_error_message(
     if (error.message[0] != '\0') {
         return error.message;
     }
-    return fmt::format("{} failed with result {}", fnName, static_cast<int>(result));
+    return fmt::format("{} 失败，结果为 {}", fnName, static_cast<int>(result));
 }
 
 std::string escape_mod_id_for_config(std::string_view const id) {
@@ -127,7 +127,7 @@ static void warn_unpublished_deferred_exports(const LoadedMod& mod) {
             svc::find_service_record(serviceExport->service_id.chars, serviceExport->major_version);
         if (record != nullptr && record->service == nullptr) {
             log::write(mod.metadata.id, LOG_LEVEL_WARN,
-                "declared deferred service '{}@{}' but never published it during initialization",
+                "声明了延迟服务 '{}@{}'，但初始化期间从未发布",
                 serviceExport->service_id.chars, serviceExport->major_version);
         }
     }
@@ -140,7 +140,7 @@ LoadedMod* ModLoader::try_load_mod(const fs::path& modPath, bool fromDir, uint32
             bundle = load_bundle(modPath, fromDir);
         } catch (const std::exception& e) {
             Log.error(
-                "Failed to open {} bundle: {}", data::abbreviated_path_string(modPath), e.what());
+                "无法打开 {} 模组包：{}", data::abbreviated_path_string(modPath), e.what());
             return nullptr;
         }
     }
@@ -149,18 +149,18 @@ LoadedMod* ModLoader::try_load_mod(const fs::path& modPath, bool fromDir, uint32
     try {
         manifest = load_manifest(modPath, *bundle);
     } catch (const std::exception& e) {
-        Log.error("bad mod.json in {}: {}", data::abbreviated_path_string(modPath), e.what());
+        Log.error("{} 中的 mod.json 无效：{}", data::abbreviated_path_string(modPath), e.what());
         return nullptr;
     }
 
     if (const auto* existing = find_mod(manifest.metadata.id)) {
         if (existing->searchDirIndex < searchDirIndex) {
             log::write(manifest.metadata.id, LOG_LEVEL_INFO,
-                "{} shadowed by higher-priority duplicate {}",
+                "{} 被更高优先级的重复项 {} 遮蔽",
                 data::abbreviated_path_string(modPath),
                 data::abbreviated_path_string(existing->modPath));
         } else {
-            log::write(manifest.metadata.id, LOG_LEVEL_ERROR, "duplicate mod id, not loading {}",
+            log::write(manifest.metadata.id, LOG_LEVEL_ERROR, "模组 ID 重复，不加载 {}",
                 data::abbreviated_path_string(modPath));
         }
         return nullptr;
@@ -192,7 +192,7 @@ LoadedMod* ModLoader::try_load_mod(const fs::path& modPath, bool fromDir, uint32
         }
         if (ec) {
             fail_mod(mod, MOD_ERROR,
-                fmt::format("Failed to create script scratch directory: {}", ec.message()));
+                fmt::format("无法创建脚本临时目录：{}", ec.message()));
         } else {
             mod.dirUtf8 = borealis::io::fs_path_to_string(mod.dir);
         }
@@ -201,13 +201,13 @@ LoadedMod* ModLoader::try_load_mod(const fs::path& modPath, bool fromDir, uint32
         mod.manifestInfo = build_manifest_info(mod.native->parsed);
     }
 
-    log::write(mod.metadata.id, LOG_LEVEL_INFO, "found '{}' v{} by {} ({})", mod.metadata.name,
+    log::write(mod.metadata.id, LOG_LEVEL_INFO, "发现 '{}' v{}，作者 {}（{}）", mod.metadata.name,
         mod.metadata.version, mod.metadata.author, data::abbreviated_path_string(modPath));
     return &mod;
 }
 
 bool ModLoader::activate_mod(LoadedMod& mod) {
-    log::write(mod.metadata.id, LOG_LEVEL_INFO, "activating mod");
+    log::write(mod.metadata.id, LOG_LEVEL_INFO, "正在激活模组");
     mod.active = true;
 
     // Asset-only mods have no lifecycle beyond their overlay files.
@@ -218,7 +218,7 @@ bool ModLoader::activate_mod(LoadedMod& mod) {
 
     if (mod.native && !mod.servicesRegistered) {
         if (!register_static_service_exports(mod)) {
-            log::write(mod.metadata.id, LOG_LEVEL_ERROR, "failed to register service exports");
+            log::write(mod.metadata.id, LOG_LEVEL_ERROR, "注册服务导出失败");
             deactivate_mod(mod);
             return false;
         }
@@ -226,7 +226,7 @@ bool ModLoader::activate_mod(LoadedMod& mod) {
     }
 
     if (mod.native && !resolve_service_imports(mod)) {
-        log::write(mod.metadata.id, LOG_LEVEL_ERROR, "failed to resolve service imports");
+        log::write(mod.metadata.id, LOG_LEVEL_ERROR, "解析服务导入失败");
         deactivate_mod(mod);
         return false;
     }
@@ -252,7 +252,7 @@ bool ModLoader::activate_mod(LoadedMod& mod) {
             service->update == nullptr || service->deactivate == nullptr)
         {
             fail_mod(mod, MOD_UNAVAILABLE,
-                fmt::format("Runtime service {}@{} has an invalid lifecycle contract", runtime.id,
+                fmt::format("运行时服务 {}@{} 的生命周期契约无效", runtime.id,
                     runtime.major));
             deactivate_mod(mod);
             return false;
@@ -261,8 +261,8 @@ bool ModLoader::activate_mod(LoadedMod& mod) {
         runtime.providerContext = record->provider->context.get();
     }
 
-    const char* initializeName = mod.native ? "mod_initialize" : "runtime activate";
-    log::write(mod.metadata.id, LOG_LEVEL_TRACE, "calling {}", initializeName);
+    const char* initializeName = mod.native ? "mod_initialize" : "运行时激活";
+    log::write(mod.metadata.id, LOG_LEVEL_TRACE, "正在调用 {}", initializeName);
     try {
         ModError error = MOD_ERROR_INIT;
         const auto result = mod.native ?
@@ -271,14 +271,14 @@ bool ModLoader::activate_mod(LoadedMod& mod) {
                                     mod.runtime->providerContext, mod.context.get(), &error);
         if (result == MOD_OK && !mod.loadFailed) {
             mod.initialized = true;
-            log::write(mod.metadata.id, LOG_LEVEL_TRACE, "{} succeeded", initializeName);
+            log::write(mod.metadata.id, LOG_LEVEL_TRACE, "{} 成功", initializeName);
         } else if (result != MOD_OK && !mod.loadFailed) {
             fail_mod(mod, result, lifecycle_error_message(initializeName, result, error));
         }
     } catch (const std::exception& e) {
-        fail_mod(mod, MOD_ERROR, fmt::format("Exception in {}: {}", initializeName, e.what()));
+        fail_mod(mod, MOD_ERROR, fmt::format("{} 异常：{}", initializeName, e.what()));
     } catch (...) {
-        fail_mod(mod, MOD_ERROR, fmt::format("Unknown exception in {}", initializeName));
+        fail_mod(mod, MOD_ERROR, fmt::format("{} 发生未知异常", initializeName));
     }
 
     warn_unpublished_deferred_exports(mod);
@@ -298,8 +298,8 @@ void ModLoader::deactivate_mod(LoadedMod& mod) {
     if (mod.initialized && ((mod.native && mod.native->fn_shutdown) ||
                                (mod.runtime.has_value() && mod.runtime->service != nullptr)))
     {
-        const char* shutdownName = mod.native ? "mod_shutdown" : "runtime deactivate";
-        log::write(mod.metadata.id, LOG_LEVEL_TRACE, "calling {}", shutdownName);
+        const char* shutdownName = mod.native ? "mod_shutdown" : "运行时停用";
+        log::write(mod.metadata.id, LOG_LEVEL_TRACE, "正在调用 {}", shutdownName);
         try {
             ModError error = MOD_ERROR_INIT;
             const auto result = mod.native ?
@@ -307,17 +307,17 @@ void ModLoader::deactivate_mod(LoadedMod& mod) {
                                     mod.runtime->service->deactivate(
                                         mod.runtime->providerContext, mod.context.get(), &error);
             if (result == MOD_OK) {
-                log::write(mod.metadata.id, LOG_LEVEL_TRACE, "{} succeeded", shutdownName);
+                log::write(mod.metadata.id, LOG_LEVEL_TRACE, "{} 成功", shutdownName);
             } else {
-                log::write(mod.metadata.id, LOG_LEVEL_ERROR, "{} failed: {}", shutdownName,
+                log::write(mod.metadata.id, LOG_LEVEL_ERROR, "{} 失败：{}", shutdownName,
                     lifecycle_error_message(shutdownName, result, error));
             }
         } catch (const std::exception& exception) {
             log::write(
-                mod.metadata.id, LOG_LEVEL_ERROR, "{} threw: {}", shutdownName, exception.what());
+                mod.metadata.id, LOG_LEVEL_ERROR, "{} 抛出异常：{}", shutdownName, exception.what());
         } catch (...) {
             log::write(
-                mod.metadata.id, LOG_LEVEL_ERROR, "{} threw an unknown exception", shutdownName);
+                mod.metadata.id, LOG_LEVEL_ERROR, "{} 抛出未知异常", shutdownName);
         }
     }
     mod.initialized = false;
@@ -349,7 +349,7 @@ void ModLoader::init() {
 #endif
 
     if (m_searchDirs.empty()) {
-        Log.warn("no mod search directories configured; mod loading skipped");
+        Log.warn("未配置模组搜索目录，已跳过模组加载");
         return;
     }
 
@@ -366,7 +366,7 @@ void ModLoader::init() {
     for (const auto& package : packages) {
         const auto* selected = select_package(packages, package.metadata.id);
         if (selected != &package) {
-            log::write(package.metadata.id, LOG_LEVEL_INFO, "{} v{} shadowed by {} v{}",
+            log::write(package.metadata.id, LOG_LEVEL_INFO, "{} v{} shadowed 作者 {} v{}",
                 data::abbreviated_path_string(package.path), package.metadata.version,
                 data::abbreviated_path_string(selected->path), selected->metadata.version);
             continue;
@@ -378,7 +378,7 @@ void ModLoader::init() {
 
     if (m_mods.empty()) {
         init_services();
-        Log.info("no mods found");
+        Log.info("未找到模组");
         svc::modules_lifecycle_applied();
         m_startupComplete = true;
         return;
@@ -387,7 +387,7 @@ void ModLoader::init() {
     std::stable_sort(m_mods.begin(), m_mods.end(),
         [](const auto& a, const auto& b) { return a->searchDirIndex > b->searchDirIndex; });
 
-    Log.info("initializing {} mod(s)...", m_mods.size());
+    Log.info("正在初始化 {} 个模组...", m_mods.size());
     for (auto& mod : mods()) {
         mod.enabledSubscription = Register(*mod.cvarIsEnabled,
             [this, &mod](const bool&, const bool&) { on_enabled_changed(mod); });
@@ -404,14 +404,14 @@ void ModLoader::init() {
     // services until they can actually initialize.
     for (auto& mod : mods()) {
         if (!mod.cvarIsEnabled->getValue()) {
-            log::write(mod.metadata.id, LOG_LEVEL_INFO, "disabled by config");
+            log::write(mod.metadata.id, LOG_LEVEL_INFO, "已被配置禁用");
             mod.active = false;
             mod.suspendedByProvider = false;
             continue;
         }
         if (!mod.loadFailed && !required_deps_active(mod)) {
             log::write(
-                mod.metadata.id, LOG_LEVEL_INFO, "suspended: a required provider is disabled");
+                mod.metadata.id, LOG_LEVEL_INFO, "suspended: 所需提供方已被禁用");
             mod.active = false;
             mod.suspendedByProvider = true;
             continue;
@@ -426,7 +426,7 @@ void ModLoader::init() {
         if (register_static_service_exports(mod)) {
             mod.servicesRegistered = true;
         } else {
-            log::write(mod.metadata.id, LOG_LEVEL_ERROR, "failed to register service exports");
+            log::write(mod.metadata.id, LOG_LEVEL_ERROR, "注册服务导出失败");
             deactivate_mod(mod);
         }
     }
@@ -440,7 +440,7 @@ void ModLoader::init() {
     svc::modules_lifecycle_applied();
 
     auto active = std::ranges::count_if(mods(), [](const LoadedMod& m) { return m.active; });
-    Log.info("{}/{} mod(s) active", active, m_mods.size());
+    Log.info("{}/{} 个模组生效中", active, m_mods.size());
 
     m_startupComplete = true;
 }
@@ -483,7 +483,7 @@ ModOperationHandle ModLoader::request_reload(std::string_view id) {
             .operation = operation,
         });
     } else {
-        complete_operation(operation, false, "The mod is no longer installed");
+        complete_operation(operation, false, "该模组已卸载");
     }
     return operation;
 }
@@ -564,15 +564,14 @@ void ModLoader::flush_toasts() {
 
     ui::Toast toast{.type = "warning", .duration = std::chrono::seconds{5}};
     if (names.size() == 1) {
-        toast.title = "Mod failed";
+        toast.title = "模组加载失败";
         toast.content =
-            fmt::format("<div><b>{}</b> failed and was disabled.</div><div>Check Mods for "
-                        "more information.</div>",
+            fmt::format("<div><b>{}</b> 加载失败并已被禁用。</div><div>请到“模组”中查看详细信息。</div>",
                 ui::escape(names.front()));
     } else {
-        toast.title = "Mods failed";
-        toast.content = fmt::format("<div><b>{} mods</b> failed and were disabled.</div><div>Check "
-                                    "Mods for more information.</div>",
+        toast.title = "模组加载失败";
+        toast.content = fmt::format("<div><b>{} 个模组</b>加载失败并已被禁用。</div><div>请到"
+                                    "“模组”中查看详细信息。</div>",
             names.size());
     }
     ui::push_toast(std::move(toast));
@@ -608,7 +607,7 @@ std::vector<LoadedMod*> ModLoader::collect_lifecycle_set(LoadedMod& target) cons
 }
 
 bool ModLoader::reload_bundle(LoadedMod& mod) {
-    log::write(mod.metadata.id, LOG_LEVEL_INFO, "reloading from {}",
+    log::write(mod.metadata.id, LOG_LEVEL_INFO, "正在从 {} 重新加载",
         data::abbreviated_path_string(mod.modPath));
 
     std::shared_ptr<ModBundle> newBundle;
@@ -618,14 +617,14 @@ bool ModLoader::reload_bundle(LoadedMod& mod) {
         newBundle = load_bundle(mod.modPath, fs::is_directory(mod.modPath, ec));
         newManifest = load_manifest(mod.modPath, *newBundle);
     } catch (const std::exception& e) {
-        fail_mod(mod, MOD_ERROR, fmt::format("Reload failed: {}", e.what()));
+        fail_mod(mod, MOD_ERROR, fmt::format("重新加载失败：{}", e.what()));
         return false;
     }
 
     if (newManifest.metadata.id != mod.metadata.id) {
         fail_mod(mod, MOD_CONFLICT,
             fmt::format(
-                "Mod ID changed on reload ('{}'); restart required", newManifest.metadata.id));
+                "重新加载后模组 ID 已变更（'{}'），需要重启", newManifest.metadata.id));
         return false;
     }
 
@@ -655,7 +654,7 @@ bool ModLoader::reload_bundle(LoadedMod& mod) {
         // The reload changes the mod's imports/exports; rebuild the dependency graph so edges,
         // init/tick/shutdown order and cascade sets reflect the new manifest.
         log::write(mod.metadata.id, LOG_LEVEL_INFO,
-            "changed its service imports/exports; rebuilding mod dependency graph");
+            "其服务导入/导出已变更，正在重建模组依赖图");
         mod.manifestInfo = std::move(newInfo);
         loader::sort_mods(m_mods);
     }
@@ -675,7 +674,7 @@ void ModLoader::resume_lifecycle_set(const std::vector<LoadedMod*>& affected) {
             if (register_static_service_exports(*mod)) {
                 mod->servicesRegistered = true;
             } else {
-                log::write(mod->metadata.id, LOG_LEVEL_ERROR, "failed to register service exports");
+                log::write(mod->metadata.id, LOG_LEVEL_ERROR, "注册服务导出失败");
                 deactivate_mod(*mod);
             }
         }
@@ -688,7 +687,7 @@ void ModLoader::resume_lifecycle_set(const std::vector<LoadedMod*>& affected) {
         if (!required_deps_active(*mod)) {
             mod->suspendedByProvider = true;
             log::write(
-                mod->metadata.id, LOG_LEVEL_INFO, "suspended: a required provider is disabled");
+                mod->metadata.id, LOG_LEVEL_INFO, "suspended: 所需提供方已被禁用");
             continue;
         }
         mod->suspendedByProvider = false;
@@ -716,7 +715,7 @@ void ModLoader::apply_lifecycle_change(
             continue;
         }
         const bool wasActive = mod->active;
-        log::write(mod->metadata.id, LOG_LEVEL_INFO, "deactivating mod");
+        log::write(mod->metadata.id, LOG_LEVEL_INFO, "正在停用模组");
         deactivate_mod(*mod);
         if (mod != &target && wasActive) {
             // Provisional; cleared below if the mod comes straight back up.
@@ -798,7 +797,7 @@ void ModLoader::forget_mod(LoadedMod& mod) {
     for (auto* affectedMod : affected | std::views::reverse) {
         const bool wasActive = affectedMod->active;
         if (affectedMod->active || affectedMod->initialized || affectedMod->native != nullptr) {
-            log::write(affectedMod->metadata.id, LOG_LEVEL_INFO, "deactivating mod");
+            log::write(affectedMod->metadata.id, LOG_LEVEL_INFO, "正在停用模组");
             deactivate_mod(*affectedMod);
         }
         if (affectedMod != &mod && wasActive) {
@@ -831,7 +830,7 @@ void ModLoader::forget_mod(LoadedMod& mod) {
         affectedMod->suspendedByProvider = needsRemovedProvider;
         if (needsRemovedProvider) {
             log::write(affectedMod->metadata.id, LOG_LEVEL_INFO,
-                "suspended: required provider '{}' was removed", modId);
+                "已挂起：所需提供方 '{}' 已被移除", modId);
         } else {
             resumable.push_back(affectedMod);
         }
@@ -839,7 +838,7 @@ void ModLoader::forget_mod(LoadedMod& mod) {
     resume_lifecycle_set(resumable);
 
     ++m_generation;
-    log::write(modId, LOG_LEVEL_INFO, "forgot removed package");
+    log::write(modId, LOG_LEVEL_INFO, "已忽略被移除的模组包");
 }
 
 ModLoader::OperationResult ModLoader::load_runtime_mod(const fs::path& requestedPath) {
@@ -849,8 +848,8 @@ ModLoader::OperationResult ModLoader::load_runtime_mod(const fs::path& requested
     if (error || !fs::exists(status)) {
         return {
             .success = false,
-            .message = error ? fmt::format("Could not inspect the package: {}", error.message()) :
-                               "The package was not found",
+            .message = error ? fmt::format("无法检查该模组包： {}", error.message()) :
+                               "未找到该模组包",
         };
     }
 
@@ -863,13 +862,13 @@ ModLoader::OperationResult ModLoader::load_runtime_mod(const fs::path& requested
     } catch (const std::exception& exception) {
         return {
             .success = false,
-            .message = fmt::format("Invalid mod package: {}", exception.what()),
+            .message = fmt::format("无效的模组包: {}", exception.what()),
         };
     }
     if (const auto* duplicate = find_mod(metadata->id)) {
         return {
             .success = false,
-            .message = fmt::format("A mod with this ID is already loaded from {}",
+            .message = fmt::format("相同 ID 的模组已从以下位置加载： {}",
                 data::abbreviated_path_string(duplicate->modPath)),
         };
     }
@@ -877,7 +876,7 @@ ModLoader::OperationResult ModLoader::load_runtime_mod(const fs::path& requested
     if (mod == nullptr) {
         return {
             .success = false,
-            .message = "The mod could not be loaded",
+            .message = "无法加载该模组",
         };
     }
 
@@ -887,13 +886,13 @@ ModLoader::OperationResult ModLoader::load_runtime_mod(const fs::path& requested
     if (!mod->cvarIsEnabled->getValue()) {
         mod->active = false;
         mod->suspendedByProvider = false;
-        log::write(mod->metadata.id, LOG_LEVEL_INFO, "installed disabled by config");
+        log::write(mod->metadata.id, LOG_LEVEL_INFO, "已安装但被配置禁用");
     } else if (!mod->loadFailed) {
         mod->active = false;
         apply_lifecycle_change(*mod, false);
     }
     ++m_generation;
-    log::write(mod->metadata.id, LOG_LEVEL_INFO, "installed at runtime");
+    log::write(mod->metadata.id, LOG_LEVEL_INFO, "运行时安装");
     return runtime_result(*mod);
 }
 
@@ -902,7 +901,7 @@ ModLoader::OperationResult ModLoader::reload_runtime_mod(
     if (mod.nativeInPlace && replacement == nullptr) {
         return {
             .success = false,
-            .message = "An in-place native library cannot be reloaded",
+            .message = "就地原生库无法重新加载",
             .mod = &mod,
         };
     }
@@ -920,7 +919,7 @@ ModLoader::OperationResult ModLoader::uninstall_runtime_mod(LoadedMod& mod) {
     }
     record_package_sources(mod, packages);
     if (!can_uninstall(mod)) {
-        return {.success = false, .message = "No installed package to remove"};
+        return {.success = false, .message = "没有可移除的已安装模组包"};
     }
 
     std::string removalError;
@@ -933,7 +932,7 @@ ModLoader::OperationResult ModLoader::uninstall_runtime_mod(LoadedMod& mod) {
         std::error_code error;
         fs::remove(package.path, error);
         if (error) {
-            removalError = fmt::format("Could not remove {}: {}",
+            removalError = fmt::format("无法移除 {}：{}",
                 data::abbreviated_path_string(package.path), error.message());
         }
         return !error;
@@ -962,20 +961,20 @@ ModLoader::OperationResult ModLoader::runtime_result(LoadedMod& mod) {
     if (mod.loadFailed) {
         return {
             .success = false,
-            .message = mod.failureReason.empty() ? "Mod failed to activate" : mod.failureReason,
+            .message = mod.failureReason.empty() ? "模组激活失败" : mod.failureReason,
             .mod = &mod,
         };
     }
     if (mod.cvarIsEnabled->getValue() && !mod.active) {
         return {
             .success = false,
-            .message = "A required provider is unavailable",
+            .message = "所需提供方不可用",
             .mod = &mod,
         };
     }
     if (!mod.cvarIsEnabled->getValue()) {
         return {
-            .message = "Installed, disabled by config",
+            .message = "已安装，被配置禁用",
             .mod = &mod,
         };
     }
@@ -987,7 +986,7 @@ ModLoader::OperationResult ModLoader::install_staged(
     if (m_searchDirs.empty()) {
         return {
             .success = false,
-            .message = "No writable mods directory is configured",
+            .message = "未配置可写的模组目录",
         };
     }
     std::error_code error;
@@ -996,7 +995,7 @@ ModLoader::OperationResult ModLoader::install_staged(
         return {
             .success = false,
             .message =
-                fmt::format("Could not resolve the user mods directory: {}", error.message()),
+                fmt::format("无法解析用户模组目录：{}", error.message()),
         };
     }
     const auto stagingDir = userDir / ".staging";
@@ -1005,10 +1004,10 @@ ModLoader::OperationResult ModLoader::install_staged(
     if (error || path.parent_path() != stagingDir || !stagedName ||
         !fs::is_regular_file(path, error))
     {
-        Log.error("refusing staged install from {}", data::abbreviated_path_string(requestedPath));
+        Log.error("拒绝来自 {} 的暂存安装", data::abbreviated_path_string(requestedPath));
         return {
             .success = false,
-            .message = "The package is not in the mod staging directory",
+            .message = "该包不在模组暂存目录中",
         };
     }
 
@@ -1017,13 +1016,13 @@ ModLoader::OperationResult ModLoader::install_staged(
     if (!inspect_mod_bundle(path, metadata, validationError)) {
         return {
             .success = false,
-            .message = fmt::format("Invalid mod package: {}", validationError),
+            .message = fmt::format("无效的模组包: {}", validationError),
         };
     }
 
     if (update) {
         if (metadata.id != update->modId || metadata.version != update->targetVersion) {
-            return {.success = false, .message = "The update package identity changed"};
+            return {.success = false, .message = "更新包标识已变更"};
         }
         if (auto reason = updates::validate(*update); !reason.empty()) {
             return {.success = false, .message = std::move(reason)};
@@ -1035,7 +1034,7 @@ ModLoader::OperationResult ModLoader::install_staged(
     if (installed != nullptr && !can_update(*installed)) {
         return {
             .success = false,
-            .message = "Cannot install mod over a development directory",
+            .message = "不能将模组安装到开发目录上",
         };
     }
 
@@ -1043,14 +1042,14 @@ ModLoader::OperationResult ModLoader::install_staged(
         if (mod.metadata.id != metadata.id && fs::equivalent(mod.modPath, destination, error)) {
             return {
                 .success = false,
-                .message = "The destination filename belongs to a different mod",
+                .message = "目标文件名属于另一个模组",
             };
         }
     }
     error.clear();
 
     if (!borealis::update::parse_version(metadata.version)) {
-        return {.success = false, .message = "The package version is invalid"};
+        return {.success = false, .message = "模组包版本无效"};
     }
     std::vector<PackageCandidate> packages;
     try {
@@ -1064,7 +1063,7 @@ ModLoader::OperationResult ModLoader::install_staged(
         return {
             .success = false,
             .message = fmt::format(
-                "A newer version ({}) is already installed", selected->metadata.version),
+                "已安装更新版本（{}）", selected->metadata.version),
         };
     }
 
@@ -1119,7 +1118,7 @@ void ModLoader::apply_pending_requests() {
                             ui::escape(ui::mod_image_source(*result.mod, metadata.iconPath)));
                 ui::push_toast({
                     .type = "mod-installed",
-                    .title = "Mod installed",
+                    .title = "模组已安装",
                     .content = fmt::format(
                         R"(<row><mod-icon>{}</mod-icon><mod-info><mod-name><b>{}</b><small class="version">v{}</small></mod-name><small>{}</small></mod-info></row>)",
                         iconRml, ui::escape(metadata.name), ui::escape(metadata.version),
@@ -1129,9 +1128,9 @@ void ModLoader::apply_pending_requests() {
             } else if (!result.success && result.mod == nullptr) {
                 ui::push_toast({
                     .type = "warning",
-                    .title = "Mod install failed",
+                    .title = "模组安装失败",
                     .content =
-                        result.message.empty() ? "The loader rejected the package" : result.message,
+                        result.message.empty() ? "加载器拒绝了该模组包" : result.message,
                     .duration = std::chrono::seconds{6},
                 });
             }
@@ -1152,7 +1151,7 @@ void ModLoader::apply_pending_requests() {
         if (const auto* reload = std::get_if<ReloadRequest>(&request)) {
             auto* mod = find_mod(reload->modId);
             if (mod == nullptr) {
-                complete_operation(reload->operation, false, "The mod is no longer installed");
+                complete_operation(reload->operation, false, "该模组已卸载");
                 continue;
             }
             auto result = reload_runtime_mod(*mod);
@@ -1171,7 +1170,7 @@ void ModLoader::apply_pending_requests() {
             if (result.success) {
                 queue::remove_by_mod_id(removedId);
                 ui::push_toast({
-                    .title = result.mod != nullptr ? "User update removed" : "Mod uninstalled",
+                    .title = result.mod != nullptr ? "用户更新已移除" : "模组已卸载",
                     .content = removedName,
                     .duration = std::chrono::seconds{2},
                 });
@@ -1185,7 +1184,7 @@ void ModLoader::apply_pending_requests() {
             std::ranges::find(coalesced, lifecycle.modId, &LifecycleRequest::modId);
         if (existing != coalesced.end()) {
             complete_operation(
-                existing->operation, false, "Superseded by a newer lifecycle request");
+                existing->operation, false, "已被更新的生命周期请求取代");
             *existing = lifecycle;
         } else {
             coalesced.push_back(lifecycle);
@@ -1195,8 +1194,8 @@ void ModLoader::apply_pending_requests() {
     for (const auto& request : coalesced) {
         auto* mod = find_mod(request.modId);
         if (mod == nullptr) {
-            Log.warn("lifecycle request for unknown mod '{}'", request.modId);
-            complete_operation(request.operation, false, "The mod is no longer installed");
+            Log.warn("未知模组 '{}' 的生命周期请求", request.modId);
+            complete_operation(request.operation, false, "该模组已卸载");
             continue;
         }
         if (request.action == LifecycleAction::Enable && mod->enabledApplied) {
@@ -1220,9 +1219,9 @@ void ModLoader::apply_pending_requests() {
             std::string error;
             if (mod->loadFailed) {
                 error =
-                    mod->failureReason.empty() ? "The mod failed to activate" : mod->failureReason;
+                    mod->failureReason.empty() ? "模组激活失败" : mod->failureReason;
             } else if (mod->cvarIsEnabled->getValue() && !mod->active) {
-                error = "A required provider is unavailable";
+                error = "所需提供方不可用";
             }
             complete_operation(request.operation, error.empty(), std::move(error));
         }
@@ -1231,7 +1230,7 @@ void ModLoader::apply_pending_requests() {
     svc::modules_lifecycle_applied();
 
     auto active = std::ranges::count_if(mods(), [](const LoadedMod& m) { return m.active; });
-    Log.info("{}/{} mod(s) active", active, m_mods.size());
+    Log.info("{}/{} 个模组生效中", active, m_mods.size());
 }
 
 void ModLoader::tick() {
@@ -1252,12 +1251,12 @@ void ModLoader::tick() {
             if (result != MOD_OK) {
                 fail_mod(mod, result,
                     lifecycle_error_message(
-                        delegated ? "runtime update" : "mod_update", result, error));
+                        delegated ? "运行时更新" : "mod_update", result, error));
             }
         } catch (const std::exception& e) {
             fail_mod(mod, MOD_ERROR, fmt::format("Exception in mod update: {}", e.what()));
         } catch (...) {
-            fail_mod(mod, MOD_ERROR, "Unknown exception in mod_update");
+            fail_mod(mod, MOD_ERROR, "mod_update 出现未知异常");
         }
     }
 
@@ -1279,7 +1278,7 @@ void ModLoader::shutdown() {
     m_mods.clear();
     drain_retired_natives();
     svc::modules_shutdown();
-    Log.info("all mods unloaded");
+    Log.info("已卸载全部模组");
 }
 
 }  // namespace dusk::mods

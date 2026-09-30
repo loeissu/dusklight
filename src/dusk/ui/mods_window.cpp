@@ -48,15 +48,15 @@ struct ModStatus {
 
 ModStatus mod_status(const mods::LoadedMod& mod) {
     if (mod.loadFailed) {
-        return {"error", "Failed"};
+        return {"error", "失败"};
     }
     if (mod.active) {
-        return {"success", "Active"};
+        return {"success", "生效中"};
     }
     if (mod.suspendedByProvider) {
-        return {"suspended", "Suspended"};
+        return {"suspended", "已暂停"};
     }
-    return {"", "Disabled"};
+    return {"", "已禁用"};
 }
 
 bool mod_uses_network(const mods::LoadedMod& mod) {
@@ -86,27 +86,27 @@ struct ModActionInfo {
 std::vector<ModActionInfo> available_mod_actions(const mods::LoadedMod& mod) {
     std::vector<ModActionInfo> actions;
     if (const auto* update = mods::updates::find(mod.metadata.id); update && update->actionable) {
-        actions.push_back({ModAction::Update, "Update", "download"});
+        actions.push_back({ModAction::Update, "更新", "download"});
     }
     if (mod.activation_failed()) {
-        actions.push_back({ModAction::Retry, "Retry", "replay"});
-        actions.push_back({ModAction::Disable, "Disable", "pause"});
+        actions.push_back({ModAction::Retry, "重试", "replay"});
+        actions.push_back({ModAction::Disable, "禁用", "pause"});
     } else if (mod.is_enabled()) {
         if (!mod.nativeInPlace) {
-            actions.push_back({ModAction::Reload, "Reload", "refresh"});
+            actions.push_back({ModAction::Reload, "重新加载", "refresh"});
         }
-        actions.push_back({ModAction::Disable, "Disable", "pause"});
+        actions.push_back({ModAction::Disable, "禁用", "pause"});
     } else {
-        actions.push_back({ModAction::Enable, "Enable", "play_arrow"});
+        actions.push_back({ModAction::Enable, "启用", "play_arrow"});
     }
-    actions.push_back({ModAction::Logs, "Logs", "notes"});
+    actions.push_back({ModAction::Logs, "日志", "notes"});
     if (data::manager().capabilities().canOpenFolder) {
-        actions.push_back({ModAction::OpenFolder, "Open folder", "folder_open"});
+        actions.push_back({ModAction::OpenFolder, "打开文件夹", "folder_open"});
     }
     if (mods::ModLoader::instance().can_uninstall(mod)) {
         actions.push_back({
             ModAction::Uninstall,
-            mod.hasBundledCopy ? "Remove update" : "Uninstall",
+            mod.hasBundledCopy ? "移除更新" : "卸载",
             "delete",
         });
     }
@@ -133,10 +133,10 @@ public:
         append_text(append(heading, "b"), mod.metadata.name);
         if (const auto* update = mods::updates::find(mod.metadata.id); update && update->actionable)
         {
-            append_text(append(heading, "update-badge"), "Update");
+            append_text(append(heading, "update-badge"), "更新");
         }
         if (mod_uses_network(mod)) {
-            append_text(append(heading, "mod-network"), "Network");
+            append_text(append(heading, "mod-network"), "网络");
         }
         auto* sub = append(info, "mod-meta");
         append_text(append(sub, "mod-author"), mod.metadata.author);
@@ -194,9 +194,9 @@ public:
         append(mRoot, "mod-icon");
         auto* info = append(mRoot, "mod-info");
         auto* heading = append(info, "header");
-        append_text(append(heading, "b"), "Online mods");
+        append_text(append(heading, "b"), "在线模组");
         append(heading, "update-badge");
-        append_text(append(info, "small"), "Download community mods and check for updates.");
+        append_text(append(info, "small"), "下载社区模组并检查更新。");
         on_nav_command([this](Rml::Event&, NavCommand command) {
             if (command != NavCommand::Confirm) {
                 return false;
@@ -208,7 +208,7 @@ public:
     }
 
     void update() override {
-        set_mod_update_badge(*this, "Online mods");
+        set_mod_update_badge(*this, "在线模组");
         Component::update();
     }
 };
@@ -422,10 +422,10 @@ std::vector<ContextMenu::Item> ModsWindow::mod_actions(
                                                                      current->modPath.parent_path();
                         if (!data::manager().open_folder(folder)) {
                             push(std::make_unique<Modal>(Modal::Props{
-                                .title = "Could not open folder",
+                                .title = "无法打开文件夹",
                                 .bodyText =
-                                    "The mod folder could not be opened in the file browser.",
-                                .actions = {{"OK", [](Modal& modal) { modal.pop(); }, {}}},
+                                    "文件浏览器无法打开模组文件夹。",
+                                .actions = {{"确定", [](Modal& modal) { modal.pop(); }, {}}},
                             }));
                         }
                         break;
@@ -485,7 +485,7 @@ void ModsWindow::build_content(Rml::Element* content) {
         });
     }
     if (!hasInstalledMods) {
-        listPane.add_text("No mods installed.");
+        listPane.add_text("未安装任何模组。");
         mSelection = Selection::Online;
     }
     if (selected_utility()) {
@@ -517,10 +517,10 @@ void ModsWindow::build_detail(Pane& pane, mods::LoadedMod& mod) {
         append_text(title, "\u00a0");
         auto* badge = append(title, "status-badge");
         badge->SetClass("info", true);
-        append_text(badge, "Network");
+        append_text(badge, "网络");
     }
     auto* author = append(pane.root(), "small");
-    append_text(author, fmt::format("by {}\u00a0·\u00a0", mod.metadata.author));
+    append_text(author, fmt::format("作者 {}\u00a0·\u00a0", mod.metadata.author));
     const auto status = mod_status(mod);
     auto* badge = append(author, "status-badge");
     if (status.badgeClass[0] != '\0') {
@@ -532,7 +532,7 @@ void ModsWindow::build_detail(Pane& pane, mods::LoadedMod& mod) {
         auto* row = append(pane.root(), "mod-info-row");
         auto* label = append(row, "b");
         label->SetClass("error", true);
-        append_text(label, "Reason");
+        append_text(label, "原因");
         append_text(append(row, "span"), mod.failureReason);
     } else if (mod.suspendedByProvider) {
         std::vector<std::string_view> providers;
@@ -542,7 +542,7 @@ void ModsWindow::build_detail(Pane& pane, mods::LoadedMod& mod) {
             }
         }
         auto* row = append(pane.root(), "mod-info-row");
-        append_text(append(row, "b"), "Waiting on");
+        append_text(append(row, "b"), "等待中");
         append_text(append(row, "span"), fmt::format("{}", fmt::join(providers, ", ")));
     }
 
@@ -555,7 +555,7 @@ void ModsWindow::build_detail(Pane& pane, mods::LoadedMod& mod) {
     if (mod.active && !activeDependents.empty()) {
         append_text(append(pane.root(), "mod-restart-note"),
             fmt::format(
-                "Disabling or reloading also restarts: {}", fmt::join(activeDependents, ", ")));
+                "禁用或重新加载同时会重启： {}", fmt::join(activeDependents, ", ")));
     }
 
     if (!mod.metadata.description.empty()) {
@@ -569,11 +569,11 @@ void ModsWindow::build_detail(Pane& pane, mods::LoadedMod& mod) {
 }
 
 void ModsWindow::confirm_uninstall(const mods::LoadedMod& mod) {
-    const std::string action = mod.hasBundledCopy ? "Remove update" : "Uninstall";
+    const std::string action = mod.hasBundledCopy ? "移除更新" : "卸载";
     std::string body = mod.hasBundledCopy ?
-                           "Installed mod will be reverted back to the bundled version. Settings "
-                           "and saved data are kept." :
-                           "Installed mod will be removed. Settings and saved data are kept.";
+                           "已安装模组将还原为捆绑版本。设置"
+                           "与存档数据将保留。" :
+                           "Installed mod will be removed. Settings 与存档数据将保留。";
     std::vector<std::string_view> dependents;
     for (const auto& edge : mod.dependents) {
         if (!edge.required || edge.mod == nullptr) {
@@ -586,12 +586,12 @@ void ModsWindow::confirm_uninstall(const mods::LoadedMod& mod) {
     }
 
     push(std::make_unique<Modal>(Modal::Props{
-        .title = mod.hasBundledCopy ? fmt::format("Revert {}?", mod.metadata.name) :
-                                      fmt::format("Uninstall {}?", mod.metadata.name),
+        .title = mod.hasBundledCopy ? fmt::format("还原 {}？", mod.metadata.name) :
+                                      fmt::format("卸载 {}？", mod.metadata.name),
         .bodyText = std::move(body),
         .actions =
             {
-                ModalAction{"Cancel", [](Modal& modal) { modal.pop(); }, {}},
+                ModalAction{"取消", [](Modal& modal) { modal.pop(); }, {}},
                 ModalAction{action,
                     [id = mod.metadata.id](Modal& modal) {
                         mods::ModLoader::instance().request_uninstall(id);
@@ -630,7 +630,7 @@ void ModsWindow::mark_current_entry() {
 }
 
 void ModsWindow::update() {
-    ZoneScopedN("Mod manager update");
+    ZoneScopedN("模组管理器更新");
     auto& loader = mods::ModLoader::instance();
     bool dirty = loader.generation() != mLoaderGeneration;
     if (dirty) {
@@ -664,7 +664,7 @@ void ModsWindow::update() {
     dirty |= queueItems != mQueueItems;
     if (dirty) {
         mContextMenu.dismiss();
-        ZoneScopedN("Mod manager rebuild");
+        ZoneScopedN("模组管理器重建");
         const auto previousModId = mSelectedModId;
         const auto desaturation = Rml::StyleSheetSpecification::GetPropertyId("image-desaturation");
         std::optional<Rml::Property> previousDesaturation;

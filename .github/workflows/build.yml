@@ -1,47 +1,76 @@
-name: Build
+name: Build Android (汉化版)
 
+# 触发编译：修改任意非 md/docs 文件并推送到 main，或在 Actions 页面手动 Run workflow
 on:
   push:
+    branches: [main]
     paths-ignore:
       - '*.md'
       - '*LICENSE'
       - 'docs/**'
-  pull_request:
-    paths-ignore:
-      - '*.md'
-      - '*LICENSE'
-      - 'docs/**'
+  workflow_dispatch:
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.event_name == 'pull_request' && format('pr-{0}', github.event.pull_request.number) || format('run-{0}', github.run_id) }}
-  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 env:
   SCCACHE_GHA_ENABLED: "true"
   RUSTC_WRAPPER: "sccache"
-  SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+  ANDROID_NDK_VERSION: "29.0.14206865"
+  # 自用签名密码。想换请同时改下面所有用到它的地方。
+  KEYSTORE_PASSWORD: "dusklight-zh-2026"
+  KEYSTORE_ALIAS: "dusklight-zh"
 
 jobs:
-  build-linux:
-    name: Build Linux (${{matrix.name}})
-    runs-on: ${{matrix.runner}}
+  build-windows:
+    name: Build Windows x86_64
+    runs-on: windows-latest
 
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - name: GCC x86_64
-            runner: ubuntu-24.04
-            preset: gcc
-            artifact_arch: x86_64
-          - name: GCC aarch64
-            runner: ubuntu-24.04-arm
-            preset: gcc
-            artifact_arch: aarch64
-          # - name: Clang x86_64
-          #   runner: ubuntu-latest
-          #   preset: clang
-          #   artifact_arch: x86_64
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          submodules: recursive
+
+      # 确保 vcpkg 根目录固定，避免环境变量被覆盖
+      - name: Override VCPKG_ROOT
+        run: echo "VCPKG_ROOT=C:\vcpkg" >> $env:GITHUB_ENV
+
+      - name: Setup sccache
+        uses: mozilla-actions/sccache-action@v0.0.10
+
+      - name: Install dependencies
+        run: |
+          choco install ninja
+          vcpkg install freetype:x64-windows zstd:x64-windows
+
+      - name: Configure and build (MSVC)
+        shell: cmd
+        run: |
+          for /f "usebackq delims=" %%i in (`"%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere.exe" -latest -products * -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationPath`) do set "VSPATH=%%i"
+          if not defined VSPATH (
+            echo Visual Studio with C++ workload not found
+            exit /b 1
+          )
+          call "%VSPATH%\Common7\Tools\VsDevCmd.bat" -arch=amd64 -host_arch=amd64
+          cmake --preset x-windows-ci-msvc
+          cmake --build --preset x-windows-ci-msvc
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v7
+        with:
+          name: Dusklight-汉化版-win32-x86_64
+          path: |
+            build/install/*.exe
+            build/install/*.dll
+            build/install/res/
+            build/install/mods/
+            build/install/sdk/
+
+  build-linux:
+    name: Build Linux x86_64 (Steam Deck)
+    runs-on: ubuntu-24.04
 
     steps:
       - uses: actions/checkout@v6
@@ -61,112 +90,25 @@ jobs:
       - name: Setup sccache
         uses: mozilla-actions/sccache-action@v0.0.10
 
-      - name: Print sccache stats
-        run: sccache --show-stats
-
       - name: Configure CMake
-        run: cmake --preset x-linux-ci-${{matrix.preset}}
+        run: cmake --preset x-linux-ci-gcc
 
       - name: Build
-        run: cmake --build --preset x-linux-ci-${{matrix.preset}}
+        run: cmake --build --preset x-linux-ci-gcc
 
       - name: Generate AppImage
         run: ci/build-appimage.sh
 
-      - name: Upload artifacts
+      - name: Upload AppImage
         uses: actions/upload-artifact@v7
         with:
-          name: dusklight-${{env.APP_VERSION}}-linux-${{matrix.preset}}-${{matrix.artifact_arch}}
+          name: Dusklight-汉化版-linux-x86_64
           path: |
             build/install/Dusklight-*.AppImage
-            build/install/debug.tar.*
-            build/install/sdk/
-
-  build-apple:
-    name: Build Apple (${{matrix.name}})
-    runs-on: macos-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - name: AppleClang macOS arm64
-            platform: macos
-            preset: x-macos-ci-arm64
-            artifact_name: macos-appleclang-arm64
-          - name: AppleClang macOS x86_64
-            platform: macos
-            preset: x-macos-ci-x86_64
-            artifact_name: macos-appleclang-x86_64
-          - name: AppleClang iOS arm64
-            platform: ios
-            preset: x-ios-ci
-            artifact_name: ios-appleclang-arm64
-          # - name: AppleClang tvOS arm64
-          #   platform: tvos
-          #   preset: x-tvos-ci
-          #   artifact_name: tvos-appleclang-arm64
-
-    steps:
-      - uses: actions/checkout@v6
-        with:
-          fetch-depth: 0
-          submodules: recursive
-
-      - name: Install dependencies
-        run: brew install cmake ninja
-
-      - name: Install Rust iOS target
-        if: matrix.platform == 'ios'
-        run: |
-          rustup toolchain install stable
-          rustup target add aarch64-apple-ios
-
-      - name: Install Rust tvOS target
-        if: matrix.platform == 'tvos'
-        run: |
-          rustup toolchain install nightly
-          rustup target add --toolchain nightly aarch64-apple-tvos
-
-      - name: Install Rust x86_64 macOS target
-        if: endsWith(matrix.preset, 'x86_64')
-        run: |
-          rustup toolchain install stable
-          rustup target add x86_64-apple-darwin
-
-      - name: Setup sccache
-        uses: mozilla-actions/sccache-action@v0.0.10
-
-      - name: Configure CMake
-        run: cmake --preset ${{matrix.preset}}
-
-      - name: Build
-        run: cmake --build --preset ${{matrix.preset}}
-
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v7
-        with:
-          name: dusklight-${{env.APP_VERSION}}-${{matrix.artifact_name}}
-          path: |
-            build/install/Dusklight.app
-            build/install/debug.tar.*
-            build/install/sdk/
 
   build-android:
-    name: Build Android (${{matrix.name}})
+    name: Build Android arm64
     runs-on: ubuntu-latest
-
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - name: Clang arm64-v8a
-            preset: x-android-ci-arm64
-            abi: arm64-v8a
-            artifact_arch: arm64
-            rust_target: aarch64-linux-android
-
-    env:
-      ANDROID_NDK_VERSION: "29.0.14206865"
 
     steps:
       - uses: actions/checkout@v6
@@ -187,8 +129,6 @@ jobs:
 
       - name: Setup Android SDK
         uses: android-actions/setup-android@v4
-        with:
-          packages: platform-tools
 
       - name: Install Android SDK packages
         run: sdkmanager "platforms;android-36" "build-tools;36.1.0" "ndk;${ANDROID_NDK_VERSION}"
@@ -196,100 +136,144 @@ jobs:
       - name: Install Rust Android target
         run: |
           rustup toolchain install stable
-          rustup target add ${{matrix.rust_target}}
+          rustup target add aarch64-linux-android
 
       - name: Setup sccache
         uses: mozilla-actions/sccache-action@v0.0.10
 
       - name: Configure CMake
-        run: cmake --preset ${{matrix.preset}}
+        run: cmake --preset x-android-ci-arm64
 
       - name: Build native library
-        run: cmake --build --preset ${{matrix.preset}} --target dusklight
+        run: cmake --build --preset x-android-ci-arm64 --target dusklight
 
       - name: Build bundled mods
-        run: cmake --build --preset ${{matrix.preset}} --target dusklight_mods
+        run: cmake --build --preset x-android-ci-arm64 --target dusklight_mods
 
       - name: Build APK
         working-directory: platforms/android
         run: ./gradlew :app:assembleRelease --rerun-tasks
 
-      - name: Stage artifacts
+      - name: Prepare keystore
+        shell: bash
         run: |
-          mkdir -p upload/sdk
-          cp build/*/stub-android-*.so upload/sdk/
-          cp platforms/android/app/build/outputs/apk/release/app-${{matrix.abi}}-release-unsigned.apk upload/
+          if [ -f android-keystore/release.keystore ]; then
+            cp android-keystore/release.keystore release.keystore
+            echo "Using committed keystore (android-keystore/release.keystore)."
+          elif [ -n "${{ secrets.ANDROID_KEYSTORE_B64 }}" ]; then
+            echo "${{ secrets.ANDROID_KEYSTORE_B64 }}" | base64 -d > release.keystore
+            echo "Using keystore from GitHub secret."
+          else
+            keytool -genkeypair \
+              -keystore release.keystore \
+              -alias "$KEYSTORE_ALIAS" \
+              -keyalg RSA -keysize 2048 -validity 10000 \
+              -storepass "$KEYSTORE_PASSWORD" -keypass "$KEYSTORE_PASSWORD" \
+              -dname "CN=Dusklight CN, OU=Personal, O=Personal, L=CN, ST=CN, C=CN"
+            echo "Generated a new keystore (kept as an artifact for future updates)."
+          fi
 
-      - name: Upload artifacts
+      - name: Sign APK
+        shell: bash
+        run: |
+          UNSIGNED=$(ls platforms/android/app/build/outputs/apk/release/app-*-release-unsigned.apk)
+          BUILD_TOOLS="$ANDROID_HOME/build-tools/36.1.0"
+          "$BUILD_TOOLS/zipalign" -p -f 4 "$UNSIGNED" aligned.apk
+          "$BUILD_TOOLS/apksigner" sign \
+            --ks release.keystore \
+            --ks-key-alias "$KEYSTORE_ALIAS" \
+            --ks-pass "pass:$KEYSTORE_PASSWORD" \
+            --key-pass "pass:$KEYSTORE_PASSWORD" \
+            --out Dusklight-CN-signed.apk \
+            aligned.apk
+
+      - name: Verify signature
+        shell: bash
+        run: $ANDROID_HOME/build-tools/36.1.0/apksigner verify --print-certs Dusklight-CN-signed.apk
+
+      - name: Upload APK
         uses: actions/upload-artifact@v7
         with:
-          name: dusklight-${{env.APP_VERSION}}-android-${{matrix.artifact_arch}}
-          path: upload/
+          name: Dusklight-汉化版-android-arm64
+          path: Dusklight-CN-signed.apk
 
-  build-windows:
-    name: Build Windows (${{matrix.name}})
-    runs-on: ${{matrix.runner}}
+      - name: Upload keystore (保存好，以后升级版本号时复用)
+        uses: actions/upload-artifact@v7
+        with:
+          name: dusklight-zh-release-keystore
+          path: release.keystore
 
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - name: MSVC x86_64
-            runner: windows-latest
-            preset: msvc
-            msvc_arch: amd64
-            vcpkg_arch: x64
-            artifact_arch: x86_64
-          - name: MSVC arm64
-            runner: windows-latest
-            preset: arm64-msvc
-            msvc_arch: amd64_arm64
-            vcpkg_arch: arm64
-            artifact_arch: arm64
-          # - name: Clang x86_64
-          #   runner: windows-latest
-          #   preset: clang
-          #   msvc_arch: amd64
-          #   vcpkg_arch: x64
-          #   artifact_arch: x86_64
+  publish-release:
+    name: 发布汉化版 Release
+    needs: [build-windows, build-linux, build-android]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
       - uses: actions/checkout@v6
         with:
           fetch-depth: 0
-          submodules: recursive
 
-      - name: Enable Visual Studio environment
-        uses: ilammy/msvc-dev-cmd@v1
-        with:
-          arch: ${{matrix.msvc_arch}}
-
-      # msvc-dev-cmd sets VCPKG_ROOT, set it back
-      - name: Override VCPKG_ROOT
-        run: echo "VCPKG_ROOT=C:\vcpkg" >> $env:GITHUB_ENV
-
-      - name: Setup sccache
-        uses: mozilla-actions/sccache-action@v0.0.9
-
-      - name: Install dependencies
+      - name: 读取汉化版版本号
+        id: version
         run: |
-          choco install ninja
-          vcpkg install freetype:${{matrix.vcpkg_arch}}-windows zstd:${{matrix.vcpkg_arch}}-windows
+          VERSION=$(python3 -c "import json; d=json.load(open('CMakePresets.json')); print(next(p['cacheVariables']['BOREALIS_APP_VERSION_OVERRIDE'] for p in d['configurePresets'] if p['name']=='x-android-ci'))")
+          echo "version=${VERSION}" >> "$GITHUB_OUTPUT"
+          echo "tag=v${VERSION}-zh" >> "$GITHUB_OUTPUT"
 
-      - name: Configure CMake
-        run: cmake --preset x-windows-ci-${{matrix.preset}}
-
-      - name: Build
-        run: cmake --build --preset x-windows-ci-${{matrix.preset}}
-
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v7
+      - name: 下载 Windows 产物
+        uses: actions/download-artifact@v7
         with:
-          name: dusklight-${{env.APP_VERSION}}-win32-msvc-${{matrix.artifact_arch}}
-          path: |
-            build/install/*.exe
-            build/install/*.dll
-            build/install/res/
-            build/install/mods/
-            build/install/debug.7z
-            build/install/sdk/
+          name: Dusklight-汉化版-win32-x86_64
+          path: dist/windows
+
+      - name: 下载 Linux 产物
+        uses: actions/download-artifact@v7
+        with:
+          name: Dusklight-汉化版-linux-x86_64
+          path: dist/linux
+
+      - name: 下载 Android 产物
+        uses: actions/download-artifact@v7
+        with:
+          name: Dusklight-汉化版-android-arm64
+          path: dist/android
+
+      - name: 整理发布文件
+        run: |
+          set -e
+          mkdir -p release
+          VERSION="${{ steps.version.outputs.version }}"
+          cp dist/android/Dusklight-CN-signed.apk "release/Dusklight-汉化版-android-arm64-v${VERSION}.apk"
+          APPIMAGE=$(ls dist/linux/Dusklight-*.AppImage | head -n1)
+          cp "$APPIMAGE" "release/Dusklight-汉化版-linux-x86_64-v${VERSION}.AppImage"
+          cd dist/windows
+          zip -qr "../../release/Dusklight-汉化版-windows-x86_64-v${VERSION}.zip" .
+          cd ../..
+          ls -lh release
+
+      - name: 创建或更新 Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -e
+          TAG="${{ steps.version.outputs.tag }}"
+          VERSION="${{ steps.version.outputs.version }}"
+          NOTES="Dusklight 汉化版 v${VERSION}（基于上游 v${VERSION}）。
+
+          - Windows x86_64：解压 zip 后运行 dusklight.exe
+          - Linux x86_64：AppImage 需先赋予执行权限（chmod +x）
+          - Android arm64：APK 与旧版汉化版同签名，可直接覆盖安装"
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            echo "更新已有 Release：${TAG}"
+            gh release upload "$TAG" release/* --clobber
+          else
+            echo "创建 Release：${TAG}"
+            gh release create "$TAG" release/* \
+              --title "Dusklight 汉化版 v${VERSION}" \
+              --notes "$NOTES" || {
+                echo "创建失败（标签可能已存在），尝试仅上传资产"
+                gh release upload "$TAG" release/* --clobber
+              }
+          fi
