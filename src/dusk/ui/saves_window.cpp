@@ -345,7 +345,7 @@ void confirm_import(Artifact artifact) {
             {
                 {.label = "取消", .onPressed = cancel},
                 {
-                    .label = changingVersion ? "Import Anyway" : "Import",
+                    .label = changingVersion ? "仍然导入" : "导入",
                     .onPressed =
                         [items, keepModData, hasBundledModData](Modal& modal) {
                             const auto action = hasBundledModData ? ModDataAction::Replace :
@@ -376,12 +376,12 @@ void confirm_import(Artifact artifact) {
         }
     } else {
         const auto* regionMessage = changingVersion ?
-                                        " This save is from a different region or "
-                                        "platform than the configured disc and may "
-                                        "not work correctly." :
+                                        "该存档的区域或平台与所配置的光盘不同，"
+                                        "可能无法"
+                                        "正常工作。" :
                                         "";
         modal->set_body(
-            fmt::format("{} the <b>{}</b> save?{}{}", replacingSave ? "Replace" : "Import",
+            fmt::format("{} <b>{}</b> 存档？{}{}", replacingSave ? "替换" : "导入",
                 escape(mode_label(items->front().context.identity.saveName)), regionMessage,
                 replacingSave ? " 将先创建备份。" : ""));
     }
@@ -743,7 +743,7 @@ public:
                 installed_mod(mod.id) ? "已安装" : "未安装"));
         mDelete = &add_child<IconButton>(IconButton::Props{
             .icon = "delete",
-            .label = fmt::format("Delete {} data", mod.id),
+            .label = fmt::format("删除 {} 数据", mod.id),
             .isDisabled = [] { return borealis::file_select::busy(); },
         });
         mDelete->root()->SetClass("danger", true);
@@ -768,7 +768,7 @@ void build_save_detail(Pane& pane, const std::string& saveName) {
     const auto& storage = context.value.storage;
     const std::string storageLabel =
         storage.kind == save_manager::StorageKind::GciDirectory ? "GCI 文件夹" : "原始记忆卡";
-    append_save_header(pane.root(), modeLabel, fmt::format("{} · Card A", storageLabel));
+    append_save_header(pane.root(), modeLabel, fmt::format("{} · 卡槽 A", storageLabel));
     const bool registered = is_registered_save(saveName);
     if (!registered) {
         auto* association = append(pane.root(), "p");
@@ -787,7 +787,7 @@ void build_save_detail(Pane& pane, const std::string& saveName) {
         append_text_element(
             overview, "heading", info.value.present ? "存在存档" : "无存档文件");
         const auto detail = info.value.present ?
-                                fmt::format("{} · Modified {}", format_bytes(info.value.size),
+                                fmt::format("{} · 修改于 {}", format_bytes(info.value.size),
                                     save_manager::format_gc_time(info.value.modifiedTime)) :
                             registered ? "导入存档，或启动该模式以创建存档。" :
                                          "恢复备份或导入存档后可再次使用。";
@@ -819,7 +819,7 @@ void build_save_detail(Pane& pane, const std::string& saveName) {
     });
 
     if (info && !info.value.mods.empty()) {
-        pane.add_section(fmt::format("Mod Data ({})", info.value.mods.size()));
+        pane.add_section(fmt::format("模组数据（{}）", info.value.mods.size()));
         for (const auto& mod : info.value.mods) {
             pane.add_child<ModDataRow>(context.value, mod);
         }

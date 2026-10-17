@@ -463,9 +463,9 @@ public:
                 icon = "schedule";
                 label = "排队中";
                 if (const auto ahead = mods::queue::active_items_ahead(mRequest.id); ahead != 0) {
-                    caption = fmt::format("{} ahead · view downloads", ahead);
+                    caption = fmt::format("还有 {} 项 · 查看下载", ahead);
                 } else {
-                    caption = "Next · view downloads";
+                    caption = "下一个 · 查看下载";
                 }
                 break;
             case Downloading:
@@ -477,11 +477,11 @@ public:
                 mAction = Action::Resume;
                 icon = "play_arrow";
                 label = "继续";
-                caption = fmt::format("{} kept on disk", format_bytes(queued->completed));
+                caption = fmt::format("已在磁盘保留 {}", format_bytes(queued->completed));
                 break;
             case Retrying:
                 icon = "warning";
-                label = fmt::format("Retrying in {}s", queued->retrySeconds);
+                label = fmt::format("{} 秒后重试", queued->retrySeconds);
                 caption = "网络错误 · 将自动重试";
                 break;
             case Verifying:
@@ -538,7 +538,7 @@ public:
                 mAction = Action::OpenManager;
                 icon = "check_circle";
                 label = "已安装";
-                caption = fmt::format("Installed · {} · {}", format_bytes(package_size()),
+                caption = fmt::format("已安装 · {} · {}", format_bytes(package_size()),
                     local != nullptr && local->active ? "enabled" : "disabled");
                 state = "installed";
                 progress = 1.0f;
@@ -759,9 +759,9 @@ DetailContent::DetailContent(
     installControl.add_item<CatalogInstallButton>(window, detail);
 
     auto* stats = append(mRoot, "catalog-detail-stats");
-    append_stat(stats, "download", format_count(detail.mod.downloads), " downloads");
+    append_stat(stats, "download", format_count(detail.mod.downloads), " 次下载");
     if constexpr (kEnableEndorsements) {
-        append_stat(stats, "favorite", format_count(detail.mod.endorsements), " endorsements");
+        append_stat(stats, "favorite", format_count(detail.mod.endorsements), " 个推荐");
     }
 
     auto* body = append(mRoot, "catalog-detail-body");
@@ -841,8 +841,8 @@ DetailContent::DetailContent(
             append_text_element(row, "catalog-dependency-name", "Dusklight 服务");
             append_text_element(row, "catalog-dependency-status",
                 dusklightProblems.empty() ?
-                    fmt::format("{} required · Available", requiredDusklight) :
-                    fmt::format("{} required", requiredDusklight));
+                    fmt::format("需要 {} · 可用", requiredDusklight) :
+                    fmt::format("需要 {}", requiredDusklight));
             for (const auto& problem : dusklightProblems) {
                 append_text_element(row, "catalog-dependency-status", problem);
             }
@@ -854,7 +854,7 @@ DetailContent::DetailContent(
     changelog->SetClass("catalog-scroll-anchor", true);
     add_existing_item<ScrollAnchor>(changelog);
     auto* changelogTitle = append(changelog, "h2");
-    append_text(changelogTitle, "Changelog ");
+    append_text(changelogTitle, "更新日志 ");
     append_text_element(changelogTitle, "small",
         fmt::format("v{} · {}", detail.mod.version, display_date(detail.mod.updatedAt)));
     auto* changelogFragment = append(changelog, "catalog-fragment");
@@ -1038,7 +1038,7 @@ void ModBrowser::build_content(Rml::Element* content) {
                 });
             auto* label = append(paginationRoot, "catalog-pagination-label");
             append_text(label,
-                fmt::format("Page {} of {}", mPage->pagination.page, mPage->pagination.pageCount));
+                fmt::format("第 {} 页 / 共 {} 页", mPage->pagination.page, mPage->pagination.pageCount));
             pagination
                 .add_item<ControlledButton>(ControlledButton::Props{
                     .text = "下一步",

@@ -106,7 +106,7 @@ struct DiscVerificationTask {
                 validation = iso::ValidationError::Unknown;
             } catch (...) {
                 PrelaunchLog.error(
-                    "Disc verification failed with unknown exception for '{}'", path);
+                    "光盘校验失败，出现未知异常：'{}'", path);
                 validation = iso::ValidationError::Unknown;
             }
             done.store(true, std::memory_order_release);

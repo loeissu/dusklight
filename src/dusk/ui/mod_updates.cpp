@@ -25,16 +25,16 @@ public:
         append_text(append(heading, "h2"), "更新");
         mStatus = append(mRoot, "p");
         auto* actions = append(mRoot, "updates-actions");
-        auto& all = add_existing_item<Button>(actions, "Update all");
+        auto& all = add_existing_item<Button>(actions, "全部更新");
         all.root()->SetClass("update-all", true);
         all.root()->SetAttribute("focus-key", "updates-all");
         all.on_pressed([] {
             const auto result = mods::updates::enqueue_all();
             if (result.skipped) {
                 push_toast({.type = "warning",
-                    .title = "Some updates could not be queued",
+                    .title = "部分更新无法加入队列",
                     .content =
-                        fmt::format("{} skipped. {}", result.skipped, escape(result.error))});
+                        fmt::format("已跳过 {} 项。{}", result.skipped, escape(result.error))});
             }
         });
         mAll = &all;
@@ -49,9 +49,9 @@ public:
     void update() override {
         const auto count = mods::updates::actionable_count();
         set_text_content(mStatus, mods::updates::status_text());
-        const auto label = count ? fmt::format("Update all ({}) · {}", count,
+        const auto label = count ? fmt::format("全部更新（{}）· {}", count,
                                        format_bytes(mods::updates::download_size())) :
-                                   "Update all";
+                                   "全部更新";
         if (mAllLabel != label) {
             ui::clear_children(mAll->root());
             auto* icon = append(mAll->root(), "icon");
@@ -92,7 +92,7 @@ public:
             const bool isExpanded = expanded.contains(mId);
             auto& changelog = add_existing_item<IconButton>(
                 actions, IconButton::Props{.icon = "description",
-                             .label = isExpanded ? "Hide changelog" : "Show changelog"});
+                             .label = isExpanded ? "收起更新日志" : "展开更新日志"});
             changelog.root()->SetClass("compact", true);
             changelog.root()->SetAttribute("focus-key", "changelog-" + mId);
             mChangelog = append(mRoot, "update-changelog");
@@ -106,7 +106,7 @@ public:
                     expanded.erase(mId);
                 }
                 mChangelog->SetProperty("display", isExpanded ? "block" : "none");
-                changelog.set_label(isExpanded ? "Hide changelog" : "Show changelog");
+                changelog.set_label(isExpanded ? "收起更新日志" : "展开更新日志");
                 changelog.set_selected(isExpanded);
             });
             changelog.set_selected(isExpanded);
@@ -129,12 +129,12 @@ public:
             if (entry->result.target->version != entry->result.latestVersion &&
                 !entry->result.blockers.empty())
             {
-                detail += fmt::format(" · Latest {}: {}", entry->result.latestVersion,
+                detail += fmt::format(" · 最新版 {}：{}", entry->result.latestVersion,
                     entry->result.blockers.front());
             }
         }
         if (entry->result.yankedInstalled) {
-            detail += " · The installed release was withdrawn.";
+            detail += " · 已安装的版本已被撤回。";
         }
         const auto& version =
             entry->result.target ? entry->result.target->version : entry->result.latestVersion;
@@ -161,7 +161,7 @@ void enqueue_mod_update(std::string_view id) {
     const auto result = mods::updates::enqueue_update(id);
     if (!result.error.empty()) {
         push_toast({.type = "warning",
-            .title = "Could not queue update",
+            .title = "无法加入更新队列",
             .content = escape(result.error)});
     }
 }
@@ -188,7 +188,7 @@ void set_mod_update_badge(Component& component, std::string_view label) {
     badge->SetProperty("display", count ? "inline-block" : "none");
     set_text_content(badge, fmt::format("{}", count));
     const auto description =
-        count ? fmt::format("{} · {} mod updates available", label, count) : std::string{label};
+        count ? fmt::format("{} · 有 {} 个模组可更新", label, count) : std::string{label};
     component.root()->SetAttribute("aria-label", description);
     component.root()->SetAttribute("title", description);
 }
@@ -215,7 +215,7 @@ void build_mod_updates(Pane& pane, std::unordered_set<std::string>& expanded) {
                 continue;
             }
             if (blocked && !heading) {
-                pane.add_section("Unavailable updates");
+                pane.add_section("不可用的更新");
                 heading = true;
             }
             pane.add_child<UpdateCard>(entry.result.id, expanded);

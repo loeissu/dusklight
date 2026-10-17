@@ -1,6 +1,6 @@
 {
   "format": 1,
-  "base": "v2.0.0",
+  "base": "v2.0.3",
   "files": {
     "platforms/android/app/src/main/res/values/strings.xml": {
       "replace": [
@@ -1032,6 +1032,10 @@
         {
           "key": "                clearAllPtr->set_text(\"Clear All Achievements\");",
           "value": "                clearAllPtr->set_text(\"清除全部成就\");"
+        },
+        {
+          "key": "\"{} / {} unlocked\"",
+          "value": "\"已解锁 {} / {}\""
         }
       ],
       "insert": []
@@ -2452,6 +2456,50 @@
         {
           "key": "        ZoneScopedN(\"Mod browser rebuild\");",
           "value": "        ZoneScopedN(\"模组浏览器重建\");"
+        },
+        {
+          "key": "\"{} ahead · view downloads\"",
+          "value": "\"还有 {} 项 · 查看下载\""
+        },
+        {
+          "key": "\"Next · view downloads\"",
+          "value": "\"下一个 · 查看下载\""
+        },
+        {
+          "key": "\"{} kept on disk\"",
+          "value": "\"已在磁盘保留 {}\""
+        },
+        {
+          "key": "\"Retrying in {}s\"",
+          "value": "\"{} 秒后重试\""
+        },
+        {
+          "key": "\"Installed · {} · {}\"",
+          "value": "\"已安装 · {} · {}\""
+        },
+        {
+          "key": "\" downloads\"",
+          "value": "\" 次下载\""
+        },
+        {
+          "key": "\" endorsements\"",
+          "value": "\" 个推荐\""
+        },
+        {
+          "key": "\"Changelog \"",
+          "value": "\"更新日志 \""
+        },
+        {
+          "key": "\"Page {} of {}\"",
+          "value": "\"第 {} 页 / 共 {} 页\""
+        },
+        {
+          "key": "\"{} required · Available\"",
+          "value": "\"需要 {} · 可用\""
+        },
+        {
+          "key": "\"{} required\"",
+          "value": "\"需要 {}\""
         }
       ],
       "insert": []
@@ -2473,6 +2521,50 @@
         {
           "key": "        mAction->set_label(entry->actionable ? \"Update\" : \"Unavailable\");",
           "value": "        mAction->set_label(entry->actionable ? \"更新\" : \"不可用\");"
+        },
+        {
+          "key": "\"Update all ({}) · {}\"",
+          "value": "\"全部更新（{}）· {}\""
+        },
+        {
+          "key": "\"Update all\"",
+          "value": "\"全部更新\""
+        },
+        {
+          "key": "\"Some updates could not be queued\"",
+          "value": "\"部分更新无法加入队列\""
+        },
+        {
+          "key": "\"{} skipped. {}\"",
+          "value": "\"已跳过 {} 项。{}\""
+        },
+        {
+          "key": "\"Hide changelog\"",
+          "value": "\"收起更新日志\""
+        },
+        {
+          "key": "\"Show changelog\"",
+          "value": "\"展开更新日志\""
+        },
+        {
+          "key": "\" · Latest {}: {}\"",
+          "value": "\" · 最新版 {}：{}\""
+        },
+        {
+          "key": "\" · The installed release was withdrawn.\"",
+          "value": "\" · 已安装的版本已被撤回。\""
+        },
+        {
+          "key": "\"Could not queue update\"",
+          "value": "\"无法加入更新队列\""
+        },
+        {
+          "key": "\"{} · {} mod updates available\"",
+          "value": "\"{} · 有 {} 个模组可更新\""
+        },
+        {
+          "key": "\"Unavailable updates\"",
+          "value": "\"不可用的更新\""
         }
       ],
       "insert": []
@@ -2676,6 +2768,34 @@
         {
           "key": "        const auto noun = queuedPipelines == 1 ? \"pipeline\" : \"pipelines\";",
           "value": "        const auto noun = queuedPipelines == 1 ? \"管线\" : \"管线\";"
+        },
+        {
+          "key": "\"Configure \"",
+          "value": "\"配置 \""
+        },
+        {
+          "key": "\"Port 1\"",
+          "value": "\"端口 1\""
+        },
+        {
+          "key": "\" in Settings.\"",
+          "value": "\"（在设置中）。\""
+        },
+        {
+          "key": "\"Compiling {} {}\"",
+          "value": "\"正在编译 {} 个{}\""
+        },
+        {
+          "key": "\"shader\"",
+          "value": "\"着色器\""
+        },
+        {
+          "key": "\"shaders\"",
+          "value": "\"着色器\""
+        },
+        {
+          "key": "\"Enabled Mods:\\n{}\"",
+          "value": "\"已启用模组：\\n{}\""
         }
       ],
       "insert": []
@@ -2926,6 +3046,10 @@
         {
           "key": "            set_text_content(mUpdateMessage, \"Failed to check for updates\");",
           "value": "            set_text_content(mUpdateMessage, \"检查更新失败\");"
+        },
+        {
+          "key": "\"Disc verification failed with unknown exception for '{}'\"",
+          "value": "\"光盘校验失败，出现未知异常：'{}'\""
         }
       ],
       "insert": []
@@ -3297,6 +3421,50 @@
         {
           "key": "            .title = \"Save Import\",\n            .content = \"Reset to the main menu before importing saves.\",",
           "value": "            .title = \"存档导入\",\n            .content = \"导入存档前请先回到主菜单。\","
+        },
+        {
+          "key": "\"Import Anyway\"",
+          "value": "\"仍然导入\""
+        },
+        {
+          "key": "\"Import\"",
+          "value": "\"导入\""
+        },
+        {
+          "key": "\"Replace\"",
+          "value": "\"替换\""
+        },
+        {
+          "key": "\" This save is from a different region or \"",
+          "value": "\"该存档的区域或平台与所配置的光盘不同，\""
+        },
+        {
+          "key": "\"platform than the configured disc and may \"",
+          "value": "\"可能无法\""
+        },
+        {
+          "key": "\"not work correctly.\"",
+          "value": "\"正常工作。\""
+        },
+        {
+          "key": "\"{} the <b>{}</b> save?{}{}\"",
+          "value": "\"{} <b>{}</b> 存档？{}{}\""
+        },
+        {
+          "key": "\"Delete {} data\"",
+          "value": "\"删除 {} 数据\""
+        },
+        {
+          "key": "\"Mod Data ({})\"",
+          "value": "\"模组数据（{}）\""
+        },
+        {
+          "key": "\"{} · Card A\"",
+          "value": "\"{} · 卡槽 A\""
+        },
+        {
+          "key": "\"{} · Modified {}\"",
+          "value": "\"{} · 修改于 {}\""
         }
       ],
       "insert": []
@@ -3918,6 +4086,154 @@
         {
           "key": "        leftPane.add_section(\"Link\");",
           "value": "        leftPane.add_section(\"林克\");"
+        },
+        {
+          "key": "\"Infinite Rupees\"",
+          "value": "\"无限卢比\""
+        },
+        {
+          "key": "\"Keeps your rupee count full.\"",
+          "value": "\"让卢比数量始终保持满值。\""
+        },
+        {
+          "key": "\"Keeps your underwater oxygen meter full.\"",
+          "value": "\"让水下氧气槽始终保持满值。\""
+        },
+        {
+          "key": "\"No Item Timer\"",
+          "value": "\"道具不掉落消失\""
+        },
+        {
+          "key": "\"Item drops such as rupees and hearts will never disappear after they drop.\"",
+          "value": "\"卢比、心等掉落物落地后不会消失。\""
+        },
+        {
+          "key": "\"Abilities\"",
+          "value": "\"能力\""
+        },
+        {
+          "key": "\"Moon Jump (R+A)\"",
+          "value": "\"月跳（R+A）\""
+        },
+        {
+          "key": "\"Hold R and A to rise into the air.\"",
+          "value": "\"按住 R 和 A 即可升空。\""
+        },
+        {
+          "key": "\"Easy Quick Spin (R+B)\"",
+          "value": "\"简易回旋斩（R+B）\""
+        },
+        {
+          "key": "\"Hold R to always do a Quick Spin when attacking with B.\"",
+          "value": "\"按住 R 时用 B 攻击必定使出回旋斩。\""
+        },
+        {
+          "key": "\"Super Clawshot\"",
+          "value": "\"超级钩索\""
+        },
+        {
+          "key": "\"Extends Clawshot behavior beyond the normal game rules.\"",
+          "value": "\"让钩索的行为突破游戏原有规则。\""
+        },
+        {
+          "key": "\"Always Greatspin\"",
+          "value": "\"始终大回旋斩\""
+        },
+        {
+          "key": "\"<br/>Allows the Great Spin attack without requiring full health.\"",
+          "value": "\"<br/>无需满血也能使出大回旋斩。\""
+        },
+        {
+          "key": "\"Can Transform Anywhere\"",
+          "value": "\"随处变身\""
+        },
+        {
+          "key": "\"Allows transforming even if NPCs are looking.\"",
+          "value": "\"即使 NPC 正看着也能变身。\""
+        },
+        {
+          "key": "\"Fast Roll\"",
+          "value": "\"快速翻滚\""
+        },
+        {
+          "key": "\"Makes Link's roll animation and movement twice as fast.\"",
+          "value": "\"林克的翻滚动作与移动速度提升一倍。\""
+        },
+        {
+          "key": "\"Fast Spinner\"",
+          "value": "\"快速旋转器\""
+        },
+        {
+          "key": "\"Speeds up Spinner movement while holding R.\"",
+          "value": "\"按住 R 时旋转器移动更快。\""
+        },
+        {
+          "key": "\"Restart to Main Menu\"",
+          "value": "\"返回主菜单\""
+        },
+        {
+          "key": "\"Restart Dusklight to the pre-launch menu to change settings, game \"",
+          "value": "\"修改设置、游戏模式或模组需重启 Dusklight 返回预启动菜单。\""
+        },
+        {
+          "key": "\"modes, or mods.\"",
+          "value": "\"\""
+        },
+        {
+          "key": "\"When starting Dusklight, skip the main menu and boot straight into the \"",
+          "value": "\"启动 Dusklight 时跳过主菜单，只要有光盘镜像就直接进入\""
+        },
+        {
+          "key": "\"game if a disc image is available.<br/><br/>Note: If any mods register game \"",
+          "value": "\"游戏。<br/><br/>注意：若有模组注册了游戏\""
+        },
+        {
+          "key": "\"modes, this option will be ignored.\"",
+          "value": "\"模式，此选项将被忽略。\""
+        },
+        {
+          "key": "\"Show Shader Compilation\"",
+          "value": "\"显示着色器编译进度\""
+        },
+        {
+          "key": "\"Show an overlay when shaders are being compiled for your hardware.\"",
+          "value": "\"为本机硬件编译着色器时显示覆盖层。\""
+        },
+        {
+          "key": "\"Check for Dusklight Updates\"",
+          "value": "\"检查 Dusklight 更新\""
+        },
+        {
+          "key": "\"Checks GitHub releases for a new Dusklight version on startup.<br/><br/>\"",
+          "value": "\"启动时检查 GitHub Releases 是否有新的 Dusklight 版本。<br/><br/>\""
+        },
+        {
+          "key": "\"No personal information is transmitted or collected.\"",
+          "value": "\"不会传输或收集任何个人信息。\""
+        },
+        {
+          "key": "\"Tools\"",
+          "value": "\"工具\""
+        },
+        {
+          "key": "\"Move Link (L+R+Y)\"",
+          "value": "\"移动林克（L+R+Y）\""
+        },
+        {
+          "key": "\"Enables the L+R+Y button combo to toggle freely repositioning Link.\"",
+          "value": "\"按 L+R+Y 可切换自由摆放林克位置。\""
+        },
+        {
+          "key": "\"Teleport (R+D-pad Up/Down)\"",
+          "value": "\"传送（R+十字键 上/下）\""
+        },
+        {
+          "key": "\"R+D-pad Up stores Link's current position.<br/>\"",
+          "value": "\"R+十字键 上：记录林克当前位置。<br/>\""
+        },
+        {
+          "key": "\"R+D-pad Down teleports Link back to it.\"",
+          "value": "\"R+十字键 下：把林克传送回该位置。\""
         }
       ],
       "insert": []
@@ -3956,6 +4272,10 @@
         {
           "key": "                .title = \"Device Disconnected\",\n                .content = name ? name : \"[Unknown]\",",
           "value": "                .title = \"设备已断开\",\n                .content = name ? name : \"[未知]\","
+        },
+        {
+          "key": "\"Could not inspect packages\"",
+          "value": "\"无法检查模组包\""
         }
       ],
       "insert": [

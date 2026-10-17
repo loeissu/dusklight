@@ -492,7 +492,7 @@ void update() noexcept {
         } catch (const std::exception& exception) {
             push_toast({
                 .type = "warning",
-                .title = "Could not inspect packages",
+                .title = "无法检查模组包",
                 .content = exception.what(),
                 .duration = std::chrono::seconds{5},
             });

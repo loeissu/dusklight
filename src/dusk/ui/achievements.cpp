@@ -135,7 +135,7 @@ AchievementsWindow::AchievementsWindow() {
 
             auto& pane = add_child<Pane>(content, Pane::Type::Controlled);
 
-            pane.add_section(fmt::format("{} / {} unlocked", unlocked, total));
+            pane.add_section(fmt::format("已解锁 {} / {}", unlocked, total));
 
             for (const auto& a : achievements) {
                 if (a.category != cat) {

@@ -133,9 +133,9 @@ Rml::Element* create_controller_warning(Rml::Element* parent) {
 
     auto* message = append(elem, "message");
     auto* content = append(message, "toast-message-text");
-    append_text(content, "Configure ");
-    append_text(append(content, "b"), "Port 1");
-    append_text(content, " in Settings.");
+    append_text(content, "配置 ");
+    append_text(append(content, "b"), "端口 1");
+    append_text(content, "（在设置中）。");
 
     return elem;
 }
@@ -503,9 +503,9 @@ void Overlay::update_pipeline_progress() {
 
     if (queuedPipelines != mLastQueuedPipelines) {
         mLastQueuedPipelines = queuedPipelines;
-        const auto noun = queuedPipelines == 1 ? "shader" : "shaders";
+        const auto noun = queuedPipelines == 1 ? "着色器" : "着色器";
         set_text_content(
-            mPipelineProgressLabel, fmt::format("Compiling {} {}", queuedPipelines, noun));
+            mPipelineProgressLabel, fmt::format("正在编译 {} 个{}", queuedPipelines, noun));
     }
     mPipelineProgressBar->SetAttribute("value", progress);
 

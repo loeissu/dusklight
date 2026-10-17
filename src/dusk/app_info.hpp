@@ -7,7 +7,7 @@ namespace dusk {
     inline constexpr borealis::AppInfo AppInfo{
         .orgName = "TwilitRealm",
         .appName = "Dusklight",
-        .githubOwner = "TwilitRealm",
+        .githubOwner = "loeissu",
         .githubRepo = "dusklight",
         .discordApplicationId = "1495632471994405035",
     };

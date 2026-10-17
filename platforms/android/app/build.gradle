@@ -31,3 +31,30 @@ apply from: new File(borealisDir, 'platforms/android/gradle/borealis-application
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 }
+
+// === 汉化版适配：versionCode 由版本号推导（tools/apply-zh-adaptations.py）===
+// 1.4.1 -> 10401，保证新版本 APK 能覆盖安装旧版汉化版（不需要卸载）。
+def zhPresetsFile = new File(duskRepoDir, 'CMakePresets.json')
+def zhVersionName = '0.0.0'
+if (zhPresetsFile.exists()) {
+    def zhMatcher = (zhPresetsFile.text =~ /"BOREALIS_APP_VERSION_OVERRIDE"\s*:\s*"([^"]+)"/)
+    if (zhMatcher.find()) {
+        zhVersionName = zhMatcher.group(1)
+    }
+}
+def zhSegments = zhVersionName.tokenize('.')
+while (zhSegments.size() < 3) {
+    zhSegments << '0'
+}
+def zhVersionCode = (zhSegments[0] as int) * 10000 + (zhSegments[1] as int) * 100 + (zhSegments[2] as int)
+try {
+    android {
+        defaultConfig {
+            versionName zhVersionName
+            versionCode zhVersionCode
+        }
+    }
+    logger.lifecycle("汉化版 versionName=" + zhVersionName + " versionCode=" + zhVersionCode)
+} catch (Exception e) {
+    logger.lifecycle("汉化版 versionCode 适配失败（继续构建）：" + e.message)
+}

@@ -1347,24 +1347,24 @@ SettingsWindow::SettingsWindow(bool prelaunch) : mPrelaunch(prelaunch) {
         addCheat("无限炸弹", getSettings().game.infiniteBombs, "保持所有炸弹袋全满。");
         addCheat("无限灯油", getSettings().game.infiniteOil, "保持灯油全满。");
         addCheat("无限氧气", getSettings().game.infiniteOxygen,
-            "Keeps your underwater oxygen meter full.");
+            "让水下氧气槽始终保持满值。");
         addCheat(
-            "Infinite Rupees", getSettings().game.infiniteRupees, "Keeps your rupee count full.");
-        addCheat("No Item Timer", getSettings().game.enableIndefiniteItemDrops,
-            "Item drops such as rupees and hearts will never disappear after they drop.");
+            "无限卢比", getSettings().game.infiniteRupees, "让卢比数量始终保持满值。");
+        addCheat("道具不掉落消失", getSettings().game.enableIndefiniteItemDrops,
+            "卢比、心等掉落物落地后不会消失。");
 
-        leftPane.add_section("Abilities");
+        leftPane.add_section("能力");
 
         addCheat(
-            "Moon Jump (R+A)", getSettings().game.moonJump, "Hold R and A to rise into the air.");
+            "月跳（R+A）", getSettings().game.moonJump, "按住 R 和 A 即可升空。");
         addCheat(
-            "Easy Quick Spin (R+B)", getSettings().game.easyQuickSpin, "Hold R to always do a Quick Spin when attacking with B.");
+            "简易回旋斩（R+B）", getSettings().game.easyQuickSpin, "按住 R 时用 B 攻击必定使出回旋斩。");
 
-        addCheat("Super Clawshot", getSettings().game.superClawshot,
-            "Extends Clawshot behavior beyond the normal game rules.");
+        addCheat("超级钩索", getSettings().game.superClawshot,
+            "让钩索的行为突破游戏原有规则。");
         leftPane.register_control(
             leftPane.add_select_button({
-                .key = "Always Greatspin",
+                .key = "始终大回旋斩",
                 .getValue =
                     [] {
                         return kAlwaysGreatspinModes[static_cast<u8>(
@@ -1394,16 +1394,16 @@ SettingsWindow::SettingsWindow(bool prelaunch) : mPrelaunch(prelaunch) {
                             config::save();
                         });
                 }
-                pane.add_rml("<br/>Allows the Great Spin attack without requiring full health.");
+                pane.add_rml("<br/>无需满血也能使出大回旋斩。");
             });
         addCheat("Fast 铁靴", getSettings().game.enableFastIronBoots,
             "Speeds up movement while heavy, including wearing the 铁靴, holding the 链球, wearing Magic Armor without rupees, etc.");
-        addCheat("Can Transform Anywhere", getSettings().game.canTransformAnywhere,
-            "Allows transforming even if NPCs are looking.");
-        addCheat("Fast Roll", getSettings().game.fastRoll,
-            "Makes Link's roll animation and movement twice as fast.");
-        addCheat("Fast Spinner", getSettings().game.fastSpinner,
-            "Speeds up Spinner movement while holding R.");
+        addCheat("随处变身", getSettings().game.canTransformAnywhere,
+            "即使 NPC 正看着也能变身。");
+        addCheat("快速翻滚", getSettings().game.fastRoll,
+            "林克的翻滚动作与移动速度提升一倍。");
+        addCheat("快速旋转器", getSettings().game.fastSpinner,
+            "按住 R 时旋转器移动更快。");
         leftPane.register_control(
             leftPane.add_select_button({
                 .key = "魔法铠甲行为",
@@ -1457,15 +1457,15 @@ SettingsWindow::SettingsWindow(bool prelaunch) : mPrelaunch(prelaunch) {
                     "打开 Dusklight 存放设置、存档、日志、贴图替换等应用数据的文件夹。");
             });
 #endif
-        leftPane.register_control(leftPane.add_button("Restart to Main Menu").on_pressed([this] {
+        leftPane.register_control(leftPane.add_button("返回主菜单").on_pressed([this] {
             mDoAud_seStartMenu(kSoundClick);
             pop();
             prelaunch_state().returnToPrelaunchOnReset = true;
             JUTGamePad::C3ButtonReset::sResetSwitchPushing = true;
         }),
             rightPane, [](Pane& pane) {
-                pane.add_text("Restart Dusklight to the pre-launch menu to change settings, game "
-                              "modes, or mods.");
+                pane.add_text("修改设置、游戏模式或模组需重启 Dusklight 返回预启动菜单。"
+                              "");
             });
         leftPane.register_control(
             leftPane.add_select_button({
@@ -1555,20 +1555,20 @@ SettingsWindow::SettingsWindow(bool prelaunch) : mPrelaunch(prelaunch) {
             {
                 .key = "跳过 Dusklight 主菜单",
                 .helpText =
-                    "When starting Dusklight, skip the main menu and boot straight into the "
-                    "game if a disc image is available.<br/><br/>Note: If any mods register game "
-                    "modes, this option will be ignored.",
+                    "启动 Dusklight 时跳过主菜单，只要有光盘镜像就直接进入"
+                    "游戏。<br/><br/>注意：若有模组注册了游戏"
+                    "模式，此选项将被忽略。",
             });
         config_bool_select(leftPane, rightPane, getSettings().backend.showPipelineCompilation,
             {
-                .key = "Show Shader Compilation",
-                .helpText = "Show an overlay when shaders are being compiled for your hardware.",
+                .key = "显示着色器编译进度",
+                .helpText = "为本机硬件编译着色器时显示覆盖层。",
             });
         config_bool_select(leftPane, rightPane, getSettings().backend.checkForUpdates,
             {
-                .key = "Check for Dusklight Updates",
-                .helpText = "Checks GitHub releases for a new Dusklight version on startup.<br/><br/>"
-                            "No personal information is transmitted or collected.",
+                .key = "检查 Dusklight 更新",
+                .helpText = "启动时检查 GitHub Releases 是否有新的 Dusklight 版本。<br/><br/>"
+                            "不会传输或收集任何个人信息。",
             });
 #if BOREALIS_HAS_DISCORD
         config_bool_select(leftPane, rightPane, getSettings().game.enableDiscordPresence,
@@ -1649,18 +1649,18 @@ SettingsWindow::SettingsWindow(bool prelaunch) : mPrelaunch(prelaunch) {
             "禁用游戏 HUD 和所有背景音乐。<br/><br/>方便录制视频。");
     });
 
-    add_tab("Tools", [this](Rml::Element* content) {
+    add_tab("工具", [this](Rml::Element* content) {
         auto& leftPane = add_child<Pane>(content, Pane::Type::Controlled);
         auto& rightPane = add_child<Pane>(content, Pane::Type::Uncontrolled);
 
         leftPane.add_section("林克");
         add_speedrun_disabled_option(leftPane, rightPane, getSettings().game.enableMoveLinkCombo,
-            "Move Link (L+R+Y)",
-            "Enables the L+R+Y button combo to toggle freely repositioning Link.");
+            "移动林克（L+R+Y）",
+            "按 L+R+Y 可切换自由摆放林克位置。");
         add_speedrun_disabled_option(leftPane, rightPane, getSettings().game.enableTeleportCombo,
-            "Teleport (R+D-pad Up/Down)",
-            "R+D-pad Up stores Link's current position.<br/>"
-            "R+D-pad Down teleports Link back to it.");
+            "传送（R+十字键 上/下）",
+            "R+十字键 上：记录林克当前位置。<br/>"
+            "R+十字键 下：把林克传送回该位置。");
     });
 }
 
