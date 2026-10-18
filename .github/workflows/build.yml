@@ -18,9 +18,14 @@ env:
   SCCACHE_GHA_ENABLED: "true"
   RUSTC_WRAPPER: "sccache"
   ANDROID_NDK_VERSION: "29.0.14206865"
-  # 自用签名密码。想换请同时改下面所有用到它的地方。
-  KEYSTORE_PASSWORD: "dusklight-zh-2026"
-  KEYSTORE_ALIAS: "dusklight-zh"
+  # 签名密钥存放在 GitHub Secret ANDROID_KEYSTORE_B64，密码在 ANDROID_KEYSTORE_PASSWORD，
+  # 别名在 ANDROID_KEYSTORE_ALIAS。密钥绝不能再提交进仓库。
+  #
+  # 下面这个指纹是公开信息，用来在 CI 里硬校验签名密钥。
+  # 一旦产出包的证书和它对不上，构建必须失败——绝不允许静默换密钥，
+  # 否则所有已安装用户都会收到"签名不一致"而无法升级。
+  EXPECTED_CERT_SHA256: "603f9fa9bf2078dcdf1b2429e4c928f3bf22ba6edbecabe1fa19c8e7b24b4c0b"
+  BUILD_TOOLS_VERSION: "36.1.0"
 
 jobs:
   build-windows:
@@ -60,7 +65,7 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v7
         with:
-          name: Dusklight-汉化版-win32-x86_64
+          name: Dusklight-zh-win32-x86_64
           path: |
             build/install/*.exe
             build/install/*.dll
@@ -102,7 +107,7 @@ jobs:
       - name: Upload AppImage
         uses: actions/upload-artifact@v7
         with:
-          name: Dusklight-汉化版-linux-x86_64
+          name: Dusklight-zh-linux-x86_64
           path: |
             build/install/Dusklight-*.AppImage
 
@@ -156,52 +161,88 @@ jobs:
 
       - name: Prepare keystore
         shell: bash
+        env:
+          KEYSTORE_B64: ${{ secrets.ANDROID_KEYSTORE_B64 }}
+          KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          KEYSTORE_ALIAS: ${{ secrets.ANDROID_KEYSTORE_ALIAS }}
         run: |
-          if [ -f android-keystore/release.keystore ]; then
-            cp android-keystore/release.keystore release.keystore
-            echo "Using committed keystore (android-keystore/release.keystore)."
-          elif [ -n "${{ secrets.ANDROID_KEYSTORE_B64 }}" ]; then
-            echo "${{ secrets.ANDROID_KEYSTORE_B64 }}" | base64 -d > release.keystore
-            echo "Using keystore from GitHub secret."
-          else
-            keytool -genkeypair \
-              -keystore release.keystore \
-              -alias "$KEYSTORE_ALIAS" \
-              -keyalg RSA -keysize 2048 -validity 10000 \
-              -storepass "$KEYSTORE_PASSWORD" -keypass "$KEYSTORE_PASSWORD" \
-              -dname "CN=Dusklight CN, OU=Personal, O=Personal, L=CN, ST=CN, C=CN"
-            echo "Generated a new keystore (kept as an artifact for future updates)."
+          set -euo pipefail
+          # 只接受 GitHub Secret 里的密钥。密钥缺失就直接失败。
+          # 绝对不要在这里"没有就生成一把新的"——那样产出的 APK
+          # 和线上已发布版本的签名不同，所有已安装用户都会无法升级，
+          # 而且构建不会报错，问题会被埋到用户点安装那一刻才暴露。
+          if [ -z "${KEYSTORE_B64:-}" ]; then
+            echo "::error::缺少 Secret ANDROID_KEYSTORE_B64，无法签名。"
+            echo "请在仓库 Settings -> Secrets and variables -> Actions 里添加它"
+            echo "（值 = 现有 release.keystore 的 base64）。"
+            exit 1
           fi
+          if [ -z "${KEYSTORE_PASSWORD:-}" ] || [ -z "${KEYSTORE_ALIAS:-}" ]; then
+            echo "::error::缺少 Secret ANDROID_KEYSTORE_PASSWORD 或 ANDROID_KEYSTORE_ALIAS。"
+            exit 1
+          fi
+          printf '%s' "$KEYSTORE_B64" | base64 -d > release.keystore
+          keytool -list -v -keystore release.keystore \
+            -storepass "$KEYSTORE_PASSWORD" -alias "$KEYSTORE_ALIAS" > /dev/null
+          echo "Keystore restored from secret; alias '$KEYSTORE_ALIAS' is present."
 
       - name: Sign APK
         shell: bash
+        env:
+          KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          KEYSTORE_ALIAS: ${{ secrets.ANDROID_KEYSTORE_ALIAS }}
         run: |
+          set -euo pipefail
           UNSIGNED=$(ls platforms/android/app/build/outputs/apk/release/app-*-release-unsigned.apk)
-          BUILD_TOOLS="$ANDROID_HOME/build-tools/36.1.0"
+          BUILD_TOOLS="$ANDROID_HOME/build-tools/$BUILD_TOOLS_VERSION"
           "$BUILD_TOOLS/zipalign" -p -f 4 "$UNSIGNED" aligned.apk
+          # v1/v2/v3 全部显式开启。
+          # 之前只开 v3（因为 minSdk=28，apksigner 会自动关掉 v1/v2），
+          # 部分第三方安装器解析这种只带 v3 的包时会报
+          # INSTALL_PARSE_FAILED_NO_CERTIFICATES。
           "$BUILD_TOOLS/apksigner" sign \
             --ks release.keystore \
             --ks-key-alias "$KEYSTORE_ALIAS" \
             --ks-pass "pass:$KEYSTORE_PASSWORD" \
             --key-pass "pass:$KEYSTORE_PASSWORD" \
+            --v1-signing-enabled true \
+            --v2-signing-enabled true \
+            --v3-signing-enabled true \
+            --min-sdk-version 21 \
             --out Dusklight-CN-signed.apk \
             aligned.apk
 
-      - name: Verify signature
+      - name: Verify signature and pin the certificate
         shell: bash
-        run: $ANDROID_HOME/build-tools/36.1.0/apksigner verify --print-certs Dusklight-CN-signed.apk
+        # 注意：不要在这里写 env: EXPECTED_CERT_SHA256: $EXPECTED_CERT_SHA256。
+        # step 级 env 块不会继承/解析 workflow 级 env 的引用，会被当成字面量。
+        # 直接继承顶层 env 即可。
+        run: |
+          set -euo pipefail
+          BUILD_TOOLS="$ANDROID_HOME/build-tools/$BUILD_TOOLS_VERSION"
+          "$BUILD_TOOLS/apksigner" verify --min-sdk-version 21 --verbose \
+            --print-certs Dusklight-CN-signed.apk
+          "$BUILD_TOOLS/zipalign" -c -v 4 Dusklight-CN-signed.apk
+
+          # 去掉 head 的管道，避免 grep 收到 SIGPIPE 在 pipefail 下让整步失败。
+          CERTS=$("$BUILD_TOOLS/apksigner" verify --print-certs Dusklight-CN-signed.apk \
+            | grep -oE '[0-9a-f]{64}')
+          ACTUAL=$(printf '%s\n' "$CERTS" | sed -n '1p')
+          EXPECTED=$(printf '%s' "$EXPECTED_CERT_SHA256" | tr 'A-Z' 'a-z')
+          if [ "$ACTUAL" != "$EXPECTED" ]; then
+            echo "::error::签名证书与预期不符，拒绝发布。"
+            echo "预期: $EXPECTED"
+            echo "实际: ${ACTUAL:-<未取到>}"
+            echo "发布这个包会导致所有已安装用户无法覆盖升级。"
+            exit 1
+          fi
+          echo "证书指纹校验通过: $ACTUAL"
 
       - name: Upload APK
         uses: actions/upload-artifact@v7
         with:
-          name: Dusklight-汉化版-android-arm64
+          name: Dusklight-zh-android-arm64
           path: Dusklight-CN-signed.apk
-
-      - name: Upload keystore (保存好，以后升级版本号时复用)
-        uses: actions/upload-artifact@v7
-        with:
-          name: dusklight-zh-release-keystore
-          path: release.keystore
 
   publish-release:
     name: 发布汉化版 Release
@@ -225,49 +266,60 @@ jobs:
       - name: 下载 Windows 产物
         uses: actions/download-artifact@v7
         with:
-          name: Dusklight-汉化版-win32-x86_64
+          name: Dusklight-zh-win32-x86_64
           path: dist/windows
 
       - name: 下载 Linux 产物
         uses: actions/download-artifact@v7
         with:
-          name: Dusklight-汉化版-linux-x86_64
+          name: Dusklight-zh-linux-x86_64
           path: dist/linux
 
       - name: 下载 Android 产物
         uses: actions/download-artifact@v7
         with:
-          name: Dusklight-汉化版-android-arm64
+          name: Dusklight-zh-android-arm64
           path: dist/android
 
       - name: 整理发布文件
+        # 资源文件名必须是纯 ASCII。GitHub 在上传 release 资源时会把
+        # 文件名里的非 ASCII 字符替换成 "."，之前 "Dusklight-汉化版-*.apk"
+        # 实际存成了 "Dusklight-.-*.apk"，很难看也不好认。
         run: |
-          set -e
+          set -euo pipefail
           mkdir -p release
           VERSION="${{ steps.version.outputs.version }}"
-          cp dist/android/Dusklight-CN-signed.apk "release/Dusklight-汉化版-android-arm64-v${VERSION}.apk"
+          cp dist/android/Dusklight-CN-signed.apk "release/Dusklight-zh-v${VERSION}-android-arm64.apk"
           APPIMAGE=$(ls dist/linux/Dusklight-*.AppImage | head -n1)
-          cp "$APPIMAGE" "release/Dusklight-汉化版-linux-x86_64-v${VERSION}.AppImage"
-          cd dist/windows
-          zip -qr "../../release/Dusklight-汉化版-windows-x86_64-v${VERSION}.zip" .
-          cd ../..
+          cp "$APPIMAGE" "release/Dusklight-zh-v${VERSION}-linux-x86_64.AppImage"
+          (cd dist/windows && zip -qr "../../release/Dusklight-zh-v${VERSION}-windows-x86_64.zip" .)
           ls -lh release
 
       - name: 创建或更新 Release
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          set -e
+          set -euo pipefail
           TAG="${{ steps.version.outputs.tag }}"
           VERSION="${{ steps.version.outputs.version }}"
           NOTES="Dusklight 汉化版 v${VERSION}（基于上游 v${VERSION}）。
 
           - Windows x86_64：解压 zip 后运行 dusklight.exe
           - Linux x86_64：AppImage 需先赋予执行权限（chmod +x）
-          - Android arm64：APK 与旧版汉化版同签名，可直接覆盖安装"
+          - Android arm64：APK 与旧版汉化版同签名，可直接覆盖安装。"
           if gh release view "$TAG" >/dev/null 2>&1; then
             echo "更新已有 Release：${TAG}"
+            gh release view "$TAG" --json assets --jq '.assets[].name' > old-assets.txt || true
             gh release upload "$TAG" release/* --clobber
+            # 清掉历史上用旧命名规则留下的资源，避免同一个 tag 下
+            # 同时存在 "Dusklight-.-*" 和 "Dusklight-zh-*" 两套文件名。
+            while read -r old; do
+              case "$old" in
+                Dusklight-zh-*) continue ;;
+              esac
+              echo "删除旧资源: $old"
+              gh release delete-asset "$TAG" "$old" --yes || true
+            done < old-assets.txt
           else
             echo "创建 Release：${TAG}"
             gh release create "$TAG" release/* \
